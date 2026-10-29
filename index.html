@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<!-- After Further Review: The IFL (formerly Crooked Whistle) — Copyright © 2026 George Papaioannou. All rights reserved. Fiction & satire; not affiliated with any league, team, broadcaster or sportsbook. Third-party: Three.js (MIT License, © 2010-2023 Three.js Authors); Press Start 2P font by CodeMan38 (SIL Open Font License 1.1, © 2012 The Press Start 2P Project Authors). -->
+<!-- After Further Review: The IFL — Copyright © 2026 George Papaioannou. All rights reserved. Fiction & satire; not affiliated with any league, team, broadcaster or sportsbook. Third-party: Three.js (MIT License, © 2010-2023 Three.js Authors); Press Start 2P font by CodeMan38 (SIL Open Font License 1.1, © 2012 The Press Start 2P Project Authors). -->
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#0b0d12">
-<title>After Further Review: The IFL v82 RENAME</title>
+<title>After Further Review: The IFL v83 PROFILES</title>
 <style>
 :root{--bg:#0b0d12;--card:#1a1e27;--card2:#252a35;--ink:#f4f1e8;--dim:#9aa3b2;--whistle:#ffd23f;--hot:#ff5a3c;--ok:#4cd387;--line:#2c3240;--gbn:#2f6bff}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -1538,7 +1538,7 @@ window.__showThreeMissing=function(msg){
   d.id='threeMissing';
   d.setAttribute('role','alert');
   d.style.cssText='position:fixed;inset:0;z-index:99999;background:#0b0d12;color:#ffd23f;display:flex;align-items:center;justify-content:center;padding:28px;text-align:center;font:700 16px system-ui';
-  d.innerHTML='<div style="max-width:340px"><div style="font-size:22px;margin-bottom:10px">3D engine missing</div><div style="color:#cfe8e0;font-weight:600;line-height:1.45">'+(msg||'Need internet once to load 3D')+'</div><div style="margin-top:14px;color:#8a9;font-size:12px;font-weight:600">After Further Review: The IFL — keep three.min.js beside this file (FOR_GEORGE zip) or use network once</div></div>';
+  d.innerHTML='<div style="max-width:340px"><div style="font-size:22px;margin-bottom:10px">3D engine missing</div><div style="color:#cfe8e0;font-weight:600;line-height:1.45">'+(msg||'Need internet once to load 3D')+'</div><div style="margin-top:14px;color:#8a9;font-size:12px;font-weight:600">After Further Review: The IFL v70 — keep three.min.js beside this file (FOR_GEORGE zip) or use network once</div></div>';
   (document.body||document.documentElement).appendChild(d);
 };
 (function(){
@@ -1556,7 +1556,7 @@ window.__showThreeMissing=function(msg){
 <section id="pregame" class="screen" hidden>
   <div class="scroll">
     <div style="display:flex;justify-content:space-between;align-items:center"><div class="gbn"><i>GBN</i> IFL ON GBN · WEEK 6 · LIVE</div><button class="mini" id="pgMenu">‹ Menu</button></div>
-    <div class="logo" style="margin-top:8px">AFTER FURTHER <span>REVIEW</span></div>
+    <div class="logo" style="margin-top:8px">AFTER FURTHER REVIEW: <span>THE IFL</span></div>
     <div class="tag" id="pgTag">Prototype · You are Ref #77</div>
     <div class="card">
       <h3>Tonight on the Gridiron Broadcast Network</h3>
@@ -1612,7 +1612,7 @@ window.__showThreeMissing=function(msg){
     <canvas id="field"></canvas>
     <div id="tvtag">LIVE · LAMBERT FIELD</div>
     <div id="netbug" class="gbn"><i>GBN</i>IFL</div>
-    <div id="fvbug"><img id="fvA" alt=""><div class="fvt"><i id="fvk"></i></div><img id="fvH" alt=""><span class="fvl" id="fvl">FLAG FAVOR · EVEN</span></div>
+    <div id="fvbug"><img id="fvA" alt=""><div class="fvt"><i id="fvk"></i></div><img id="fvH" alt=""><span class="fvl" id="fvl">FAVOR · EVEN</span></div>
     <div id="callchip" aria-hidden="true">PLAN · RESOLVING…</div>
     <div id="booth"></div>
     <div id="gfx"></div><div id="sbur"></div>
@@ -1636,8 +1636,6 @@ window.__showThreeMissing=function(msg){
   </div>
   <div id="heatrow"><span>🔥 HEAT <b id="heatnum">0</b></span><div id="heatbar"><div id="heatfill"></div><i class="tick" style="left:20%"></i><i class="tick" style="left:40%"></i><i class="tick" style="left:60%"></i><i class="tick" style="left:80%"></i></div><span id="tiername">TIER 1 · QUIET</span><div id="floaty"></div></div>
   <div id="subrow"><div id="mstrack"></div></div>
-  <div id="buzzbar"><span id="bell">🔔<b id="notif">0</b></span><span class="bzt">BUZZLINE</span><span id="memebtn">🖼 <b id="memecnt">0</b></span><div id="velo"><i id="velofill"></i></div><span id="velolbl">CALM</span><span id="trend"></span></div>
-  <div id="feed"></div>
   <div id="thumb"><button id="bigbtn" disabled>…</button><button id="letgo" style="display:none">Let it go ▶</button><button id="replay" style="display:none">🔁 Replay<small>½ speed · free</small></button><button id="skipk" style="display:none">⏭ Skip to<small>next key play</small></button><div id="dt" style="display:none"><i id="dtbar"></i></div><div id="kpbox">KEY PLAYS<b id="kpc">0/20</b></div><div id="hint"></div></div>
   <div id="scrim"></div>
   <div id="radial"></div>
@@ -1652,13 +1650,11 @@ window.__showThreeMissing=function(msg){
 <div class="cbt" id="cbt"><button class="rbtn dec" id="cDec"><i><span>📞</span></i>Decline</button><button class="rbtn acc" id="cAcc"><i>📞</i>Accept</button></div>
 <div class="cch" id="cch" hidden><button class="take" id="cTake"></button><button class="refuse" id="cRef"></button></div><div class="slide" id="cslide">slide to answer · or don't · they'll know</div></div>
 <div id="mpop"></div>
-<div id="mgal"><h3><span>🖼 TONIGHT'S MEMES</span><span id="mgx">✕ CLOSE</span></h3><div class="grid" id="mgrid"></div></div>
-<div id="memeview"><img id="mvimg" alt="meme"><div class="mvmeta" id="mvmeta"></div><div class="mvx">TAP ANYWHERE TO CLOSE</div></div>
 <section id="end" class="screen" hidden><div class="scroll" id="endbody"></div></section>
 <div id="brc" hidden><div id="brtop"><span>🎙 POSTGAME · THE BOOTH</span><span id="brpg"></span></div><canvas id="brcv"></canvas><div id="brcard"><div id="brhd"></div><div id="brwho"></div><div id="brtx"></div></div><div id="brhelp">Postgame presented by The House Sportsbook · 21+ · Bad beat? Call <b style="white-space:nowrap">1-800-BAD-BEAT</b></div><div id="brft"><span class="tap">Tap to continue ▸</span><button id="brskip" type="button">Skip ⏭</button></div></div>
 <section id="title" class="screen"><div class="scroll ttl">
   <div class="gbn" style="margin-top:6px"><i>GBN</i> IFL ON GBN · OFFICIATING DEPT.</div>
-  <div class="tlhero"><div class="tlwh">🏈</div><div class="logo" style="font-size:44px">AFTER FURTHER<br><span>REVIEW</span><div style="font-size:.42em;letter-spacing:.2em;margin-top:6px;opacity:.9">THE IFL</div></div><div class="tag" id="tlTag">You are Ref #77. The league has a Script. The House has a number. You have a whistle.</div></div>
+  <div class="tlhero"><div class="tlwh">🏈</div><div class="logo v82logo" style="font-size:40px">AFTER FURTHER<br>REVIEW:<br><span>THE IFL</span></div><div class="tag" id="tlTag">You are Ref #77. The league has a Script. The House has a number. You have a whistle.</div></div>
   <button class="btn" id="tNew">New Season <small>10 weeks · playoffs · the Superb Owl</small></button>
   <button class="btn alt" id="tContinue">Continue Season <small>no saved season</small></button>
   <button class="btn ghost" id="tQuick">Quick Game <small>Gales @ Wedges · one night only</small></button>
@@ -1682,11 +1678,11 @@ window.__showThreeMissing=function(msg){
 (()=>{
 var __cwN=function(a,b){return a!=null?a:b;};/* v62: Safari ≤13-safe nullish + optional-chain shims */
 /* v73: build/version info. Future builds bump ONLY this line. */
-const CW_VERSION='v82',CW_BUILD='RENAME',CW_DATE='2026-10-29';
+const CW_VERSION='v83',CW_BUILD='PROFILES',CW_DATE='2026-10-29';
 const CW_VER_SHORT=(()=>{const p=CW_DATE.split('-');const M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];return CW_VERSION+' · '+CW_BUILD+' · '+M[(+p[1]||1)-1]+' '+(+p[2]||'');})();
 window.CW_VERSION=CW_VERSION;window.CW_BUILD=CW_BUILD;window.CW_DATE=CW_DATE;
 (function cwVerUI(){
-  try{document.title='After Further Review '+CW_VERSION+' '+CW_BUILD+(/\(CDN\)/.test(document.title)?' (CDN)':'');}catch(e){}
+  try{document.title='After Further Review: The IFL '+CW_VERSION+' '+CW_BUILD+(/\(CDN\)/.test(document.title)?' (CDN)':'');}catch(e){}
   const go=()=>{try{
     const tl=document.querySelector('#title .ttl');if(tl&&!document.getElementById('cwVerT')){const d=document.createElement('div');d.id='cwVerT';d.className='cwver';d.textContent=CW_VER_SHORT;tl.appendChild(d);}
     const how=[...document.querySelectorAll('.card h3')].find(h=>/How to play/.test(h.textContent));if(how&&!document.getElementById('cwVerH')){const d=document.createElement('div');d.id='cwVerH';d.className='cwver';d.textContent='Build '+CW_VERSION+' · '+CW_BUILD+' · '+CW_DATE;how.parentNode.appendChild(d);}
@@ -1696,7 +1692,9 @@ window.CW_VERSION=CW_VERSION;window.CW_BUILD=CW_BUILD;window.CW_DATE=CW_DATE;
   }catch(e){}};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else setTimeout(go,0);
 })();
-const $=s=>document.querySelector(s);
+/* v82: SOCIAL removed. Retired feed nodes sit in a detached holder (not in the DOM) so legacy writers stay harmless */
+const CW_RETIRED=document.createElement('div');CW_RETIRED.innerHTML='<div id="buzzbar"><span id="bell">🔔<b id="notif">0</b></span><span class="bzt">BUZZLINE</span><span id="memebtn">🖼 <b id="memecnt">0</b></span><div id="velo"><i id="velofill"></i></div><span id="velolbl">CALM</span><span id="trend"></span></div><div id="feed"></div>';
+const $=s=>document.querySelector(s)||CW_RETIRED.querySelector(s);
 const rnd=Math.random, rint=(a,b)=>a+Math.floor(rnd()*(b-a+1)), pick=a=>a[Math.floor(rnd()*a.length)];
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)), lerp=(a,b,t)=>a+(b-a)*t, ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
 const P=new URLSearchParams(location.search);
@@ -1884,21 +1882,13 @@ function post(plat,text,boost=0,o={}){
   S.posts.push(p);
   const el=document.createElement('div');el.className='post'+(o.def?' def':o.hot?' hot':o.good?' good':'');p.el=el;
   el.innerHTML=`<div class="meta">${o.av?`<img class="av" src="${o.av}" alt="">`:''}<span class="plat ${plat}">${PLAT[plat]||plat}</span><span>${plat==='tp'?'t/IFLRefsWatch · ':''}${p.handle}</span>${o.tell?`<span class="tell">${o.tell}</span>`:''}<span class="cnt"></span></div><div class="ptx"></div>`;
-  el.lastChild.textContent=text;if(o.img){p.img=o.img;p.fmt=o.fmt;const im=document.createElement('img');im.className='meme';im.src=o.img;im.alt='meme';im.addEventListener('click',e=>{e.stopPropagation();openMeme(p);});el.appendChild(im);el.querySelector('.meta').insertAdjacentHTML('beforeend','');}paintCnt(p);
+  el.lastChild.textContent=text;if(o.img){p.img=o.img;p.fmt=o.fmt;const im=document.createElement('img');im.className='meme';im.src=o.img;im.alt='meme';el.appendChild(im);el.querySelector('.meta').insertAdjacentHTML('beforeend','');}paintCnt(p);
   const f=$('#feed');f.prepend(el);while(f.children.length>9)f.lastChild.remove();
   S.buzz=(S.buzz||0)+(o.hot?1.3:0.8);S.notif=(S.notif||0)+1;
-  const bell=$('#bell');bell.classList.remove('bump');void bell.offsetWidth;bell.classList.add('bump');
   buzzUI();AU.post(plat,o);return p;
 }
 function paintCnt(p){const t=p.views!=null?`👁 ${fmtN(p.views)} · ♥ ${fmtN(p.likes)}`:`♥ ${fmtN(p.likes)} · 🔁 ${fmtN(p.reposts)}`;const c=p.el&&p.el.querySelector('.cnt');if(c)c.textContent=t;if(p.pop){const d=p.pop.querySelector('.cnt');if(d)d.textContent=t;}if(p.statLock&&p.el){const tx=p.el.querySelector('.ptx');if(tx)tx.textContent=p.text;}if(p.statLock&&p.pop){const mtx=p.pop.querySelector('.mtx');if(mtx)mtx.textContent=p.text;}}
-function buzzUI(){
-  const b=S.buzz||0;$('#velofill').style.width=Math.min(100,b*5)+'%';
-  const lv=b<4?0:b<9?1:b<15?2:3;const L=$('#velolbl');L.textContent=['CALM','BUZZING','VIRAL','MELTDOWN'][lv];L.className='v'+lv;
-  const n=$('#notif');n.textContent=S.notif>99?'99+':S.notif;n.classList.toggle('on',S.notif>0);
-  const tr=$('#trend');const on=b>=7&&S.trend;$('#buzzbar').classList.toggle('trending',!!on);
-  if(on){const rank=b>=18?1:b>=13?2:b>=9?3:6;const txt=`🔥 TRENDING #${rank} · ${S.trend}`;if(tr.textContent!==txt)tr.textContent=txt;S.trendBest=Math.min(S.trendBest||99,rank);}
-  if(on!==tr.classList.contains('on'))tr.classList.toggle('on',!!on);
-}
+function buzzUI(){/* v82: BUZZLINE + TRENDING removed with SOCIAL */}
 let lastBz=performance.now();
 setInterval(()=>{const now=performance.now(),dt=now-lastBz;lastBz=now;if(!S)return;
   S.buzz=(S.buzz||0)*Math.pow(0.5,dt*SP()/9000);
@@ -1995,7 +1985,7 @@ function epv(pr,t){let v=pr.sc[t]-pr.sc[other(t)];if(pr.kind!=='TD'&&pr.kind!=='
 function favNet(){return (S.fv.away.yds-S.fv.home.yds)+5*(S.fv.home.pts-S.fv.away.pts);}
 function favInfo(){const n=favNet(),fav=n>0?'home':n<0?'away':null;return {n,fav,fy:fav?S.fv[other(fav)].yds:0,uy:fav?S.fv[fav].yds:0,mag:Math.abs(S.fv.away.yds-S.fv.home.yds)};}
 function fvUI(){const n=favNet(),p=50+clamp(n/90,-1,1)*44;$('#fvk').style.left=p+'%';const d=Math.abs(S.fv.away.yds-S.fv.home.yds);
-  $('#fvl').textContent=Math.abs(n)<5?'FLAG FAVOR · EVEN':`FLAG FAVOR · ${T(n>0?'home':'away').ab} +${d} YDS`;}
+  $('#fvl').textContent=Math.abs(n)<5?'FAVOR · EVEN':`FAVOR · ${T(n>0?'home':'away').ab} +${d} YDS`;}
 function fvCtx(){const fi=favInfo();const f=fi.fav||'away';return {favt:T(f).name,unfav:T(other(f)).name,FAVT:T(f).name.toUpperCase(),fy:fi.fy,uy:fi.uy,orig:S.job.orig?T(S.job.orig.team).name:T('away').name,newt:T(S.job.team).name,victim:T(other(f)).name,vcity:T(other(f)).city,team:T(f).name};}
 function favorUpdate(kp,call,e,pr,base,legit){const ben=benefits(call,kp);if(!ben)return;const vic=other(ben);
   if(e.pen){S.fv[vic].yds+=e.pen.y;S.fv[vic].flags++;}
@@ -2064,7 +2054,7 @@ const CALL_LINES={lenny:["Seventy-Seven. It's Lenny. Change of plans.","{say}","
  league:["This is the League Office. This call isn't happening.","Ratings want a different second half. {say}","Script bonus is {pay}. The Script has been… revised."]};
 const REFUSE={lenny:{txt:'Lenny: "Wrong answer, Seventy-Seven." Someone leaks your burner number to Threadpile.',heat:8,cut:0,leak:true},
  house:{txt:'Vivian: "Then the handling fee comes out of your end." House payout −$5,000.',heat:0,cut:5000},
- league:{txt:'League Office: "Noted." They will be watching your second half very closely.',heat:5,cut:0}};
+ league:{txt:'League Office: "Noted." They will be watching your second half very closely.',heat:8,cut:0}};
 function callSummary(){const c=S.callInfo;if(c.hb){const d=S.dbl;const lbl={a:'took away side',h:'took home side',d:'double-crossed both',r:'refused everybody',p:'played them'}[c.offer]||c.offer;return 'bidding war · '+lbl+(d?(d.out==='caught'?' · CAUGHT (#DoubleWhistle)':d.out==='lucky'?' · somehow both happy':' · they suspect'):'')+(c.accepted&&c.pay?' · $'+c.pay.toLocaleString():'');}const cl=(CALLERS.find(x=>x.id===c.caller)||{name:c.caller}).name;const of=OFFERS.find(o=>o.id===c.offer)||{tag:S.job&&S.job.tag||'?'};
   return c.accepted?`${cl} · took it: ${of.tag} for $${c.pay.toLocaleString()}`:c.answered?`${cl} · refused (${of.tag})`:`${cl} · let it ring (${of.tag})`;}
 async function halftimeCall(){
@@ -2087,7 +2077,7 @@ async function halftimeCall(){
   let took=false;
   if(ans==='acc'){S.callInfo.answered=true;$('#cbt').hidden=true;$('#cslide').hidden=true;let sec=0;$('#cst').textContent='00:00';const tick=setInterval(()=>{sec++;$('#cst').textContent='00:'+String(sec).padStart(2,'0');},1000/SP());
     for(const ln of CALL_LINES[cl.id]){bub(fill(ln,{say:of.say,pay:'$'+pay.toLocaleString()}));await wait(AUTO?500:1300);}
-    $('#cTake').innerHTML=`✅ Take the new job · $${pay.toLocaleString()}<small>New orders: ${of.short}</small>`;$('#cRef').innerHTML=`✋ Refuse · keep ${old.short}<small>${REFUSE[cl.id].txt.split('"')[1]||'There will be consequences.'}</small>`;$('#cch').hidden=false;
+    $('#cTake').innerHTML=`✅ Take the new job · $${pay.toLocaleString()}<small>New orders: ${of.short}</small>`;$('#cRef').innerHTML=`✋ Refuse · keep ${old.short}<small>${REFUSE[cl.id].heat?'+'+REFUSE[cl.id].heat+'🔥 heat':''}${REFUSE[cl.id].cut?'−$'+REFUSE[cl.id].cut.toLocaleString()+' payout':''}${REFUSE[cl.id].leak?' · burner leaks':''}</small>`;$('#cch').hidden=false;
     const ch=await waitChoice([['#cTake','take'],['#cRef','ref']],htMode==='refuse'?'ref':htMode==='wait'?null:'take',0,null);clearInterval(tick);
     took=ch==='take';if(took)bub('Done. Flip it.','sys');else bub(REFUSE[cl.id].txt,'sys');$('#cch').hidden=true;await wait(AUTO?300:1100);}
   else{$('#cst').textContent=ans==='dec'?'call declined':'missed call';$('#cbt').hidden=true;bub(ans==='dec'?'You declined. Your phone buzzes again. Then stops.':'You let it ring out.','sys');bub(REFUSE[cl.id].txt,'sys');await wait(AUTO?300:1400);}
@@ -2618,7 +2608,7 @@ function memePost(ctx,kind,o={}){
   const img=makeMeme(f,caps,c2);const plat=o.plat||pick(['gl','gl','sq','tp','cc']);
   const txt=(o.txt?fill(o.txt,c2):null)||pickU(MEME_TXT,c2)||'😂';S.memes=(S.memes||0)+1;
   const pp=post(plat,txt,tier()*300+500,{hot:!o.def,img,key:'meme:'+key,rate:(o.def?0.6:1.2)+tier()*0.5,fmt:f,handle:o.handle,av:o.av,def:o.def,tell:o.tell});
-  if(pp){pp.grow=90;queueMeme(pp);$('#memecnt').textContent=S.memes;$('#memebtn').classList.add('on');}return pp;
+  if(pp){pp.grow=90;queueMeme(pp);}return pp;
 }
 /* ---------- meme pop-ups ---------- */
 let mActive=[];const MQ_MAX=5;/* v50: deeper meme queue, still anti-repeat */
@@ -2710,7 +2700,7 @@ async function shop(phase){
     $('#shmsg').innerHTML=msg||`They'll defend your calls online for the <b>${half===1?'whole game':'2nd half'}</b>. Stacking has diminishing returns. Phantom calls can't be fully spun.`;
     $('#shlist').innerHTML=DEFS.map(d=>{const onJob=half===2&&(S.defs||[]).some(h=>h.id===d.id&&h.half===1&&!h.exposed),hired=session.includes(d.id)||onJob,burned=(S.defs||[]).some(h=>h.id===d.id&&h.exposed),sold=(d.rare&&!gzAvail)||burned,afford=S.bank>=d.price;
       const dots=n=>'●'.repeat(n)+'○'.repeat(5-n),risk=d.bf>=0.1?'HIGH':d.bf>=0.05?'MED':'LOW';
-      return `<div class="shc ${hired?'on':''} ${!afford&&!hired?'poor':''} ${sold?'sold':''}" data-id="${d.id}"><img class="sha" src="${avURL(d,96)}" alt=""><div class="shi"><div class="shn">${d.name} <span class="plat ${d.plat}">${PLAT[d.plat]}</span>${half===2&&(S.defs||[]).some(h=>h.id===d.id&&h.half===1)?((S.defs||[]).some(h=>h.id===d.id&&h.exposed)?'<span class="exp x">EXPOSED</span>':'<span class="exp">on the job ✓</span>'):''}</div><div class="shm">${d.handle} · ${d.fol}</div><div class="shb">${d.blurb}</div><div class="shs"><span>🛡 ${dots(d.shield)}</span><span>🔇 ${dots(d.muffle)}</span><span class="r${risk}">⚠ ${risk}</span></div></div><button class="shbuy" data-id="${d.id}">${sold?(burned?'Burned':'Not taking calls'):onJob?'On payroll ✓':hired?'Hired ✓<small>tap to undo</small>':afford?'$'+d.price.toLocaleString():'$'+d.price.toLocaleString()+'<small>need $'+(d.price-S.bank).toLocaleString()+' more</small>'}</button></div>`;}).join('')+annShopHTML(half,annS);
+      return `<div class="shc ${hired?'on':''} ${!afford&&!hired?'poor':''} ${sold?'sold':''}" data-id="${d.id}"><img class="sha" src="${avURL(d,96)}" alt=""><div class="shi"><div class="shn">${d.name} <span class="plat ${d.plat}">${PLAT[d.plat]}</span>${half===2&&(S.defs||[]).some(h=>h.id===d.id&&h.half===1)?((S.defs||[]).some(h=>h.id===d.id&&h.exposed)?'<span class="exp x">EXPOSED</span>':'<span class="exp">on the job ✓</span>'):''}</div><div class="shm">${d.handle} · ${d.fol}</div><div class="shb">${d.blurb}</div><div class="shs"><span class="v82tier">🛡 −${d.v82t||Math.round(d.r*100)}% heat</span><span>🔇 ${dots(d.muffle)}</span><span class="r${risk}">⚠ ${risk}</span></div></div><button class="shbuy" data-id="${d.id}">${sold?(burned?'Burned':'Not taking calls'):onJob?'On payroll ✓':hired?'Hired ✓<small>tap to undo</small>':afford?'$'+d.price.toLocaleString():'$'+d.price.toLocaleString()+'<small>need $'+(d.price-S.bank).toLocaleString()+' more</small>'}</button></div>`;}).join('')+annShopHTML(half,annS);
     const sp=session.reduce((a,id)=>a+defOf(id).price,0);$('#shDone').textContent=v78ShopDone(session,annS);};
   const tryBuy=id=>{needId=null;if(String(id).startsWith('ann:')){const ok=annBuy(id.slice(4),annS,half);if(!ok&&!annOwned().includes(id.slice(4))&&S.bank<annPrice(id.slice(4)))needId=id;const a=ANN[id.slice(4)];msg=ok?(annS.includes(id.slice(4))?`Bought <b>${a.name}</b> for the postgame recap. He'll spin it. He might wink. Please don't let him wink.`:''):(S.bank<annPrice(id.slice(4))?`<span class="bad">The booth doesn't come cheap. Need $${(annPrice(id.slice(4))-S.bank).toLocaleString()} more.</span>`:'');return ok;}const d=defOf(id);if(!d)return false;if(half===2&&(S.defs||[]).some(h=>h.id===id&&h.half===1&&!h.exposed))return false;const i=session.indexOf(id);if(i>=0){session.splice(i,1);S.bank+=d.price;S.spent-=d.price;msg='';return true;}
     if(d.rare&&!gzAvail||(S.defs||[]).some(h=>h.id===id&&h.exposed)){msg='<span class="bad">They\'re not taking your calls.</span>';return false;}
@@ -2730,7 +2720,7 @@ Object.assign(BOOTH,{split:[["CHIP","Social media seems split on that one."],["M
  exposed:[["MARV","Chip, it says here some of the people defending Seventy-Seven were… paid?"],["CHIP","Well. That's not a great look for anybody."],["MARV","You can buy followers. You can't buy a clean replay."]]});
 if($('#pgCash'))$('#pgCash').textContent='$'+BANK0.toLocaleString()+' · buy online defenders';
 function memeBlocked(){if(!S||adActive||$('#game').hidden||!$('#shop').hidden||$('#msban').classList.contains('show')||!$('#call').hidden||!$('#memo').hidden||S.phase==='done'||!$('#decide').hidden||S.flagToss)return true;const ph=S.phase;if(['post','replay','flag','outcome'].includes(ph))return true;
-  if((ph==='live'||ph==='presnap')&&S.cur&&S.cur.key)return true;if($('#memeview').classList.contains('show')||$('#mgal').classList.contains('show'))return true;return false;}
+  if((ph==='live'||ph==='presnap')&&S.cur&&S.cur.key)return true;return false;}
 function queueMeme(p){if(!S.memeQ)S.memeQ=[];const busy=S.memeQ.length+mActive.length;
   if(busy>=MQ_MAX||(S.phase==='ff'&&busy>=1)){S.memeDropped=(S.memeDropped||0)+1;return;}S.memeQ.push(p);pumpMemes();}
 function cardFor(p){const d=document.createElement('div');d.className='mcard';
@@ -2751,10 +2741,8 @@ function hideMemesNow(){for(const p of mActive.slice()){clearTimeout(p.tmr);p.ti
   if(S&&mActive.length){S.memeQ=(S.memeQ||[]);S.memeQ.unshift(...mActive.slice(0,1));S.memeQ.splice(MQ_MAX);}mActive=[];$('#mpop').innerHTML='';sbLayout();}
 function pumpMemes(){if(!S)return;if(memeBlocked()){if(mActive.length&&(!$('#decide').hidden||$('#game').hidden||!$('#call').hidden||!$('#memo').hidden||S.phase==='done'))hideMemesNow();return;}
   const q=S.memeQ||[];while(q.length&&mActive.length<2)showMeme(q.shift());}
-function openGallery(){const g=$('#mgrid');g.innerHTML='';for(const p of S.posts.filter(x=>x.img).reverse()){const im=document.createElement('img');im.src=p.img;im.addEventListener('click',e=>{e.stopPropagation();openMeme(p);});g.appendChild(im);}$('#mgal').classList.add('show');}
-$('#memebtn').addEventListener('click',e=>{e.stopPropagation();openGallery();});$('#mgx').addEventListener('click',()=>$('#mgal').classList.remove('show'));
-function openMeme(p){$('#mvimg').src=p.img;const cnt=p.views!=null?`👁 ${fmtN(p.views)} · ♥ ${fmtN(p.likes)}`:`♥ ${fmtN(p.likes)} · 🔁 ${fmtN(p.reposts)}`;$('#mvmeta').innerHTML=`<div class="meta"><span class="plat ${p.plat}">${PLAT[p.plat]}</span><span>${p.handle}</span><span>${cnt}</span></div><div></div>`;$('#mvmeta').lastChild.textContent=p.text;$('#memeview').classList.add('show');}
-$('#memeview').addEventListener('click',()=>$('#memeview').classList.remove('show'));
+function openGallery(){/* v82: meme gallery dropped */}
+function openMeme(p){/* v82: meme viewer dropped; a tap dismisses the meme card */}
 const MEME_P=[0.14,0.28,0.44,0.60,0.74],MEME_SEV={inv:1.35,hold:1.15,half:1.0,ign:0.95,holdOver:1.45,legit:0.15,favor:1.55,flip:1.75,ms:0.2,msCyn:1.35};/* v50 more pops */
 const BADK=['inv','half','hold','holdOver','ign','favor','flip','msCyn'];
 function burst(kind,ctx,n){
@@ -3314,7 +3302,7 @@ function openDecide(kp){AU.duck(1);
     const icon=o.id==='letgo'?(kp.foul?'🙈':'✋'):o.id==='spot'?'📏':o.id==='clock'?'⏱️':'🚩';
     const heat=o.heat<0?`<span class="dh cool">${o.heat}🧊<small>CALL</small></span>`:o.heat===0?`<span class="dh zero">0🔥<small>NO HEAT</small></span>`:`<span class="dh">+${o.heat}🔥<small>${o.tag==='ign'?'HEAT':'~HEAT'}</small></span>`;
     const stake=o.stake?`<span class="dstake ${o.stakeK}" title="${(o.stakeTip||'').replace(/"/g,'&quot;')}">${o.stake}</span>`:'';
-    b.innerHTML=`<span class="dic">${icon}</span><span class="dbody"><span class="dl"><b>${o.label}</b></span><span class="dw">${o.teaser}${stake?' ':''}${stake}</span></span><span class="dh blind">?<small>HEAT</small></span>`;
+    b.innerHTML=`<span class="dic">${icon}</span><span class="dbody"><span class="dl"><b>${o.label}</b></span><span class="dw">${o.teaser}${stake?' ':''}${stake}</span>${o.v82s?'<span class="v82stk">'+o.v82s+'</span>':''}</span><span class="dh blind">?<small>HEAT</small></span>`;
     /* v74: commit only on a real tap: pointerup on the same button, <10px movement, no scroll during/just before */
     let v74pd=null;const v74sc=$('#dScroll');
     b.addEventListener('pointerdown',ev=>{v74pd={id:ev.pointerId,x:ev.clientX,y:ev.clientY,st:v74sc?v74sc.scrollTop:0};});
@@ -3331,7 +3319,7 @@ function openDecide(kp){AU.duck(1);
       if(o.id==='letgo')S.letgo=true;else{S.call=o.id;if(holdG(o.id,kp)!=null)kp.readG=gradeOf(perceived(o.id,kp));if(isFlag(o.id))flash('🚩 FLAG','flag',0);if(navigator.vibrate)navigator.vibrate(25);}hud();};
     (o.id==='letgo'?foot:box).appendChild(b);
   });
-  S.notif=0;buzzUI();hideMemesNow();
+  hideMemesNow();
   el.classList.remove('out','peek','nudge','enter');el.hidden=false;void el.offsetWidth;el.classList.add('enter');
   $('#dScroll').scrollTop=0;$('#dscrim').className='show';
   if(navigator.vibrate)navigator.vibrate([18,40,18]);
@@ -4404,7 +4392,7 @@ function drawAnn(c,id,st){const chip=id==='chip',sk=chip?'#e8b98a':'#d9a27a',t=s
   c.fillStyle='#5a1a1a';c.beginPath();c.ellipse(0,chip?16:19,st.wink>0.6?9:7,open/2+0.6,0,0,7);c.fill();
   if(st.wink>0.6){c.strokeStyle='#5a1a1a';c.lineWidth=2;c.beginPath();c.arc(0,12,9,0.3,Math.PI-0.3);c.stroke();}
   // headset (chip) / glasses-free marv gets a mic flag
-  if(chip){c.strokeStyle='#222';c.lineWidth=4;c.beginPath();c.arc(0,-4,29,Math.PI*1.08,Math.PI*1.92);c.stroke();c.fillStyle='#222';c.fillRect(-32,-6,7,14);c.lineWidth=2.5;c.beginPath();c.moveTo(-28,8);c.quadraticCurveTo(-24,20,-10,19);c.stroke();c.fillStyle='#d62a2a';c.beginPath();c.arc(-9,19,3,0,7);c.fill();}
+  /* v82: headset removed; stick mic drawn by v82 drawAnn wrap */
   c.restore();}
 function bSparkle(c,x,y,s,a){c.save();c.globalAlpha=a;c.fillStyle='#fff8c0';c.translate(x,y);c.rotate(a*0.8);c.beginPath();for(let i=0;i<8;i++){const r=i%2?s*0.25:s;c.lineTo(Math.cos(i*Math.PI/4)*r,Math.sin(i*Math.PI/4)*r);}c.closePath();c.fill();c.restore();}
 function drawThumb(c,x,y,w,h,n,t){c.save();c.beginPath();c.rect(x,y,w,h);c.clip();
@@ -4800,7 +4788,7 @@ async function bidWar(){
   let raised=false,msg='';
   const render=()=>{el.innerHTML=`<div class="hbw"><div class="hbt">📞📞 HALFTIME · BOTH LINES RINGING</div><div class="hbsub">${T('away').name} ${S.score.away} · ${T('home').name} ${S.score.home} · current job: ${S.job.short}</div><div class="hbg">${card('away')}${card('home')}</div>${msg?`<div class="hbm">${msg}</div>`:''}
    <div class="hbb"><button id="hbA">Take ${T('away').name}<small>$${bid.away.toLocaleString()}</small></button><button id="hbH">Take ${T('home').name}<small>$${bid.home.toLocaleString()}</small></button>
-   ${raised?'':'<button id="hbP" class="alt">🔁 Play them off each other<small>+35% bids · they might compare notes</small></button>'}<button id="hbD" class="risk">🃏 Take both (double-cross)<small>big money · betray one side</small></button><button id="hbR" class="ghost">✋ Refuse everybody<small>keep: ${S.job.short}</small></button></div><div class="hbhelp">21+ · Second-half regrets? Call 1-800-CHASE-IT</div></div>`;};
+   ${raised?'':'<button id="hbP" class="alt">🔁 Play them off each other<small>+35% bids · ${Math.round(Math.min(1,0.3+S.heat/250)*100)}% they compare notes: +12🔥</small></button>'}<button id="hbD" class="risk">🃏 Take both (double-cross)<small>both bids · 55%+ caught: +22🔥</small></button><button id="hbR" class="ghost">✋ Refuse everybody<small>keep: ${S.job.short} · +8🔥</small></button></div><div class="hbhelp">21+ · Second-half regrets? Call 1-800-CHASE-IT</div></div>`;};
   el.hidden=false;let ch=null;
   for(;;){render();const ids=[['#hbA','a'],['#hbH','h'],['#hbD','d'],['#hbR','r']];if(!raised)ids.push(['#hbP','p']);
     ch=await waitChoice(ids,AUTO&&P.get('hbpick')!=='hold'?(P.get('hbpick')||'a'):(P.get('hbpick')==='hold'?null:P.get('hbpick')||null),AUTO?0:45000,'r');
@@ -4814,7 +4802,7 @@ async function bidWar(){
   if(ch==='a'||ch==='h'){const k=ch==='a'?'away':'home',o=k==='away'?'home':'away';setJob(k,bid[k]);out=`You took ${rep[k].name}'s offer: ${jobs[k].short}. ${rep[o].name} hangs up. Loudly.`;if(rep[o].id==='lumi'){v77Heat(REFUSE.lumi.heat,'🎵 Lumi diss-track teaser');out+=` A diss-track teaser drops 10 minutes later.`;post('sq',`🚨 LUMI LARK TEASER: "${LUMI.diss}" 🦓🎤 the Larkers are mobilizing`,1500,{hot:true});}}
   else if(ch==='d'){const k=bid.away>=bid.home?'away':'home',o=k==='away'?'home':'away';const up=Math.round(bid[o]*0.4/500)*500;setJob(k,bid[k]);S.chCash=(S.chCash||0)+up;S.dbl={job:{...jobs[o]},up,rep:rep[o].name,side:o};
     out=`🃏 Double-cross. You told both sides yes. You're really delivering: ${jobs[k].short} ($${bid[k].toLocaleString()}). ${rep[o].name} wired $${up.toLocaleString()} up front for the other result. When the final score betrays them, they will notice.`;}
-  else {v77Heat(4,'📞 Refused both halftime bids');out='You refused everybody. Both reps say "noted". Heat +4.';if(rep.home.id==='lumi'||rep.away.id==='lumi'){v77Heat(6,'🦓 Lumi posted the zebra');out+=' Lumi posts a single 🦓 emoji. Her fans know what it means.';}}
+  else {v77Heat(8,'📞 Refused both halftime bids');out='You refused everybody. Both reps say "noted". Heat +8.';if(rep.home.id==='lumi'||rep.away.id==='lumi'){v77Heat(6,'🦓 Lumi posted the zebra');out+=' Lumi posts a single 🦓 emoji. Her fans know what it means.';}}
   el.innerHTML=`<div class="hbw"><div class="hbt">📞 HALFTIME · CALLS ENDED</div><div class="hbm big">${out}</div><div class="hbhelp">21+ · Calls ended? Call 1-877-NOT-A-LOCK</div></div>`;await wait(AUTO?400:2600);el.hidden=true;S.phase='idle';hud();
   if(ch!=='r'){flash('NEW ORDERS','to',0);setTimeout(unflash,1600);}
   S.callInfo={caller:ch==='a'?rep.away.id:ch==='h'?rep.home.id:'both',offer:ch,pay:S.job.pay,need:0,answered:true,accepted:ch!=='r',hb:true};}
@@ -4927,9 +4915,9 @@ async function bidWar(){
   const cch=$('#cch');cch.className='cch hbchoices';cch.hidden=false;const hp=$('#chelp');if(hp)hp.hidden=false;
   const paintChoices=()=>{cch.innerHTML=`<button class="take" id="cTake">✅ Take ${T('away').name}<small>$${bid.away.toLocaleString()} · ${jobs.away.tag}</small></button>
     <button class="take" id="hbH">✅ Take ${T('home').name}<small>$${bid.home.toLocaleString()} · ${jobs.home.tag}</small></button>
-    ${raised?'':`<button class="alt" id="hbP">🔁 Play them off each other<small>+35% bids · they might compare notes</small></button>`}
-    <button class="risk" id="hbD">🃏 Take both (double-cross)<small>big money · betray one side</small></button>
-    <button class="refuse ghost" id="cRef">✋ Refuse everybody<small>keep: ${old.short}</small></button>`;};
+    ${raised?'':`<button class="alt" id="hbP">🔁 Play them off each other<small>+35% bids · ${Math.round(Math.min(1,0.3+S.heat/250)*100)}% they compare notes: +12🔥</small></button>`}
+    <button class="risk" id="hbD">🃏 Take both (double-cross)<small>both bids · 55%+ caught: +22🔥</small></button>
+    <button class="refuse ghost" id="cRef">✋ Refuse everybody<small>keep: ${old.short} · +8🔥</small></button>`;};
   let ch=null;
   for(;;){paintChoices();const ids=[['#cTake','a'],['#hbH','h'],['#hbD','d'],['#cRef','r']];if(!raised)ids.push(['#hbP','p']);
     ch=await waitChoice(ids,AUTO&&P.get('hbpick')!=='hold'?(P.get('hbpick')||'a'):(P.get('hbpick')==='hold'?null:P.get('hbpick')||null),AUTO?0:45000,'r');
@@ -4943,7 +4931,7 @@ async function bidWar(){
   if(ch==='a'||ch==='h'){const k=ch==='a'?'away':'home',o=k==='away'?'home':'away';setJob(k,bid[k]);out=`You took ${rep[k].name}'s offer: ${jobs[k].short}. ${rep[o].name} hangs up. Loudly.`;if(rep[o].id==='lumi'){v77Heat(REFUSE.lumi.heat,'🎵 Lumi diss-track teaser');out+=` A diss-track teaser drops 10 minutes later.`;post('sq',`🚨 LUMI LARK TEASER: "${LUMI.diss}" 🦓🎤 the Larkers are mobilizing`,1500,{hot:true});}}
   else if(ch==='d'){const k=bid.away>=bid.home?'away':'home',o=k==='away'?'home':'away';const up=Math.round(bid[o]*0.4/500)*500;setJob(k,bid[k]);S.chCash=(S.chCash||0)+up;S.dbl={job:{...jobs[o]},up,rep:rep[o].name,side:o};
     out=`🃏 Double-cross. Delivering: ${jobs[k].short} ($${bid[k].toLocaleString()}). ${rep[o].name} wired $${up.toLocaleString()} up front for the other result.`;}
-  else {v77Heat(4,'📞 Refused both halftime bids');out='You refused everybody. Both reps say "noted". Heat +4.';if(rep.home.id==='lumi'||rep.away.id==='lumi'){v77Heat(6,'🦓 Lumi posted the zebra');out+=' Lumi posts a single 🦓 emoji.';}}
+  else {v77Heat(8,'📞 Refused both halftime bids');out='You refused everybody. Both reps say "noted". Heat +8.';if(rep.home.id==='lumi'||rep.away.id==='lumi'){v77Heat(6,'🦓 Lumi posted the zebra');out+=' Lumi posts a single 🦓 emoji.';}}
   cch.hidden=true;if(hp)hp.hidden=true;phoneBub(out,'sys');await wait(AUTO?400:2200);
   el.hidden=true;el.className='';S.phase='idle';hud();
   if(ch!=='r'){flash('NEW ORDERS','to',0);setTimeout(unflash,1600);}
@@ -6430,7 +6418,7 @@ function draw(dt){
       const open=st.talk?Math.abs(Math.sin(t*14))*5+1:1;
       if(!chip){c.fillStyle='#9a9a9a';c.fillRect(-16,10,12,6);c.fillRect(4,10,12,6);}
       c.fillStyle='#5a1a1a';c.fillRect(-6,chip?14:17,12,Math.max(2,open));
-      if(chip){c.fillStyle='#222';c.fillRect(-28,-8,6,14);c.fillRect(-30,-30,60,4);c.fillStyle='#d62a2a';c.fillRect(-12,16,6,6);}
+      /* v82: headset removed */
       c.restore();
     };
   }
@@ -6675,67 +6663,15 @@ function draw(dt){
     }catch(e){}
   };
 
-  function ensureUI(){
-    if($('#socfab'))return;
-    const fab=document.createElement('button');fab.id='socfab';fab.type='button';
-    fab.innerHTML='<span>📣</span><small>SOCIAL</small><b id="socbadge">0</b>';
-    g.appendChild(fab);
-    const scr=document.createElement('div');scr.id='socscrim';g.appendChild(scr);
-    const sh=document.createElement('div');sh.id='socsheet';
-    sh.innerHTML=`<div class="sochd"><b>BUZZLINE · LIVE FEED</b><button type="button" id="socx">CLOSE</button></div><div id="socbody"></div>`;
-    g.appendChild(sh);
-    const openSoc=e=>{e.preventDefault();e.stopPropagation();toggleSocial(true);};fab.addEventListener('click',openSoc);fab.addEventListener('pointerup',e=>{if(e.pointerType==='touch')openSoc(e);});
-    scr.addEventListener('click',()=>toggleSocial(false));
-    sh.querySelector('#socx').addEventListener('click',()=>toggleSocial(false));
-  }
-
-  function moveFeedIntoSheet(){
-    const body=$('#socbody');if(!body)return;
-    const buzz=$('#buzzbar'),tabs=$('#ftabs'),feed=$('#feed');
-    // ensure tabs exist
-    try{if(window.__v26&&__v26.FeedTabs)__v26.FeedTabs.ensure();else if(typeof FeedTabs!=='undefined')FeedTabs.ensure();}catch(e){}
-    const t=$('#ftabs');
-    [buzz,t,feed].forEach(el=>{if(el&&el.parentNode!==body)body.appendChild(el);});
-  }
-
+  /* v82: SOCIAL button + sheet removed. The soft pause (sim crawls at 18%) is kept: the profile card uses it, like SOCIAL did. */
   function toggleSocial(on){
-    ensureUI();
-    // decisions / calls win
-    if(on){
-      const d=$('#decide'),c=$('#call'),hb=$('#hb');
-      if((d&&!d.hidden)||(c&&!c.hidden)||(hb&&!hb.hidden))return;
-    }
+    if(on){const d=$('#decide'),c=$('#call'),hb=$('#hb');if((d&&!d.hidden)||(c&&!c.hidden)||(hb&&!hb.hidden))return;}
     feedOpen=!!on;setSoft(on?0.18:1);
-    if(on){baseFast=FAST;moveFeedIntoSheet();
-      try{const FT=typeof FeedTabs!=='undefined'?FeedTabs:(window.__v26&&__v26.FeedTabs);if(FT){FT.collapsed=false;FT.setTab(FT.tab||'all');}}catch(e){}
-    } else {
-      if(baseFast)FAST=baseFast;
-    }
+    if(on){baseFast=FAST;}else{if(baseFast)FAST=baseFast;}
     applySoft();
-    $('#socsheet').classList.toggle('open',feedOpen);
-    $('#socscrim').classList.toggle('on',feedOpen);
-    paintBadge();
-    try{resize();}catch(e){}
   }
-
-  window.__cwPaintBadge=function(){try{paintBadge();}catch(e){}};window.__cwToggleSocial=function(on){toggleSocial(on);};
-  function paintBadge(){
-    ensureUI();
-    const b=$('#socbadge');if(!b)return;
-    let n=0;
-    try{
-      const FT=typeof FeedTabs!=='undefined'?FeedTabs:(window.__v26&&__v26.FeedTabs);
-      if(FT&&FT.unread){
-        const u=FT.unread;
-        n=(u.all|0)||((u.fans|0)+(u.bet|0)+(u.league|0)+(u.texts|0));
-      }
-      if(!n)n=+(S&&S.notif)||0;
-      if(!n){const f=$('#feed');if(f)n=Math.min(9,f.querySelectorAll('.fp').length);}
-    }catch(e){n=+(S&&S.notif)||0;}
-    n+=(window.__v79miss|0);
-    b.textContent=n>9?'9+':String(n);
-    b.classList.toggle('on',n>0);
-  }
+  function paintBadge(){}
+  window.__cwPaintBadge=function(){};window.__cwSoftPause=function(on){toggleSocial(on);};
 
   // Close social when decide/call opens
   if(typeof openDecide==='function'){
@@ -6744,17 +6680,13 @@ function draw(dt){
   }
   const mo=new MutationObserver(()=>{
     const d=$('#decide'),c=$('#call');
-    if((d&&!d.hidden)||(c&&!c.hidden))toggleSocial(false);
-    paintBadge();
+    if(((d&&!d.hidden)||(c&&!c.hidden))&&feedOpen){toggleSocial(false);try{if(window.__v82prof)__v82prof.close();}catch(e){}}
   });
   setTimeout(()=>{
-    ensureUI();moveFeedIntoSheet();
-    const d=$('#decide'),c=$('#call'),f=$('#feed');
+    const d=$('#decide'),c=$('#call');
     if(d)mo.observe(d,{attributes:true,attributeFilter:['hidden']});
     if(c)mo.observe(c,{attributes:true,attributeFilter:['hidden']});
-    if(f)mo.observe(f,{childList:true,subtree:true});
   },200);
-  setInterval(paintBadge,900);
 
   // Wrap post badge → also bump social FAB
   try{
@@ -6778,23 +6710,6 @@ function draw(dt){
   // denser field a touch more for fullscreen
   if(window.__PIX){__PIX.scale=Math.max(__PIX.scale||8.5,8.5);try{resize();}catch(e){}}
 
-  // swipe up from bottom edge to open social (cheap)
-  let touchY0=null;
-  g.addEventListener('touchstart',e=>{if(e.touches[0])touchY0=e.touches[0].clientY;},{passive:true});
-  g.addEventListener('touchend',e=>{
-    if(touchY0==null)return;const y=e.changedTouches[0].clientY;const dy=touchY0-y;touchY0=null;
-    if(dy>70&&touchY0===null&&y<innerHeight*0.35){/* swipe up from low */}
-    // swipe up: start near bottom
-  },{passive:true});
-  // simpler: swipe up detected if start > 80% height and dy>60
-  let ty0=null,tyStart=null;
-  g.addEventListener('touchstart',e=>{const t=e.touches[0];if(!t)return;ty0=t.clientY;tyStart=t.clientY;},{passive:true});
-  g.addEventListener('touchend',e=>{
-    if(ty0==null)return;const y=e.changedTouches[0].clientY;const dy=ty0-y;
-    if(tyStart>innerHeight*0.78&&dy>64)toggleSocial(true);
-    if(feedOpen&&dy<-64)toggleSocial(false);
-    ty0=null;
-  },{passive:true});
 
   window.__v30={fs:true,toggleSocial,paintBadge,get feedOpen(){return feedOpen;}};
   window.toggleSocial=toggleSocial;
@@ -7895,7 +7810,7 @@ function draw(dt){
     g.fillStyle='#152030';
     g.fillRect(mx-100,my-8,200,13);
     g.fillStyle='#f0c83a';g.font='800 8px system-ui,sans-serif';g.textAlign='center';g.textBaseline='middle';
-    g.fillText("IFL · AFTER FURTHER REVIEW",mx,my-1);
+    g.fillText("AFTER FURTHER REVIEW: THE IFL",mx,my-1);
     // benches near
     const b1=proj(C.fx-8,2.2),b2=proj(C.fx+8,2.2);
     g.strokeStyle='#6a5a40';g.lineWidth=5;g.lineCap='round';
@@ -8142,7 +8057,7 @@ function showHub(){
   const wk=curWeek(),A=nick(wk.fav),H=nick(wk.dog),sl=SLOTS[wk.slot],nt=nextTier(SEA.prestige),cur=SLOTS[slotFor(SEA.prestige)];
   const prog=nt?Math.round(100*(SEA.prestige-cur.pr)/(nt.pr-cur.pr)):100;
   $('#hubbody').innerHTML=`
-  <div class="hubtop"><div><div class="logo" style="font-size:22px">AFTER FURTHER <span>REVIEW</span></div><div class="tag" style="margin:0">Season mode · Ref #77 · ${weekName(wk)}${wk.w<=SEASON_WEEKS?` of ${SEASON_WEEKS}`:''}</div></div><button class="mini" id="hubMenu">☰ Menu</button></div>
+  <div class="hubtop"><div><div class="logo" style="font-size:19px">AFTER FURTHER REVIEW: <span>THE IFL</span></div><div class="tag" style="margin:0">Season mode · Ref #77 · ${weekName(wk)}${wk.w<=SEASON_WEEKS?` of ${SEASON_WEEKS}`:''}</div></div><button class="mini" id="hubMenu">☰ Menu</button></div>
   <div class="statg">
     <div class="sg"><small>BANKROLL</small><b>$${SEA.bank.toLocaleString()}</b></div>
     <div class="sg"><small>HOUSE TRUST</small><b>${SEA.house>0?'+':''}${Math.round(SEA.house*10)/10}${SEA.house<=-3?' · Lenny calling':''}</b></div>
@@ -8469,7 +8384,7 @@ const AD_SLOT_BRANDS=[
   {brand:'WhistleClean™',sub:'Official integrity spray · parody',body:'Spray on. Flag off. Results may include heat.'}
 ];
 /* ===== v73: Meme parody ad pack (fantasy + betting apps; all brands invented) ===== */
-/* ===== Crooked Whistle · v71 PARODY AD PACK (fantasy + football-betting apps) =====
+/* ===== After Further Review: The IFL · v71 PARODY AD PACK (fantasy + football-betting apps) =====
  * v73: pasted after const AD_SLOT_BRANDS (which follows const ADS) so every target is initialized (no TDZ).
  * All brands are ORIGINAL IFL parody. No real sportsbook/DFS names or logos.
  * Ad-draw placeholders come from adCtx(): {favN} {dogN} {s} {pub} {net} {qbN} {kFull} + {ref} via fill().
@@ -9339,7 +9254,7 @@ html.gfx-pix #game.fs-tiny #heatrow #heatbar{border-radius:0;height:12px!importa
     W.ensure=function(){killWatchDom();};
     W.glance=function(){
       this.glances++;S.watchGlance=(S.watchGlance||0)+1;
-      try{const fab=$('#socfab');if(fab){fab.classList.remove('pulse');void fab.offsetWidth;fab.classList.add('pulse');}}catch(e){}
+      
     };
     W.scheduleHide=function(){clearTimeout(this.tm);};
     W.text=function(force){
@@ -11873,8 +11788,7 @@ try{window.standAllPlayers=standAllPlayers;}catch(e){}
   var MODALS=['shop','memo','call','chrev','adbrk','hb','refbrief'];
   function anyModal(){
     for(var i=0;i<MODALS.length;i++){var e=document.getElementById(MODALS[i]);if(e&&!e.hidden)return true;}
-    var g=document.getElementById('mgal');if(g&&g.classList.contains('show'))return true;
-    return false;
+        return false;
   }
   function chipCheck(){
     try{
@@ -11888,7 +11802,7 @@ try{window.standAllPlayers=standAllPlayers;}catch(e){}
   }
   try{
     var mo=new MutationObserver(sync);
-    var ids=MODALS.concat(['decide','mgal']);
+    var ids=MODALS.concat(['decide']);
     for(var i=0;i<ids.length;i++){var e=document.getElementById(ids[i]);if(e)mo.observe(e,{attributes:true,attributeFilter:['hidden','class']});}
   }catch(e){}
   sync();
@@ -11920,7 +11834,7 @@ try{window.standAllPlayers=standAllPlayers;}catch(e){}
 
 /* ===== v75 PART A: Meme overhaul pack + no-repeat (files from Meme, pasted verbatim) ===== */
 /* =====================================================================
-   CROOKED WHISTLE — v74 MEME PACK OVERHAUL  (paste-in, all-original text)
+   AFTER FURTHER REVIEW: THE IFL — v74 MEME PACK OVERHAUL  (paste-in, all-original text)
    ---------------------------------------------------------------------
    WHERE: paste INSIDE the main game IIFE, directly ABOVE
    cw-meme-norepeat.js, both directly above the main IIFE's last line:
@@ -12120,7 +12034,7 @@ var MEME_POST_TXT_X;
   console.info('[CW] v74 — meme pack: +'+REPORT.added+' captions, cut '+REPORT.cut.length+(REPORT.missingFmt.length?' · missing fmts '+REPORT.missingFmt.join(','):''));
 }catch(err){console.error('[CW] v74 meme pack failed',err);}})();
 /* =====================================================================
-   CROOKED WHISTLE — v74 MEME NO-REPEAT  (paste-in module, original code)
+   AFTER FURTHER REVIEW: THE IFL — v74 MEME NO-REPEAT  (paste-in module, original code)
    ---------------------------------------------------------------------
    WHERE: paste INSIDE the main game IIFE, on its own lines, directly
    ABOVE the main IIFE's last statement:
@@ -12407,7 +12321,7 @@ var MEME_POST_TXT_X;
   function vis(id){var e=$i(id);return !!(e&&!e.hidden);}
   function cardUp(){return on('gfx','show')||on('msban','show');}
   function callUp(){var d=$i('decide');return !!(d&&!d.hidden&&!d.classList.contains('out'));}
-  function modalUp(){return document.body.classList.contains('cw-modal')||vis('chrev')||vis('call')||vis('memo')||vis('shop')||vis('adbrk')||on('socsheet','open')||on('mgal','show')||on('memeview','show');}
+  function modalUp(){return document.body.classList.contains('cw-modal')||vis('chrev')||vis('call')||vis('memo')||vis('shop')||vis('adbrk')||(window.__v82prof&&__v82prof.isOpen());}
   var Q={drops:0,parked:0,toastHeld:0,toastShown:0,toastDropped:0};
   if(typeof memeBlocked==='function'){var _mb=memeBlocked;memeBlocked=function(){return _mb.apply(this,arguments)||cardUp()||callUp()||modalUp();};}
   function dropAllMemes(){try{if(typeof hideMemesNow==='function'&&mActive.length)hideMemesNow();if(S&&S.memeQ&&S.memeQ.length){Q.drops+=S.memeQ.length;S.memeDropped=(S.memeDropped||0)+S.memeQ.length;S.memeQ.length=0;}}catch(e){}}
@@ -12458,7 +12372,7 @@ var MEME_POST_TXT_X;
     else if(S.over&&pend.length)pend=[];
   }catch(e){}}
   var tiv=setInterval(tick,120);
-  ['gfx','msban','decide','chrev','socsheet','mgal','memeview'].forEach(function(id){var e=$i(id);if(e)try{new MutationObserver(tick).observe(e,{attributes:true,attributeFilter:['class','hidden']});}catch(_){}});
+  ['gfx','msban','decide','chrev'].forEach(function(id){var e=$i(id);if(e)try{new MutationObserver(tick).observe(e,{attributes:true,attributeFilter:['class','hidden']});}catch(_){}});
 
   /* YOUR CALL: the first two choices are always fully visible — tighten spacing, then grow the sheet
      (never past the scorebug; the PLAN chip follows the sheet bottom) */
@@ -12538,15 +12452,15 @@ function o76Why(c){return c.big?'it wiped out a big play/turnover: too flagrant 
 function v76Infl(id){for(const d of V76_INFL)if(d.id===id)return d;return null;}
 function v76Scale(){return (typeof PAY==='number'&&PAY>0?PAY:25000)/25000;}
 function v76InflPrice(d){/* v77: base*(1+0.5*uses) for THIS influencer */const b=Math.round(d.base*v76Scale()/50)*50;return Math.round(b*(1+0.5*v77Uses('infl',d.id))/25)*25;}
-function v76BoothPlays(id){return id==='marv'?2:(S&&S.heat>=70?2:3);}
+function v76BoothPlays(id){return id==='marv'?1:4;}/* v82: Chip -40% x4 steady, Marv -80% x1 + 30% clip */
 function v76Risk(r){return r>=0.28?'HIGH':r>=0.2?'MED':'LOW';}
 /* annBuy(id,arr,half,'live') lands here: charge the payday ledger, start cover */
 function v76BoothTake(id){const v=v76S(),a=ANN[id];if(!v||!a||(v.booth&&v.booth.left>0))return false;const price=annPrice(id,true),n=v76BoothPlays(id);
   v.owed+=price;v.boothN++;v77Use('booth',id);v.buys.push({kind:'booth',id:id,price:price,plays:n,play:S.plays});
-  v.booth={id:id,left:n,n:n,used:0,cut:id==='marv'?0.45:0.5,clipK:id==='marv'?1.25:1,price:price,lines:[]};v76Log('booth_buy',0,{id:id,price:price,plays:n});return true;}
+  v.booth={id:id,left:n,n:n,used:0,cut:id==='marv'?0.2:0.6,clipK:id==='marv'?1.25:1,price:price,lines:[]};v76Log('booth_buy',0,{id:id,price:price,plays:n});return true;}
 /* annShopHTML(...,'live'): compact live-booth rows (same .shc shop rows as the v23 postgame booth) */
 function v76ShopLive(){const v=v76S();return Object.values(ANN).map(a=>{const p=annPrice(a.id,true),n=v76BoothPlays(a.id);
-  return `<div class="shc ann" data-id="ann:${a.id}"><img class="sha" src="${annAv(a.id)}" alt=""><div class="shi"><div class="shn">${a.name} <span class="plat gz">LIVE</span></div><div class="shm">${a.role} · on air now</div><div class="shs"><span>🎙️ ${n} key plays</span><span>🧊 −${Math.round((1-(a.id==='marv'?0.45:0.5))*100)}% heat</span><span class="r${a.id==='marv'?'HIGH':'MED'}">⚠ clip risk</span></div></div><button class="shbuy" type="button" data-id="ann:${a.id}">$${p.toLocaleString()}<small>${v77Uses('booth',a.id)?'↑ +'+50*v77Uses('booth',a.id)+'% · used '+v77Uses('booth',a.id)+'×':'from payday'}</small></button></div>`;}).join('');}
+  return `<div class="shc ann" data-id="ann:${a.id}"><img class="sha" src="${annAv(a.id)}" alt=""><div class="shi"><div class="shn">${a.name} <span class="plat gz">LIVE</span></div><div class="shm">${a.role} · on air now</div><div class="shs"><span>🎙️ ${n} key plays</span><span>🧊 −${a.id==='marv'?80:40}% heat</span><span class="r${a.id==='marv'?'HIGH':'LOW'}">${a.id==='marv'?'⚠ 30% clip +10🔥':'✓ steady'}</span></div></div><button class="shbuy" type="button" data-id="ann:${a.id}">$${p.toLocaleString()}<small>${v77Uses('booth',a.id)?'↑ +'+50*v77Uses('booth',a.id)+'% · used '+v77Uses('booth',a.id)+'×':'from payday'}</small></button></div>`;}).join('');}
 /* resolve(): called for every key play while booth cover is active. Returns how the booth treats this call. */
 function v76Cover(kp,call,o){const v=v76S();if(!v||!v.booth||v.booth.left<=0||S.quiet||!kp.key)return null;const b=v.booth;b.left--;b.used++;
   const who=b.id==='chip'?'CHIP':'MARV';const r={big:kp.yards>=25||!!kp.turnover,id:b.id,who:who,name:ANN[b.id].name,left:b.left,m:0,kind:'none',spike:0,line:null,call:call,grade:o.hgr||null};
@@ -12581,7 +12495,12 @@ async function v76Choose(ms,pref){const t0=Math.max(300,ms);let left=t0;let ch=n
   if(lst)lst.addEventListener('click',e=>{const b=e.target.closest('.shbuy');if(!b)return;e.stopPropagation();ch=b.dataset.id;});
   const bar=g.querySelector('.v76bar i');
   if(pref){setTimeout(()=>{if(!ch)ch=pref;},AUTO?200:350);}
-  while(left>0&&!S.skip&&!ch&&!S.over){await wait(50);left-=50;if(bar)bar.style.width=Math.max(0,left/t0*100)+'%';}
+  /* v82: press and hold anywhere on the card freezes the countdown + bar; release resumes */
+  let held=false;const hOn=e=>{if(e.target&&e.target.closest&&e.target.closest('.shbuy,.v76skip'))return;held=true;g.classList.add('v82held');},hOff=()=>{held=false;g.classList.remove('v82held');};
+  g.addEventListener('pointerdown',hOn);window.addEventListener('pointerup',hOff);window.addEventListener('pointercancel',hOff);
+  V82H.on=1;V82H.get=()=>held;V82H.set=v=>{held=!!v;g.classList.toggle('v82held',held);};
+  while(left>0&&!S.skip&&!ch&&!S.over){await wait(50);if(held){V82H.heldMs+=50;continue;}left-=50;V82H.left=left;if(bar)bar.style.width=Math.max(0,left/t0*100)+'%';}
+  g.removeEventListener('pointerdown',hOn);window.removeEventListener('pointerup',hOff);window.removeEventListener('pointercancel',hOff);hOff();V82H.on=0;
   return ch;}
 async function v76Confirm(html,ms){gfx(html);$('#gfx').classList.add('v76c');let left=AUTO&&THINK<2000?500:ms;S.skip=false;while(left>0&&!S.skip){await wait(50);left-=50;}hideGfx();$('#gfx').classList.remove('v76c');}
 /* between drives (endDrive) or, after simmed drives, right before the next key play */
@@ -12593,7 +12512,7 @@ async function v76BoothMaybe(where){const v=v76S();if(!v||S.over)return;if(S.qui
   if((S.q===2||S.q===4)&&S.clock<90)return;
   if(!any){if(v.offB>=4||(S.dN||0)-v.lastOffD<2||S.heat<12)return;}
   v.offB++;v.lastOffD=S.dN||0;v76Log('booth_offer',0,{where:where});
-  gfx(`<h4>🎙️ BUY THE BOOTH · LIVE</h4><div class="v76sub">Pay an announcer to defend your next key plays on air: about <b>half the heat</b> on invented flags graded <b>Borderline</b> or better. Won't touch phantom flags. Paid from your payday.</div><div class="v76list">${annShopHTML(0,[],'live')}</div><div class="v76foot"><button class="v76skip" type="button">Skip</button><span class="v76bar"><i></i></span></div>`);
+  gfx(`<h4>🎙️ BUY THE BOOTH · LIVE</h4><div class="v76sub">Pay an announcer to defend your next key plays on air: <b>Chip</b>: −40% heat for 4 key plays, steady. <b>Marv</b>: −80% for 1 key play, 30% clip risk (+10🔥). Flags graded <b>Borderline</b> or better. Won't touch phantom flags. Paid from your payday.</div><div class="v76list">${annShopHTML(0,[],'live')}</div><div class="v76foot"><button class="v76skip" type="button">Skip</button><span class="v76bar"><i></i></span></div>`);
   $('#gfx').classList.add('v76off');
   const pref=pre&&pre!=='skip'&&ANN[pre]?'ann:'+pre:null;
   let ch=await v76Choose(pre==='skip'||AUTO&&!pref?600:7000,pref);
@@ -12612,20 +12531,20 @@ async function v76InflMaybe(kp,call,o){const v=v76S();if(!v||S.over||S.quiet||!k
   if(!bad&&!any)return;
   if(!any&&!(pre&&pre!=='skip')){if(v.offI>=5||S.keys-v.lastOffK<2||S.heat<8)return;}
   const pool=V76_INFL.filter(d=>!v.burned.includes(d.id));if(!pool.length)return;
-  let two=pool.slice().sort(()=>rnd()-0.5).slice(0,2);if(pre&&v76Infl(pre)&&!two.some(d=>d.id===pre)&&pool.some(d=>d.id===pre))two=[v76Infl(pre),two[0]];
+  let two=pool.slice().sort(()=>rnd()-0.5).slice(0,2);if(pre&&v76Infl(pre)&&!two.some(d=>d.id===pre)&&pool.some(d=>d.id===pre))two=[v76Infl(pre),two[0]];try{two=v82DCPair(two);}catch(e){}
   v.offI++;v.lastOffK=S.keys;v76Log('infl_offer',0,{opts:two.map(d=>d.id),amt:amt});
-  const rows=two.map(d=>{const p=v76InflPrice(d);return `<div class="shc v76i" data-id="${d.id}"><img class="sha" src="${avURL(d,64)}" alt=""><div class="shi"><div class="shn">${d.name} <span class="plat ${d.plat}">${PLAT[d.plat]}</span></div><div class="shm">${d.handle} · ${d.kind}</div><div class="shs"><span>🧊 −${d.cool} now</span><span>🔇 ${d.plays} plays</span><span class="r${v76Risk(d.rc)}">⚠ receipt ${v76Risk(d.rc)}</span></div></div><button class="shbuy" type="button" data-id="${d.id}">$${p.toLocaleString()}<small>${v77Uses('infl',d.id)?'↑ +'+50*v77Uses('infl',d.id)+'% · used '+v77Uses('infl',d.id)+'×':'from payday'}</small></button></div>`;}).join('');
-  gfx(`<h4>📱 DAMAGE CONTROL · AFTER THAT CALL</h4><div class="v76sub">Hire an account to cool heat and drown out the shady posts. Cheap, but they sometimes post the receipt.</div><div class="v76list">${rows}</div><div class="v76foot"><button class="v76skip" type="button">Skip</button><span class="v76bar"><i></i></span></div>`);
+  const rows=two.map(d=>{const p=v76InflPrice(d);return `<div class="shc v76i" data-id="${d.id}"><img class="sha" src="${avURL(d,64)}" alt=""><div class="shi"><div class="shn">${d.name} <span class="plat ${d.plat}">${PLAT[d.plat]}</span></div><div class="shm">${d.v82?'<b class="v82dck '+d.v82+'">'+(d.v82==='big'?'BIG SWING':'SAFE')+'</b> ':''}${d.handle} · ${d.kind}</div><div class="shs"><span>🧊 −${d.cool} now</span><span>🔇 ${d.plays} plays</span><span class="r${v76Risk(d.rc)}">⚠ ${Math.round(d.rc*100)}% receipt${d.leak?' +'+d.leak+'🔥':''}</span></div></div><button class="shbuy" type="button" data-id="${d.id}">$${p.toLocaleString()}<small>${v77Uses('infl',d.id)?'↑ +'+50*v77Uses('infl',d.id)+'% · used '+v77Uses('infl',d.id)+'×':'from payday'}</small></button></div>`;}).join('');
+  gfx(`<h4>📱 DAMAGE CONTROL · AFTER THAT CALL</h4><div class="v76sub"><b>Safe</b>: small cool, short cover, low risk. <b>Big swing</b>: big cool, long cover, but a leaked receipt is +12–15🔥 and burns them.</div><div class="v76list">${rows}</div><div class="v76foot"><button class="v76skip" type="button">Skip</button><span class="v76bar"><i></i></span></div>`);
   $('#gfx').classList.add('v76off');
   const pref=pre==='first'?two[0].id:(pre&&v76Infl(pre)?pre:null);
   const ch=await v76Choose(pre==='skip'||AUTO&&!pref?600:7000,pref);
   hideGfx();$('#gfx').classList.remove('v76off');
-  const d=ch&&v76Infl(ch);if(!d){v76Log('infl_skip',0,{});return;}
+  const d=ch&&(two.filter(x=>x.id===ch)[0]||v76Infl(ch));if(!d){v76Log('infl_skip',0,{});return;}
   const price=v76InflPrice(d);v.owed+=price;v.inflN++;v77Use('infl',d.id);v.buys.push({kind:'infl',id:d.id,price:price,play:S.plays});
   const cool=Math.min(d.cool,Math.round(S.heat));v77Heat(-cool,'📱 '+d.name+' cooled it');v.cooled+=cool;
   v.infl={id:d.id,until:S.plays+d.plays,plays:d.plays,start:S.plays,sup:0,rep:0,used:[]};
-  const rc=Math.min(0.65,d.rc*(1+Math.max(0,S.heat-50)/50)*(o.phantomK&&o.effective&&!o.legit?1.5:1));
-  const leak=v76Roll(rc,'v76rc');if(leak)v.rcQ.push({id:d.id,at:S.plays+(v76P('v76rc')==='1'?1:rint(1,2)),price:price});
+  const rc=d.v82?d.rc:Math.min(0.65,d.rc*(1+Math.max(0,S.heat-50)/50)*(o.phantomK&&o.effective&&!o.legit?1.5:1));
+  const leak=v76Roll(rc,'v76rc');if(leak)v.rcQ.push({id:d.id,at:S.plays+(v76P('v76rc')==='1'?1:rint(1,2)),price:price,sp:d.leak||0});
   v76Log('infl_hire',-cool,{id:d.id,price:price,plays:d.plays,rc:Math.round(rc*100)/100,leak:leak});
   await v76Confirm(`<h4>📱 HIRED · ${d.name.toUpperCase()}</h4><div class="v76tags">${v76Tag(`📱 Influencer cool −${cool}🔥`,`${d.handle} is drowning out the shady posts for ${d.plays} plays · −$${price.toLocaleString()} from your payday`)}</div><div class="skip">tap to continue</div>`,1300);
   v76InflPost(d,0);v76Voice('infl_hire',d.name,{id:d.id});}
@@ -12633,7 +12552,7 @@ function v76InflPost(d,delay){const v=v76S();if(!v||!v.infl)return;const pool=d.
   sbPost(d.plat,t,{handle:d.handle,av:avURL(d,40),def:true,tell:d.tell,v76:true,key:'v76i:'+d.id+':'+t,good:true,boost:300},delay||0);}
 /* receipts leak a play or two after the hire, shown between plays on their own card */
 async function v76Receipts(){const v=v76S();if(!v||S.over||S.quiet||!v.rcQ.length)return;const due=v.rcQ.filter(x=>x.at<=S.plays);if(!due.length)return;v.rcQ=v.rcQ.filter(x=>x.at>S.plays);
-  for(const x of due){const d=v76Infl(x.id);if(!d)continue;const sp=5+(tier()>=3?2:0);v77Heat(sp,'🧾 '+d.name+' posted the receipt');v.spikes+=sp;if(!v.burned.includes(d.id))v.burned.push(d.id);if(v.infl&&v.infl.id===d.id)v.infl.until=S.plays;
+  for(const x of due){const d=v76Infl(x.id);if(!d)continue;const sp=x.sp||(5+(tier()>=3?2:0));v77Heat(sp,'🧾 '+d.name+' posted the receipt');v.spikes+=sp;if(!v.burned.includes(d.id))v.burned.push(d.id);if(v.infl&&v.infl.id===d.id)v.infl.until=S.plays;
     v76Log('receipt',sp,{id:d.id});const t=fill(pick(V76_RECEIPT),{h:d.handle});
     await v76Confirm(`<h4>🧾 RECEIPT LEAKED · ${d.name.toUpperCase()}</h4><div class="ohead sm">${v76Esc(d.handle)} posted the payment screenshot.</div><div class="v76tags">${v76Tag(`📱 Receipt leaked +${sp}🔥`,'"#ad from the ref??" · their cover is over',true)}</div><div class="skip">tap to continue</div>`,1900);
     sbPost('tp','[Receipts] '+t,{hot:true,v76:true,key:'v76rc:'+d.id+S.plays,boost:2500});try{burst('exposed',{dh:d.handle,price:x.price.toLocaleString()},1);}catch(e){}v76Voice('receipt',t,{id:d.id});if(S.over)return;}}
@@ -12974,7 +12893,7 @@ function v79Why(){if(V79.force!=null)return V79.force;/* test hook only */var C=
   if(C&&C.callUp&&C.callUp())return 'call';var d=v79El('decide');if(d&&!d.hidden&&!d.classList.contains('out')&&!d.classList.contains('done'))return 'call';
   if(C&&C.cardUp&&C.cardUp())return 'card';if(C&&C.modalUp&&C.modalUp())return 'modal';
   var ids=['shop','adslot','adbrk','hb','refbrief','call','memo','chrev'];for(var i=0;i<ids.length;i++){var x=v79El(ids[i]);if(x&&!x.hidden)return 'modal';}
-  var sh=v79El('socsheet');if(sh&&sh.classList.contains('open'))return 'modal';
+  if(window.__v82why){var w82=window.__v82why();if(w82)return w82;}
   if(typeof adActive!=='undefined'&&adActive)return 'modal';if(S.flagToss)return 'flag';return '';}
 function v79Min(it){return it.kind==='meme'?92:54;}
 function v79Card(it){var p=it.p,d=document.createElement('div');d.className='v79pop '+it.kind+(it.o&&it.o.hot?' hot':it.o&&it.o.good?' good':'');
@@ -12997,16 +12916,13 @@ function v79Card(it){var p=it.p,d=document.createElement('div');d.className='v79
   d.addEventListener('pointermove',function(e){if(x0==null)return;lx=e.clientX;mv=Math.max(mv,Math.abs(e.clientX-x0));var dx=e.clientX-x0;if(Math.abs(dx)>8)d.style.transform='translateX('+dx+'px)';});
   var up=function(e,cancel){if(x0==null)return;e.stopPropagation();var dx=e.clientX-x0,dt=(e.timeStamp||performance.now())-t0;x0=null;pcx=false;it.held=false;it.pid=null;window.removeEventListener('pointerup',wUp,true);window.removeEventListener('pointercancel',wUp,true);(it.relLog=it.relLog||[]).push({how:e.v80?'fallback':(cancel?'cancel':'up'),ms:Math.round(dt)});d.classList.remove('held');d.style.transform='';
     if(cancel)return;if(Math.abs(dx)>50){it.seenBy='swipe';v79Leave(it,dx<0?'outL':'out');return;}
-    if(dt<350&&mv<8){if(it.kind==='meme'&&e.target&&e.target.classList&&e.target.classList.contains('v79img')&&typeof openMeme==='function'){try{openMeme(p);}catch(_){}return;}it.seenBy='tap';v79Leave(it,'out');}};
+    if(dt<350&&mv<8){it.seenBy='tap';v79Leave(it,'out');}};
   d.addEventListener('pointerup',function(e){up(e,false);});d.addEventListener('pointercancel',function(e){if(e.pointerType==='touch'&&tch>0){pcx=true;it.pcx=(it.pcx||0)+1;return;}/* browser took the touch; finger still down -> hold until touchend */up(e,true);});
   d.addEventListener('lostpointercapture',function(){});
   d.addEventListener('click',function(e){e.stopPropagation();});
   return d;}
-function v79Missed(it,why){if(!it||it.missed)return;it.missed=why;var p=it.p;if(!p)return;
-  try{var f=v79El('feed');var el=p.el;if(f&&el){if(!el.querySelector('.v79tag')){var t=document.createElement('span');t.className='v79tag';t.textContent='📌 missed';var m=el.querySelector('.meta');(m||el).appendChild(t);}
-      el.classList.add('v79miss');el.classList.remove('v79read');f.prepend(el);}}catch(e){}
-  V79.miss++;window.__v79miss=V79.miss;V79.missLog.push({k:it.kind,why:why,t:Date.now(),txt:String(p.text||'').slice(0,40)});if(V79.missLog.length>200)V79.missLog.shift();
-  try{if(window.__cwPaintBadge)window.__cwPaintBadge();}catch(e){}}
+function v79Missed(it,why){if(!it||it.missed)return;it.missed=why;var p=it.p;if(!p)return;/* v82: no SOCIAL fallback — the pop is dropped and logged for QA */
+  V79.miss++;V79.drop=(V79.drop||0)+1;V79.missLog.push({k:it.kind,why:why,t:Date.now(),dropped:1,txt:String(p.text||'').slice(0,40)});if(V79.missLog.length>200)V79.missLog.shift();}
 function v79Leave(it,dir){if(!it||it.gone)return;it.gone=true;var d=it.el;V79.leaving=true;
   var seen=it.seenBy||(it.seenMs>=V79_SEEN?'timer':null);if(!seen)v79Missed(it,'unseen');
   V79.log.push({k:it.kind,dwell:it.dwell,ms:Math.round(it.seenMs),wall:Date.now()-it.t1,paused:it.pz,seen:seen,len:String(it.p.text||'').length});if(V79.log.length>300)V79.log.shift();
@@ -13014,7 +12930,7 @@ function v79Leave(it,dir){if(!it||it.gone)return;it.gone=true;var d=it.el;V79.le
   if(V79.cur===it)V79.cur=null;
   if(d){d.classList.add(dir||'out');setTimeout(function(){try{d.remove();}catch(e){}V79.leaving=false;v79Tick();},200);}else V79.leaving=false;}
 function v79Key(it){return it.kind+'|'+(it.p.img?String(it.p.key||'')+String(it.p.img).slice(-60):'')+'|'+it.p.text;}
-function v79Enq(it){it.t=Date.now();var k=v79Key(it);if(V79.keys[k]||(V79.cur&&!V79.cur.gone&&v79Key(V79.cur)===k)||V79.q.some(function(o){return v79Key(o)===k;})){V79.dup=(V79.dup||0)+1;(V79.dupT=V79.dupT||[]).push(String(it.p.text).slice(0,40));return;}/* same post already popped this game: it stays in SOCIAL, no repeat pop */V79.q.push(it);while(V79.q.length>V79_MAXQ){V79.trimmed++;v79Missed(V79.q.shift(),'backlog');}v79Tick();}
+function v79Enq(it){it.t=Date.now();var k=v79Key(it);if(V79.keys[k]||(V79.cur&&!V79.cur.gone&&v79Key(V79.cur)===k)||V79.q.some(function(o){return v79Key(o)===k;})){V79.dup=(V79.dup||0)+1;(V79.dupT=V79.dupT||[]).push(String(it.p.text).slice(0,40));return;}/* same post already popped this game: no repeat pop */V79.q.push(it);while(V79.q.length>V79_MAXQ){V79.trimmed++;v79Missed(V79.q.shift(),'backlog');}v79Tick();}
 function v79Show(it){var l=v79Lane();if(!l)return false;var d=v79Card(it);it.el=d;it.dwell=v79Dwell(it.p.text);it.scale=v79Fast();it.total=it.dwell/it.scale;it.rem=it.total;it.seenMs=0;it.pz={};it.t1=Date.now();
   if(it.kind==='meme'){it.p.pop=d;try{paintCnt(it.p);}catch(e){}S.memePops=(S.memePops||0)+1;try{AU.sfx(Math.random()<0.18?'airhorn':'meme');}catch(e){}}
   else{try{paintCnt(it.p);}catch(e){}}
@@ -13049,30 +12965,23 @@ try{
   dismissMeme=function(){};
   sbPost=function(plat,text,o,delay){o=o||{};delay=delay||0;
     setTimeout(function(){if(!S||S.over&&!o.end)return;var p=post(plat,text,o.boost||0,o);if(!p)return;v79Enq({kind:'post',p:p,o:o});},delay/FAST);};
-  /* new play context: waiting chatter from the last snap goes to SOCIAL (unread); the card on screen stays */
+  /* new play context: waiting chatter from the last snap is dropped; the card on screen stays */
   sbClear=function(){var b=v79El('sbur');if(b)b.innerHTML='';var keep=[];for(var i=0;i<V79.q.length;i++){var x=V79.q[i];if(x.kind==='post'){V79.cleared++;v79Missed(x,'newplay');}else keep.push(x);}V79.q=keep;};
   var _v79fresh=fresh;fresh=function(){var r=_v79fresh.apply(this,arguments);try{if(V79.cur&&V79.cur.el)V79.cur.el.remove();V79.cur=null;V79.q=[];V79.leaving=false;V79.miss=0;window.__v79miss=0;V79.keys={};V79.rep=0;V79.dup=0;V79.dupT=[];V79.log=[];V79.shown=[];V79.missLog=[];V79.paused={};V79.trimmed=V79.flushed=V79.cleared=0;var l=v79El('v79lane');if(l){l.innerHTML='';l.classList.add('off');}}catch(e){}return r;};
   V79_TIV=setInterval(function(){try{v79Tick();}catch(e){}},100);
-  ['gfx','msban','decide','chrev','socsheet','shop','adslot','adbrk','end','lower'].forEach(function(id){var e=v79El(id);if(e&&window.MutationObserver)try{new MutationObserver(function(){try{v79Tick();}catch(_){}}).observe(e,{attributes:true,attributeFilter:['class','hidden']});}catch(_){}});
+  ['gfx','msban','decide','chrev','shop','adslot','adbrk','end','lower'].forEach(function(id){var e=v79El(id);if(e&&window.MutationObserver)try{new MutationObserver(function(){try{v79Tick();}catch(_){}}).observe(e,{attributes:true,attributeFilter:['class','hidden']});}catch(_){}});
 }catch(err){console.error('[CW] v79 pops failed',err);}
-/* ---- SOCIAL: fixed overlay sheet; the stage never scrolls ---- */
-function v79SheetFit(){var g=v79El('game'),sh=v79El('socsheet'),sc=v79El('socscrim');if(!g)return;var r=g.getBoundingClientRect();
-  [sh,sc].forEach(function(e){if(!e)return;e.style.setProperty('left',Math.round(r.left)+'px','important');e.style.setProperty('width',Math.round(r.width)+'px','important');e.style.setProperty('right','auto','important');});
-  if(sc){sc.style.setProperty('top',Math.round(r.top)+'px','important');sc.style.setProperty('height',Math.round(r.height)+'px','important');}}
+/* ---- the stage never scrolls (v82: SOCIAL sheet removed) ---- */
+function v79SheetFit(){}
 var V79_NOSCROLL=['game','tv','app'];
 function v79Unscroll(){for(var i=0;i<V79_NOSCROLL.length;i++){var e=v79El(V79_NOSCROLL[i]);if(e&&(e.scrollTop||e.scrollLeft)){e.scrollTop=0;e.scrollLeft=0;V79.unscroll=(V79.unscroll||0)+1;}}
   var en=v79El('end');var se=document.scrollingElement;if(se&&(se.scrollTop||se.scrollLeft)&&(!en||en.hidden)){se.scrollTop=0;se.scrollLeft=0;}}
 try{
   addEventListener('scroll',function(e){var t=e.target;if(t&&t.id&&V79_NOSCROLL.indexOf(t.id)>=0)v79Unscroll();},true);
   addEventListener('resize',function(){try{v79SheetFit();v79Tick();}catch(e){}});
-  var shp=null;var bindSheet=function(){var sh=v79El('socsheet');if(!sh||shp===sh)return;shp=sh;v79SheetFit();
-    new MutationObserver(function(){if(sh.classList.contains('open')){v79SheetFit();v79Unscroll();V79.miss=0;window.__v79miss=0;
-        var f=v79El('feed');if(f)[].forEach.call(f.querySelectorAll('.v79miss'),function(x){x.classList.add('v79read');});try{if(window.__cwPaintBadge)window.__cwPaintBadge();}catch(e){}}
-      requestAnimationFrame(v79Unscroll);setTimeout(v79Unscroll,320);}).observe(sh,{attributes:true,attributeFilter:['class']});};
-  setTimeout(bindSheet,300);setTimeout(bindSheet,1200);setInterval(bindSheet,2000);
 }catch(err){console.error('[CW] v79 sheet failed',err);}
-/* ---- Skip-to-next-key keeps >=8px from SOCIAL (CSS sets 12px; this is the safety net) ---- */
-function v79SkipGap(){var k=v79El('skipk'),f=v79El('socfab');var kr=v79Vis(k),fr=v79Vis(f);if(!kr||!fr)return null;var gap=fr.left-kr.right;
+/* ---- Skip-to-next-key keeps >=8px from the bottom-right gear (v82: gear took the old SOCIAL slot) ---- */
+function v79SkipGap(){var k=v79El('skipk'),f=v79El('aud');var kr=v79Vis(k),fr=v79Vis(f);if(!kr||!fr)return null;var gap=fr.left-kr.right;
   if(kr.bottom>fr.top&&kr.top<fr.bottom&&gap<8){var cur=parseFloat(getComputedStyle(k).right)||0;k.style.setProperty('right',Math.ceil(cur+(8-gap)+2)+'px','important');gap=8;}return gap;}
 try{setInterval(function(){try{v79SkipGap();}catch(e){}},400);}catch(e){}
 /* ---- A: one rewarded commercial per game ---- */
@@ -13120,17 +13029,12 @@ try{
   '#v79lane .v79bar{position:absolute;left:9px;right:9px;bottom:3px;height:3px;border-radius:2px;background:rgba(255,255,255,.12);overflow:hidden;pointer-events:none}',
   '#v79lane .v79bar i{display:block;height:100%;width:100%;background:#ffd23f;transform-origin:left center;transition:transform .1s linear}',
   '#v79lane .v79pop.held .v79bar i{background:#7fd0ff}',
-  /* missed pops in the SOCIAL feed */
-  '#feed .post.v79miss{box-shadow:inset 3px 0 0 #ffd23f}#feed .post.v79miss.v79read{box-shadow:inset 3px 0 0 rgba(255,210,63,.35)}',
-  '#feed .post .v79tag{flex:none;font:800 9.5px/1.2 system-ui,sans-serif;color:#ffd23f;margin-left:4px}',
-  /* 1: SOCIAL is a fixed overlay; the stage never scrolls */
-  '#socsheet{position:fixed!important;top:auto!important;bottom:0!important}',
-  '#socscrim{position:fixed!important}',
+  /* 1: the stage never scrolls */
   '#game,#game #tv{overflow:hidden!important;overflow:clip!important;overscroll-behavior:none}',
   /* 2: YOUR CALL quote: room for the italic closing mark, wraps instead of clipping */
   '#decide .grow{overflow:visible!important;flex-wrap:wrap}',
   '#decide .grow .gv{padding:0 7px 0 3px!important;box-sizing:border-box!important;overflow:visible!important;text-overflow:clip!important;white-space:normal!important;overflow-wrap:break-word!important;max-width:100%!important}',
-  /* 3: Skip to next key play: 12px clear of SOCIAL */
+  /* 3: Skip to next key play: clear of the bottom-right gear */
   '#game.fs-tiny #thumb #skipk{right:calc(10px + 52px + 14px)!important;max-width:min(86px,calc(50% - 35px - 76px - 6px))!important}',
   /* 4: the transparent #game layer never takes taps; its real controls do */
   '#game{pointer-events:none!important}',
@@ -13372,6 +13276,560 @@ setInterval(function(){bindTitle();bindSettings();},700);
 window.CW=window.CW||{};window.CW.v81={ok:true,open:open,close:close,isOpen:function(){return !el.hidden;}};
 })();
 
+/* ===== v82 PROFILES (George via Ui Bot; spec Page 8fee146e) — built on v81 LEGAL =====
+   phase 5: SOCIAL removed (button, sheet, feed, BUZZLINE/TRENDING, meme gallery, missed-pop saving, swipe-up).
+   Texts (Lenny / Vivian / unknown numbers) now always surface as pops, since the Texts tab is gone. */
+window.__v82items=['social-removed'];
+var V82={drops:0,smsPops:0};
+try{
+  var _v82post=post;
+  post=function(plat,text,boost,o){var p=_v82post.apply(this,arguments);
+    try{if(p&&plat==='sms'&&typeof v79Enq==='function'){V82.smsPops++;v79Enq({kind:'post',p:p,o:o||{}});}}catch(e){}
+    return p;};
+}catch(err){console.error('[CW] v82 p5 failed',err);}
+/* ---- v82 phase 4: HEAT spans the whole top bar (flames clipped to it), gear bottom-right, compact FLAG FAVOR bottom-left ---- */
+window.__v82items.push('heat-full-top','gear-bottom-right','favor-bottom-left');
+(function(){
+  var st=document.createElement('style');st.id='v82topbar';st.textContent=[
+  /* HEAT: [6, 4, vw-12, 36] + safe areas */
+  '#app #game #heatrow{left:calc(6px + env(safe-area-inset-left))!important;right:calc(6px + env(safe-area-inset-right))!important;width:auto!important;max-width:none!important;top:calc(4px + env(safe-area-inset-top))!important;height:36px!important;box-sizing:border-box!important;border-radius:18px!important;overflow:hidden!important;clip-path:inset(0 round 18px);-webkit-clip-path:inset(0 round 18px);gap:6px!important;padding:4px 8px 4px 10px!important;align-items:center!important}',
+  '#app #game #heatrow > span:first-of-type{flex:none!important;display:flex!important;align-items:center;gap:4px;white-space:nowrap;font-weight:900}',
+  '#app #game #heatrow #heatnum{font-size:19px!important;font-weight:900!important;line-height:1!important;min-width:24px;text-shadow:0 0 2px #000,0 1px 2px #000,0 0 4px rgba(0,0,0,.9)!important}',
+  '#app #game #heatrow #heatbar{flex:1 1 auto!important;width:auto!important;min-width:0!important;max-width:none!important;height:14px!important;border-radius:7px!important;position:relative!important;overflow:hidden}',
+  '#app #game #heatrow #tiername{display:block!important;position:absolute!important;right:18px!important;top:50%!important;transform:translateY(-50%)!important;z-index:4!important;font:800 10px/14px system-ui,-apple-system,sans-serif!important;letter-spacing:.04em;color:#fff!important;text-shadow:0 0 2px #000,0 1px 2px #000!important;pointer-events:none;white-space:nowrap;margin:0!important;padding:0!important;background:none!important;opacity:.92}',
+  'html.gfx-pix #app #game #heatrow{border-radius:18px!important}',
+  /* gear: 44x44 bottom-right, 8px clear of the scorebug and the edge */
+  'body.v82play #app #aud{top:auto!important;left:auto!important;right:calc(12px + env(safe-area-inset-right))!important;bottom:calc(16px + env(safe-area-inset-bottom))!important;z-index:54!important}',
+  'body.v82play #app #aud #audS{width:44px!important;height:44px!important;min-width:44px!important;min-height:44px!important;font-size:22px!important;border-radius:12px!important}',
+  'body.v82play #app #aud.v82off{opacity:0!important;pointer-events:none!important;transition:opacity .12s ease}',
+  /* FLAG FAVOR: compact meter bottom-left, 136x40 (124x40 under 381px) */
+  '#app #game #tv #fvbug{position:absolute!important;top:auto!important;right:auto!important;left:calc(6px + env(safe-area-inset-left))!important;bottom:calc(18px + env(safe-area-inset-bottom))!important;width:136px!important;max-width:none!important;min-width:0!important;height:40px!important;box-sizing:border-box!important;padding:6px 8px 15px!important;gap:5px!important;border-radius:12px!important;z-index:53!important;display:flex!important;align-items:center!important;transition:opacity .12s ease!important}',
+  '@media (max-width:380px){#app #game #tv #fvbug{width:124px!important}}',
+  '#app #game #tv #fvbug img{width:16px!important;height:16px!important;display:block!important;flex:none!important;transition:transform .25s cubic-bezier(.3,1.6,.5,1)}',
+  '#app #game #tv #fvbug .fvt{height:6px!important;flex:1 1 auto!important}',
+  '#app #game #tv #fvbug .fvl{font-size:9px!important;bottom:3px!important;left:4px!important;right:4px!important;letter-spacing:.04em!important}',
+  '#app #game #tv #fvbug.v82off{opacity:0!important;pointer-events:none!important}',
+  '#app #game #tv #fvbug img.v82bounce{transform:scale(1.25)}',
+  '@media (prefers-reduced-motion: reduce){#app #game #tv #fvbug img{transition:none!important}}'
+  ].join('\n');document.documentElement.appendChild(st);
+  /* in-game class (no :has() dependency for older iOS) */
+  function playOn(){var g=document.getElementById('game');var on=!!(g&&!g.hidden&&g.getClientRects().length);document.body.classList.toggle('v82play',on);return on;}
+  /* FAVOR + gear fade when any sheet or card overlaps them; they never draw on top of a sheet */
+  var CARDS=['gfx','v82prof','hb','shop','chrev','call','memo','adbrk','end','v82meme','v82stamp','refbrief','brc','v81legal'];
+  function hit(a,b){return a&&b&&a.left<b.right-1&&a.right>b.left+1&&a.top<b.bottom-1&&a.bottom>b.top+1;}
+  function vis(e){if(!e||!e.isConnected||e.hidden)return null;var cs=getComputedStyle(e);if(cs.display==='none'||cs.visibility==='hidden'||+cs.opacity<0.05)return null;var r=e.getBoundingClientRect();return (r.width<2||r.height<2)?null:r;}
+  function over(el,skip){if(!el)return false;el.classList.remove('v82off');var r=el.getBoundingClientRect();if(r.width<2)return false;
+    for(var i=0;i<CARDS.length;i++){if(CARDS[i]===skip)continue;var c=document.getElementById(CARDS[i]);if(CARDS[i]==='gfx'&&c&&!c.classList.contains('show'))continue;if(CARDS[i]==='v82meme'||CARDS[i]==='v82stamp')continue;if(hit(r,vis(c)))return CARDS[i];}
+    var ov=document.querySelectorAll('.v76card,.v82sheet');for(var j=0;j<ov.length;j++){if(hit(r,vis(ov[j])))return 'card';}return false;}
+  var V82T={fv:'',aud:'',fvN:0,audN:0};
+  function tick(){try{if(!playOn())return;var fv=document.getElementById('fvbug'),au=document.getElementById('aud');
+    var a=over(fv);if(fv){fv.classList.toggle('v82off',!!a);if(a&&a!==V82T.fv)V82T.fvN++;V82T.fv=a||'';}
+    var p=document.getElementById('audP');var b=(p&&!p.hidden)?false:over(au);if(au){au.classList.toggle('v82off',!!b);if(b&&b!==V82T.aud)V82T.audN++;V82T.aud=b||'';}}catch(e){}}
+  setInterval(tick,120);
+  try{var g=document.getElementById('game');if(g&&window.MutationObserver)new MutationObserver(playOn).observe(g,{attributes:true,attributeFilter:['hidden']});}catch(e){}
+  V82.top=V82T;V82.fvTick=tick;
+})();
+/* ---- v82 phase 3: memes get their own big centered card over the field (bigger, longer, dim on snap) ---- */
+window.__v82items.push('meme-card');
+var V82M={q:[],cur:null,leaving:false,log:[],shown:0,drop:0,dropLog:[],keys:{},lastT:0,okSince:0,lastWhy:'',geo:null,dimN:0};
+var V82M_MAXQ=3;
+function v82MDwell(t){var n=String(t||'').length;return Math.max(6000,Math.min(10000,6000+60*n));}
+function v82MDrop(it,why){if(!it||it.dropped)return;it.dropped=why;V82M.drop++;V82M.dropLog.push({why:why,t:Date.now(),txt:String((it.p&&it.p.text)||'').slice(0,40)});if(V82M.dropLog.length>100)V82M.dropLog.shift();
+  try{v79Missed({kind:'meme',p:it.p},why);}catch(e){}}
+function v82MLayer(){var l=document.getElementById('v82meme');if(l&&l.isConnected)return l;var tv=document.getElementById('tv');if(!tv)return null;
+  l=document.createElement('div');l.id='v82meme';l.setAttribute('aria-live','polite');tv.appendChild(l);return l;}
+function v82MRM(){try{return !!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);}catch(e){return false;}}
+/* band: below the caption lane (+12) to above the scorebug (-12); the card sits in the free space above the pop lane's max height when it can */
+function v82MGeom(){var tv=document.getElementById('tv');if(!tv)return null;var tr=tv.getBoundingClientRect();if(tr.height<100)return null;
+  var top=tr.top+84;['heatrow','v75cap','v78pill','v75top','callchip'].forEach(function(id){var r=v79Vis(v79El(id));if(r&&r.bottom<tr.top+tr.height*0.4)top=Math.max(top,r.bottom);});
+  top+=12;var bug=v79Vis(v79El('bug'));var bot=(bug?bug.top:tr.bottom-160);var lw=v79Vis(v79El('lower'));if(lw&&lw.top<bot)bot=lw.top;bot-=12;
+  var popTop=bot-Math.round(tr.height*V79_FRAC);return {top:top,bottom:bot,h:bot-top,popTop:popTop,tv:tr,vw:window.innerWidth};}
+function v82MCard(it){var p=it.p,d=document.createElement('div');d.className='v82mc'+(String(p.text||'').length>90?' long':'');
+  var plat=(typeof PLAT!=='undefined'&&PLAT[p.plat])||p.plat||'';
+  d.innerHTML='<div class="v82mh"><span class="v82av"></span><b></b><span class="plat '+(p.plat||'')+'"></span><span class="cnt"></span></div><div class="v82mi"><img alt="meme" draggable="false"></div><div class="v82mt"></div><div class="v82bar"><i></i></div>';
+  d.querySelector('b').textContent=p.handle||'';d.querySelector('.plat').textContent=plat;d.querySelector('.v82mt').textContent=p.text||'';
+  var im=d.querySelector('img');if(p.img)im.src=p.img;
+  try{var c=p.views!=null?'👁 '+fmtN(p.views):'♥ '+fmtN(p.likes||0);d.querySelector('.cnt').textContent=c;}catch(e){}
+  try{if(window.__v82face){var av=window.__v82face(p.handle,24,p);if(av)d.querySelector('.v82av').appendChild(av);}}catch(e){}
+  var x0=null,y0=0,t0=0,mv=0,lx=0,pid=null;
+  d.addEventListener('contextmenu',function(e){e.preventDefault();});d.addEventListener('dragstart',function(e){e.preventDefault();});d.addEventListener('selectstart',function(e){e.preventDefault();});
+  function rel(e,cancel){if(x0==null)return;var dx=(e.clientX!=null?e.clientX:lx)-x0,dt=(e.timeStamp||performance.now())-t0;x0=null;it.held=false;pid=null;d.classList.remove('held');d.style.transform='';
+    window.removeEventListener('pointerup',wUp,true);window.removeEventListener('pointercancel',wUp,true);
+    if(cancel||d.classList.contains('dim'))return;if(Math.abs(dx)>50){it.seenBy='swipe';v82MLeave(it,dx<0?'outL':'outR');return;}if(dt<350&&mv<8){it.seenBy='tap';v82MLeave(it,'out');}}
+  function wUp(e){if(x0==null)return;if(pid!=null&&e.pointerId!==pid)return;if(e.target&&d.contains(e.target))return;rel(e,e.type==='pointercancel');}
+  d.addEventListener('pointerdown',function(e){e.stopPropagation();if(d.classList.contains('dim'))return;x0=e.clientX;lx=x0;y0=e.clientY;t0=e.timeStamp||performance.now();mv=0;pid=e.pointerId;it.held=true;it.touched=true;it.heldN=(it.heldN||0)+1;d.classList.add('held');
+    try{d.setPointerCapture(e.pointerId);}catch(_){}window.addEventListener('pointerup',wUp,true);window.addEventListener('pointercancel',wUp,true);});
+  d.addEventListener('pointermove',function(e){if(x0==null)return;lx=e.clientX;var dx=e.clientX-x0;mv=Math.max(mv,Math.abs(dx),Math.abs(e.clientY-y0));if(Math.abs(dx)>8)d.style.transform='translateX('+dx+'px)';});
+  d.addEventListener('pointerup',function(e){rel(e,false);});d.addEventListener('pointercancel',function(e){if(e.pointerType==='touch')return;rel(e,true);});
+  d.addEventListener('touchend',function(e){if(x0!=null&&!(e.touches&&e.touches.length)){var t=e.changedTouches&&e.changedTouches[0];rel({clientX:t?t.clientX:lx,timeStamp:e.timeStamp},false);}},{passive:true});
+  d.addEventListener('click',function(e){e.stopPropagation();});
+  return d;}
+/* width: min(85vw,340px); shrink to fit the band, never under 70vw */
+function v82MFit(it,g){var d=it.el;if(!d||!g)return;var vw=g.vw,w=Math.min(Math.floor(vw*0.85),340),min=Math.round(vw*0.70),X=18;/* X = 2x8px padding + 2x1px border; w is the IMAGE width */
+  d.style.width=(w+X)+'px';var h=d.offsetHeight;var room=g.h;
+  if(h>room){var fixed=h-w/2;w=Math.max(min,Math.floor((room-fixed)*2));d.style.width=(w+X)+'px';h=d.offsetHeight;}w=w+X;
+  /* sit in the free space above the pop lane when it fits, else top of band */
+  var free=g.popTop-12-g.top;var y=g.top+(h<=free?Math.round((free-h)/2):Math.max(0,Math.round(Math.min(g.h-h,0)/2)));
+  var l=d.parentNode;var tt=g.tv.top;d.style.top=Math.round(y-tt)+'px';d.style.left=Math.round((g.tv.width-w)/2)+'px';it.w=w;it.h=h;}
+function v82MShow(it){var l=v82MLayer();if(!l)return false;var d=v82MCard(it);it.el=d;it.dwell=v82MDwell(it.p.text);it.scale=V82M.sc||v79Fast();it.total=it.dwell/it.scale;it.rem=it.total;it.vis=0;it.wall=0;it.dimMs=0;it.hidMs=0;it.t1=Date.now();it.pz={};
+  l.appendChild(d);v82MFit(it,V82M.geo||v82MGeom());it.p.pop=d;S.memePops=(S.memePops||0)+1;try{AU.sfx(Math.random()<0.18?'airhorn':'meme');}catch(e){}
+  if(v82MRM())d.classList.add('rm');void d.offsetWidth;d.classList.add('in');V82M.cur=it;V82M.shown++;return true;}
+function v82MLeave(it,dir){if(!it||it.gone)return;it.gone=true;var d=it.el;V82M.leaving=true;
+  V82M.log.push({dwell:it.dwell,vis:Math.round(it.vis*it.scale),wall:Math.round(it.wall*it.scale),dim:Math.round(it.dimMs*it.scale),hid:Math.round(it.hidMs*it.scale),seen:it.seenBy||'timer',len:String(it.p.text||'').length,pz:it.pz,touched:!!it.touched,w:it.w,h:it.h,callBack:it.callBack||0});if(V82M.log.length>200)V82M.log.shift();
+  if(it.p)it.p.pop=null;if(V82M.cur===it)V82M.cur=null;
+  if(d){d.classList.remove('in');d.classList.add(dir||'out');setTimeout(function(){try{d.remove();}catch(e){}V82M.leaving=false;v82MTick();},190);}else V82M.leaving=false;}
+function v82MEnq(p){if(!S||!p)return;if(V82M.testOnly&&!p.t82)return;var k=String(p.key||'')+'|'+String(p.img||'').slice(-60)+'|'+p.text;if(V82M.keys[k]||V82M.q.some(function(o){return o.k===k;})){V82M.dup=(V82M.dup||0)+1;return;}
+  V82M.keys[k]=1;V82M.q.push({p:p,k:k,t:Date.now()});while(V82M.q.length>V82M_MAXQ)v82MDrop(V82M.q.shift(),'backlog');v82MTick();}
+function v82MSnap(){if(V82M.snapForce!=null)return !!V82M.snapForce;return !!(S&&(S.phase==='live'||S.phase==='replay'||S.phase==='ff'));}
+function v82MTick(){var now=performance.now(),dt=V82M.lastT?Math.min(400,now-V82M.lastT):0;V82M.lastT=now;var l=v82MLayer();if(!l)return;
+  var why=v79Why();if(why==='action')why='';
+  if(why==='over'||why==='nogame'){if(why==='over'){if(V82M.cur)v82MLeave(V82M.cur,'out');while(V82M.q.length)v82MDrop(V82M.q.shift(),'gameover');}l.classList.add('off');return;}
+  var g=v82MGeom();V82M.geo=g;var it=V82M.cur;
+  if(!why){if(!V82M.okSince)V82M.okSince=now;}else V82M.okSince=0;
+  var free=!why&&(now-V82M.okSince>=(/^(call|card|modal|flag|impact)$/.test(V82M.lastWhy)?300:0));if(free)V82M.lastWhy='';else if(why)V82M.lastWhy=why;
+  if(it){if(!free){l.classList.add('off');it.pz[why||'settle']=(it.pz[why||'settle']||0)+1;it.hidMs+=dt;if(why==='call')it.callHit=true;return;}
+    if(it.callHit){it.callHit=false;var back=4000/it.scale;if(it.rem<back){it.rem=back;}it.callBack=(it.callBack||0)+1;it.wall=Math.min(it.wall,Math.max(0,12000/it.scale-it.rem));}
+    l.classList.remove('off');var snap=v82MSnap();it.el.classList.toggle('dim',snap);if(snap){if(!it.wasDim)V82M.dimN++;it.wasDim=true;it.dimMs+=dt;it.wall+=dt;it.pz.snap=(it.pz.snap||0)+1;}
+    else{it.wasDim=false;if(it.held){it.heldMs=(it.heldMs||0)+dt;}else{it.rem-=dt;it.vis+=dt;it.wall+=dt;}}
+    if(!it.fitT||now-it.fitT>500){it.fitT=now;v82MFit(it,g);}
+    var bar=it.el.querySelector('.v82bar i');if(bar)bar.style.transform='scaleX('+Math.max(0,it.rem/it.total).toFixed(4)+')';
+    if(it.rem<=0||(!it.touched&&it.wall>=11900/it.scale&&it.vis>=Math.min(it.total,5000/it.scale)))v82MLeave(it,'out');return;}
+  if(V82M.leaving)return;
+  if(free&&!v82MSnap()&&V82M.q.length){v82MShow(V82M.q.shift());l.classList.remove('off');}else if(!V82M.cur)l.classList.add('off');}
+(function(){
+  try{queueMeme=function(p){if(!S||!p)return;v82MEnq(p);};showMeme=function(p){v82MEnq(p);};hideMemesNow=function(){v82MTick();};}catch(e){console.error('[CW] v82 meme hook',e);}
+  /* pops yield the space the meme card uses: v79 lane top moves below the card */
+  try{var g0=v79Geom;v79Geom=function(){var g=g0();var it=V82M.cur;if(g&&it&&it.el&&!it.gone){var l=v82MLayer();if(l&&!l.classList.contains('off')){var r=it.el.getBoundingClientRect();if(r.height>2&&r.bottom+12>g.top){g.top=Math.round(r.bottom+12);g.h=Math.floor(g.bottom-g.top);}}}return g;};}catch(e){}
+  var st=document.createElement('style');st.id='v82memecss';st.textContent=[
+  '#v82meme{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:25}',
+  '#v82meme.off{visibility:hidden}#v82meme.off .v82mc{pointer-events:none!important}',
+  '#v82meme .v82mc{position:absolute;box-sizing:border-box;padding:8px;border-radius:14px;background:rgba(14,18,28,.94);border:1px solid rgba(255,255,255,.16);box-shadow:0 10px 30px rgba(0,0,0,.55);pointer-events:auto;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;overflow:hidden;opacity:0;transform:scale(.86);transition:opacity .18s ease,transform .22s cubic-bezier(.34,1.56,.64,1)}',
+  '#v82meme .v82mc.in{opacity:1;transform:scale(1)}',
+  '#v82meme .v82mc.rm,#v82meme .v82mc.rm.in{transform:none!important;transition:opacity .18s ease!important}',
+  '#v82meme .v82mc.dim{opacity:.35!important;pointer-events:none!important}',
+  '#v82meme .v82mc.out,#v82meme .v82mc.outL,#v82meme .v82mc.outR{opacity:0!important;transition:opacity .18s ease,transform .18s ease!important}',
+  '#v82meme .v82mc.outL{transform:translateX(-60px)!important}#v82meme .v82mc.outR{transform:translateX(60px)!important}',
+  '#v82meme .v82mc.held{box-shadow:0 0 0 2px #ffd23f,0 10px 30px rgba(0,0,0,.55)}',
+  '#v82meme .v82mh{display:flex;align-items:center;gap:6px;height:24px;font:700 12px/24px system-ui,-apple-system,sans-serif;color:#fff;margin-bottom:6px;white-space:nowrap;overflow:hidden}',
+  '#v82meme .v82av{flex:none;width:24px;height:24px;border-radius:50%;overflow:hidden;background:#2a3346;display:inline-block}#v82meme .v82av img,#v82meme .v82av canvas{width:24px;height:24px;display:block;border-radius:50%}',
+  '#v82meme .v82mh b{overflow:hidden;text-overflow:ellipsis;min-width:0;font-weight:800}',
+  '#v82meme .v82mh .plat{flex:none;font-size:10px;line-height:16px;padding:0 6px;border-radius:8px;background:rgba(255,255,255,.12);color:#cfd6e6}',
+  '#v82meme .v82mh .cnt{margin-left:auto;flex:none;font-size:11px;color:#9aa6bd;font-weight:600}',
+  '#v82meme .v82mi{width:100%;aspect-ratio:2/1;border-radius:8px;overflow:hidden;background:#000}',
+  '@supports not (aspect-ratio:2/1){#v82meme .v82mi{height:0;padding-bottom:50%;position:relative}#v82meme .v82mi img{position:absolute;left:0;top:0}}',
+  '#v82meme .v82mi img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}',
+  '#v82meme .v82mt{margin-top:6px;margin-bottom:4px;font:700 16px/1.25 system-ui,-apple-system,sans-serif;color:#fff;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;overflow-wrap:anywhere}',
+  '#v82meme .v82mc.long .v82mt{-webkit-line-clamp:3}',
+  '@media (max-width:380px){#v82meme .v82mt{font-size:15px}}',
+  '#v82meme .v82bar{position:absolute;left:0;right:0;bottom:0;height:4px;background:rgba(255,255,255,.12)}#v82meme .v82bar i{display:block;height:100%;background:#ffd23f;transform-origin:0 50%}',
+  'body.cw-modal #v82meme{visibility:hidden}'
+  ].join('\n');document.documentElement.appendChild(st);
+  setInterval(v82MTick,100);
+  V82.meme={V:V82M,enq:v82MEnq,tick:v82MTick,geom:v82MGeom,dwell:v82MDwell,
+    test:function(txt,o){o=o||{};var c=document.createElement('canvas');c.width=400;c.height=200;var x=c.getContext('2d');x.fillStyle=o.bg||'#0e7c86';x.fillRect(0,0,400,200);x.fillStyle='#fff';x.font='bold 40px sans-serif';x.fillText(o.lbl||'MEME',120,115);
+      var p=post(o.plat||'gl',txt,500,{img:c.toDataURL(),key:'t82:'+Math.random(),hot:true,handle:o.handle});if(p){p.t82=1;v82MEnq(p);}return p;}};
+})();
+/* ---- v82 phase 1: one portrait painter (cwPortrait) + payroll rings + tap-to-open profile cards + roster strips ---- */
+window.__v82items.push('portraits','profile-card','roster-strip','payroll-ring');
+var V82P={cache:{},order:[],bytes:0,hits:0,miss:0,warmMs:[],opens:0,blocked:0,lastSaid:{},dec:0};
+var V82P_MAXB=1.5*1024*1024;
+function v82Dpr(){return Math.min(2,window.devicePixelRatio||1);}
+/* ---- registry: all 18 buyables + payers + recurring fans ---- */
+var V82_PEOPLE={};
+function v82Def(id,o){V82_PEOPLE[id]=o;o.id=id;return o;}
+(function(){
+  var BIO={ref:'Ex-IFL official. Has a rulebook for every occasion, including yours.',cc:'Posts "no ref talk" videos. Talks only about refs.',mod:'Deletes clips for a living. Some of them were his.',hth:'Three hours of hot takes, five days a week. Volume is a strategy.',film:'Frame-by-frame guy. Every frame is for sale.',gl:'Brunch, fits and the occasional paid opinion.',bots:'Five thousand fans, all born yesterday.',gz:'Respected columnist. Respect is expensive.',
+    chip:'Play-by-play for 22 years. Can make a hold sound like poetry.',marv:'Loudest critic in the booth. Has a price, says he doesn\'t.',couch:'Streams from a recliner with 40K people in it.',zebra:'Wholesome zebra content, invoices sold separately.',gwen:'Three monitors, one opinion, rarely leaks.',dank:'Cheapest meme account in the league. Leaks like a screen door.',
+    vinnie:'Carries two phones. Neither is in his name.',office:'Assigns the TV slots. Accepts envelopes.',legal:'Has never lost a case he was sober for.',pr:'Crisis firm. Turns scandals into kitten stories.',
+    lenny:'Bookie. Tab runs on vig and vibes.',house:'Speaks for The House. Never raises her voice.',league:'Writes the Script. Calls it "preferred outcomes."',lumi:'Pop superstar in the luxury box. Bets like she sings.',sal:'Keeps the mob\'s books in a very large spreadsheet.',unknown:'No caller ID. Never good news.'};
+  var X={chip:{col:['#1d2f66','#0b1430'],skin:'#e8b98a',hair:'#6b4a2b',shirt:'#1d2f66',acc:'x',tie:'#ffd23f'},
+    marv:{col:['#4a1520','#1e070c'],skin:'#d9a27a',hair:'#cfcfcf',shirt:'#4a1520',acc:'glasses',tie:'#c7ccd6'},
+    vinnie:{col:['#6b2d2d','#2a0f0f'],skin:'#c68642',hair:'#111',shirt:'#222',acc:'shades',chain:1},
+    office:{col:['#2f6bff','#14306e'],skin:'#f1c27d',hair:'#5a3b1f',shirt:'#f4f4f4',acc:'x',tie:'#2f6bff'},
+    legal:{col:['#3b2b12','#120c03'],skin:'#e0ac69',hair:'#8a8a8a',shirt:'#2b2b2b',acc:'glasses',tie:'#9b1b30'},
+    lenny:{col:['#c0392b','#6e1a12'],skin:'#e8b98a',hair:'#333',shirt:'#c0392b',acc:'x',visor:'#111'},
+    house:{col:['#1f7a4a','#0b2e1c'],skin:'#f1c27d',hair:'#2b1a0f',shirt:'#111',acc:'x',long:1,pearls:1},
+    league:{col:['#2f6bff','#14306e'],skin:'#ffdbac',hair:'#444',shirt:'#fff',acc:'glasses',tie:'#d4161b'},
+    lumi:{col:['#ff5fb2','#7a3cff'],skin:'#ffdbac',hair:'#f4d03f',shirt:'#ff5fb2',acc:'x',long:1,star:1},
+    sal:{col:['#4a3b6b','#1c1530'],skin:'#e0ac69',hair:'#222',shirt:'#fff',acc:'glasses',tie:'#4a3b6b'}};
+  try{DEFS.forEach(function(d){v82Def(d.id,{name:d.name,handle:d.handle,role:'Paid defender · '+(PLAT[d.plat]||d.plat),kind:'def',av:d,bio:BIO[d.id]||d.blurb,shop:'burner'});});}catch(e){}
+  try{V76_INFL.forEach(function(d){v82Def(d.id,{name:d.name,handle:d.handle,role:'Live influencer · '+d.kind,kind:'infl',av:d,bio:BIO[d.id]||d.blurb});});}catch(e){}
+  try{Object.keys(ANN).forEach(function(k){var a=ANN[k];v82Def(k,{name:a.name,handle:'Booth · '+a.role,role:'Announcer · '+a.role,kind:'ann',av:Object.assign({id:k},X[k]),bio:BIO[k]||a.blurb,mic:1});});}catch(e){}
+  if(V82_PEOPLE.hth)V82_PEOPLE.hth.mic=1;
+  v82Def('vinnie',{name:'Vinnie "Two Phones"',handle:'two phones, no names',role:'Mob · protection & pressure',kind:'payer',av:Object.assign({id:'vinnie'},X.vinnie),bio:BIO.vinnie,buy:1});
+  v82Def('office',{name:'Brent at the League Office',handle:'League Office · TV slots',role:'Season buy · consulting fee',kind:'season',av:Object.assign({id:'office'},X.office),bio:BIO.office,sink:'office'});
+  v82Def('legal',{name:'Barry Loophole, Esq.',handle:'Loophole & Associates',role:'Season buy · legal fund',kind:'season',av:Object.assign({id:'legal'},X.legal),bio:BIO.legal,sink:'legal'});
+  v82Def('pr',{name:'Spinwell PR',handle:'crisis communications',role:'Season buy · PR retainer',kind:'season',mono:'SP',bio:BIO.pr,sink:'pr'});
+  v82Def('lenny',{name:'Lenny Odds',handle:'mobile · "do not answer"',role:'Bookie · pays you',kind:'payer',av:Object.assign({id:'lenny'},X.lenny),bio:BIO.lenny});
+  v82Def('house',{name:'Vivian Lake',handle:'The House',role:'The House · pays you',kind:'payer',av:Object.assign({id:'house'},X.house),bio:BIO.house});
+  v82Def('league',{name:'League Office Script Writer',handle:"Script Writers' Room",role:'League · pays you',kind:'payer',av:Object.assign({id:'league'},X.league),bio:BIO.league});
+  v82Def('lumi',{name:'Lumi Lark',handle:'✨ verified · luxury box',role:'Pop superstar · pays you',kind:'payer',av:Object.assign({id:'lumi'},X.lumi),bio:BIO.lumi});
+  v82Def('sal',{name:'Sal the Spreadsheet',handle:'the mob\'s accountant',role:'Mob · pays you',kind:'payer',av:Object.assign({id:'sal'},X.sal),bio:BIO.sal});
+  v82Def('unknown',{name:'Unknown number',handle:'no caller ID',role:'Unknown',kind:'fan',sil:1,bio:BIO.unknown});
+  try{CHARS.forEach(function(d){v82Def('ch_'+d.id,{name:d.name,handle:d.handle,role:'Recurring fan · '+(PLAT[d.plat]||d.plat),kind:'fan',ch:d,bio:(d.lines&&d.lines[0]?'Known for: "'+String(d.lines[0]).slice(0,60)+'…"':'')});});}catch(e){}
+})();
+/* name / handle -> id */
+var V82_NAMES={};
+(function(){function add(k,id){if(k)V82_NAMES[String(k).toLowerCase().replace(/^@/,'').trim()]=id;}
+  Object.keys(V82_PEOPLE).forEach(function(id){var p=V82_PEOPLE[id];add(p.name,id);if(p.kind!=='ann'&&p.kind!=='season'&&p.kind!=='payer')add(p.handle,id);});
+  add('chip','chip');add('marv','marv');add('chip dalton','chip');add('marv kettleman','marv');add('big sal','hth');add('hot take hour','hth');add('vinnie','vinnie');add('lenny','lenny');add('vivian','house');add('the house','house');add('unknown','house');
+  add('ifl league office','league');add('league office','league');add('script writer','league');add('lumi','lumi');add('sal','sal');add('brent','office');add('barry','legal');add('spinwell','pr');add('unknown number','unknown');add('ifl','ch_ifl');add('@ifl','ch_ifl');})();
+function v82Who(s){if(!s)return null;var k=String(s).toLowerCase().replace(/^@/,'').trim();if(V82_NAMES[k])return V82_NAMES[k];
+  var k2=k.replace(/[^a-z0-9 .'"]/g,'').trim();if(V82_NAMES[k2])return V82_NAMES[k2];
+  var f=k.split(/[\s(·]/)[0];if(f&&V82_NAMES[f]&&/^(chip|marv|lenny|vivian|lumi|vinnie|brent|barry)$/.test(f))return V82_NAMES[f];return null;}
+function v82Djb2(s){var h=5381;s=String(s||'');for(var i=0;i<s.length;i++){h=((h<<5)+h+s.charCodeAt(i))|0;}h^=h>>>15;h=Math.imul(h,0x2c1b3c6d);h^=h>>>12;return (h>>>0);}/* djb2 + avalanche finalizer so near-identical handles spread over all 48 buckets */
+var V82_SK=['#ffdbac','#f1c27d','#e0ac69','#c68642','#8d5524','#e8b98a'],V82_HR=['#111','#3b2414','#6b4a2b','#a0522d','#d6b36a','#888','#c94f2c','#222'];
+var V82_ACC=['x','x','glasses','shades','hoodie','x'];
+function v82TeamCol(h){try{var k=String(h).toLowerCase();var a=T('away'),b=T('home');var hit=function(t){if(!t)return false;var n=String(t.name||'').toLowerCase(),c=String(t.city||'').toLowerCase(),ab=String(t.ab||'').toLowerCase();return (n&&k.indexOf(n.replace(/s$/,''))>=0)||(c&&c.length>3&&k.indexOf(c.replace(/\s/g,''))>=0)||(ab&&ab.length>1&&new RegExp('(^|[^a-z])'+ab+'([^a-z]|$)').test(k));};
+  if(/gale/.test(k)||hit(a)&&a&&/gale/i.test(a.name)||hit(b)&&b&&/gale/i.test(b.name))return ['#0e7c86','#e8fbff'];if(/wedge|cheddar|chedd/.test(k)||hit(a)&&a&&/wedge/i.test(a.name)||hit(b)&&b&&/wedge/i.test(b.name))return ['#7a1f4f','#c7ccd6'];}catch(e){}return null;}
+function v82FanSpec(h){var x=v82Djb2(h)%48,tc=v82TeamCol(h);var hue=(x*47)%360;
+  return {id:'fan'+x+(tc?'t'+tc[0]:''),col:tc?[tc[0],'#0b0d12']:['hsl('+hue+',55%,42%)','hsl('+((hue+40)%360)+',60%,16%)'],skin:V82_SK[x%6],hair:V82_HR[(x>>1)%8],shirt:tc?tc[1]:'hsl('+((hue+180)%360)+',50%,55%)',acc:V82_ACC[(x>>2)%6],bucket:x};}
+/* ---- the painter ---- */
+function v82Paint(c,P,st){/* c is scaled to a 100x100 box */
+  if(P&&P.mono){var g=c.createLinearGradient(0,0,100,100);g.addColorStop(0,'#e9e3d3');g.addColorStop(1,'#9a8f78');c.beginPath();c.arc(50,50,50,0,7);c.fillStyle=g;c.fill();c.lineWidth=4;c.strokeStyle='#3b3426';c.beginPath();c.arc(50,50,42,0,7);c.stroke();c.lineWidth=1.5;c.beginPath();c.arc(50,50,36,0,7);c.stroke();
+    c.fillStyle='#2b2519';c.font='900 34px Georgia,serif';c.textAlign='center';c.textBaseline='middle';c.fillText(P.mono,50,53);return;}
+  if(P&&P.sil){c.beginPath();c.arc(50,50,50,0,7);c.fillStyle='#4b5160';c.fill();c.save();c.clip();c.fillStyle='#8a909c';c.beginPath();c.arc(50,42,17,0,7);c.fill();c.beginPath();c.ellipse(50,96,34,28,0,0,7);c.fill();c.restore();return;}
+  if(P&&P.crackOnly){c.save();c.strokeStyle='#ff3c3c';c.lineWidth=5;c.beginPath();c.moveTo(80,8);c.lineTo(70,22);c.lineTo(78,28);c.lineTo(66,42);c.stroke();c.restore();return;}
+  var d=P.av||P;var talk=st&&st.talk;
+  c.save();c.beginPath();c.arc(50,50,50,0,7);c.clip();var gg=c.createLinearGradient(0,0,100,100);gg.addColorStop(0,d.col[0]);gg.addColorStop(1,d.col[1]);c.fillStyle=gg;c.fillRect(0,0,100,100);
+  if(d.long){c.fillStyle=d.hair;c.beginPath();c.ellipse(50,56,25,34,0,0,7);c.fill();}
+  c.restore();
+  drawAvatar(c,Object.assign({},d,{col:['rgba(0,0,0,0)','rgba(0,0,0,0)'],acc:d.acc==='headset'&&P.mic?'x':d.acc}));
+  c.save();c.beginPath();c.arc(50,50,50,0,7);c.clip();c.lineWidth=2.5;c.strokeStyle='#111';
+  if(d.tie){c.fillStyle='#fff';c.beginPath();c.moveTo(42,76);c.lineTo(50,84);c.lineTo(58,76);c.closePath();c.fill();c.fillStyle=d.tie;c.beginPath();c.moveTo(47,78);c.lineTo(53,78);c.lineTo(55,100);c.lineTo(45,100);c.closePath();c.fill();}
+  if(d.chain){c.strokeStyle='#ffd23f';c.lineWidth=2.5;c.beginPath();c.arc(50,74,13,0.3,Math.PI-0.3);c.stroke();}
+  if(d.pearls){c.fillStyle='#f4f1e8';for(var i=0;i<7;i++){var a=0.35+i*(Math.PI-0.7)/6;c.beginPath();c.arc(50+Math.cos(a)*13,72+Math.sin(a)*6,2,0,7);c.fill();}}
+  if(d.visor){c.fillStyle=d.visor;c.fillRect(31,27,38,6);c.beginPath();c.ellipse(50,33,24,5,0,0,Math.PI);c.fill();}
+  if(d.star){c.fillStyle='#fff';c.font='900 14px system-ui';c.textAlign='center';c.fillText('✦',74,30);}
+  if(talk){c.fillStyle='#3a1010';c.beginPath();c.ellipse(50,56,4.5,3.5,0,0,7);c.fill();}
+  c.restore();
+  if(st&&st.exposed){c.save();c.strokeStyle='#ff3c3c';c.lineWidth=5;c.beginPath();c.moveTo(80,8);c.lineTo(70,22);c.lineTo(78,28);c.lineTo(66,42);c.stroke();c.restore();}}
+var V82_IMGC={};function v82Img(u){if(V82_IMGC[u])return V82_IMGC[u];var i=new Image();i.src=u;V82_IMGC[u]=i;return i;}
+function cwPortrait(id,size,state){size=Math.max(12,Math.round(size||40));var st=state||{};if(typeof st==='string'){var s0=st;st={};st[s0]=1;}
+  var dpr=v82Dpr(),px=Math.round(size*dpr);var P=V82_PEOPLE[id];var fan=null;if(!P){fan=v82FanSpec(id);P={av:fan};}
+  var key=(P.id||fan.id)+'|'+px+'|'+(st.exposed?'x':'')+(st.talk?'t':'');var hit=V82P.cache[key];if(hit){V82P.hits++;return hit;}
+  V82P.miss++;var cv=document.createElement('canvas');cv.width=cv.height=px;var c=cv.getContext('2d',{willReadFrequently:true});
+  if(P.ch&&!P.ch.ifl){c.scale(px/100,px/100);var d1=P.ch;drawAvatar(c,Object.assign({},d1,{acc:d1.hat==='cap'?'shades':'x'}));c.save();c.lineWidth=2.5;c.strokeStyle='#111';
+   if(d1.hat==='foil'){c.fillStyle='#d8dde6';c.beginPath();c.moveTo(30,32);c.lineTo(50,4);c.lineTo(70,32);c.closePath();c.fill();c.stroke();c.strokeStyle='#9aa3b2';c.beginPath();c.moveTo(40,20);c.lineTo(58,26);c.stroke();}
+   if(d1.hat==='beanie'){c.fillStyle='#0e7c86';c.beginPath();c.arc(50,30,19,Math.PI,0);c.fill();c.fillStyle='#e8fbff';c.fillRect(31,27,38,5);c.beginPath();c.arc(50,10,6,0,7);c.fill();}
+   if(d1.hat==='cheese'){c.fillStyle='#ffd45a';c.beginPath();c.moveTo(22,32);c.lineTo(78,32);c.lineTo(50,8);c.closePath();c.fill();c.stroke();c.fillStyle='#d18f00';c.beginPath();c.arc(44,24,3,0,7);c.arc(56,27,2.5,0,7);c.fill();}
+   if(d1.hat==='visor'){c.fillStyle='#00b67a';c.fillRect(30,26,40,6);c.beginPath();c.ellipse(50,32,24,5,0,0,Math.PI);c.fill();}
+   c.restore();if(st.exposed){v82Paint(c,{mono:null,sil:null,av:null,crackOnly:1},st);}}
+  else if(P.ch&&P.ch.ifl){c.scale(px/100,px/100);c.fillStyle='#1d3f8a';c.beginPath();c.arc(50,50,50,0,7);c.fill();c.fillStyle='#fff';c.beginPath();c.moveTo(50,16);c.lineTo(80,28);c.lineTo(74,66);c.lineTo(50,84);c.lineTo(26,66);c.lineTo(20,28);c.closePath();c.fill();c.fillStyle='#d4161b';c.font='900 22px system-ui';c.textAlign='center';c.textBaseline='middle';c.fillText('IFL',50,52);}
+  else{c.scale(px/100,px/100);try{v82Paint(c,P,st);}catch(e){}}
+  var u=cv.toDataURL();V82P.cache[key]=u;V82P.order.push(key);V82P.bytes+=u.length;
+  while(V82P.bytes>V82P_MAXB&&V82P.order.length>1){var k=V82P.order.shift();V82P.bytes-=(V82P.cache[k]||'').length;delete V82P.cache[k];V82P.evict=(V82P.evict||0)+1;}
+  return u;}
+window.cwPortrait=cwPortrait;
+/* ---- state for rings + card ---- */
+function v82Money(n){return '$'+Math.round(n||0).toLocaleString();}
+function v82State(id){var P=V82_PEOPLE[id];var r={k:'none',txt:''};if(!P)return r;var v=null;try{v=S&&S.v76;}catch(e){}
+  try{if(P.kind==='payer'&&id!=='vinnie'){return {k:'pays',txt:'PAYS YOU'};}
+    if(id==='vinnie'){var X=SEA&&snk();var u=X&&SEA&&X.used[SEA.week]||{};if(u.protect)return {k:'paid',txt:'PAID WK '+SEA.week};return {k:'pays',txt:'PAYS YOU'};}
+    if(P.kind==='def'){var hs=(S&&S.defs||[]).filter(function(h){return h.id===id;});if(hs.some(function(h){return h.exposed;}))return {k:'exposed',txt:'EXPOSED'};
+      var act=hs.filter(function(h){return !h.exposed&&(h.half===1||h.half===curHalf());});if(act.length)return {k:'payroll',txt:'ON PAYROLL · '+v82Money(act[0].price)};
+      var dd=defOf(id);if(dd&&dd.rare&&S&&S.shopGz===false)return {k:'nocall',txt:'NOT TAKING CALLS'};return {k:'avail',txt:'AVAILABLE · '+v82Money(dd.price)};}
+    if(P.kind==='infl'){if(v&&v.burned&&v.burned.indexOf(id)>=0)return {k:'exposed',txt:'EXPOSED'};if(v&&v.infl&&v.infl.id===id&&v.infl.until>S.plays)return {k:'payroll',txt:'COVERING · '+(v.infl.until-S.plays)+' plays left'};
+      return {k:'avail',txt:'AVAILABLE · '+v82Money(v76InflPrice(v76Infl(id)))};}
+    if(P.kind==='ann'){if(v&&v.booth&&v.booth.id===id&&v.booth.left>0)return {k:'payroll',txt:'COVERING · '+v.booth.left+' plays left'};
+      var a=(S&&S.ann||[]).filter(function(x){return x.id===id;});if(a.length)return {k:'payroll',txt:'ON PAYROLL · '+v82Money(a[0].price)};
+      if(id==='hth'){}return {k:'avail',txt:'AVAILABLE · '+v82Money(annPrice(id,true))};}
+    if(P.kind==='season'){var X2=SEA&&snk();if(!X2)return {k:'avail',txt:'AVAILABLE'};var u2=X2.used[SEA.week]||{};
+      if(id==='legal'&&X2.legal)return {k:'payroll',txt:'RETAINED'};if(u2[P.sink])return {k:'payroll',txt:'PAID WK '+SEA.week};
+      var it=(sinkList()||[]).filter(function(x){return x.id===P.sink;})[0];return {k:'avail',txt:it?'AVAILABLE · '+v82Money(it.p):'AVAILABLE'};}}catch(e){}
+  return r;}
+function v82Ring(k){return k==='payroll'||k==='paid'?'v82on':k==='exposed'?'v82x':k==='pays'?'v82pay':'';}
+/* <img> for a person (data-v82pid makes it tappable) */
+function v82FaceEl(id,size,o){o=o||{};var st=v82State(id);var e=document.createElement('img');e.className='v82f '+v82Ring(st.k)+(size<=28?' v82sm':'');e.alt='';e.draggable=false;
+  e.src=cwPortrait(id,size,{exposed:st.k==='exposed',talk:o.talk});e.style.width=e.style.height=size+'px';if(V82_PEOPLE[id])e.setAttribute('data-v82pid',id);return e;}
+function v82FaceHTML(id,size,cls){var st=v82State(id);return '<img class="v82f '+v82Ring(st.k)+(size<=28?' v82sm':'')+' '+(cls||'')+'" alt="" draggable="false" src="'+cwPortrait(id,size,{exposed:st.k==='exposed'})+'" style="width:'+size+'px;height:'+size+'px"'+(V82_PEOPLE[id]?' data-v82pid="'+id+'"':'')+'>';}
+window.__v82face=function(handle,size,p){var id=v82Who(handle)||(p&&p.plat==='sms'?'unknown':null);return v82FaceEl(id||String(handle||'fan'),size);};
+/* ---- roster strip ---- */
+function v82Payroll(){var out=[];Object.keys(V82_PEOPLE).forEach(function(id){var P=V82_PEOPLE[id];if(P.kind==='payer'||P.kind==='fan')return;var k=v82State(id).k;if(k==='payroll'||k==='exposed'||k==='paid')out.push(id);});return out;}
+function v82RosterHTML(){var L=v82Payroll();return '<div class="v82roster" data-n="'+L.length+'"><span class="v82rl">ON PAYROLL</span>'+(L.length?L.map(function(id){return v82FaceHTML(id,40);}).join(''):'<span class="v82re">nobody yet</span>')+'</div>';}
+/* ---- profile card ---- */
+var V82C={el:null,id:null,src:null};
+function v82Blocked(){var d=document.getElementById('decide');if(d&&!d.hidden&&!d.classList.contains('out')&&!d.classList.contains('done'))return 'decide';
+  var c=document.getElementById('call');if(c&&!c.hidden)return 'call';var ch=document.getElementById('chrev');if(ch&&!ch.hidden)return 'review';if(S&&S.flagToss)return 'flag';return '';}
+function v82Loyal(id){var P=V82_PEOPLE[id];var n=3;try{var v=S&&S.v76;if(P.kind==='def'){n=5-Math.min(4,(defOf(id).r||0.1)*10|0);if((S.defs||[]).some(function(h){return h.id===id&&h.exposed;}))n=0;}
+  else if(P.kind==='infl'){var d=v76Infl(id);n=5-Math.round(d.rc*10);if(v&&v.burned&&v.burned.indexOf(id)>=0)n=0;}else if(P.kind==='ann')n=id==='chip'?4:2;else if(P.kind==='payer')n=id==='house'?4:id==='vinnie'?1:2;else if(P.kind==='season')n=id==='legal'?5:id==='pr'?3:2;}catch(e){}return Math.max(0,Math.min(5,n));}
+function v82Hist(id){var P=V82_PEOPLE[id];try{var v=S&&S.v76;var b=(v&&v.buys||[]).filter(function(x){return x.id===id;});if(b.length)return 'Hired '+b.length+'× this game · '+v82Money(b.reduce(function(a,x){return a+x.price;},0))+' owed';
+  var hs=(S&&S.defs||[]).filter(function(h){return h.id===id;});if(hs.length)return 'On the burner payroll '+hs.map(function(h){return 'H'+h.half;}).join('+')+(hs[0].uses?' · used '+hs[0].uses+'×':'');
+  if(P.kind==='payer')return 'Has your number. Uses it.';if(P.kind==='season'){var X=SEA&&snk();return X&&X.spent?'Season sinks: '+v82Money(X.spent)+' spent':'Never hired';}}catch(e){}return 'Never hired';}
+function v82Open(id,src){var P=V82_PEOPLE[id];if(!P)return false;var b=v82Blocked();if(b){V82P.blocked++;return false;}v82Close(true);
+  var st=v82State(id),sm=innerHeight<=700;var big=sm?72:96;
+  var w=document.createElement('div');w.id='v82prof';w.innerHTML='<div class="v82scrim"></div><div class="v82sheet" role="dialog" aria-label="Profile"><button class="v82x" type="button" aria-label="Close">✕</button><div class="v82grab"></div>'+
+    '<div class="v82ph"><span class="v82pbig"></span><div class="v82pn"><b></b><span class="v82hp"></span><small></small></div></div><div class="v82st"><span class="v82sk"></span><span class="v82dots"></span></div><div class="v82hi"></div><div class="v82bio"></div><div class="v82last"></div><div class="v82buy"></div></div>';
+  var face=v82FaceEl(id,big);face.removeAttribute('data-v82pid');w.querySelector('.v82pbig').appendChild(face);if(P.mic)w.querySelector('.v82pbig').appendChild(v82MicEl(big));
+  w.querySelector('.v82pn b').textContent=P.name;w.querySelector('.v82hp').textContent=P.handle||'';w.querySelector('.v82pn small').textContent=P.role||'';
+  var sk=w.querySelector('.v82sk');sk.textContent=st.txt||'—';sk.className='v82sk k-'+st.k;
+  var lo=v82Loyal(id),ds='';for(var i=0;i<5;i++)ds+='<i class="'+(i<lo?'on':'')+'"></i>';w.querySelector('.v82dots').innerHTML='<small>LOYALTY</small>'+ds;
+  w.querySelector('.v82hi').textContent=v82Hist(id);w.querySelector('.v82bio').textContent=P.bio||'';
+  var last=V82P.lastSaid[id];var le=w.querySelector('.v82last');if(last){le.textContent='"'+last+'"';}else le.remove();
+  var row=src&&src.closest&&src.closest('.shc,.snk');var bb=w.querySelector('.v82buy');
+  if(row){var btn=row.querySelector('.shbuy,.snb');var on=row.classList.contains('on');var bt=document.createElement('button');bt.type='button';bt.className='v82bb';
+    var price=btn?(btn.childNodes[0]&&btn.childNodes[0].textContent||btn.textContent):'';bt.textContent=on?'Undo':'Buy '+String(price).trim();if(btn&&btn.disabled){bt.disabled=true;bt.textContent='Unavailable';}
+    bt.addEventListener('click',function(e){e.stopPropagation();v82Close();if(btn&&!btn.disabled){btn.click();}else if(!btn)row.click();});bb.appendChild(bt);}else bb.remove();
+  (document.getElementById('app')||document.body).appendChild(w);V82C.el=w;V82C.id=id;V82C.src=src;V82P.opens++;
+  w.querySelector('.v82scrim').addEventListener('click',function(){v82Close();});w.querySelector('.v82x').addEventListener('click',function(e){e.stopPropagation();v82Close();});
+  var sh=w.querySelector('.v82sheet'),y0=null;sh.addEventListener('pointerdown',function(e){y0=e.clientY;});sh.addEventListener('pointermove',function(e){if(y0==null)return;var dy=e.clientY-y0;if(dy>0)sh.style.transform='translateY('+dy+'px)';});
+  sh.addEventListener('pointerup',function(e){if(y0==null)return;var dy=e.clientY-y0;y0=null;if(dy>60)v82Close();else sh.style.transform='';});
+  ['click','pointerdown','pointerup','touchstart'].forEach(function(t){w.addEventListener(t,function(e){e.stopPropagation();},{passive:t==='touchstart'});});
+  try{window.__cwSoftPause&&window.__cwSoftPause(true);}catch(e){}requestAnimationFrame(function(){w.classList.add('in');});return true;}
+function v82Close(quiet){var w=V82C.el;if(!w)return;V82C.el=null;V82C.id=null;try{if(!quiet&&window.__cwSoftPause)window.__cwSoftPause(false);}catch(e){}w.classList.remove('in');setTimeout(function(){try{w.remove();}catch(e){}},quiet?0:160);}
+window.__v82prof={isOpen:function(){return !!V82C.el;},open:v82Open,close:function(){v82Close();}};
+var _w82why=window.__v82why;window.__v82why=function(){if(V82C.el)return 'card';return _w82why?_w82why():'';};
+document.addEventListener('click',function(e){var t=e.target&&e.target.closest&&e.target.closest('[data-v82pid]');if(!t||t.closest('#v82prof'))return;e.stopPropagation();e.preventDefault();v82Open(t.getAttribute('data-v82pid'),t);},true);
+/* mic element placeholder (phase 2 draws it) */
+function v82MicEl(size){var m=document.createElement('span');m.className='v82mic';m.style.setProperty('--s',size+'px');return m;}
+/* ---- surfaces ---- */
+function v82ShaId(row){var id=row.getAttribute('data-id')||'';if(id.indexOf('ann:')===0)return id.slice(4);return id;}
+function v82Decorate(root){root=root||document;V82P.dec++;try{
+  [].forEach.call(root.querySelectorAll('.shc img.sha:not([data-v82])'),function(im){var row=im.closest('.shc');var id=row&&v82ShaId(row);if(!id||!V82_PEOPLE[id])return;var st=v82State(id);im.setAttribute('data-v82','1');im.src=cwPortrait(id,44,{exposed:st.k==='exposed'});im.classList.add('v82f');var rc=v82Ring(st.k);if(rc)im.classList.add(rc);im.setAttribute('data-v82pid',id);
+    if(V82_PEOPLE[id].mic&&!row.querySelector('.v82mic')){var wr=document.createElement('span');wr.className='v82shw';im.parentNode.insertBefore(wr,im);wr.appendChild(im);wr.appendChild(v82MicEl(44));}});
+  var SNK={pr:'pr',office:'office',legal:'legal',lenny:'lenny',protect:'vinnie'};
+  [].forEach.call(root.querySelectorAll('.snk:not([data-v82])'),function(r){var b=r.querySelector('[data-s]');var id=b&&SNK[b.getAttribute('data-s')];r.setAttribute('data-v82','1');if(!id)return;var ic=r.querySelector('.sic');if(ic){ic.innerHTML=v82FaceHTML(id,44);ic.classList.add('v82sic');}});
+  [].forEach.call(root.querySelectorAll('#hb .hbc:not([data-v82])'),function(c){c.setAttribute('data-v82','1');var n=c.querySelector('.hbn');var id=n&&v82Who(n.textContent);var av=c.querySelector('.hbav');if(id&&av){av.innerHTML=v82FaceHTML(id,46);av.classList.add('v82av46');}});
+  [].forEach.call(root.querySelectorAll('.chmsg:not([data-v82])'),function(m){m.setAttribute('data-v82','1');var id=null;['lenny','house','league','lumi','vinnie','sal'].forEach(function(k){if(m.classList.contains(k))id=k;});if(!id){var sm=m.querySelector('small');id=sm&&v82Who(sm.textContent);}
+    var av=m.querySelector('.chav');if(id&&av){av.innerHTML=v82FaceHTML(id,28);av.classList.add('v82chav');}});
+  var cav=document.getElementById('cav'),cnm=document.getElementById('cnm');if(cav&&cnm&&cnm.textContent&&cav.getAttribute('data-v82')!==cnm.textContent){var id2=v82Who(cnm.textContent)||(/unknown/i.test(cnm.textContent)?'house':null);var csb=document.getElementById('csb');if(!id2&&csb)id2=v82Who(String(csb.textContent).split('·').pop());
+    if(id2){cav.setAttribute('data-v82',cnm.textContent);cav.innerHTML=v82FaceHTML(id2,96);cav.classList.add('v82cav');}}
+  [].forEach.call(root.querySelectorAll('.v76tag:not([data-v82])'),function(t){t.setAttribute('data-v82','1');var tx=t.textContent||'';if(tx.indexOf('🎙')<0)return;var id=/MARV|Marv/.test(tx)?'marv':/CHIP|Chip/.test(tx)?'chip':null;if(!id){try{var v=S.v76;id=v&&v.booth&&v.booth.id;}catch(e){}}if(!id)return;
+    var wr=document.createElement('span');wr.className='v82tagf';wr.innerHTML=v82FaceHTML(id,28);wr.appendChild(v82MicEl(28));t.insertBefore(wr,t.firstChild);t.classList.add('v82tagw');});
+  /* roster strips: burner shop, live booth / influencer menu, season week screen */
+  var shl=document.getElementById('shlist');if(shl&&!shl.parentNode.querySelector('.v82roster')){shl.insertAdjacentHTML('beforebegin',v82RosterHTML());}
+  var gl=document.querySelector('#gfx.v76off .v76list');if(gl&&!gl.parentNode.querySelector('.v82roster'))gl.insertAdjacentHTML('beforebegin',v82RosterHTML());
+  var sk=document.querySelector('.snk');if(sk&&!sk.parentNode.querySelector('.v82roster'))sk.insertAdjacentHTML('beforebegin',v82RosterHTML());
+}catch(e){V82P.err=String(e);}}
+function v82Refresh(){/* rings follow state changes */try{[].forEach.call(document.querySelectorAll('img.v82f[data-v82pid]'),function(im){var id=im.getAttribute('data-v82pid');var k=v82State(id).k;var rc=v82Ring(k);['v82on','v82x','v82pay'].forEach(function(c){im.classList.toggle(c,c===rc);});});
+  [].forEach.call(document.querySelectorAll('.v82roster'),function(r){var L=v82Payroll();if(String(L.length)!==r.getAttribute('data-n')){r.outerHTML=v82RosterHTML();}});}catch(e){}}
+(function(){
+  var pend=false;var mo=new MutationObserver(function(){if(pend)return;pend=true;requestAnimationFrame(function(){pend=false;v82Decorate(document);});});
+  mo.observe(document.getElementById('app')||document.body,{childList:true,subtree:true});setInterval(v82Refresh,700);
+  /* pop lane: 28px portrait left of the text column */
+  try{var c0=v79Card;v79Card=function(it){var d=c0(it);try{if(it.kind!=='meme'){var p=it.p||{};var id=v82Who(p.handle)||(p.plat==='sms'?(/lenny/i.test(p.handle||'')?'lenny':/vivian|house/i.test(p.handle||'')?'house':'unknown'):null);
+      var f=v82FaceEl(id||String(p.handle||p.text||'fan').slice(0,24),28);f.classList.add('v82pf');var col=d.querySelector('.v79col');d.insertBefore(f,col);d.classList.add('v82hasf');}}catch(e){}return d;};}catch(e){}
+  /* booth caption: 28px portrait + mic, label shortened to the name */
+  try{var b0=booth;booth=function(line,ctx){var r=b0.apply(this,arguments);try{var e=document.getElementById('booth');if(e&&line&&e.classList.contains('show')){var who=line[0]==='CHIP'?'chip':line[0]==='MARV'?'marv':null;var b=e.querySelector('b');var ob=e.querySelector('.v82bf');if(ob&&ob.getAttribute('data-who')!==who){ob.remove();ob=null;}
+      if(who&&b&&!ob){var wr=document.createElement('span');wr.className='v82bf';wr.setAttribute('data-who',who);wr.appendChild(v82FaceEl(who,28,{talk:1}));wr.appendChild(v82MicEl(28));e.insertBefore(wr,e.firstChild);var bt=document.createElement('div');bt.className='v82bt';[].slice.call(e.childNodes).forEach(function(n){if(n!==wr)bt.appendChild(n);});e.appendChild(bt);b.textContent=who==='chip'?'Chip Dalton':'Marv Kettleman';e.classList.add('v82boothf');e.setAttribute('data-who',who);}
+      var sp=e.querySelector('span:not(.v82bf)');if(sp&&V82_PEOPLE[who])V82P.lastSaid[who]=sp.textContent;}}catch(_){}return r;};}catch(e){}
+  /* last thing they said: every post by a known handle */
+  try{var p0=post;post=function(plat,txt,boost,o){var r=p0.apply(this,arguments);try{var h=o&&o.handle||(r&&r.handle);var id=v82Who(h);if(id&&txt)V82P.lastSaid[id]=String(txt).slice(0,140);}catch(e){}return r;};}catch(e){}
+  /* merged painters: avURL/annAv/charAv now return cwPortrait output */
+  try{var av0=avURL;avURL=function(d,s){if(d&&V82_PEOPLE[d.id])return cwPortrait(d.id,Math.round((s||64)/v82Dpr()));return av0.apply(this,arguments);};}catch(e){}
+  try{var ca0=charAv;charAv=function(d,s){if(d&&V82_PEOPLE['ch_'+d.id])return cwPortrait('ch_'+d.id,Math.round((s||40)/v82Dpr()));return ca0.apply(this,arguments);};}catch(e){}
+  try{var an0=annAv;annAv=function(id){if(V82_PEOPLE[id])return cwPortrait(id,48);return an0.apply(this,arguments);};}catch(e){}
+  /* pre-warm the common sizes in idle slices (<=40ms each) */
+  var jobs=[];Object.keys(V82_PEOPLE).forEach(function(id){if(V82_PEOPLE[id].kind!=='fan'||id.indexOf('ch_')===0){jobs.push([id,28]);jobs.push([id,44]);}});
+  var ric=window.requestIdleCallback||function(f){return setTimeout(function(){f({timeRemaining:function(){return 12;}});},60);};
+  function warm(dl){var t0=performance.now(),n=0;while(jobs.length&&performance.now()-t0<Math.min(40,Math.max(4,dl.timeRemaining()))){var a=performance.now(),jb=jobs.shift();cwPortrait.apply(null,jb);n++;var e=performance.now()-a;if(e>(V82P.oneMax||0))V82P.oneMax=Math.round(e*10)/10;if(e>20)(V82P.slow=V82P.slow||[]).push(jb.join('@')+':'+Math.round(e));}V82P.warmMs.push(Math.round((performance.now()-t0)*10)/10);if(jobs.length)ric(warm);}
+  setTimeout(function(){ric(warm);},1500);
+  var st=document.createElement('style');st.id='v82profcss';st.textContent=[
+  'img.v82f{border-radius:50%;display:inline-block;vertical-align:middle;flex:none;object-fit:cover;box-sizing:border-box}',
+  'img.v82f.v82on{box-shadow:0 0 0 2px #ffd23f}img.v82f.v82x{box-shadow:0 0 0 2px #ff3c3c}img.v82f.v82pay{box-shadow:0 0 0 2px #2fd07a}',
+  'img.v82f.v82sm.v82on{box-shadow:0 0 0 1.5px #ffd23f}img.v82f.v82sm.v82x{box-shadow:0 0 0 1.5px #ff3c3c}img.v82f.v82sm.v82pay{box-shadow:0 0 0 1.5px #2fd07a}',
+  '[data-v82pid]{cursor:pointer}',
+  '.shc img.sha.v82f,.shc .v82shw{width:44px!important;height:44px!important;min-width:44px!important;flex:0 0 44px!important;border-radius:50%!important}',
+  '.shc .v82shw{position:relative;display:inline-block}.shc .v82shw img.sha{display:block}',
+  '.snk .sic.v82sic{width:44px!important;height:44px!important;flex:0 0 44px!important;font-size:0!important;display:flex;align-items:center;justify-content:center;background:none!important}',
+  '#hb .hbav.v82av46{width:46px!important;height:46px!important;background:none!important;padding:0!important;font-size:0!important;display:flex;align-items:center;justify-content:center;border:0!important}',
+  '.chmsg .chav.v82chav{background:none!important;border:0!important;font-size:0!important}',
+  '#call .cav.v82cav{background:none!important;font-size:0!important;display:flex;align-items:center;justify-content:center;overflow:visible!important}#call .cav.v82cav img{width:96px!important;height:96px!important}',
+  '.v76tag.v82tagw{position:relative}.v82tagf{position:relative;display:inline-block;width:28px;height:28px;vertical-align:middle;margin-right:6px;float:left}',
+  '#v79lane .v79pop.v82hasf{min-height:54px!important;align-items:center}#v79lane .v79pop.v82hasf>img.v82pf{width:28px!important;height:28px!important;margin:0 8px 0 0;align-self:center}',
+  '#app #game #tv #v75cap #booth.v82boothf.show,#app #booth.v82boothf.show{display:flex!important;align-items:center;gap:9px;min-height:40px;height:40px;box-sizing:border-box;-webkit-line-clamp:unset;padding:3px 7px 3px 6px!important}#app #booth.v82boothf .v82bt{font-size:11.5px;flex:1 1 auto;min-width:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:15px;max-height:30px}#booth .v82bf{position:relative;flex:none;width:28px;height:28px;display:inline-block}#booth .v82bf img{display:block}',
+  '.v82roster{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:4px 0 8px;padding:6px 8px;border-radius:12px;background:rgba(255,210,63,.07);border:1px solid rgba(255,210,63,.25)}',
+  '.v82roster .v82rl{flex:0 0 100%;font:900 10px/1 system-ui,sans-serif;letter-spacing:.12em;color:#ffd23f}.v82roster .v82re{font-size:11px;color:#9aa3b2}.v82roster img.v82f{margin:2px}',
+  '#v82prof{position:fixed;inset:0;z-index:2000}#v82prof .v82scrim{position:absolute;inset:0;background:rgba(0,0,0,.55);opacity:0;transition:opacity .16s}#v82prof.in .v82scrim{opacity:1}',
+  '#v82prof .v82sheet{position:absolute;left:0;right:0;bottom:0;max-height:46vh;max-height:46dvh;overflow:hidden;box-sizing:border-box;padding:14px 16px calc(14px + env(safe-area-inset-bottom));background:#151a26;border-top:3px solid #ffd23f;border-radius:20px 20px 0 0;color:#f4f1e8;transform:translateY(100%);transition:transform .2s cubic-bezier(.2,.9,.3,1);font-family:system-ui,-apple-system,sans-serif;touch-action:none}',
+  '#v82prof.in .v82sheet{transform:none}#v82prof .v82grab{width:40px;height:4px;border-radius:2px;background:#3a4152;margin:-6px auto 8px}',
+  '#v82prof .v82x{position:absolute;right:8px;top:8px;width:44px;height:44px;border-radius:22px;border:0;background:rgba(255,255,255,.08);color:#fff;font-size:18px}',
+  '#v82prof .v82ph{display:flex;align-items:center;gap:12px;padding-right:44px}#v82prof .v82pbig{position:relative;flex:none;display:inline-block}#v82prof .v82pbig img{display:block}',
+  '#v82prof .v82pn{min-width:0;display:flex;flex-direction:column;gap:3px}#v82prof .v82pn b{font-size:18px;font-weight:900;line-height:1.15;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}',
+  '#v82prof .v82hp{align-self:flex-start;max-width:100%;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;background:rgba(255,255,255,.1);color:#cfd6e6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#v82prof .v82pn small{font-size:12px;color:#9aa3b2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}',
+  '#v82prof .v82st{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px}',
+  '#v82prof .v82sk{font:900 12px/1 system-ui;letter-spacing:.06em;padding:6px 9px;border-radius:8px;background:#252a35;white-space:nowrap}#v82prof .v82sk.k-payroll,#v82prof .v82sk.k-paid{background:#ffd23f;color:#1a1a1a}#v82prof .v82sk.k-exposed{background:#ff3c3c;color:#fff}#v82prof .v82sk.k-pays{background:#2fd07a;color:#06210f}#v82prof .v82sk.k-nocall{background:#3a4152;color:#9aa3b2}',
+  '#v82prof .v82dots{display:flex;align-items:center;gap:4px}#v82prof .v82dots small{font-size:9px;letter-spacing:.1em;color:#9aa3b2;margin-right:4px}#v82prof .v82dots i{width:8px;height:8px;border-radius:50%;background:#3a4152}#v82prof .v82dots i.on{background:#ffd23f}',
+  '#v82prof .v82hi,#v82prof .v82bio{margin-top:8px;font-size:13px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#v82prof .v82hi{color:#9aa3b2}',
+  '#v82prof .v82last{margin-top:6px;font-size:13px;line-height:1.3;font-style:italic;color:#e8e2cf;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}',
+  '#v82prof .v82bb{margin-top:10px;width:100%;min-height:44px;border:0;border-radius:12px;background:#ffd23f;color:#1a1a1a;font:900 15px system-ui}#v82prof .v82bb:disabled{background:#3a4152;color:#9aa3b2}',
+  '@media (max-height:700px){#v82prof .v82sheet{padding-top:10px}#v82prof .v82hi,#v82prof .v82bio{margin-top:5px}#v82prof .v82bb{margin-top:6px}}',
+  '@media (prefers-reduced-motion: reduce){#v82prof .v82sheet,#v82prof .v82scrim{transition:none!important}}'
+  ].join('\n');document.documentElement.appendChild(st);
+  V82.prof={P:V82P,people:V82_PEOPLE,who:v82Who,state:v82State,open:v82Open,close:v82Close,isOpen:function(){return !!V82C.el;},cur:function(){return V82C.id;},portrait:cwPortrait,roster:v82RosterHTML,payroll:v82Payroll,decorate:v82Decorate,fan:v82FanSpec,blocked:v82Blocked};
+})();
+/* ===== v82 phase 2: stick mics (Chip, Marv, Big Sal) ===== */
+var V82MIC={cache:{},made:0,draws:0};
+function v82NetCol(){try{if(MATCH&&MATCH.season&&MATCH.sl&&MATCH.sl.col)return MATCH.sl.col;}catch(e){}try{var v=getComputedStyle(document.documentElement).getPropertyValue('--gbn').trim();if(v)return v;}catch(e){}return '#2f6bff';}
+function v82NetBrand(){var n='GBN';try{n=String(MATCH.net||'GBN');}catch(e){}n=n.replace(/[^A-Za-z0-9]/g,'').toUpperCase();return (n+'XXX').slice(0,3);}
+/* paint a stick mic into a 40x100 unit box (grille ball top, band, black handle) */
+function v82MicPaint(c,col,brand,txt){
+  var g=c.createRadialGradient(16,11,2,20,16,16);g.addColorStop(0,'#6a6f78');g.addColorStop(1,'#15171c');
+  c.fillStyle='#0b0b0d';c.beginPath();c.moveTo(7,34);c.lineTo(33,34);c.lineTo(27,98);c.quadraticCurveTo(20,101,13,98);c.closePath();c.fill();
+  c.fillStyle=col;c.fillRect(6,34,28,22);c.fillStyle='rgba(0,0,0,.25)';c.fillRect(6,53,28,3);
+  if(txt){c.fillStyle='#fff';c.font='900 11px system-ui,sans-serif';c.textAlign='center';c.textBaseline='middle';c.fillText(brand,20,45.5,26);}
+  c.fillStyle=g;c.beginPath();c.arc(20,17,16,0,7);c.fill();
+  c.save();c.beginPath();c.arc(20,17,15,0,7);c.clip();c.strokeStyle='rgba(160,170,185,.45)';c.lineWidth=1;for(var i=-16;i<=16;i+=4){c.beginPath();c.moveTo(4,17+i-8);c.lineTo(36,17+i+8);c.stroke();c.beginPath();c.moveTo(4,17+i+8);c.lineTo(36,17+i-8);c.stroke();}c.restore();
+  c.strokeStyle='#000';c.lineWidth=1.5;c.beginPath();c.arc(20,17,16,0,7);c.stroke();
+  c.fillStyle='rgba(255,255,255,.35)';c.beginPath();c.ellipse(14,10,5,3,-0.6,0,7);c.fill();}
+function v82MicURL(h){var col=v82NetCol(),br=v82NetBrand(),dpr=Math.min(2,window.devicePixelRatio||1),k=col+'|'+br+'|'+h+'|'+dpr;if(V82MIC.cache[k])return V82MIC.cache[k];
+  var H=Math.max(8,Math.round(h*dpr)),W=Math.round(H*0.4),cv=document.createElement('canvas');cv.width=W;cv.height=H;var c=cv.getContext('2d',{willReadFrequently:true});c.scale(W/40,H/100);v82MicPaint(c,col,br,h>=30);
+  var u=cv.toDataURL('image/png');V82MIC.cache[k]=u;V82MIC.made++;return u;}
+v82MicEl=function(size){var m=document.createElement('span');m.className='v82mic';var h=Math.round(size*0.8),w=Math.round(h*0.4);
+  m.style.width=w+'px';m.style.height=h+'px';m.style.right=(-Math.round(w*0.45))+'px';m.style.bottom=(-Math.round(size*0.06))+'px';
+  m.style.backgroundImage='url('+v82MicURL(h)+')';m.setAttribute('data-net',v82NetBrand());m.setAttribute('aria-hidden','true');return m;};
+/* re-skin mics when the broadcast slot changes */
+setInterval(function(){try{var k=v82NetCol()+v82NetBrand();if(k===V82MIC.k)return;V82MIC.k=k;[].forEach.call(document.querySelectorAll('.v82mic'),function(m){var h=parseInt(m.style.height,10)||22;m.style.backgroundImage='url('+v82MicURL(h)+')';m.setAttribute('data-net',v82NetBrand());});}catch(e){}},1000);
+/* outcome booth lines + shop rows + card get the mic via p1 decorators; add to v76tag faces that were made before p2 */
+/* drawAnn recap: hand holds a stick mic; while talking it comes up to the mouth and follows the talk */
+try{(function(){var d0=drawAnn;drawAnn=function(c,id,st){d0.apply(this,arguments);try{if(id!=='chip'&&id!=='marv')return;V82MIC.draws++;var t=(st&&st.t)||0,talk=!!(st&&st.talk),chip=id==='chip';
+   var sx=chip?-1:1,bob=talk?Math.sin(t*9)*3:0,hx=sx*(talk?20:30),hy=talk?30+bob:56,ang=sx*(talk?-0.35+Math.sin(t*5)*0.14:-0.08);
+   c.save();c.translate(hx,hy);c.rotate(ang);
+   c.save();c.translate(-7,-36);c.scale(14/40,42/100);v82MicPaint(c,v82NetCol(),v82NetBrand(),false);c.restore();
+   c.fillStyle=chip?'#e8b98a':'#d9a27a';c.beginPath();c.ellipse(0,0,7,6,0,0,7);c.fill();c.strokeStyle='rgba(0,0,0,.35)';c.lineWidth=1;c.stroke();
+   c.restore();}catch(e){}};})();}catch(e){}
+try{window.drawAnn=drawAnn;}catch(e){}
+(function(){var st=document.createElement('style');st.id='v82miccss';st.textContent=[
+ '.v82mic{position:absolute;display:block;background:no-repeat center/100% 100%;transform-origin:50% 82%;transform:rotate(-4deg);pointer-events:none;z-index:2;filter:drop-shadow(0 1px 1px rgba(0,0,0,.6))}',
+ '.v82bf,.v82shw,.v82pbig,.v82tagf{position:relative}',
+ '#booth.show .v82bf .v82mic{animation:v82tilt .6s ease-in-out infinite alternate}',
+ '#booth.show .v82bf>img,#booth.show .v82bf>.v82face{animation:v82ring 1.2s ease-out infinite}',
+ '@keyframes v82tilt{from{transform:rotate(-8deg)}to{transform:rotate(8deg)}}',
+ '@keyframes v82ring{0%{box-shadow:0 0 0 0 rgba(255,210,63,.9)}70%{box-shadow:0 0 0 1px rgba(255,210,63,.0)}100%{box-shadow:0 0 0 0 rgba(255,210,63,0)}}',
+ '@media (prefers-reduced-motion: reduce){#booth.show .v82bf .v82mic,.v82mic{animation:none!important;transform:rotate(-4deg)!important}#booth.show .v82bf>img{animation:none!important}}'
+].join('\n');document.head.appendChild(st);})();
+V82.mic={say:function(w,t){return booth([w,t||'Test line from the booth, folks.']);},M:V82MIC,url:v82MicURL,el:function(s){return v82MicEl(s);},col:v82NetCol,brand:v82NetBrand};
+(window.__v82items=window.__v82items||[]).push('p2-mics');
+/* ===== v82 phase 6: every pick lands (rebalance + 1.2s impact beat) ===== */
+var V82I={on:true,active:null,beats:[],picks:[],h0:null,lastFav:null,cool:0,coolPlays:-1,mini:0,skips:0};
+function v82U(kp,c){var s=String((S&&S.keys)||0)+'|'+c+'|'+(kp&&kp.yards)+'|'+(kp&&kp.los)+'|'+(kp&&kp.type);var h=5381;for(var i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))|0;h^=h>>>15;h=Math.imul(h,0x2c1b3c6d);h^=h>>>12;return (h>>>0)/4294967296;}
+/* --- call heat bands --- */
+function v82Kind(c,kp,useP){if(!c||c==='letgo')return kp&&kp.foul?'swallow':'clean';if(kp.foul===c)return 'legit';if(c==='offset'||c==='spot'||c==='clock')return 'bord';
+  var g=useP?perceived(c,kp):holdG(c,kp);if(g!=null){var gr=gradeOf(g);if(gr==='obv'||gr==='defn')return 'defn';if(gr==='bord')return 'bord';if(gr==='ticky')return 'ticky';return 'phan';}return 'phan';}
+(function(){var ch0=callHeat,ig0=ignHeat;
+  callHeat=function(c,kp,useP){if(!V82I.on||!kp)return ch0.apply(this,arguments);if(c==='letgo')return ignHeat(kp);var u=v82U(kp,c),k=v82Kind(c,kp,useP);
+    if(k==='legit')return -(6+Math.round(4*u));
+    if(k==='defn')return -(2+Math.round(2*u));
+    if(k==='bord')return 5+Math.round(3*u);
+    if(k==='ticky')return 9+Math.round(3*u);
+    var est=0;try{est=ch0.call(this,c,kp,useP);}catch(e){}return clamp(15+Math.round(clamp(est/32,0,1)*9)+Math.round(6*u),15,30);};
+  ignHeat=function(kp){if(!V82I.on||!kp)return ig0.apply(this,arguments);if(!kp.foul)return 0;var v=kp.vis==null?1:kp.vis,u=v82U(kp,'ign');var cm=1;try{cm=compMult(null,kp);}catch(e){}
+    return clamp(Math.round(6+clamp((v-0.5)/0.85,0,1)*3+u+Math.min(2,(cm-1)*3)),6,10);};})();
+function v82CleanCredit(kp){return -(2+Math.round(2*v82U(kp,'clean')));}
+/* --- options(): no twins + one plain-words stakes line --- */
+(function(){var o0=options;options=function(kp){var L=o0.apply(this,arguments);if(!V82I.on)return L;try{if(V82I.h0==null||V82I.h0k!==S.keys){V82I.h0=S.heat;V82I.h0k=S.keys;}V82I.kp=kp;
+  var seen={},out=[],merged=0;L.forEach(function(o){if(o.id==='letgo'){out.push(o);return;}var key=String(o.teaser||'')+'|'+(o.pr?[o.pr.kind,o.pr.yl,o.pr.down,o.pr.sc&&o.pr.sc.home,o.pr.sc&&o.pr.sc.away].join(','):'');
+    var prev=seen[key];if(prev&&Math.abs((prev.heat||0)-(o.heat||0))<6){merged++;prev.alsoIds=(prev.alsoIds||[]).concat([o.id]);return;}seen[key]=o;out.push(o);});
+  V82I.merged=(V82I.merged||0)+merged;
+  var base=null;out.forEach(function(o){if(o.id==='letgo')base=o.pr;});
+  out.forEach(function(o){var s='';if(o.id==='letgo'){s='Play stands · nothing changes';o.heat=kp.foul?o.heat:v82CleanCredit(kp);}
+    else if(o.id==='clock')s='Small · just the clock';
+    else{var t=String(o.teaser||'');var flip=false;try{if(base&&o.pr){var mb=base.sc.home-base.sc.away,mo=o.pr.sc.home-o.pr.sc.away;flip=mb!==mo||(o.pr.kind!==base.kind&&/TD|TO|INT/.test(String(base.kind)+String(o.pr.kind)));}}catch(e){}
+      if(flip||/TD|INT|fumble|TOD/.test(t))s='Big swing · could flip the margin';else if(/FD|1st/.test(t))s='Moves the chains';else if(/yds|gain|sack/.test(t))s='Field position';else s='Do-over';
+      var gk=null;try{gk=v82Kind(o.id,kp,true);}catch(e){}
+      var rk={legit:'the right call',defn:'defensible',bord:'borderline · some heat',ticky:'ticky-tack · real heat',phan:'phantom · big heat'}[gk];if(rk)s+=' · '+rk;}
+    o.v82s=s;});
+  return out;}catch(e){return L;}};})();
+/* --- favor: penalty enforcement swings the meter 10-35% (legit) · 15-40% (borderline) · 30-50% (phantom) --- */
+(function(){var fn0=favNet;favNet=function(){return fn0()+((S&&S.v82fb)||0);};
+  var fu0=fvUI;fvUI=function(){fu0.apply(this,arguments);try{var n=favNet();if(Math.abs(n)>=5){var l=document.getElementById('fvl');if(l)l.textContent='FAVOR · '+T(n>0?'home':'away').ab+' +'+Math.round(Math.min(100,Math.abs(n)/0.9))+'%';}}catch(e){}};
+  var fup=favorUpdate;favorUpdate=function(kp,call,e,pr,base,legit){var n0=favNet();var r=fup.apply(this,arguments);try{var ben=benefits(call,kp);if(!ben||!V82I.on)return r;
+    var k=legit?'legit':v82Kind(call,kp,false),band=k==='legit'||k==='defn'?[10,35]:k==='phan'?[30,50]:[15,40];var py=e&&e.pen?e.pen.y:5;
+    var pct=Math.round(band[0]+(band[1]-band[0])*clamp(0.35*v82U(kp,'fav')+0.65*clamp(py/15,0,1),0,1));var dir=ben==='home'?1:-1;
+    var want=pct*1.8*dir,got=favNet()-n0;var extra=want-got;if(extra*dir>0){S.v82fb=(S.v82fb||0)+extra;}
+    var n1=favNet();if(Math.abs(n1)>90){S.v82fb-=n1-90*Math.sign(n1);}
+    fvUI();V82I.lastFav={pct:pct,team:ben,t:Date.now(),k:k};v82FavChip(pct,ben);}catch(err){}return r;};})();
+/* --- cooling between key plays: -0.6 per non-key play, cause-tagged --- */
+setInterval(function(){try{if(!S||S.over)return;if(V82I.coolPlays<0){V82I.coolPlays=S.plays||0;return;}if((S.plays||0)>V82I.coolPlays){var n=S.plays-V82I.coolPlays;V82I.coolPlays=S.plays;
+  if(S.heat>0&&!(S.cur&&S.cur.key&&S.phase!=='presnap')&&S.phase!=='decide'){var d=Math.min(S.heat,0.6*n);v78Set(Math.round((S.heat-d)*10)/10,'🧊 Cooling off between key plays');V82I.cool+=d;}}}catch(e){}},250);
+/* --- burner shop tiers 15/30/50 --- */
+(function(){var T3={gz:50,ref:30,cc:30,mod:30,hth:30,film:15,gl:15,bots:15},PR={gz:5800,ref:2200,cc:2000,mod:2100,hth:1900,film:1000,gl:900,bots:450};
+  try{DEFS.forEach(function(d){var t=T3[d.id];if(!t)return;d.v82t=t;d.r=t/100;if(d.rHold)d.rHold=Math.max(d.rHold,t/100);if(PR[d.id])d.price=PR[d.id];});}catch(e){}})();
+/* --- damage control: Safe vs Big swing --- */
+function v82DCPair(two){if(!two||!two.length)return two;var u=function(k){return v82U({yards:S.plays,los:S.heat|0,type:k},k);};
+  var a=Object.assign({},two[0]),b=two[1]?Object.assign({},two[1]):null;
+  a.v82='safe';a.cool=4+Math.round(2*u('a'));a.plays=2;a.rc=Math.round((0.06+0.04*u('ar'))*100)/100;a.leak=0;a.base=Math.round(two[0].base*0.8);
+  if(b){b.v82='big';b.cool=12+Math.round(6*u('b'));b.plays=4;b.rc=Math.round((0.35+0.10*u('br'))*100)/100;b.leak=12+Math.round(3*u('bl'));b.base=Math.round(two[1].base*1.5);}
+  return b?[a,b]:[a];}
+/* --- booth: Marv 30% clip (+10) --- */
+(function(){var ct0=v76CardTags;v76CardTags=function(c,hc,dmD,dmK){var h0=S.heat;var html=ct0.apply(this,arguments);var extra='';
+  try{if(c&&c.kind==='cover'&&c.id==='marv'&&!c.spike){if(v76Roll(0.30,'v82marvclip')){v77Heat(10,'📼 Marv clip leaked');c.spike=10;c.spikeKind='clip';extra=v76Tag('📼 Marv\'s hard sell got clipped +10🔥','30% clip risk hit.',true);}}}catch(e){}
+  try{var pre=S.v74pre||{},kp=S.cur||V82I.kp,call=pre.call;if(kp&&kp.key&&!kp.foul&&(!call||call==='letgo')){var cc=v82CleanCredit(kp);var tax=0;try{var t=v72StandTax(kp,project(kp,effect(kp,'letgo')));tax=t?t.h:0;}catch(e){}v77Heat(cc-tax,'✅ Clean game credit');}
+    v82KeyBeat(kp,call,pre);}catch(e){}
+  return extra?html.replace(/<\/div>$/,extra+'</div>')||html+extra:html;};})();
+(function(){var rc0=v76Receipts;v76Receipts=async function(){var v=v76S(),n0=v?v.spikes:0,h0=S?S.heat:0;var r=await rc0.apply(this,arguments);try{if(v&&v.spikes>n0)v82Beat({dh:S.heat-h0,stamp:'RECEIPT LEAKED',mini:true,tone:'bad'});}catch(e){}return r;};})();
+(function(){var vc0=v76Choose;v76Choose=async function(ms,pref){var h0=S.heat;var ch=await vc0.apply(this,arguments);if(ch){setTimeout(function(){try{var dh=S.heat-h0;var isB=String(ch).indexOf('ann:')===0;v82Beat({dh:dh,stamp:isB?'BOOTH BOUGHT':(dh<0?'COOLED '+Math.round(dh):'HIRED'),mini:true,tone:dh<=0?'good':'bad'});}catch(e){}},60);}return ch;};})();
+document.addEventListener('click',function(e){try{var b=e.target&&e.target.closest&&e.target.closest('#shlist .shbuy, #hb .hbb button, #cch button');if(!b||!S)return;var h0=S.heat;var sh=b.closest('#shlist');
+  setTimeout(function(){var dh=S.heat-h0;var row=b.closest('.shc');var on=row&&row.classList.contains('on');var t=sh?(on?'ON THE PAYROLL':'DROPPED'):(dh>0?'HEAT +'+Math.round(dh):'DEAL MADE');v82Beat({dh:dh,stamp:t,mini:true,tone:dh>0?'bad':'good',chip:sh&&on?('🛡 '+((defOf(row.getAttribute('data-id'))||{}).v82t||'')+'%'):null});},120);}catch(err){}},false);
+/* --- the beat --- */
+function v82RM(){try{return matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(e){return false;}}
+var V82_ANN={phan:[['MARV','Oh, he is going to hear about that one.'],['MARV','I have watched it nine times. There is nothing there.'],['CHIP','Folks, that flag came from somewhere. Not the field.']],
+  bord:[['CHIP','That is a judgment call, and he made one.'],['MARV','Ticky-tack. The crowd is not buying it.']],ticky:[['MARV','That is the kind of flag you throw when you need one.']],
+  legit:[['CHIP','Right call. Textbook.'],['MARV','I hate to say it. He got that one right.']],defn:[['CHIP','Grabby enough. You can live with that flag.']],
+  swallow:[['MARV','He swallowed the whistle on THAT?'],['CHIP','The camera saw it. The ref did not.']],clean:[['CHIP','Clean play, no flag. That is how it is supposed to look.']]};
+function v82StampOf(k,pre){if(pre&&pre.ovH)return 'FLAG PICKED UP';if(k==='legit'||k==='clean'||k==='defn')return 'CLEAN CALL';if(k==='phan')return 'PHANTOM!';if(k==='swallow')return 'SWALLOWED THE WHISTLE';
+  try{if(S.job&&inside(margin()))return 'HOUSE PLEASED';}catch(e){}return k==='ticky'?'TICKY-TACK':'BORDERLINE';}
+function v82KeyBeat(kp,call,pre){var k=v82Kind(call||'letgo',kp,false);var dh=Math.round((S.heat-(V82I.h0==null?S.heat:V82I.h0))*10)/10;V82I.h0=null;
+  var nom=0;try{nom=call&&call!=='letgo'?callHeat(call,kp):(kp.foul?ignHeat(kp):v82CleanCredit(kp));}catch(e){}
+  V82I.picks.push({play:S.plays,key:S.keys,call:call||'letgo',k:k,dh:dh,nom:nom,heat:Math.round(S.heat)});
+  var f=V82I.lastFav&&Date.now()-V82I.lastFav.t<1500?V82I.lastFav:null;
+  v82Beat({dh:dh,stamp:v82StampOf(k,pre),k:k,tone:dh>0?'bad':'good',ann:k});}
+function v82El(t,c,txt){var e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e;}
+function v82Rect(id){var e=document.getElementById(id);if(!e)return null;var r=e.getBoundingClientRect();return r.width?r:null;}
+function v82Fly(txt,cls,to,dur,rm){var g=(typeof v82MGeom==='function'&&v82MGeom())||{top:120,bottom:innerHeight-200,tv:{left:0,width:innerWidth}};var x0=g.tv.left+g.tv.width/2,y0=(g.top+g.bottom)/2;
+  var c=v82El('div','v82chip '+cls,txt);document.body.appendChild(c);var w=c.offsetWidth,h=c.offsetHeight;var tx=to?to.left+to.width/2:x0,ty=to?to.top+to.height/2:y0;
+  if(rm||!c.animate){c.style.left=(tx-w/2)+'px';c.style.top=(ty-h/2)+'px';if(c.animate)c.animate([{opacity:0},{opacity:1,offset:.3},{opacity:1,offset:.75},{opacity:0}],{duration:dur});setTimeout(function(){c.remove();},dur);return c;}
+  c.style.left=(x0-w/2)+'px';c.style.top=(y0-h/2)+'px';c.animate([{transform:'translate(0,0) scale(1.15)',opacity:0},{transform:'translate(0,0) scale(1.15)',opacity:1,offset:.15},{transform:'translate('+(tx-x0)+'px,'+(ty-y0)+'px) scale(.8)',opacity:1,offset:.85},{transform:'translate('+(tx-x0)+'px,'+(ty-y0)+'px) scale(.6)',opacity:0}],{duration:dur,easing:'cubic-bezier(.5,0,.3,1)',fill:'forwards'});
+  setTimeout(function(){c.remove();},dur+30);return c;}
+function v82FavChip(pct,ben){try{if(S.quiet)return;var to=v82Rect('fvbug');var nm=T(ben).name.toUpperCase();v82Fly('+'+pct+' '+nm,'fav',to,700,v82RM());var cr=document.getElementById(ben==='home'?'fvH':'fvA');if(cr&&cr.animate&&!v82RM())cr.animate([{transform:'scale(1)'},{transform:'scale(1.25)'},{transform:'scale(1)'}],{duration:420,delay:450});
+  var fk=document.getElementById('fvk');if(fk&&!v82RM()){fk.style.transition='left .5s cubic-bezier(.34,1.56,.64,1)';}}catch(e){}}
+function v82BeatEnd(){var a=V82I.active;if(!a)return;V82I.active=null;clearTimeout(a.t);try{a.el.remove();}catch(e){}try{var f=document.getElementById('field');if(f){f.style.transform='';f.style.transition='';}var tv=document.getElementById('tv');if(tv&&a.shk)a.shk.cancel();}catch(e){}
+  a.end=performance.now();V82I.beats.push({stamp:a.stamp,dh:a.dh,mini:a.mini,ms:Math.round(a.end-a.t0),skipped:!!a.skipped});document.removeEventListener('pointerdown',a.skip,true);}
+function v82Beat(o){if(!S||S.quiet||!V82I.on)return null;if(V82I.active)v82BeatEnd();var rm=v82RM(),mini=!!o.mini,dur=mini?800:1200,dh=Math.round((o.dh||0)*10)/10,ad=Math.abs(dh);
+  var g=(typeof v82MGeom==='function'&&v82MGeom())||null;var w=v82El('div','v82imp'+(mini?' mini':'')+(rm?' rm':''));var st=v82El('div','v82stamp '+(o.tone||'')+(String(o.stamp||'').length>14?' long':''),o.stamp||'');w.appendChild(st);
+  if(g){st.style.top=Math.round((g.top+g.bottom)/2-24)+'px';}document.body.appendChild(w);
+  var a={el:w,t0:performance.now(),stamp:o.stamp,dh:dh,mini:mini};V82I.active=a;
+  a.skip=function(ev){if(performance.now()-a.t0<400)return;ev.stopPropagation();ev.preventDefault();a.skipped=true;V82I.skips++;v82BeatEnd();};document.addEventListener('pointerdown',a.skip,true);
+  /* 0-150 freeze + zoom (full beat only) */
+  var f=document.getElementById('field');if(f&&!mini&&!rm){f.style.transition='transform .15s ease-out';f.style.transformOrigin='50% 55%';f.style.transform='scale(1.08)';setTimeout(function(){if(V82I.active===a){f.style.transition='transform .3s ease-in';f.style.transform='';}},dur-320);}
+  /* 150-700 numbers fly */
+  if(ad>=0.5)setTimeout(function(){if(V82I.active!==a)return;v82Fly((dh>0?'+':'−')+Math.round(ad)+(dh>0?'🔥':'🧊'),dh>0?'hot':'cool',v82Rect('heatnum')||v82Rect('heatrow'),550,rm);},mini?40:150);
+  if(o.chip)setTimeout(function(){v82Fly(o.chip,'cool',v82Rect('heatnum'),550,rm);},80);
+  /* 200-450 shake + haptic */
+  setTimeout(function(){if(V82I.active!==a)return;var tv=document.getElementById('tv');var amp=Math.min(10,2+0.4*ad);if(tv&&tv.animate&&!rm&&!mini&&ad>=1){a.shk=tv.animate([{transform:'translate(0,0)'},{transform:'translate('+amp+'px,'+(-amp/2)+'px)'},{transform:'translate('+(-amp)+'px,'+(amp/2)+'px)'},{transform:'translate('+(amp/2)+'px,0)'},{transform:'translate(0,0)'}],{duration:250});}
+    try{if(navigator.vibrate&&ad>=1)navigator.vibrate(Math.min(60,15*Math.ceil(ad/5)));}catch(e){}
+    try{AU.sfx(dh>0?'boo':'cheer',Math.min(1,0.35+ad/25));}catch(e){}},200);
+  /* 300 announcer */
+  if(o.ann&&V82_ANN[o.ann]&&!mini)setTimeout(function(){try{if(S.over)return;booth(pick(V82_ANN[o.ann]));}catch(e){}},300);
+  /* 600-1200 stamp (mini: 250-800) */
+  setTimeout(function(){if(V82I.active===a)st.classList.add('in');},mini?250:600);
+  a.t=setTimeout(v82BeatEnd,dur);return a;}
+/* pops/memes pause during the beat */
+(function(){var w0=window.__v82why;window.__v82why=function(){if(V82I.active)return 'impact';return w0?w0():'';};})();
+(function(){var st=document.createElement('style');st.id='v82impcss';st.textContent=[
+ '.v82imp{position:fixed;inset:0;z-index:4200;pointer-events:none}',
+ '.v82imp .v82stamp{position:absolute;left:50%;top:40%;transform:translateX(-50%) rotate(-6deg) scale(1.15);opacity:0;font:900 34px/1 system-ui,sans-serif;letter-spacing:.02em;color:#fff;padding:8px 14px;border:4px solid currentColor;border-radius:8px;white-space:nowrap;background:rgba(10,12,18,.78);text-shadow:0 2px 0 rgba(0,0,0,.6);max-width:94vw;overflow:hidden;text-overflow:ellipsis;transition:opacity .15s,transform .2s cubic-bezier(.34,1.56,.64,1)}',
+ '.v82imp .v82stamp.bad{color:#ff5a3c}.v82imp .v82stamp.good{color:#5ad1c9}.v82imp .v82stamp.in{opacity:1;transform:translateX(-50%) rotate(-6deg) scale(1)}',
+ '.v82imp .v82stamp.long{padding:6px 9px;letter-spacing:0;transform:translateX(-50%) rotate(-6deg) scale(1)}'+'.v82imp .v82stamp.long.in{transform:translateX(-50%) rotate(-6deg) scale(1)}.v82imp.mini .v82stamp{font-size:26px}.v82imp.rm .v82stamp{transition:opacity .2s;transform:translateX(-50%) rotate(-6deg)}',
+ '.v82chip{position:fixed;z-index:4210;pointer-events:none;font:900 18px/1 system-ui,sans-serif;padding:6px 10px;border-radius:14px;background:rgba(10,12,18,.9);border:2px solid currentColor;white-space:nowrap}',
+ '.v82chip.hot{color:#ff5a3c}.v82chip.cool{color:#5ad1c9}.v82chip.fav{color:#ffd23f;font-size:14px}',
+ '#field{will-change:transform}',
+ '.dopt .v82stk{display:block;font-size:10.5px;line-height:13px;color:#ffd23f;opacity:.9;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}',
+ '.v82tier{color:#5ad1c9;font-weight:800}.v82dck{display:inline-block;font-size:9px;padding:1px 5px;border-radius:6px;margin-right:4px;background:#1f6b4a;color:#fff}.v82dck.big{background:#a3201c}'
+].join('\n');document.head.appendChild(st);})();
+(function(){var ad0=autoDecide;autoDecide=function(kp){if(!V82I.randPick)return ad0.apply(this,arguments);var L=options(kp).filter(function(o){return o.id!=='letgo'&&available(o.id,kp);});var r=Math.random();
+  if(V82I.randPick==='rand'){var o=L[Math.floor(r*(L.length+1))];if(o)S.call=o.id;return;}
+  /* 'mix': a player-like test policy - call the real foul 60%, otherwise half the time throw one flag (never above 60 heat) */
+  if(kp.foul&&available(kp.foul,kp)&&r<0.6){S.call=kp.foul;return;}if(S.heat<60&&L.length&&Math.random()<0.5){S.call=L[Math.floor(Math.random()*L.length)].id;}};})();
+V82.imp={randPick:function(v){V82I.randPick=v===true?'mix':v;},I:V82I,beat:v82Beat,end:v82BeatEnd,kind:v82Kind,pair:v82DCPair,u:v82U};
+(window.__v82items=window.__v82items||[]).push('p6-impact');
+/* ===== v82 phase 7: hold to pause ===== */
+var V82H={on:0,heldMs:0,left:0,get:function(){return false;},set:function(){}};
+(function(){var st=document.createElement('style');st.textContent='#gfx.v82held .v76bar i{background:#ffd23f!important;transition:none!important}#gfx.v82held h4::after{content:" · ⏸ HELD";color:#ffd23f}#gfx .v76bar{position:relative}';document.head.appendChild(st);})();
+V82.hold=V82H;(window.__v82items=window.__v82items||[]).push('p7-hold');
+/* ---- v82: test/QA hook ---- */
+try{V82.S=function(){return S;};window.CW.v82=V82;window.CW.v82.items=window.__v82items;console.info('[CW] v83 PROFILES — '+window.__v82items.join(', '));}catch(e){console.error('[CW] v82 hook',e);}
+
 setMatch(QUICK);bindRefNameInputs();syncRefUI();showTitle();
 })();
 </script>
@@ -13413,6 +13871,7 @@ setMatch(QUICK);bindRefNameInputs();syncRefUI();showTitle();
 <script>window.__v78={ok:true,build:'POLISH',fixes:!!window.__v78fixes,items:['heat-setter-pills','pill-anchor','offer-tap-guard','end-width','purchase-labels']};</script>
 <script>window.__v79={ok:true,build:'POPS',pops:!!window.__v79pops,items:['pop-lane','dwell-countdown-hold','pause-resume','unread-overflow','fixed-social','quote-pad','skip-gap','game-hit-layer','ad-once','end-desktop']};</script>
 <script>window.__v80={ok:true,build:'FLAMES',flames:!!window.__v80flames,items:['embers-50','flames-65','hot-80','blaze-100','flare-once','smoke-drop','clip-pill','track-fill','reduced-motion','tierup-sync','raf-pause','E-hold-until-release','F-card-below-toprow','G-audio-v2','H1-review-parts','H2-skip-keylead','H3-half-crossfade','H4-lower-gap']};</script>
+<script>window.__v83={ok:true,build:'PROFILES',items:window.__v82items||[]};</script>
 <script>window.__v81={ok:true,build:'LEGAL',items:['celebrity-invented','gag-helplines','teams-gales-wedges','new-colors','new-emblems','slot-renames','credits-legal-screen','head-copyright']};</script>
 </body>
 </html>
