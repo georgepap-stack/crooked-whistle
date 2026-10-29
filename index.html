@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#0b0d12">
-<title>After Further Review: The IFL v83 PROFILES</title>
+<title>After Further Review: The IFL v84 MEMEFIX</title>
 <style>
 :root{--bg:#0b0d12;--card:#1a1e27;--card2:#252a35;--ink:#f4f1e8;--dim:#9aa3b2;--whistle:#ffd23f;--hot:#ff5a3c;--ok:#4cd387;--line:#2c3240;--gbn:#2f6bff}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -1678,7 +1678,7 @@ window.__showThreeMissing=function(msg){
 (()=>{
 var __cwN=function(a,b){return a!=null?a:b;};/* v62: Safari ≤13-safe nullish + optional-chain shims */
 /* v73: build/version info. Future builds bump ONLY this line. */
-const CW_VERSION='v83',CW_BUILD='PROFILES',CW_DATE='2026-10-29';
+const CW_VERSION='v84',CW_BUILD='MEMEFIX',CW_DATE='2026-10-29';
 const CW_VER_SHORT=(()=>{const p=CW_DATE.split('-');const M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];return CW_VERSION+' · '+CW_BUILD+' · '+M[(+p[1]||1)-1]+' '+(+p[2]||'');})();
 window.CW_VERSION=CW_VERSION;window.CW_BUILD=CW_BUILD;window.CW_DATE=CW_DATE;
 (function cwVerUI(){
@@ -6645,8 +6645,8 @@ function draw(dt){
   g.classList.add('fs-tiny');
   if(P.get('gfx')==='pix')document.documentElement.classList.add('gfx-pix');
 
-  /* soft-pause while social open (sim keeps crawling) */
-  let feedOpen=false,_SP=typeof SP==='function'?SP:null;
+  /* soft pause (sim crawls at 18%): used by the profile card */
+  let softOn=false,_SP=typeof SP==='function'?SP:null;
   if(_SP){
     // SP is const arrow — can't reassign. Wrap via FAST dampener instead.
   }
@@ -6657,46 +6657,35 @@ function draw(dt){
   const applySoft=()=>{
     // Don't fight URL fast= — scale relative
     try{
-      if(feedOpen && !($('#decide')&&!$('#decide').hidden) && !($('#call')&&!$('#call').hidden)){
+      if(softOn && !($('#decide')&&!$('#decide').hidden) && !($('#call')&&!$('#call').hidden)){
         if(FAST>0.2){baseFast=FAST;FAST=Math.max(0.12,baseFast*0.18);}
       } else if(softMul===1 && baseFast && FAST<baseFast*0.5){FAST=baseFast;}
     }catch(e){}
   };
 
-  /* v82: SOCIAL button + sheet removed. The soft pause (sim crawls at 18%) is kept: the profile card uses it, like SOCIAL did. */
-  function toggleSocial(on){
+  /* v84: soft pause (was SOCIAL's toggle; SOCIAL is gone). The profile card uses it. */
+  function softPause(on){
     if(on){const d=$('#decide'),c=$('#call'),hb=$('#hb');if((d&&!d.hidden)||(c&&!c.hidden)||(hb&&!hb.hidden))return;}
-    feedOpen=!!on;setSoft(on?0.18:1);
+    softOn=!!on;setSoft(on?0.18:1);
     if(on){baseFast=FAST;}else{if(baseFast)FAST=baseFast;}
     applySoft();
   }
-  function paintBadge(){}
-  window.__cwPaintBadge=function(){};window.__cwSoftPause=function(on){toggleSocial(on);};
+  window.__cwPaintBadge=function(){};window.__cwSoftPause=function(on){softPause(on);};
 
-  // Close social when decide/call opens
+  // End the soft pause when decide/call opens
   if(typeof openDecide==='function'){
     const _od=openDecide;
-    openDecide=function(kp){try{toggleSocial(false);}catch(e){}return _od.apply(this,arguments);};
+    openDecide=function(kp){try{softPause(false);}catch(e){}return _od.apply(this,arguments);};
   }
   const mo=new MutationObserver(()=>{
     const d=$('#decide'),c=$('#call');
-    if(((d&&!d.hidden)||(c&&!c.hidden))&&feedOpen){toggleSocial(false);try{if(window.__v82prof)__v82prof.close();}catch(e){}}
+    if(((d&&!d.hidden)||(c&&!c.hidden))&&softOn){softPause(false);try{if(window.__v82prof)__v82prof.close();}catch(e){}}
   });
   setTimeout(()=>{
     const d=$('#decide'),c=$('#call');
     if(d)mo.observe(d,{attributes:true,attributeFilter:['hidden']});
     if(c)mo.observe(c,{attributes:true,attributeFilter:['hidden']});
   },200);
-
-  // Wrap post badge → also bump social FAB
-  try{
-    const FT=typeof FeedTabs!=='undefined'?FeedTabs:null;
-    if(FT&&!FT.__v30){
-      const _note=FT.note.bind(FT);
-      FT.note=function(plat){_note(plat);if(!feedOpen)paintBadge();};
-      FT.__v30=1;
-    }
-  }catch(e){}
 
   /* clipboard polish — longer zoom, bigger figure */
   if(typeof startClipZoom==='function'){
@@ -6711,12 +6700,11 @@ function draw(dt){
   if(window.__PIX){__PIX.scale=Math.max(__PIX.scale||8.5,8.5);try{resize();}catch(e){}}
 
 
-  window.__v30={fs:true,toggleSocial,paintBadge,get feedOpen(){return feedOpen;}};
-  window.toggleSocial=toggleSocial;
+  window.__v30={fs:true,softPause,get softOn(){return softOn;}};
   try{
     if(typeof post==='function'&&!post.__v30){
       const _p=post;
-      post=function(){const r=_p.apply(this,arguments);try{if(S){S.notif=(S.notif|0)+1;}}catch(e){}try{paintBadge();}catch(e){}return r;};
+      post=function(){const r=_p.apply(this,arguments);try{if(S){S.notif=(S.notif|0)+1;}}catch(e){}return r;};
       post.__v30=1;window.post=post;
     }
   }catch(e){}
@@ -13380,19 +13368,32 @@ function v82MLeave(it,dir){if(!it||it.gone)return;it.gone=true;var d=it.el;V82M.
   if(d){d.classList.remove('in');d.classList.add(dir||'out');setTimeout(function(){try{d.remove();}catch(e){}V82M.leaving=false;v82MTick();},190);}else V82M.leaving=false;}
 function v82MEnq(p){if(!S||!p)return;if(V82M.testOnly&&!p.t82)return;var k=String(p.key||'')+'|'+String(p.img||'').slice(-60)+'|'+p.text;if(V82M.keys[k]||V82M.q.some(function(o){return o.k===k;})){V82M.dup=(V82M.dup||0)+1;return;}
   V82M.keys[k]=1;V82M.q.push({p:p,k:k,t:Date.now()});while(V82M.q.length>V82M_MAXQ)v82MDrop(V82M.q.shift(),'backlog');v82MTick();}
-function v82MSnap(){if(V82M.snapForce!=null)return !!V82M.snapForce;return !!(S&&(S.phase==='live'||S.phase==='replay'||S.phase==='ff'));}
+/* v84 MEMEFIX: only the live play dims a meme (replay/ff/sim stretches no longer count) */
+function v82MSnap(){if(V82M.snapForce!=null)return !!V82M.snapForce;return !!(S&&S.phase==='live');}
+var V84M_CAP=15000,V84M_HID=20000,V84M_QAGE=20000;
+function v84MOn(it){return (it.vis||0)+(it.dimMs||0)+(it.heldMs||0);}
 function v82MTick(){var now=performance.now(),dt=V82M.lastT?Math.min(400,now-V82M.lastT):0;V82M.lastT=now;var l=v82MLayer();if(!l)return;
   var why=v79Why();if(why==='action')why='';
   if(why==='over'||why==='nogame'){if(why==='over'){if(V82M.cur)v82MLeave(V82M.cur,'out');while(V82M.q.length)v82MDrop(V82M.q.shift(),'gameover');}l.classList.add('off');return;}
+  /* v84: stale queue entries (waited behind cards/plays > 20s) are dropped, not shown late */
+  var wn=Date.now();while(V82M.q.length&&wn-V82M.q[0].t>V84M_QAGE/(V82M.sc||v79Fast()))v82MDrop(V82M.q.shift(),'stale');
   var g=v82MGeom();V82M.geo=g;var it=V82M.cur;
   if(!why){if(!V82M.okSince)V82M.okSince=now;}else V82M.okSince=0;
   var free=!why&&(now-V82M.okSince>=(/^(call|card|modal|flag|impact)$/.test(V82M.lastWhy)?300:0));if(free)V82M.lastWhy='';else if(why)V82M.lastWhy=why;
-  if(it){if(!free){l.classList.add('off');it.pz[why||'settle']=(it.pz[why||'settle']||0)+1;it.hidMs+=dt;if(why==='call')it.callHit=true;return;}
+  if(it){if(!free){l.classList.add('off');it.pz[why||'settle']=(it.pz[why||'settle']||0)+1;it.hidMs+=dt;if(why==='call')it.callHit=true;
+      /* v84: hidden behind cards for > 20s total -> drop it */
+      if(it.hidMs>=V84M_HID/it.scale){it.capBy='hidden';v82MDrop(it,'hidden');v82MLeave(it,'out');}return;}
     if(it.callHit){it.callHit=false;var back=4000/it.scale;if(it.rem<back){it.rem=back;}it.callBack=(it.callBack||0)+1;it.wall=Math.min(it.wall,Math.max(0,12000/it.scale-it.rem));}
-    l.classList.remove('off');var snap=v82MSnap();it.el.classList.toggle('dim',snap);if(snap){if(!it.wasDim)V82M.dimN++;it.wasDim=true;it.dimMs+=dt;it.wall+=dt;it.pz.snap=(it.pz.snap||0)+1;}
+    l.classList.remove('off');var snap=v82MSnap();
+    /* v84: full opacity the moment the live play ends (no fade back from 35%) */
+    if(!snap&&it.el.classList.contains('dim')){it.el.classList.add('undim');it.el.classList.remove('dim');void it.el.offsetWidth;(function(e){setTimeout(function(){e.classList.remove('undim');},250);})(it.el);it.undimN=(it.undimN||0)+1;}else it.el.classList.toggle('dim',snap);
+    /* v84: dimmed memes keep counting down at half speed (was frozen) */
+    if(snap){if(!it.wasDim)V82M.dimN++;it.wasDim=true;it.dimMs+=dt;it.wall+=dt;it.rem-=dt*0.5;it.pz.snap=(it.pz.snap||0)+1;}
     else{it.wasDim=false;if(it.held){it.heldMs=(it.heldMs||0)+dt;}else{it.rem-=dt;it.vis+=dt;it.wall+=dt;}}
     if(!it.fitT||now-it.fitT>500){it.fitT=now;v82MFit(it,g);}
     var bar=it.el.querySelector('.v82bar i');if(bar)bar.style.transform='scaleX('+Math.max(0,it.rem/it.total).toFixed(4)+')';
+    /* v84: hard cap - 15s on screen (visible + dimmed + held), touched or not */
+    if(v84MOn(it)>=V84M_CAP/it.scale){it.capBy='cap15';if(!it.seenBy)it.seenBy='cap';v82MLeave(it,'out');return;}
     if(it.rem<=0||(!it.touched&&it.wall>=11900/it.scale&&it.vis>=Math.min(it.total,5000/it.scale)))v82MLeave(it,'out');return;}
   if(V82M.leaving)return;
   if(free&&!v82MSnap()&&V82M.q.length){v82MShow(V82M.q.shift());l.classList.remove('off');}else if(!V82M.cur)l.classList.add('off');}
@@ -13828,7 +13829,60 @@ var V82H={on:0,heldMs:0,left:0,get:function(){return false;},set:function(){}};
 (function(){var st=document.createElement('style');st.textContent='#gfx.v82held .v76bar i{background:#ffd23f!important;transition:none!important}#gfx.v82held h4::after{content:" · ⏸ HELD";color:#ffd23f}#gfx .v76bar{position:relative}';document.head.appendChild(st);})();
 V82.hold=V82H;(window.__v82items=window.__v82items||[]).push('p7-hold');
 /* ---- v82: test/QA hook ---- */
-try{V82.S=function(){return S;};window.CW.v82=V82;window.CW.v82.items=window.__v82items;console.info('[CW] v83 PROFILES — '+window.__v82items.join(', '));}catch(e){console.error('[CW] v82 hook',e);}
+try{V82.S=function(){return S;};window.CW.v82=V82;window.CW.v82.items=window.__v82items;console.info('[CW] v84 MEMEFIX — '+window.__v82items.join(', '));}catch(e){console.error('[CW] v82 hook',e);}
+/* ===== v84 MEMEFIX ===== */
+window.__v84={items:[]};
+/* --- 2: meme throttle + dedupe at the source: ~1 meme per key play (big moments get a 2nd slot), queue cap stays 3 --- */
+var V84G={byKey:{},lastAt:0,thr:0,thrLog:[],pass:0,kinds:{}};
+var V84G_PRI={exposed:1,badbeat:1,hood:1,ms:1,flip:1,rtp:1};
+function v84MGate(kind){if(!S)return true;var k=S.keys||0,n=V84G.byKey[k]||0,now=Date.now(),sc=(V82M.sc)||v79Fast();
+  var lim=V84G_PRI[kind]?2:1;var gap=4000/sc;
+  if(n>=lim||now-V84G.lastAt<gap){V84G.thr++;V82M.thr=V84G.thr;V84G.thrLog.push({k:k,kind:kind,t:now});if(V84G.thrLog.length>80)V84G.thrLog.shift();return false;}
+  return true;}
+function v84MTake(kind){var k=(S&&S.keys)||0;V84G.byKey[k]=(V84G.byKey[k]||0)+1;V84G.lastAt=Date.now();V84G.pass++;V84G.kinds[kind]=(V84G.kinds[kind]||0)+1;}
+(function(){try{var mp0=memePost;memePost=function(ctx,kind,o){if(!v84MGate(kind))return null;var pp=mp0.apply(this,arguments);if(pp)v84MTake(kind);return pp;};
+  try{if(window.CW&&CW._dbg)CW._dbg.memePost=memePost;}catch(e){}window.__v84.items.push('meme-throttle');}catch(e){console.error('[CW] v84 gate',e);}
+  /* same picture or same caption already shown/queued this game -> dedupe */
+  try{var e0=v82MEnq;v82MEnq=function(p){if(p&&!p.t82){var im=String(p.img||'').slice(-80),tx=String(p.text||'');V84G.seen=V84G.seen||{};var kk='i:'+im,kt='t:'+tx;if((im&&V84G.seen[kk])||(tx.length>3&&V84G.seen[kt])){V82M.dup=(V82M.dup||0)+1;return;}if(im)V84G.seen[kk]=1;if(tx.length>3)V84G.seen[kt]=1;}return e0.apply(this,arguments);};}catch(e){}
+})();
+/* --- 3: no near-twins. PI = spot foul; roughing = +15 & auto 1st & extra heat; defensive holding = +5 & auto 1st --- */
+(function(){try{var t0=v72Teaser;v72Teaser=function(kp,id,e,neg){var t=t0.apply(this,arguments);try{if(id==='opi'&&e&&e.replay&&!e.auto1){t=String(t)+' · on the receiver';}
+    if(e&&e.auto1&&(id==='pi'||id==='roughing'||id==='dholding')){
+    var bits=String(t).split(' · ').filter(function(b){return b&&b!=='auto 1st'&&b!=='flag';});var y=e.pen&&e.pen.y?e.pen.y:Math.max(0,e.yards||0);
+    if(id==='pi')bits.push('spot foul +'+y+' yds');else if(id==='roughing')bits.push('+'+y+' yds · auto 1st · extra heat');else bits.push('+'+y+' yds · auto 1st');t=bits.join(' · ');}}catch(err){}return t;};}catch(e){}
+  try{var ch0=callHeat;callHeat=function(c,kp,useP){var h=ch0.apply(this,arguments);try{if(c==='roughing'&&kp&&kp.foul!=='roughing'&&h>=5)h=h+4;}catch(e){}return h;};}catch(e){}
+  try{var o0=options;options=function(kp){var L=o0.apply(this,arguments);try{var seen={},out=[];L.forEach(function(o){if(o.id==='letgo'){out.push(o);return;}var k=String(o.teaser||'')+'|'+String(o.v82s||'');if(seen[k]){seen[k].alsoIds=(seen[k].alsoIds||[]).concat([o.id]);V84T.merged++;return;}seen[k]=o;out.push(o);});return out;}catch(e){return L;}};}catch(e){}
+  window.__v84.items.push('no-twins');})();
+var V84T={merged:0};
+/* --- 4: FLAG FAVOR moves during the impact beat (with the heat swing), not after the card --- */
+var V84F={early:null,n:0,undo:0,skip:0};
+function v84FavEarly(kp,call,pre){try{if(!kp||!kp.key||!call||call==='letgo'||(pre&&pre.ovH))return;if(!benefits(call,kp))return;
+  var snap={fv:JSON.parse(JSON.stringify(S.fv)),fb:S.v82fb||0,inv:JSON.parse(JSON.stringify(S.fvInv||{}))};
+  var e=effect(kp,call),pr=project(kp,e),base=project(kp,effect(kp,'letgo'));
+  V84F.inEarly=true;try{favorUpdate(kp,call,e,pr,base,kp.foul===call);}finally{V84F.inEarly=false;}
+  V84F.early={kp:kp,call:call,snap:snap,t:Date.now()};V84F.n++;}catch(err){console.warn('[v84] fav early',err);}}
+(function(){try{var fu=favorUpdate;favorUpdate=function(kp,call){if(!V84F.inEarly&&V84F.early&&V84F.early.kp===kp){var same=V84F.early.call===call;var ea=V84F.early;V84F.early=null;
+      if(same){V84F.skip++;try{fvUI();}catch(e){}return;}
+      S.fv=ea.snap.fv;S.v82fb=ea.snap.fb;S.fvInv=ea.snap.inv;V84F.undo++;}
+    return fu.apply(this,arguments);};}catch(e){}
+  try{var cm=chMaybe;chMaybe=async function(kp,call,info){var r=await cm.apply(this,arguments);try{if(r&&r.reverse&&V84F.early&&V84F.early.kp===kp){var ea=V84F.early;V84F.early=null;S.fv=ea.snap.fv;S.v82fb=ea.snap.fb;S.fvInv=ea.snap.inv;V84F.undo++;fvUI();}}catch(e){}return r;};}catch(e){}
+  try{var kb=v82KeyBeat;v82KeyBeat=function(kp,call,pre){v84FavEarly(kp,call,pre);return kb.apply(this,arguments);};}catch(e){}
+  window.__v84.items.push('favor-in-beat');})();
+/* --- 5: booth caption portrait is tappable (the caption bar itself stays click-through) --- */
+(function(){var st=document.createElement('style');st.id='v84css';st.textContent='#v82meme .v82mc.undim{transition:none!important}'+'#game #tv #v75cap img[data-v82pid],#game #tv #v75cap #booth img[data-v82pid]{pointer-events:auto!important;cursor:pointer}';document.head.appendChild(st);window.__v84.items.push('booth-tap');})();
+window.__v84.V84G=V84G;window.__v84.V84F=V84F;window.__v84.V84T=V84T;
+/* QA hook (test only, no game effect): scan option lists for twins */
+window.__v84.twinScan=function(n,force){var keep={h0:V82I.h0,h0k:V82I.h0k,kp:V82I.kp},res={lists:0,twins:0,ex:[],sample:null,heat:{pi:[],roughing:[],dholding:[]}};
+  try{for(var i=0;i<(n||200);i++){var kp=makePlay();kp.key=true;var f=force||['int','inc','sack','asis'][i%4];
+      if(f==='int'){kp.pass=true;kp.type='short';kp.complete=false;kp.turnover=true;kp.sack=false;kp.yards=0;kp.foul=null;}
+      else if(f==='inc'){kp.pass=true;kp.type='short';kp.complete=false;kp.turnover=false;kp.sack=false;kp.yards=0;}
+      else if(f==='sack'){kp.pass=true;kp.sack=true;kp.complete=false;kp.turnover=false;kp.yards=-5;}
+      var L=options(kp);res.lists++;var seen={};L.forEach(function(o){if(o.id==='letgo')return;var t=String(o.teaser);if(seen[t]){res.twins++;if(res.ex.length<5)res.ex.push([seen[t],o.id,t]);}else seen[t]=o.id;if(res.heat[o.id]&&f==='int')res.heat[o.id].push(o.heat);});
+      if(f==='int'&&!res.sample)res.sample=L.map(function(o){return {id:o.id,label:o.label,teaser:o.teaser,heat:o.heat,s:o.v82s};});}}
+  finally{V82I.h0=keep.h0;V82I.h0k=keep.h0k;V82I.kp=keep.kp;}
+  var avg=function(a){return a.length?Math.round(a.reduce(function(x,y){return x+y;},0)/a.length*10)/10:null;};res.heatAvg={pi:avg(res.heat.pi),roughing:avg(res.heat.roughing),dholding:avg(res.heat.dholding)};delete res.heat;return res;};
+window.__v84.intPlay=function(){var kp=makePlay();kp.key=true;kp.pass=true;kp.type='short';kp.complete=false;kp.turnover=true;kp.sack=false;kp.yards=0;kp.foul=null;return kp;};
+window.__v84.booth=function(l){return booth(l);};
 
 setMatch(QUICK);bindRefNameInputs();syncRefUI();showTitle();
 })();
@@ -13872,6 +13926,7 @@ setMatch(QUICK);bindRefNameInputs();syncRefUI();showTitle();
 <script>window.__v79={ok:true,build:'POPS',pops:!!window.__v79pops,items:['pop-lane','dwell-countdown-hold','pause-resume','unread-overflow','fixed-social','quote-pad','skip-gap','game-hit-layer','ad-once','end-desktop']};</script>
 <script>window.__v80={ok:true,build:'FLAMES',flames:!!window.__v80flames,items:['embers-50','flames-65','hot-80','blaze-100','flare-once','smoke-drop','clip-pill','track-fill','reduced-motion','tierup-sync','raf-pause','E-hold-until-release','F-card-below-toprow','G-audio-v2','H1-review-parts','H2-skip-keylead','H3-half-crossfade','H4-lower-gap']};</script>
 <script>window.__v83={ok:true,build:'PROFILES',items:window.__v82items||[]};</script>
+<script>window.__v84=Object.assign(window.__v84||{},{ok:true,build:'MEMEFIX'});</script>
 <script>window.__v81={ok:true,build:'LEGAL',items:['celebrity-invented','gag-helplines','teams-gales-wedges','new-colors','new-emblems','slot-renames','credits-legal-screen','head-copyright']};</script>
 </body>
 </html>
