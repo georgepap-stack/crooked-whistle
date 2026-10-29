@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#0b0d12">
-<title>Crooked Whistle v76 COVER</title>
+<title>Crooked Whistle v77 FIXES</title>
 <style>
 :root{--bg:#0b0d12;--card:#1a1e27;--card2:#252a35;--ink:#f4f1e8;--dim:#9aa3b2;--whistle:#ffd23f;--hot:#ff5a3c;--ok:#4cd387;--line:#2c3240;--gbn:#2f6bff}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -1681,7 +1681,7 @@ window.__showThreeMissing=function(msg){
 (()=>{
 var __cwN=function(a,b){return a!=null?a:b;};/* v62: Safari ≤13-safe nullish + optional-chain shims */
 /* v73: build/version info. Future builds bump ONLY this line. */
-const CW_VERSION='v76',CW_BUILD='COVER',CW_DATE='2026-10-29';
+const CW_VERSION='v77',CW_BUILD='FIXES',CW_DATE='2026-10-29';
 const CW_VER_SHORT=(()=>{const p=CW_DATE.split('-');const M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];return CW_VERSION+' · '+CW_BUILD+' · '+M[(+p[1]||1)-1]+' '+(+p[2]||'');})();
 window.CW_VERSION=CW_VERSION;window.CW_BUILD=CW_BUILD;window.CW_DATE=CW_DATE;
 (function cwVerUI(){
@@ -2014,10 +2014,10 @@ function favorUpdate(kp,call,e,pr,base,legit){const ben=benefits(call,kp);if(!be
   if(!legit)S.fvInv[ben]+=(e.pen?e.pen.y:0)+sw*4;
   fvUI();favorReact(legit);}
 function favorReact(legit){const inv=S.fvInv.home-S.fvInv.away,mag=Math.abs(inv);const bug=$('#fvbug');
-  for(const th of [35,65,100]){if(mag>=th&&!S.fvTrig[th]){S.fvTrig[th]=1;addHeat(th>=100?5:th>=65?4:3);const ctx=fvCtx();
+  for(const th of [35,65,100]){if(mag>=th&&!S.fvTrig[th]){S.fvTrig[th]=1;v77Heat(th>=100?5:th>=65?4:3,'🚩 Flags tilting '+(inv>0?T('home').ab:T('away').ab));const ctx=fvCtx();
     booth(pick(BOOTH.favor),ctx);setTimeout(()=>burst('favor',ctx,2+tier()),900/SP());bug.classList.remove('swing');void bug.offsetWidth;bug.classList.add('swing');break;}}
   if(S.job.flipped&&!S.fvTrig.flip&&!legit){/* v74: a legit call never trips the flip heat */const dir=S.job.team==='home'?1:-1;if((favNet()-S.htNet)*dir>=30){S.fvTrig.flip=1;const ctx=fvCtx();const changed=S.htNet*dir<0||S.job.team!==S.job.orig.team;
-    bug.classList.remove('swing');void bug.offsetWidth;bug.classList.add('swing');addHeat(4);
+    bug.classList.remove('swing');void bug.offsetWidth;bug.classList.add('swing');v77Heat(4,'🔄 Booth noticed the switch');
     if(changed){booth(pick(BOOTH.flip),ctx);setTimeout(()=>{burst('flip',ctx,4+tier());memePost(ctx,'flip');},700/SP());}
     else{booth(pick(BOOTH.dbl),ctx);post('sq',fill('{ref} came out of halftime even MORE pro-{newt}. bold strategy',ctx),600,{hot:true});}}}}
 function favorBlock(){const a=S.fv.away,h=S.fv.home,n=favNet(),p=50+clamp(n/90,-1,1)*44;const fi=favInfo();
@@ -2707,33 +2707,34 @@ function filmCool(){if(!S.coolQ)return;const due=S.coolQ.filter(x=>x.at<=S.plays
   for(const x of due){const hr=activeDefs().find(h=>h.id==='film');if(!hr)continue;S.heat=Math.max(0,S.heat-x.h);S.cooled=(S.cooled||0)+x.h;
     post('ts',fill('▶ FULL BREAKDOWN: Ref #77\'s {call} call holds up on the All-22 (you\'ve been lied to) · '+rint(300,700)+'K views',x),400,{handle:'TapeDoctor Todd',av:avURL(defOf('film'),40),def:true,tell:'link in bio',key:'film'+S.plays+x.h});}}
 function exposeDef(hr,ctx){if(S.over)return;const d=defOf(hr.id);const c={...ctx,dh:d.handle,price:hr.price.toLocaleString()};S.exposedN=(S.exposedN||0)+1;
-  const spike=d.bot?10:8+(tier()>=3?4:0);addHeat(spike);S.bfHeat=(S.bfHeat||0)+spike;
+  const spike=d.bot?10:8+(tier()>=3?4:0);v77Heat(spike,'🧾 Paid defender exposed');S.bfHeat=(S.bfHeat||0)+spike;
   post('tp',fill('[Receipts] '+DEF_BF_TXT[d.id],c),2500,{hot:true,key:'bf:'+d.id+S.plays});
   burst('exposed',c,3+tier());memePost(c,'exposed',{txt:pick(['receipts don\'t lie 💀','paid partnership energy','the invoice is the best play of the night','"independent analysis" 🧾'])});setTimeout(()=>booth(pick(BOOTH.exposed)),1200/SP());
   flash('EXPOSED: PAID DEFENDER','to',2200);msUI();}
 function modRemove(ctx){post('tp','[removed by moderator] Rule 4: no low-effort officiating clips. 📌 u/ModSquadMike',0,{handle:'u/ModSquadMike',av:avURL(defOf('mod'),40),def:true,tell:'📌 MOD',key:'rm'+S.plays});S.clipsBlocked=(S.clipsBlocked||0)+1;}
 async function shop(phase){
   if(P.get('shop')==='0')return;const el=$('#shop');const half=phase==='pre'?1:2;const session=[],annS=[];S.ann=S.ann||[];
-  const gzAvail=P.get('gz')?P.get('gz')==='1':rnd()<0.5;let msg='';
-  const render=()=>{$('#shcash').textContent='$'+S.bank.toLocaleString();
+  const gzAvail=P.get('gz')?P.get('gz')==='1':rnd()<0.5;let msg='',needId=null;
+  const v77Need=()=>{if(!needId)return;const isA=needId.indexOf('ann:')===0,it=isA?ANN[needId.slice(4)]:defOf(needId);if(!it){needId=null;return;}const pr=isA?annPrice(needId.slice(4)):it.price;if(S.bank>=pr){msg=`<span class="v77ok">Side cash is $${S.bank.toLocaleString()} now: you can cover ${it.name}.</span>`;needId=null;}else msg=isA?`<span class="bad">The booth doesn't come cheap. Need $${(pr-S.bank).toLocaleString()} more for ${it.name}.</span>`:`<span class="bad">Not enough side cash for ${it.name}: need $${(pr-S.bank).toLocaleString()} more. Cash only. Nobody here does credit.</span>`;};
+  const render=()=>{v77Need();$('#shcash').textContent='$'+S.bank.toLocaleString();
     $('#shsub').textContent=half===1?'burner DM · pregame rate card · cash only':'burner DM · halftime rates · pregame hires are still on the job';
     $('#shmsg').innerHTML=msg||`They'll defend your calls online for the <b>${half===1?'whole game':'2nd half'}</b>. Stacking has diminishing returns. Phantom calls can't be fully spun.`;
     $('#shlist').innerHTML=DEFS.map(d=>{const onJob=half===2&&(S.defs||[]).some(h=>h.id===d.id&&h.half===1&&!h.exposed),hired=session.includes(d.id)||onJob,burned=(S.defs||[]).some(h=>h.id===d.id&&h.exposed),sold=(d.rare&&!gzAvail)||burned,afford=S.bank>=d.price;
       const dots=n=>'●'.repeat(n)+'○'.repeat(5-n),risk=d.bf>=0.1?'HIGH':d.bf>=0.05?'MED':'LOW';
       return `<div class="shc ${hired?'on':''} ${!afford&&!hired?'poor':''} ${sold?'sold':''}" data-id="${d.id}"><img class="sha" src="${avURL(d,96)}" alt=""><div class="shi"><div class="shn">${d.name} <span class="plat ${d.plat}">${PLAT[d.plat]}</span>${half===2&&(S.defs||[]).some(h=>h.id===d.id&&h.half===1)?((S.defs||[]).some(h=>h.id===d.id&&h.exposed)?'<span class="exp x">EXPOSED</span>':'<span class="exp">on the job ✓</span>'):''}</div><div class="shm">${d.handle} · ${d.fol}</div><div class="shb">${d.blurb}</div><div class="shs"><span>🛡 ${dots(d.shield)}</span><span>🔇 ${dots(d.muffle)}</span><span class="r${risk}">⚠ ${risk}</span></div></div><button class="shbuy" data-id="${d.id}">${sold?(burned?'Burned':'Not taking calls'):onJob?'On payroll ✓':hired?'Hired ✓<small>tap to undo</small>':afford?'$'+d.price.toLocaleString():'$'+d.price.toLocaleString()+'<small>need $'+(d.price-S.bank).toLocaleString()+' more</small>'}</button></div>`;}).join('')+annShopHTML(half,annS);
     const sp=session.reduce((a,id)=>a+defOf(id).price,0);$('#shDone').textContent=session.length?`Done · hired ${session.length} ($${sp.toLocaleString()})`:'Done';};
-  const tryBuy=id=>{if(String(id).startsWith('ann:')){const ok=annBuy(id.slice(4),annS,half);const a=ANN[id.slice(4)];msg=ok?(annS.includes(id.slice(4))?`Bought <b>${a.name}</b> for the postgame recap. He'll spin it. He might wink. Please don't let him wink.`:''):(S.bank<annPrice(id.slice(4))?`<span class="bad">The booth doesn't come cheap. Need $${(annPrice(id.slice(4))-S.bank).toLocaleString()} more.</span>`:'');return ok;}const d=defOf(id);if(!d)return false;if(half===2&&(S.defs||[]).some(h=>h.id===id&&h.half===1&&!h.exposed))return false;const i=session.indexOf(id);if(i>=0){session.splice(i,1);S.bank+=d.price;S.spent-=d.price;msg='';return true;}
+  const tryBuy=id=>{needId=null;if(String(id).startsWith('ann:')){const ok=annBuy(id.slice(4),annS,half);if(!ok&&!annOwned().includes(id.slice(4))&&S.bank<annPrice(id.slice(4)))needId=id;const a=ANN[id.slice(4)];msg=ok?(annS.includes(id.slice(4))?`Bought <b>${a.name}</b> for the postgame recap. He'll spin it. He might wink. Please don't let him wink.`:''):(S.bank<annPrice(id.slice(4))?`<span class="bad">The booth doesn't come cheap. Need $${(annPrice(id.slice(4))-S.bank).toLocaleString()} more.</span>`:'');return ok;}const d=defOf(id);if(!d)return false;if(half===2&&(S.defs||[]).some(h=>h.id===id&&h.half===1&&!h.exposed))return false;const i=session.indexOf(id);if(i>=0){session.splice(i,1);S.bank+=d.price;S.spent-=d.price;msg='';return true;}
     if(d.rare&&!gzAvail||(S.defs||[]).some(h=>h.id===id&&h.exposed)){msg='<span class="bad">They\'re not taking your calls.</span>';return false;}
-    if(S.bank<d.price){msg=`<span class="bad">Not enough side cash for ${d.name}. Cash only. Nobody here does credit.</span>`;const c=$(`.shc[data-id="${id}"]`);if(c){c.classList.remove('shake');void c.offsetWidth;c.classList.add('shake');}S.noFunds=(S.noFunds||0)+1;return false;}
+    if(S.bank<d.price){needId=id;msg=`<span class="bad">Not enough side cash for ${d.name}. Cash only. Nobody here does credit.</span>`;const c=$(`.shc[data-id="${id}"]`);if(c){c.classList.remove('shake');void c.offsetWidth;c.classList.add('shake');}S.noFunds=(S.noFunds||0)+1;return false;}
     session.push(id);S.bank-=d.price;S.spent+=d.price;msg=`Hired <b>${d.name}</b>. ${d.tell?'Their posts may carry a tell ('+d.tell+').':'Nobody will ever notice. Probably.'}`;if(navigator.vibrate)navigator.vibrate(15);return true;};
-  el.hidden=false;S.phase='shop';hud();hideMemesNow();render();
+  el.hidden=false;S.phase='shop';hud();hideMemesNow();render();S.__shopRefresh=()=>{if(!el.hidden)render();};
   $('#shlist').onclick=e=>{const b=e.target.closest('.shbuy');if(!b)return;e.stopPropagation();tryBuy(b.dataset.id);render();if(!session.length)return;};
   const pre=P.get('buy');let res;
   if(pre!=null){const ids=(pre.split('|')[half-1]||'').split(',').filter(Boolean);for(const id of ids){tryBuy(id);render();}await wait(AUTO?300:200);res='done';}
   else res=await waitChoice([['#shDone','done'],['#shSkip','skip']],P.get('shop')==='hold'?null:'skip',0,null);
   if(res==='skip'){for(const id of session.slice())tryBuy(id);for(const id of annS.slice())annBuy(id,annS,half);}annS.forEach(id=>S.ann.push({id,half,price:annPrice(id)}));
   for(const id of session)S.defs.push({id,half,price:defOf(id).price,exposed:false,uses:0});
-  el.hidden=true;$('#shlist').onclick=null;S.phase='idle';msUI();hud();
+  el.hidden=true;$('#shlist').onclick=null;S.__shopRefresh=null;S.phase='idle';msUI();hud();
   if(session.length)post('sq',half===1?'weird, a bunch of accounts just followed each other and all of them love referees':'second half and suddenly everyone online has a rulebook. interesting',0,{key:'shopnote'+half});}
 Object.assign(TPL,{exposed:{sq:["{dh} was PAID to defend {ref}. receipts are out","so the accounts defending {ref} were on the payroll. incredible","imagine getting paid to say that was holding","the defense of {ref} was an ad. the whole time.","paid defenders?? {ref} is in the find-out phase"],tp:["[Receipts] {dh} took money to defend {ref}. Payment screenshot inside 🧵"],gz:["📰 Influencer paid to defend Ref #77, records show"],hth:["🎙 RIP KINGSLEY: \"You PAID people to defend you?! Seventy-Seven, buddy.\""],nb:["So the nice young person defending the referee was paid? — Linda"],cc:["🎵 reading the leaked influencer brief out loud · 2.7M views"]}});
 Object.assign(BOOTH,{split:[["CHIP","Social media seems split on that one."],["MARV","Some folks online are actually defending that call, Chip."],["CHIP","Lot of accounts suddenly very interested in the rulebook tonight."]],
@@ -2786,7 +2787,7 @@ function burst(kind,ctx,n){
     },delay/SP());made++;
   }
   // virality feeds heat
-  if(kind!=='legit'&&kind!=='ms'&&n>=7){const v=Math.round((n-6)*0.5);if(v>0){S.viral=(S.viral||0)+v;setTimeout(()=>{if(S===S0&&!S.over)addHeat(v);},delay*0.6/SP());}}
+  if(kind!=='legit'&&kind!=='ms'&&n>=7){const v=Math.round((n-6)*0.5);if(v>0){S.viral=(S.viral||0)+v;setTimeout(()=>{if(S===S0&&!S.over)v77Heat(v,'📱 Meme went around');},delay*0.6/SP());}}
   return made;
 }
 let boothTimer=null;
@@ -3521,7 +3522,7 @@ async function resolve(kp,call,pace){
     {const ovH=overruled?estHeat(call,kp):0;let pre=0;
      if(overruled)pre=Math.round(ovH*0.5);else if(effective)pre=(legit||hc<0)?hc:Math.round(hc*dmK);else if(kp.foul&&ih)pre=Math.round(ih*defMult(null,kp,false));
      if(v72tax)pre+=v72tax.h;
-     S.v74pre={amt:0,acc:0,call,hc,ih,ovH};if(pre){addHeat(pre);S.v74pre.amt=pre;}hud();}
+     S.v74pre={amt:0,acc:0,call,hc,ih,ovH};if(pre){v77Heat(pre,'card');S.v74pre.amt=pre;}hud();}
     const v76Line=v76CardTags(V76C,hc,dmD,dmK);hud();
     const taxLine=v72tax?`<div class="otax">🧾 Stand tax +${v72tax.h}🔥 · ${v72tax.why.join(' + ')} · ${v72tax.who==='house'?'Vivian':'Lenny'} noticed</div>`:'';
     v74Pin(pr,false);
@@ -3585,7 +3586,7 @@ async function resolve(kp,call,pace){
       if(kp.cam!=='BLOCKED'&&(kp.cam==='CLOSE'||rnd()<0.5)&&call!=='clock'){
         if(clipBlocked())modRemove(ctx);else{S.clips++;
         if(S.clips===2||S.clips===4||S.clips>=CLIPS_MAX)post('tp',pickU(POSTS.thread,{call:CNAME[call]}),800,{hot:true});
-        if(S.clips>=CLIPS_MAX&&!S.front){S.front=true;post('tp','Evidence thread hits the FRONT PAGE. A reporter is asking questions.',4000);addHeat(10);}}
+        if(S.clips>=CLIPS_MAX&&!S.front){S.front=true;post('tp','Evidence thread hits the FRONT PAGE. A reporter is asking questions.',4000);v77Heat(10,'🧵 Evidence thread hit the front page');}}
       }
     } else S.shady++;
     v74Add((legit||h<0)?h:Math.round(h*dmK));if(!legit&&h>0&&call!=='clock'&&activeDefs().length)defend(bctx(kp,call),kp,call,Math.round(h*dmK),phantomK);
@@ -4262,7 +4263,7 @@ return api;})();
 const ANN={chip:{id:'chip',name:'Chip Dalton',role:'play-by-play',base:9000,blurb:'Chip calls your shadiest flags "textbook mechanics" on the postgame recap. Winks at the camera. Subtly.'},
   marv:{id:'marv',name:'Marv Kettleman',role:'analyst',base:10500,blurb:'Marv, the loudest critic on the crew, suddenly loves the crew. Winks at the camera. Not subtly.'}};
 const ANN_SLOT=[1,1.05,1.15,1.3,1.35,1.4,1.5];
-const annPrice=(id,live)=>{const b=Math.round(ANN[id].base*(ANN_SLOT[(MATCH&&MATCH.slot)||0]||1)/500)*500;if(!live)return b;/* v76 live booth: 25% of the postgame price, +50% per use this game */return Math.round(b*0.25*(1+0.5*((S&&S.v76&&S.v76.boothN)||0))/250)*250;};
+const annPrice=(id,live)=>{const b=Math.round(ANN[id].base*(ANN_SLOT[(MATCH&&MATCH.slot)||0]||1)/500)*500;if(!live)return b;/* v76 live booth: 25% of the postgame price; v77: base*(1+0.5*uses) for THIS announcer */const lb=Math.round(b*0.25/250)*250;return Math.round(lb*(1+0.5*v77Uses('booth',id))/25)*25;};
 const annOwned=()=>(S&&S.ann||[]).map(a=>a.id);
 function annRow(row){return v76AnnLiveRow(row)+annRow0(row);}
 function annRow0(row){const a=(S.ann||[]);if(!a.length)return '';return row('🎙 Bought the booth',a.map(x=>ANN[x.id].name.split(' ')[0]+' $'+x.price.toLocaleString()).join(' + ')+(S.winkGate?' · 🚨 #WinkGate':' · 😉 spun it'));}
@@ -4505,7 +4506,7 @@ async function boothRecap(){if(P.get('recap')==='0'||!S||!$('#brc'))return;const
   const next=()=>{if(done)return;i++;if(i>=steps.length){end();return;}show();};
   const end=()=>{if(done)return;done=true;clearTimeout(timer);cancelAnimationFrame(raf);el.hidden=true;el.onclick=null;$('#brskip').onclick=null;AU.duck(0);
     S.recapN=steps.length;S.recapLines=steps.map(s=>(s.sp==='chip'?'CHIP: ':'MARV: ')+s.txt);
-    if(own.length){if(S.winkGate){addHeat(14);post('sq','the announcer WINKED at the camera after calling that "textbook mechanics" 💀 #WinkGate',3000,{hot:true,key:'winkgate'});post('tp','[Megathread] #WinkGate: frame-by-frame of the postgame wink. Who paid the booth?',2000,{hot:true,key:'winkgate2'});}
+    if(own.length){if(S.winkGate){v77Heat(14,'😉 #WinkGate');post('sq','the announcer WINKED at the camera after calling that "textbook mechanics" 💀 #WinkGate',3000,{hot:true,key:'winkgate'});post('tp','[Megathread] #WinkGate: frame-by-frame of the postgame wink. Who paid the booth?',2000,{hot:true,key:'winkgate2'});}
       else S.heat=Math.max(0,S.heat-4*own.length);}
     res();};
   el.onclick=e=>{if(e.target.closest('#brskip'))return;next();};$('#brskip').onclick=e=>{e.stopPropagation();end();};
@@ -5294,10 +5295,10 @@ async function gagSigns(){const {img,signs}=signsImg();booth(pick([['CHIP','Let\
   const s=pick(signs);post('sq',`the "${s[0]} ${s[1]}" sign in section 112 deserves a contract`,800,{hot:true,key:'sign:'+s[0]});S.gags=(S.gags||0)+1;}
 async function gagWallet(){const img=walletImg();booth(['CHIP','Looks like somebody dropped a wallet on the field… is that a poker chip?']);
   await gagShow(`<div class="cogag"><div class="cobar">🎥 SKYCAM · LIVE</div><img src="${img}" alt="dropped wallet"><div class="cocap"><b>MARV:</b> Chip, those say "THE HOUSE" on them.<br><b>CHIP:</b> Seventy-Seven is… picking it up very quickly.</div><div class="skip">tap to continue</div></div>`,3400);
-  addHeat(Math.round(3*HEAT_MULT/1.5));post('sq','did ref #77 just drop a wallet full of HOUSE CHIPS on the 30 yard line?? 🎰',2000,{hot:true,rate:2});charMaybe('flip',{});S.gags=(S.gags||0)+1;}
+  v77Heat(Math.round(3*HEAT_MULT/1.5),'🎰 Wallet clip went around');post('sq','did ref #77 just drop a wallet full of HOUSE CHIPS on the 30 yard line?? 🎰',2000,{hot:true,rate:2});charMaybe('flip',{});S.gags=(S.gags||0)+1;}
 async function gagRefCam(){let i=[0,1,2,3,4,5].filter(k=>!RC_USED.includes(k));if(!i.length){RC_USED.length=0;i=[0,1,2,3,4,5];}const k=pick(i);RC_USED.push(k);const L=REFCAM[k];
   await gagShow(`<div class="cogag mic"><div class="cobar">🎤 REF CAM · MIC'D UP · ${MATCH.net||'GBN'} EXCLUSIVE</div><div class="corc">${L.map(l=>`<div class="rcl"><b>${l[0]}</b><span>${l[1].replace(/</g,'&lt;')}</span></div>`).join('')}</div><div class="cocap"><b>CHIP:</b> …and that's why we don't usually mic up the officials.</div><div class="skip">tap to continue</div></div>`,4200);
-  if(k===2||k===4){addHeat(Math.round(2*HEAT_MULT/1.5));post('tp','[Clip] Ref #77 mic\'d up: "tell Lenny I said the under" — the network muted it 2 seconds too late',1500,{hot:true});}
+  if(k===2||k===4){v77Heat(Math.round(2*HEAT_MULT/1.5),'🎤 Ref-cam clip leaked');post('tp','[Clip] Ref #77 mic\'d up: "tell Lenny I said the under" — the network muted it 2 seconds too late',1500,{hot:true});}
   else post('sq','the ref #77 mic\'d up segment is the funniest thing the league has ever aired by accident',700,{hot:true});S.gags=(S.gags||0)+1;}
 async function gagQ(q){if(P.get('gags')==='0')return;const f=P.get('gag');
   if(f){if(q===2&&f==='signs')return gagSigns();if(q===2&&f==='wallet')return gagWallet();if(q===4&&f!=='refcam')return f==='wallet'?gagWallet():gagSigns();return;}
@@ -5362,7 +5363,7 @@ function lateSwing(prev,st,mine){S.swings=(S.swings||0)+1;if(S.swings>4)return;c
   const L=(typeof CHARS!=='undefined')&&CHARS.find(x=>x.id==='parlay');if(L)post(L.plat,f(pick(LARRY_SW)),1200,{handle:L.handle,av:charAv(L),tell:L.tell,hot:true,key:'larrySw'+S.swings});
   booth(pick([['MARV','And THAT, Chip, is what the window people call a bad beat.'],['CHIP','Somewhere a sportsbook just exhaled.'],['MARV','I don\'t gamble, Chip, but I felt that one in my wallet.']]));
   if(!favLost)lower('🚪 BACKDOOR WATCH · '+A.ab+' −'+s+' NOW COVERING');else lower('💔 BAD BEAT · '+H.ab+' +'+s+' NOW COVERING');
-  if(mine){addHeat(Math.round(4*HEAT_MULT/1.5));S.swMine=(S.swMine||0)+1;memePost({},'badbeat');}
+  if(mine){v77Heat(Math.round(4*HEAT_MULT/1.5),'💔 Bad-beat meme');S.swMine=(S.swMine||0)+1;memePost({},'badbeat');}
   S.bdB=mine&&inside(margin())?Math.round(PAY*0.2/500)*500:0;}
 MEMES.parlay.caps.push(["","11 legs hit. leg 12 was the spread. ref #77 had other plans",20],["","bad beat: covered for 59 minutes, lost it to one flag",20]);
 MEMES.vegas.caps.push(["ref #77 with 2 min left","deciding which side of the spread gets to be happy",20]);
@@ -5438,10 +5439,10 @@ async function game(){
     if(r==='clock'||S.clock<=0){await recapFlush('q');await quarterBreak();}
     else if(S.q===4&&S.clock<=120&&!S.tmw){await recapFlush();S.tmw=1;flash('TWO-MINUTE WARNING','info',1600);lower('TWO-MINUTE WARNING · '+scoreLine(S.score),'#ffd23f');await wait(1000);await adBreak('2min');}
   }
-  if(S.over!=='fired')await recapFlush('end');sbClear();S.phase='done';hud();hideLower();
+  v77Gun();if(S.over!=='fired')await recapFlush('end');sbClear();S.phase='done';v77Gun();hideLower();
   if(S.over!=='fired'){flash('FINAL','info',0);await statsGfx('FINAL',3200);await favorGfx('FINAL',3400);}
   else{flash('EJECTED','to',0);lower(refWho()+' has been removed from the game by the league office.','#d62a2a');await wait(1800);}
-  await boothRecap();endScreen();
+  v77Gun();await boothRecap();v77Gun();endScreen();
 }
 
 /* ---------- graphics ---------- */
@@ -5470,7 +5471,7 @@ function v74Pin(pr,pending){try{if(!pr){S.sbPin=null;return;}let dd,sp='';
   if(pr.kind==='TD')dd='TOUCHDOWN';else if(pr.kind==='SAF')dd='SAFETY';
   else{const s='BALL ON '+spotTxt(pr.yl,pr.poss);if(pr.kind==='TO'||pr.kind==='DOWNS'){dd='1ST & '+(pr.togo>=100-pr.yl?'GOAL':pr.togo);sp=s;}else{dd=ord(Math.min(4,pr.down)).toUpperCase()+' & '+(pr.togo>=100-pr.yl?'GOAL':pr.togo);sp=s;}}
   if(!pending)S.v74lastPr={kind:pr.kind,yl:pr.yl,down:pr.down,togo:pr.togo,poss:pr.poss};S.sbPin={dd,sp:pending?(sp?sp+' · ':'')+'CALL PENDING':sp,sc:{home:pr.sc.home,away:pr.sc.away},poss:pr.poss,pending:!!pending};hud();}catch(e){S.sbPin=null;}}
-function v74PinApply(){if(!S||!S.sbPin)return;const p=S.sbPin;const de=$('#decide');if(de&&!de.hidden&&!de.classList.contains('out'))return;
+function v74PinApply(){if(!S||!S.sbPin)return;if(S.over||S.phase==='done'){S.sbPin=null;return;}/* v77: after the gun the scorebug reads S.score only */const p=S.sbPin;const de=$('#decide');if(de&&!de.hidden&&!de.classList.contains('out'))return;
   $('#bdd').textContent=p.dd;$('#bspot').textContent=p.sp;$('#sA').textContent=p.sc.away;$('#sH').textContent=p.sc.home;
   $('#btA').classList.toggle('has',p.poss==='away');$('#btH').classList.toggle('has',p.poss==='home');}
 function hud(){
@@ -7936,7 +7937,7 @@ function endScreen(){hbSettle();
   if(S.over==='fired')caught=true;
   else if(S.heat>=80||S.winkGate||S.dblCaught){caught=rnd()<Math.max((S.heat-70)/40,S.winkGate?0.18:0,S.dblCaught?0.35:0);review=caught?'League review: they found the texts. Payout seized.':'League review: "inconclusive." You walk out sweating.';}
   S.lmA=lmAdj();const housePay=hit?Math.max(0,S.job.pay-(S.payCut||0)-(S.chCut||0)+S.lmA)+(S.heat<40?BONUS:0)+(S.bdB||0):0;const msN=S.ms.filter(x=>x.hit).length,msPay=S.ms.filter(x=>x.hit).reduce((a,x)=>a+x.reward,0);
-  const chPay=(S.chCash||0)+(hit?(S.chBonus||0):0);let pay=caught?0:housePay+msPay+chPay;const V76P=v76Settle(pay);pay=V76P.pay;
+  const chPay=(S.chCash||0)+(hit?(S.chBonus||0):0);let pay=caught?0:housePay+msPay+chPay;const V76P=v77Settle(pay);pay=V76P.pay;const V77=v77PayHTML({hit,caught,housePay,msPay,msN,chPay,V:V76P});
   let v,cls;
   if(S.over==='fired'){v='FIRED. You are a meme template now.';cls='bad';}
   else if(caught){v='CAUGHT.';cls='bad';}
@@ -7949,26 +7950,18 @@ function endScreen(){hbSettle();
   const RT=rateGame({m,hit,caught});
   const row=(a,b)=>`<div class="row"><span>${a}</span><b>${b}</b></div>`;
   $('#endbody').innerHTML=`
-   <div class="gbn"><i>${MATCH.net||'GBN'}</i> ${MATCH.brandU||'IFL ON GBN'} · ${S.over==='fired'?`GAME STOPPED · ${ord(S.q)} ${fmtClock(S.clock)}`:'FINAL'}</div>
+   <div class="gbn"><i>${MATCH.net||'GBN'}</i> ${MATCH.brandU||'IFL ON GBN'} · ${S.over==='fired'?`GAME STOPPED · ${ord(S.q)} ${fmtClock(S.clock)}`:'FINAL'} · ${T('away').ab} ${v77Final().away} – ${T('home').ab} ${v77Final().home}</div>
    <div class="verdict ${cls}">${v}</div>
    <div class="tag">${review||(hit?'The House thanks you for your service.':'Vivian Lake has left you on read.')}</div>
    ${ratingHTML(RT)}
    <div class="card"><h3>Final stats</h3><table class="st">${statRows()}</table>${plRows()}
-     <div class="row" style="margin-top:6px"><span>Margin vs. spread</span><b>${m>0?T('home').ab+' by '+m:m<0?T('away').ab+' by '+(-m):'Tied'} · needed ${jobWant()} ${hit?'✅':'❌'}</b></div>
+     <div class="row" style="margin-top:6px"><span>Result vs. your job</span><b class="v77m">${v77Margin(m)}</b></div>
      <div class="row"><span>🚩 Flags by Ref #77</span><b>${S.shady+S.legit} (${S.legit} legit · ${S.shady} questionable · ${S.overruled} overruled)</b></div>
      <div class="row"><span>Missed fouls</span><b>${S.ignored}</b></div>
      <div class="row"><span>Key plays</span><b>${S.keys}</b></div></div>
-   <div class="card"><h3>Payday</h3>
-     ${row('The House payout','$'+(caught?0:housePay).toLocaleString()+(S.payCut&&hit?` (−$${S.payCut.toLocaleString()} fee)`:'')+(S.chCut&&hit?` (−$${S.chCut.toLocaleString()} review penalty)`:''))}
-     ${chPay?row('🎧 Under-the-hood "tips"','$'+(caught?0:chPay).toLocaleString()):''}
-     ${(S.chLog||[]).length?row('🟥 Replay reviews',(S.chLog||[]).map(x=>({stand:'stood',reverse:'reversed',confirm:'confirmed'}[x.d])+(x.bad?' ⚠':'')).join(' · ')):''}
-     ${S.lmA?row(`📈 Closing line ${T('away').ab} −${S.lline} (opened −${sprS()})`,`${hit?(S.lmA>0?'+':'−')+'$'+Math.abs(S.lmA).toLocaleString():'n/a (missed)'} · ${S.lmA<0?'steamed toward your side: books smelled it':'moved against you: hazard pay'}`):''}
-     ${S.bdB&&hit?row('🚪 Backdoor bonus','$'+S.bdB.toLocaleString()):''}
-     ${row('League milestone bonus','$'+(caught?0:msPay).toLocaleString()+` (${msN}/${S.ms.length})`)}
-     ${V76P.row(row)}${row('<b>Total</b>','$'+pay.toLocaleString()+(V76P.take?' (after cover)':''))}
-     ${hbRow(row)}${annRow(row)}${row(((S.ann||[]).length?'🛡 Spent on defenders + booth':'🛡 Spent on defenders')+(V76P.short?' + cover':''),'−$'+S.spent.toLocaleString()+((S.defs||[]).length?` (${S.defs.length} hired${S.exposedN?` · ${S.exposedN} exposed`:''})`:''))}
-     ${row('<b>Net after spending</b>',`<span style="color:${pay-S.spent>=0?'#4cd387':'#ff6b5a'}">${pay-S.spent<0?'−':''}$${Math.abs(pay-S.spent).toLocaleString()}</span>`)}
-     ${row('💵 Side cash now',`$${(S.bank+pay).toLocaleString()} (started $${(__cwN(MATCH.bank,BANK0)).toLocaleString()})`)}
+   ${V77.payHTML}${V77.cashHTML}
+   <div class="card"><h3>Heat &amp; the night</h3>
+     ${hbRow(row)}
      ${row('Final heat',Math.round(S.heat)+' (peak '+Math.round(S.peak)+')')}
      ${row('Highest tier','Tier '+(tierMax+1)+' · '+TIERS[tierMax])}
      ${row('Threadpile evidence',Math.min(S.clips,CLIPS_MAX)+'/'+CLIPS_MAX+' clips'+(S.front?' · front page':''))}
@@ -7980,7 +7973,7 @@ function endScreen(){hbSettle();
    <div class="card"><h3>Top posts</h3>${top.map(p=>`<div class="post"><div class="meta"><span class="plat ${p.plat}">${PLAT[p.plat]||p.plat}</span><span>${p.handle}</span><span>♥ ${fmtN(p.likes)}</span></div><div>${p.text.replace(/</g,'&lt;')}</div></div>`).join('')}</div>
    ${MATCH.season?'<button class="btn" id="again">Week recap →</button>':'<button class="btn" id="again">Run it back</button><button class="btn ghost" id="toMenu">Main menu</button>'}`;
   show('end');$('#again').onclick=()=>MATCH.season?showRecap():show('pregame');if($('#toMenu'))$('#toMenu').onclick=()=>showTitle();
-  window.CW.result={rating:RT,ats:atsOf(m),flags:(S.legit||0)+(S.shady||0),ch:S.chLog||[],chPay,mobDefy:S.mobDefy||0,verdict:v,caught,front:S.front,season:!!MATCH.season,margin:m,hit,heat:S.heat,peak:S.peak,pay,plays:S.plays,over:S.over,shady:S.shady,nomMin:S.nom/60000,score:{...S.score},keys:S.keys,plan:S.plan,keyDurs:S.keyDurs,decLog:S.decLog||[],ms:S.ms.map(x=>({id:x.id,hit:x.hit,v:msVal(x),t:x.target,helped:x.helped})),extra:{call:S.callInfo,fv:JSON.parse(JSON.stringify(S.fv)),payCut:S.payCut,spent:S.spent,net:pay-S.spent,bank:S.bank+pay,defs:(S.defs||[]).map(h=>h.id+h.half+(h.exposed?'x':'')),exposed:S.exposedN||0,defPosts:S.defPosts||0,bfHeat:S.bfHeat||0,cooled:S.cooled||0,clipsBlocked:S.clipsBlocked||0,noFunds:S.noFunds||0},ps:JSON.parse(JSON.stringify(S.ps)),job:{...S.job}};if(MATCH.season){try{seasonApply(window.CW.result);}catch(e){console.error('seasonApply',e);}}
+  window.CW.result={rating:RT,ats:atsOf(m),flags:(S.legit||0)+(S.shady||0),ch:S.chLog||[],chPay,mobDefy:S.mobDefy||0,verdict:v,caught,front:S.front,season:!!MATCH.season,margin:m,hit,heat:S.heat,peak:S.peak,pay,plays:S.plays,over:S.over,shady:S.shady,nomMin:S.nom/60000,score:v77Final(),keys:S.keys,plan:S.plan,keyDurs:S.keyDurs,decLog:S.decLog||[],ms:S.ms.map(x=>({id:x.id,hit:x.hit,v:msVal(x),t:x.target,helped:x.helped})),extra:{call:S.callInfo,fv:JSON.parse(JSON.stringify(S.fv)),payCut:S.payCut,spent:S.spent,net:pay-S.spent,bank:Math.max(0,S.bank+pay),houseDebt:V76P.debt||0,adCash:S.adCash||0,ledger:{pay:V77.pay,now:V77.now,other:V77.other},defs:(S.defs||[]).map(h=>h.id+h.half+(h.exposed?'x':'')),exposed:S.exposedN||0,defPosts:S.defPosts||0,bfHeat:S.bfHeat||0,cooled:S.cooled||0,clipsBlocked:S.clipsBlocked||0,noFunds:S.noFunds||0},ps:JSON.parse(JSON.stringify(S.ps)),job:{...S.job}};if(MATCH.season){try{seasonApply(window.CW.result);}catch(e){console.error('seasonApply',e);}}
 }
 function show(id){if(id!=='game'){hideMemesNow();if(S)S.memeQ=[];}for(const s of ['title','pregame','game','end','hub','recap','send'])$('#'+s).hidden=s!==id;if(id==='game')resize();}
 $('#startBtn').onclick=()=>{if(MATCH.season||!MATCH.job0)setMatch(QUICK);hideMemesNow();$('#memebtn').classList.remove('on');show('game');window.CW.result=null;game().catch(e=>console.error(e));};
@@ -8748,7 +8741,7 @@ async function requestAd(opts={}){
 })();
 
 function grantAdReward(kind){
-  if(kind==='cash'){const n=2000;if(S){S.bank=(S.bank||0)+n;S.chCash=(S.chCash||0)+n;}
+  if(kind==='cash'){const n=2000;if(S){S.bank=(S.bank||0)+n;S.adCash=(S.adCash||0)+n;}
     try{flash('+$2,000 SIDE CASH','ok',1600);}catch(e){}
     try{if($('#shcash'))$('#shcash').textContent='$'+(S.bank||0).toLocaleString();}catch(e){}
     return n;}
@@ -8977,7 +8970,7 @@ function chReview(kp,call,info,ctx){return new Promise(res=>{
     cvx.fillStyle='#fff';cvx.font='700 16px ui-monospace,monospace';cvx.textAlign='left';cvx.fillText(`${(S.anim&&S.anim.t*2.3||0).toFixed(2)}s  ◀◀ ▶ ▶▶  ½×`,14,404);cvx.restore();
     const sec=Math.floor((now-t0)/1000*(AUTO?1:1.6));$('#chtime').textContent=`${Math.floor(sec/60)}:${String(sec%60).padStart(2,'0')}`;
     if(!AUTO&&sec>=14&&!ctx.longT){ctx.longT=1;$('#chboo').textContent="🎙 CHIP: He's been under there a while…";booth(['CHIP',"He's been under there a while…"]);}
-    if(!AUTO&&sec>=30&&!ctx.longT2){ctx.longT2=1;$('#chboo').textContent='🎙 MARV: Is he… texting under there?';addHeat(2);post('sq','ref 77 has been under the hood long enough to file taxes',200,{hot:true});}
+    if(!AUTO&&sec>=30&&!ctx.longT2){ctx.longT2=1;$('#chboo').textContent='🎙 MARV: Is he… texting under there?';v77Heat(2,'🎙️ Marv: texting under the hood?');post('sq','ref 77 has been under the hood long enough to file taxes',200,{hot:true});}
     chRAF=requestAnimationFrame(tv);};
   chRAF=requestAnimationFrame(tv);
   // bubbles arrive over the replay
@@ -9007,7 +9000,7 @@ async function chApply(kp,call,info,ctx,d){
     if(m.id==='house'){if(ok){S.chBonus=(S.chBonus||0)+m.bon;lines.push(['📱 Vivian Lake',`"Lovely." +$${m.bon.toLocaleString()} tip if the number lands`,1]);}else{S.chCut=(S.chCut||0)+m.cut;lines.push(['📱 Vivian Lake',`"Hm." −$${m.cut.toLocaleString()} from your payout`,0]);}}
     if(m.id==='mob'){if(ok){S.chCash=(S.chCash||0)+m.env;lines.push([`📱 ${m.name}`,`"Good boy." +$${m.env.toLocaleString()} envelope in your locker`,1]);}
       else{S.mobDefy=(S.mobDefy||0)+1;const L=chMobLvl();lines.push([`📱 ${m.name}`,L>=3?'"..." (read 9:41 PM). Threat level '+L:`"Wrong answer." Threat level ${L}`,0]);if(L>=2){h+=2+L;post('tp',pick(['someone posted ref 77\'s license plate in the thread. mods removed it. too late','anonymous tip: ref #77\'s burner number is circulating']),600,{hot:true});}}}}
-  addHeat(h);
+  v77Heat(h,'🎥 Replay review: '+({stand:'call stands',reverse:'reversed',confirm:'confirmed'}[d]||d));
   // favor meter: overturns count as calls
   const helped=reverse?H:other(H);if(bad){S.fvInv[helped]=(S.fvInv[helped]||0)+(reverse?30:18);fvUI();favorReact();}
   const ctxB=bctx(kp,info.effective?call:(kp.foul||'holding'));
@@ -12538,16 +12531,16 @@ function v76Tag(head,sub,hot){return `<div class="v76tag${hot?' hot':''}"><b>${h
 function o76Why(c){return c.big?'it wiped out a big play/turnover: too flagrant to sell':'no cover on invented non-hold flags (flagrant)';}
 function v76Infl(id){for(const d of V76_INFL)if(d.id===id)return d;return null;}
 function v76Scale(){return (typeof PAY==='number'&&PAY>0?PAY:25000)/25000;}
-function v76InflPrice(d){const v=v76S();return Math.round(d.base*v76Scale()*(1+0.5*(v?v.inflN:0))/50)*50;}
+function v76InflPrice(d){/* v77: base*(1+0.5*uses) for THIS influencer */const b=Math.round(d.base*v76Scale()/50)*50;return Math.round(b*(1+0.5*v77Uses('infl',d.id))/25)*25;}
 function v76BoothPlays(id){return id==='marv'?2:(S&&S.heat>=70?2:3);}
 function v76Risk(r){return r>=0.28?'HIGH':r>=0.2?'MED':'LOW';}
 /* annBuy(id,arr,half,'live') lands here: charge the payday ledger, start cover */
 function v76BoothTake(id){const v=v76S(),a=ANN[id];if(!v||!a||(v.booth&&v.booth.left>0))return false;const price=annPrice(id,true),n=v76BoothPlays(id);
-  v.owed+=price;v.boothN++;v.buys.push({kind:'booth',id:id,price:price,plays:n,play:S.plays});
+  v.owed+=price;v.boothN++;v77Use('booth',id);v.buys.push({kind:'booth',id:id,price:price,plays:n,play:S.plays});
   v.booth={id:id,left:n,n:n,used:0,cut:id==='marv'?0.45:0.5,clipK:id==='marv'?1.25:1,price:price,lines:[]};v76Log('booth_buy',0,{id:id,price:price,plays:n});return true;}
 /* annShopHTML(...,'live'): compact live-booth rows (same .shc shop rows as the v23 postgame booth) */
 function v76ShopLive(){const v=v76S();return Object.values(ANN).map(a=>{const p=annPrice(a.id,true),n=v76BoothPlays(a.id);
-  return `<div class="shc ann" data-id="ann:${a.id}"><img class="sha" src="${annAv(a.id)}" alt=""><div class="shi"><div class="shn">${a.name} <span class="plat gz">LIVE</span></div><div class="shm">${a.role} · on air now</div><div class="shs"><span>🎙️ ${n} key plays</span><span>🧊 −${Math.round((1-(a.id==='marv'?0.45:0.5))*100)}% heat</span><span class="r${a.id==='marv'?'HIGH':'MED'}">⚠ clip risk</span></div></div><button class="shbuy" type="button" data-id="ann:${a.id}">$${p.toLocaleString()}<small>${v&&v.boothN?'price up ↑':'from payday'}</small></button></div>`;}).join('');}
+  return `<div class="shc ann" data-id="ann:${a.id}"><img class="sha" src="${annAv(a.id)}" alt=""><div class="shi"><div class="shn">${a.name} <span class="plat gz">LIVE</span></div><div class="shm">${a.role} · on air now</div><div class="shs"><span>🎙️ ${n} key plays</span><span>🧊 −${Math.round((1-(a.id==='marv'?0.45:0.5))*100)}% heat</span><span class="r${a.id==='marv'?'HIGH':'MED'}">⚠ clip risk</span></div></div><button class="shbuy" type="button" data-id="ann:${a.id}">$${p.toLocaleString()}<small>${v77Uses('booth',a.id)?'↑ +'+50*v77Uses('booth',a.id)+'% · used '+v77Uses('booth',a.id)+'×':'from payday'}</small></button></div>`;}).join('');}
 /* resolve(): called for every key play while booth cover is active. Returns how the booth treats this call. */
 function v76Cover(kp,call,o){const v=v76S();if(!v||!v.booth||v.booth.left<=0||S.quiet||!kp.key)return null;const b=v.booth;b.left--;b.used++;
   const who=b.id==='chip'?'CHIP':'MARV';const r={big:kp.yards>=25||!!kp.turnover,id:b.id,who:who,name:ANN[b.id].name,left:b.left,m:0,kind:'none',spike:0,line:null,call:call,grade:o.hgr||null};
@@ -12564,12 +12557,12 @@ function v76CardTags(c,hc,dmD,dmK){if(!c)return '';const v=v76S();const out=[];c
       out.push(v76Tag(`🎙️ Booth cover −${sv}🔥`,`${c.who}: "${c.line}"${left}`));}
     else{v76Log('booth_cover',0,{base:Math.round(hc*dmD),after:Math.round(hc*dmK),grade:c.grade,call:c.call,cut:c.m,id:c.id});out.push(v76Tag('🎙️ Booth on your side',`${c.who}: "${c.line}"${left}`));}
     const pc=S.heat>=V76_CLIP_AT?Math.min(0.55,(0.2+(S.heat-V76_CLIP_AT)/100)*((v.booth&&v.booth.clipK)||(c.id==='marv'?1.25:1))):0;
-    if((S.heat>=V76_CLIP_AT||v76P('v76clip')==='1')&&v76Roll(pc,'v76clip')){const sp=5+(tier()>=3?2:0);addHeat(sp);v.spikes+=sp;c.spike=sp;c.spikeKind='clip';v76Log('shill_clip',sp,{id:c.id});
+    if((S.heat>=V76_CLIP_AT||v76P('v76clip')==='1')&&v76Roll(pc,'v76clip')){const sp=5+(tier()>=3?2:0);v77Heat(sp,'🎙️ Booth line clipped');v.spikes+=sp;c.spike=sp;c.spikeKind='clip';v76Log('shill_clip',sp,{id:c.id});
       out.push(v76Tag(`📼 Viewer clipped the shill +${sp}🔥`,'The paid-sounding read is all over the feed.',true));
       const t=fill(pick(V76_CLIP),{who:c.name,line:c.line});setTimeout(()=>{if(!S||S.over)return;sbPost('sq',t,{hot:true,v76:true,key:'v76clip'+S.plays,boost:900});v76Voice('clip',t,{id:c.id});},900/SP());}}
   else if(c.kind==='refuse'){v76Log('booth_refuse',0,{grade:c.grade,call:c.call,id:c.id});out.push(v76Tag('🎙️ Booth refused: flagrant flag',`${c.who}: "${c.line}" · ${c.grade==='phan'?'no cover on Phantom calls':o76Why(c)}${left}`,true));
     const pv=Math.min(0.85,0.5+Math.max(0,S.heat-40)/100);
-    if(v76Roll(pv,'v76viral')){const sp=6+(tier()>=3?3:0);addHeat(sp);v.spikes+=sp;c.spike=sp;c.spikeKind='viral';v76Log('viral',sp,{id:c.id,call:c.call});
+    if(v76Roll(pv,'v76viral')){const sp=6+(tier()>=3?3:0);v77Heat(sp,'📈 Bad call went viral');v.spikes+=sp;c.spike=sp;c.spikeKind='viral';v76Log('viral',sp,{id:c.id,call:c.call});
       out.push(v76Tag(`📈 Paid cover went viral +${sp}🔥`,'Buying cover for a flagrant flag: the clip is everywhere.',true));
       const t=fill(pick(V76_VIRAL),{who:c.name});setTimeout(()=>{if(!S||S.over)return;sbPost('tp',t,{hot:true,v76:true,key:'v76viral'+S.plays,boost:1500});v76Voice('viral',t,{id:c.id});},900/SP());}}
   else if(c.kind==='ticky'){v76Log('booth_ticky',0,{grade:c.grade,call:c.call,id:c.id});out.push(v76Tag('🎙️ No cover: Ticky-tack is below Borderline',`${c.who}: "${c.line}"${left}`));}
@@ -12615,15 +12608,15 @@ async function v76InflMaybe(kp,call,o){const v=v76S();if(!v||S.over||S.quiet||!k
   const pool=V76_INFL.filter(d=>!v.burned.includes(d.id));if(!pool.length)return;
   let two=pool.slice().sort(()=>rnd()-0.5).slice(0,2);if(pre&&v76Infl(pre)&&!two.some(d=>d.id===pre)&&pool.some(d=>d.id===pre))two=[v76Infl(pre),two[0]];
   v.offI++;v.lastOffK=S.keys;v76Log('infl_offer',0,{opts:two.map(d=>d.id),amt:amt});
-  const rows=two.map(d=>{const p=v76InflPrice(d);return `<div class="shc v76i" data-id="${d.id}"><img class="sha" src="${avURL(d,64)}" alt=""><div class="shi"><div class="shn">${d.name} <span class="plat ${d.plat}">${PLAT[d.plat]}</span></div><div class="shm">${d.handle} · ${d.kind}</div><div class="shs"><span>🧊 −${d.cool} now</span><span>🔇 ${d.plays} plays</span><span class="r${v76Risk(d.rc)}">⚠ receipt ${v76Risk(d.rc)}</span></div></div><button class="shbuy" type="button" data-id="${d.id}">$${p.toLocaleString()}<small>from payday</small></button></div>`;}).join('');
+  const rows=two.map(d=>{const p=v76InflPrice(d);return `<div class="shc v76i" data-id="${d.id}"><img class="sha" src="${avURL(d,64)}" alt=""><div class="shi"><div class="shn">${d.name} <span class="plat ${d.plat}">${PLAT[d.plat]}</span></div><div class="shm">${d.handle} · ${d.kind}</div><div class="shs"><span>🧊 −${d.cool} now</span><span>🔇 ${d.plays} plays</span><span class="r${v76Risk(d.rc)}">⚠ receipt ${v76Risk(d.rc)}</span></div></div><button class="shbuy" type="button" data-id="${d.id}">$${p.toLocaleString()}<small>${v77Uses('infl',d.id)?'↑ +'+50*v77Uses('infl',d.id)+'% · used '+v77Uses('infl',d.id)+'×':'from payday'}</small></button></div>`;}).join('');
   gfx(`<h4>📱 DAMAGE CONTROL · AFTER THAT CALL</h4><div class="v76sub">Hire an account to cool heat and drown out the shady posts. Cheap, but they sometimes post the receipt.</div><div class="v76list">${rows}</div><div class="v76foot"><button class="v76skip" type="button">Skip</button><span class="v76bar"><i></i></span></div>`);
   $('#gfx').classList.add('v76off');
   const pref=pre==='first'?two[0].id:(pre&&v76Infl(pre)?pre:null);
   const ch=await v76Choose(pre==='skip'||AUTO&&!pref?600:7000,pref);
   hideGfx();$('#gfx').classList.remove('v76off');
   const d=ch&&v76Infl(ch);if(!d){v76Log('infl_skip',0,{});return;}
-  const price=v76InflPrice(d);v.owed+=price;v.inflN++;v.buys.push({kind:'infl',id:d.id,price:price,play:S.plays});
-  const cool=Math.min(d.cool,Math.round(S.heat));addHeat(-cool);v.cooled+=cool;
+  const price=v76InflPrice(d);v.owed+=price;v.inflN++;v77Use('infl',d.id);v.buys.push({kind:'infl',id:d.id,price:price,play:S.plays});
+  const cool=Math.min(d.cool,Math.round(S.heat));v77Heat(-cool,'📱 '+d.name+' cooled it');v.cooled+=cool;
   v.infl={id:d.id,until:S.plays+d.plays,plays:d.plays,start:S.plays,sup:0,rep:0,used:[]};
   const rc=Math.min(0.65,d.rc*(1+Math.max(0,S.heat-50)/50)*(o.phantomK&&o.effective&&!o.legit?1.5:1));
   const leak=v76Roll(rc,'v76rc');if(leak)v.rcQ.push({id:d.id,at:S.plays+(v76P('v76rc')==='1'?1:rint(1,2)),price:price});
@@ -12634,7 +12627,7 @@ function v76InflPost(d,delay){const v=v76S();if(!v||!v.infl)return;const pool=d.
   sbPost(d.plat,t,{handle:d.handle,av:avURL(d,40),def:true,tell:d.tell,v76:true,key:'v76i:'+d.id+':'+t,good:true,boost:300},delay||0);}
 /* receipts leak a play or two after the hire, shown between plays on their own card */
 async function v76Receipts(){const v=v76S();if(!v||S.over||S.quiet||!v.rcQ.length)return;const due=v.rcQ.filter(x=>x.at<=S.plays);if(!due.length)return;v.rcQ=v.rcQ.filter(x=>x.at>S.plays);
-  for(const x of due){const d=v76Infl(x.id);if(!d)continue;const sp=5+(tier()>=3?2:0);addHeat(sp);v.spikes+=sp;if(!v.burned.includes(d.id))v.burned.push(d.id);if(v.infl&&v.infl.id===d.id)v.infl.until=S.plays;
+  for(const x of due){const d=v76Infl(x.id);if(!d)continue;const sp=5+(tier()>=3?2:0);v77Heat(sp,'🧾 '+d.name+' posted the receipt');v.spikes+=sp;if(!v.burned.includes(d.id))v.burned.push(d.id);if(v.infl&&v.infl.id===d.id)v.infl.until=S.plays;
     v76Log('receipt',sp,{id:d.id});const t=fill(pick(V76_RECEIPT),{h:d.handle});
     await v76Confirm(`<h4>🧾 RECEIPT LEAKED · ${d.name.toUpperCase()}</h4><div class="ohead sm">${v76Esc(d.handle)} posted the payment screenshot.</div><div class="v76tags">${v76Tag(`📱 Receipt leaked +${sp}🔥`,'"#ad from the ref??" · their cover is over',true)}</div><div class="skip">tap to continue</div>`,1900);
     sbPost('tp','[Receipts] '+t,{hot:true,v76:true,key:'v76rc:'+d.id+S.plays,boost:2500});try{burst('exposed',{dh:d.handle,price:x.price.toLocaleString()},1);}catch(e){}v76Voice('receipt',t,{id:d.id});if(S.over)return;}}
@@ -12684,6 +12677,114 @@ try{
   console.info('[CW] v76 — cover economy: live booth + influencers (payday-charged, cause-tagged heat)');
 }catch(err){console.error('[CW] v76 cover failed',err);}
 
+/* ===== v77 FIXES (Gamer v76 playtest, George-approved spec)
+   1 heat cause tags: every v76 / social-meme heat change carries a cause (shown in the heat HUD chip; result cards keep their own lines)
+   2 price escalation: base*(1+0.5*uses) per influencer / per announcer
+   3 rep-management shop: "need $X more" re-renders when side cash changes (ad reward) or the shop re-opens
+   4 end screen: itemized cash ledger that adds up, side cash clamped at $0, shortfall -> "Owed to the House", v23 vs v76 booth labels
+   5 one final-score source of truth (scorebug pin cleared at the gun)
+   6 plain "Tied 3–3 · GB +6.5 covered ✅" result line ===== */
+let V77_WHY=null;
+function v77Heat(amt,why){const p=V77_WHY;V77_WHY=why||null;try{addHeat(amt);}finally{V77_WHY=p;}}
+function v77M(n){n=Math.round(n||0);return (n<0?'−$':'$')+Math.abs(n).toLocaleString();}
+function v77Sg(n){n=Math.round(n||0);return n===0?'$0':(n<0?'−$':'+$')+Math.abs(n).toLocaleString();}
+function v77Uses(kind,id){const v=v76S();if(!v)return 0;const k=kind==='booth'?'boothUses':'inflUses';if(!v[k])v[k]={};return v[k][id]||0;}
+function v77Use(kind,id){const v=v76S();if(!v)return;const k=kind==='booth'?'boothUses':'inflUses';if(!v[k])v[k]={};v[k][id]=(v[k][id]||0)+1;}
+/* 5: the one final score. Everything that says FINAL reads this. */
+function v77Final(){return {away:S.score.away,home:S.score.home};}
+/* 6: the margin line */
+function v77Margin(m){const sc=v77Final(),A=T('away').ab,H=T('home').ab,j=S.job,x=jm(m),hit=inside(m),J=T(j.team).ab;
+  const res=m===0?`Tied ${sc.away}–${sc.home}`:m>0?`${H} won ${sc.home}–${sc.away}`:`${A} won ${sc.away}–${sc.home}`;
+  let want,verb;
+  if(j.lo<=0){/* points: covers if they win, tie, or lose by less than the spread */const pts=-j.lo+0.5;want=`${J} +${pts}`;verb=hit?'covered ✅':x<j.lo?`didn't cover ❌ (lost by ${-x})`:`missed ❌ (${J} by ${x}: too many)`;}
+  else if(j.hi>=99){want=j.lo>1?`${J} by ${j.lo}+`:`${J} win`;verb=hit?(j.lo>1?'covered ✅':'won ✅'):(x===0?'missed ❌ (tied)':x<0?`missed ❌ (${J} lost)`:`missed ❌ (${J} by ${x}, not ${j.lo}+)`);}
+  else{want=`${J} by ${j.lo}–${j.hi}`;verb=hit?'landed ✅':(x>j.hi?`missed ❌ (${J} by ${x}: too many)`:x>0?`missed ❌ (${J} by ${x}: too few)`:x===0?'missed ❌ (tied)':`missed ❌ (${J} lost)`);}
+  return `${res} · ${want} ${verb}`;}
+/* 4: v76 settle with a $0 floor on side cash */
+function v77Settle(pay){const v=S&&S.v76;const owed=v?v.owed:0;
+  if(v&&v.settled)return {pay:pay-(v.take||0),owed:owed,take:v.take||0,short:v.short||0,fromCash:v.fromCash||0,debt:v.debt||0};
+  const take=Math.min(Math.max(0,pay),owed),short=owed-take,fromCash=Math.min(short,Math.max(0,S.bank)),debt=short-fromCash;
+  if(v){v.settled=true;v.take=take;v.short=short;v.fromCash=fromCash;v.debt=debt;if(fromCash>0){S.spent+=fromCash;S.bank-=fromCash;}S.houseDebt=(S.houseDebt||0)+debt;v76Log('payday',-owed,{take:take,short:short,fromCash:fromCash,debt:debt,payBefore:pay});}
+  return {pay:pay-take,owed:owed,take:take,short:short,fromCash:fromCash,debt:debt};}
+function v77Who(b){if(b.kind==='booth')return ANN[b.id].name.split(' ')[0];const d=v76Infl(b.id);return d?d.name:b.id;}
+/* builds the Payday + Side cash cards. Every money line carries data-amt; the totals carry data-total. Tests assert they sum. */
+function v77PayHTML(o){const {hit,caught,housePay,msPay,msN,chPay,V}=o;const j=S.job;const L=[];
+  const ln=(grp,lbl,amt,sub,cls)=>`<div class="row v77l${cls?' '+cls:''}" data-g="${grp}" data-amt="${Math.round(amt)}"><span>${lbl}${sub?`<small class="v77s">${sub}</small>`:''}</span><b class="${cls==='v77start'?'':amt<0?'neg':amt>0?'pos':''}">${cls==='v77start'?v77M(amt):v77Sg(amt)}</b></div>`;
+  const tot=(grp,lbl,amt,sub)=>`<div class="row v77t" data-g="${grp}" data-total="${Math.round(amt)}"><span><b>${lbl}</b>${sub?`<small class="v77s">${sub}</small>`:''}</span><b class="${amt<0?'neg':''}">${v77M(amt)}</b></div>`;
+  const P=[];
+  if(hit){const raw=j.pay-(S.payCut||0)-(S.chCut||0)+(S.lmA||0);
+    P.push(ln('pay','The House fee',j.pay,jobWant()+' landed'));
+    if(S.payCut)P.push(ln('pay','House fee cut',-S.payCut,'halftime call'));
+    if(S.chCut)P.push(ln('pay','Replay-review penalty',-S.chCut));
+    if(S.lmA)P.push(ln('pay',`📈 Closing line ${T('away').ab} −${S.lline} (opened −${sprS()})`,S.lmA,S.lmA<0?'steamed toward your side: books smelled it':'moved against you: hazard pay'));
+    if(raw<0)P.push(ln('pay','House fee floor',-raw,'the House never bills you for a fee'));
+    if(S.heat<40&&BONUS)P.push(ln('pay','Clean-game bonus',BONUS,'heat under 40'));
+    if(S.bdB)P.push(ln('pay','🚪 Backdoor bonus',S.bdB));}
+  else P.push(ln('pay','The House payout',0,'missed the window: no fee'));
+  if(chPay)P.push(ln('pay','🎧 Under-the-hood "tips"',chPay,(S.chLog||[]).length?'replay reviews: '+(S.chLog||[]).map(x=>({stand:'stood',reverse:'reversed',confirm:'confirmed'}[x.d])+(x.bad?' ⚠':'')).join(' · '):''));
+  P.push(ln('pay','League milestone bonus',msPay,`${msN}/${S.ms.length} asks hit`));
+  const gross=housePay+msPay+chPay;
+  if(caught&&gross)P.push(ln('pay','🚨 Seized by the league',-gross,S.over==='fired'?'fired: payout seized':'league review found the texts'));
+  const vb=(S.v76&&S.v76.buys)||[];
+  if(V.owed){const items=vb.map(b=>`${b.kind==='booth'?'🎙️':'📱'} ${v77Who(b)} ${v77M(b.price)}`).join(' · ');
+    P.push(ln('pay','🎙️📱 Live cover bought during the game',-V.take,items+(V.short?` · ${v77M(V.owed)} owed, ${v77M(V.take)} from this payday, ${v77M(V.short)} more under Side cash`:'')));}
+  const payTot=(caught?0:gross)-V.take;
+  P.push(tot('pay','Payday total',payTot));
+  /* side cash ledger */
+  const C=[];const start=__cwN(MATCH.bank,BANK0),ads=S.adCash||0;const defs=(S.defs||[]),ann=(S.ann||[]);
+  const defSum=defs.reduce((a,h)=>a+h.price,0),annSum=ann.reduce((a,x)=>a+x.price,0);
+  C.push(ln('cash','Side cash at kickoff',start,'','v77start'));
+  if(ads)C.push(ln('cash','▶ Rewarded ads',ads));
+  if(defSum)C.push(ln('cash','🛡 Paid defenders',-defSum,`${defs.length} hired${S.exposedN?` · ${S.exposedN} exposed`:''}`));
+  if(annSum)C.push(ln('cash','🎙 Bought the booth · postgame recap (pregame/halftime buy)',-annSum,ann.map(x=>ANN[x.id].name.split(' ')[0]+' '+v77M(x.price)).join(' + ')+(S.winkGate?' · 🚨 #WinkGate':' · 😉 spun it')));
+  C.push(ln('cash','💰 Payday total (above)',payTot));
+  if(V.fromCash)C.push(ln('cash','🎙️📱 Live cover the payday couldn\'t cover',-V.fromCash,'paid from side cash'));
+  const now=S.bank+payTot;let other=now-(start+ads-defSum-annSum+payTot-V.fromCash);
+  if(other)C.push(ln('cash','Other side-cash moves',other));
+  C.push(tot('cash','💵 Side cash now',now));
+  let debt='';if(V.debt)debt=`<div class="row v77debt" data-debt="${V.debt}"><span>🧾 Owed to the House<small class="v77s">live cover you couldn't pay; side cash stops at $0</small></span><b class="neg">${v77M(-V.debt)}</b></div>`;
+  const vl=(S.v76&&S.v76.buys&&S.v76.buys.length)?`<div class="row v77i"><span>🎙️ Live booth / 📱 influencer effect</span><b>${S.v76.saved?`booth saved ${S.v76.saved}🔥`:'booth saved 0🔥'}${S.v76.cooled?` · cooled ${S.v76.cooled}🔥`:''}${S.v76.spikes?` · backfires +${S.v76.spikes}🔥`:''}</b></div>`:'';
+  return {pay:payTot,now:now,payHTML:`<div class="card v77pay" data-v77="pay"><h3>Payday</h3>${P.join('')}${vl}</div>`,cashHTML:`<div class="card v77cash" data-v77="cash"><h3>💵 Side cash</h3>${C.join('')}${debt}</div>`,other:other};}
+try{
+  /* 1: heat cause tags */
+  const _v77ah=addHeat;
+  addHeat=function(h){if(!h||!S)return _v77ah.apply(this,arguments);const b=S.heat;const r=_v77ah.apply(this,arguments);const d=Math.round((S.heat-b)*10)/10;
+    if(d){const why=V77_WHY;if(!S.v77h)S.v77h=[];const e={d:d,why:why,play:S.plays,ph:S.phase,heat:Math.round(S.heat)};
+      if(window.__v77dbg){try{e.st=String(new Error().stack).split('\n').slice(2,6).map(x=>x.trim().split(' ')[1]).join('<');}catch(_){} }
+      S.v77h.push(e);if(S.v77h.length>400)S.v77h.shift();if(why&&why!=='card')v77Chip(why,d);}
+    return r;};
+  let v77tmr=null;
+  window.v77Chip=function(why,d){if(S&&S.quiet)return;S.v77chip={t:`${d>0?'+':'−'}${Math.abs(Math.round(d))}🔥 ${why}`,hot:d>0,until:Date.now()+2600/Math.min(FAST||1,4)};v77ChipApply();clearTimeout(v77tmr);v77tmr=setTimeout(function(){if(S)S.v77chip=null;try{v77ChipApply();hud();}catch(e){}},2700/Math.min(FAST||1,4));};
+  /* v75 hides #tiername and #heatrow clips its children, so the cause chip is its own pill hung just under the heat pill (the 16px gap above the caption lane) */
+  window.v77ChipApply=function(){const c=S&&S.v77chip;let el=document.getElementById('v77why');const hr=$('#heatrow');
+    if(!c||Date.now()>c.until||!hr||!hr.offsetParent||!hr.getBoundingClientRect().height){if(el)el.classList.remove('on');return;}
+    if(!el){el=document.createElement('div');el.id='v77why';el.setAttribute('aria-live','polite');}
+    if(el.parentNode!==hr.parentNode)hr.parentNode.appendChild(el);
+    const pr=hr.offsetParent.getBoundingClientRect(),r=hr.getBoundingClientRect();
+    el.style.left=Math.round(r.left-pr.left)+'px';el.style.top=Math.round(r.bottom-pr.top+3)+'px';el.style.maxWidth=Math.round(Math.min(pr.width-16,330))+'px';
+    if(el.textContent!==c.t)el.textContent=c.t;el.className='on'+(c.hot?' hot':' cool');};
+  const _v77hud=hud;hud=function(){const r=_v77hud.apply(this,arguments);try{v77ChipApply();}catch(e){}return r;};
+  /* 3: ad reward re-renders an open shop */
+  const _v77gar=grantAdReward;grantAdReward=function(kind){const r=_v77gar.apply(this,arguments);try{if(S&&S.__shopRefresh)S.__shopRefresh();}catch(e){}return r;};
+  /* 5: one score at the gun */
+  window.v77Gun=function(){try{if(!S)return;S.sbPin=null;S.v74lastPr=null;hud();}catch(e){}};
+  const st=document.createElement('style');st.id='v77css';st.textContent=[
+   '#v77why{position:absolute!important;z-index:61;display:none;height:15px;line-height:15px;padding:0 7px;border-radius:8px;font-size:10px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:none;background:#2a1a0e;color:#ffd23f;box-shadow:0 0 0 1px rgba(255,210,63,.5),0 2px 6px rgba(0,0,0,.5)}',
+   '#v77why.on{display:block;animation:v77chipIn .18s ease-out}','#v77why.hot{color:#ffc2a3;background:#3a160c;box-shadow:0 0 0 1px rgba(255,110,70,.7),0 2px 6px rgba(0,0,0,.5)}','#v77why.cool{color:#aeeeff;background:#0c2230;box-shadow:0 0 0 1px rgba(110,200,255,.6),0 2px 6px rgba(0,0,0,.5)}',
+   '@keyframes v77chipIn{from{opacity:0;transform:translateY(-3px)}to{opacity:1;transform:none}}',
+   '#end .v77l small.v77s,#end .v77t small.v77s,#end .v77debt small.v77s{display:block;font-size:10.5px;font-weight:600;opacity:.75;margin-top:1px}',
+   '#end .v77l b.neg,#end .v77t b.neg,#end .v77debt b.neg{color:#ff6b5a}','#end .v77l b.pos{color:#4cd387}',
+   '#end .v77t{border-top:1px solid rgba(255,255,255,.25);margin-top:2px;padding-top:5px}',
+   '#end .v77debt{background:rgba(255,90,60,.10);border-radius:6px;padding-left:4px;padding-right:4px}',
+   '#end .v77i b{font-weight:700;font-size:11.5px}','#end .v77l>b,#end .v77t>b,#end .v77debt>b{white-space:nowrap;flex:none;margin-left:8px}'].join('\n');
+  document.documentElement.appendChild(st);
+  window.CW.v77={ok:true,settle:v77Settle,margin:v77Margin,final:v77Final,heatLog:function(){return S&&S.v77h;},price:{booth:function(id){return annPrice(id,true);},infl:function(id){return v76InflPrice(v76Infl(id));}}};
+  /* test hooks (main script is one IIFE) */
+  window.CW.v77.t={ad:function(k){grantAdReward(k||'cash');},annPrice:annPrice,v76S:v76S,INFL:V76_INFL,ANN:ANN,use:v77Use,uses:v77Uses,inflPrice:v76InflPrice,take:v76BoothTake,shopLive:v76ShopLive,margin:margin,inside:inside,T:T,jobWant:jobWant,endScreen:endScreen,heat:v77Heat,match:function(){return MATCH;},gun:function(){v77Gun();},hud:function(){hud();}};
+  window.__v77fixes=true;
+  console.info('[CW] v77 — fixes: heat cause tags, +50%/use pricing, shop re-render, cash ledger, one final score, margin wording');
+}catch(err){console.error('[CW] v77 fixes failed',err);}
+
 setMatch(QUICK);bindRefNameInputs();syncRefUI();showTitle();
 })();
 </script>
@@ -12721,5 +12822,6 @@ setMatch(QUICK);bindRefNameInputs();syncRefUI();showTitle();
 <script>window.__v74={ok:true,build:'AUDIO+HARD',audio:'v2',auVoiceCap:110,hard:true,fixes:['heat-live','scorebug-pin','gfx-social','sheet-tap']};</script>
 <script>window.__v75={ok:true,build:'MEMES+CHROME',memePack:!!window.__cwMemePack,memeNR:!!(window.__cwMemeNR&&window.__cwMemeNR.ok),chrome:!!window.__v75chrome};</script>
 <script>window.__v76={ok:true,build:'COVER',cover:!!window.__v76cover,booth:'live',influencers:4};</script>
+<script>window.__v77={ok:true,build:'FIXES',fixes:!!window.__v77fixes,items:['heat-tags','per-use-price','shop-need','cash-ledger','one-final-score','margin-line']};</script>
 </body>
 </html>
