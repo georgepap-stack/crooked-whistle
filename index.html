@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#0b0d12">
-<title>Crooked Whistle v71 CHROME</title>
+<title>Crooked Whistle v72 IMPACT</title>
 <style>
 :root{--bg:#0b0d12;--card:#1a1e27;--card2:#252a35;--ink:#f4f1e8;--dim:#9aa3b2;--whistle:#ffd23f;--hot:#ff5a3c;--ok:#4cd387;--line:#2c3240;--gbn:#2f6bff}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -1501,7 +1501,7 @@ html.gfx-tf #game.fs-tiny #tv{background:#7ec8f5;}
 #gfx td{padding:2px 2px !important;}
 </style>
 
-<!-- v71 DEPS: Ui Bot chrome page (one meter row heat/favor/gear, scorebug readable during YOUR CALL, meters hidden over Rep Mgmt, callchip only while deciding). Keep v70 memes + v69.1 chip pin. <!-- v70 DEPS: Meme pack — new formats+procedural art + caption refresh; keep v69.1 chrome/outcome/FX. <!-- v69.1 DEPS: pin #callchip below YOUR CALL into field peek (measure decide bottom). Keep v69 chrome. <!-- v69 DEPS: Ui Bot UI chrome (sticky heat+favor, #callchip, scorebug pending, gear vs SOCIAL). Keep v68 polish. <!-- v68 DEPS: keep v67 hit FX (toned shock) + name-ref + title card + subtle scare + meme uniqueness; fix orphaned fallen players, always-on heat+lean, harden outcome-field sync. FOR_GEORGE ships HTML + three.min.js. -->
+<!-- v72 DEPS: IMPACT — blind grades (teaser only, grade+heat revealed after pick), job-stakes chips, sticky heat (no passive decay), stand tax + Lenny/Vivian ping. Keep v71 chrome/v70 memes/outcome sync. --><!-- v71 DEPS: Ui Bot chrome page (one meter row heat/favor/gear, scorebug readable during YOUR CALL, meters hidden over Rep Mgmt, callchip only while deciding). Keep v70 memes + v69.1 chip pin. <!-- v70 DEPS: Meme pack — new formats+procedural art + caption refresh; keep v69.1 chrome/outcome/FX. <!-- v69.1 DEPS: pin #callchip below YOUR CALL into field peek (measure decide bottom). Keep v69 chrome. <!-- v69 DEPS: Ui Bot UI chrome (sticky heat+favor, #callchip, scorebug pending, gear vs SOCIAL). Keep v68 polish. <!-- v68 DEPS: keep v67 hit FX (toned shock) + name-ref + title card + subtle scare + meme uniqueness; fix orphaned fallen players, always-on heat+lean, harden outcome-field sync. FOR_GEORGE ships HTML + three.min.js. -->
 <script>
 /* v62: pick load order — local-first on file:// (iPhone), CDN-first on http(s). */
 window.__cwFileProto=location.protocol==='file:';
@@ -1589,7 +1589,7 @@ window.__showThreeMissing=function(msg){
       <h3>How to play</h3>
       <ul class="how">
         <li>Every down is simulated, but routine downs fast-forward. The broadcast stops on about 20 <b>Key Plays</b> (3rd/4th downs, red zone, deep shots, late spread swings, Tossman dropbacks). Flags can only be thrown on Key Plays.</li>
-        <li>Key Plays run at real speed (about 4–8 seconds). Watch to the whistle, then an <b>Outcome</b> card shows what happened and what it does to your margin. Then you decide: options like <i>"Pass interference, defense (negates INT)"</i> or <i>"Holding, offense (wipes out first down)"</i> show exactly what each call changes, its heat, and whether it's <b>✓ legit</b> or <b>✗ invented</b>. Or <b>Let it stand</b>. Use <b>🔁 Replay</b> (½ speed, free) any time. No timer.</li>
+        <li>Key Plays run at real speed (about 4–8 seconds). Watch to the whistle, then an <b>Outcome</b> card shows what happened and what it does to your margin. Then you decide: options like <i>"Pass interference, defense (negates INT)"</i> or <i>"Holding, offense (wipes out first down)"</i> show a short teaser of what each call does (e.g. <i>wipes FD</i>, <i>auto 1st</i>). Grades and heat stay <b>blind</b> until you pick. <b>House needs this flag</b> / <b>Window at risk</b> tags mark job stakes. Or <b>Let it stand</b>, but standing on a real foul, a close-up, or a play that hurts the House costs a little heat. Use <b>🔁 Replay</b> (½ speed, free) any time. No timer.</li>
         <li>Routine downs fast-forward; tap <b>⏭ Skip to next key play</b> to jump ahead.</li>
         <li>Holding wipes out a gain. PI and roughing hand out yards and a first down. Spot Fudge flips a close spot. Run Clock burns time.</li>
         <li>When a real foul happens you see it through the ref's eyes: a yellow ring and a callout like <b>"HOLDING — #75 grabbed the rusher"</b>. Calling what you saw cools heat; inventing or upgrading a call raises it; missing a visible foul raises it a little. Clean plays show a subtle <b>✓ Clean play</b> cue.</li>
@@ -2966,11 +2966,65 @@ function options(kp){
     const what=id==='clock'?'Burns about 25 extra seconds. Play stands.':`${neg?neg+'. ':''}${e.pen?e.pen.short[0].toUpperCase()+e.pen.short.slice(1)+'. ':''}${stateTxt(pr)}.`;
     const heat=callHeat(id,kp,true);
     const hg=perceived(id,kp);const gr=hg!=null?gradeOf(hg):null;
-    return {id,label,what,heat,legit,tag:legit?'saw':id==='offset'?'half':gr?({phan:'inv',ticky:'ticky',bord:'bord',defn:'defn',obv:'defn'}[gr]):'inv',grade:gr,pr};
+    const teaser=v72Teaser(kp,id,e,neg);
+    return {id,label,what,teaser,heat,legit,tag:legit?'saw':id==='offset'?'half':gr?({phan:'inv',ticky:'ticky',bord:'bord',defn:'defn',obv:'defn'}[gr]):'inv',grade:gr,pr};
   });
   list.sort((a,b)=>(b.legit-a.legit));
-  const lg={id:'letgo',label:kp.foul?'Let it go (no call)':'Let it stand',what:`${stateTxt(base)}.`,heat:ignHeat(kp),legit:!kp.foul,tag:kp.foul?'ign':'clean',pr:base};
-  list.push(lg);return list;
+  const lg={id:'letgo',label:kp.foul?'Let it go (no call)':'Let it stand',what:`${stateTxt(base)}.`,teaser:v72Teaser(kp,'letgo',null,''),heat:ignHeat(kp),legit:!kp.foul,tag:kp.foul?'ign':'clean',pr:base};
+  list.push(lg);try{v72Stakes(kp,base,list);}catch(err){}return list;
+}
+/* v72 IMPACT: blind grades — short mechanical teaser only (no grade, no heat, no full down/spot) */
+function v72Teaser(kp,id,e,neg){
+  if(id==='letgo')return kp.foul?'no flag · play stands':'no flag · play stands';
+  if(id==='clock')return 'burns ~25 sec';
+  if(id==='spot')return kp.made?'no 1st down':'gives 1st down';
+  if(id==='offset')return 'replay the down';
+  const nm={'Wipes out the INT':'wipes INT','Wipes out the fumble':'wipes fumble','Wipes out the TD':'wipes TD','Wipes out the sack':'wipes sack','Erases the turnover on downs':'wipes TOD','Wipes out the first down':'wipes FD','Gives a first down':'gives FD'};
+  const bits=[];
+  if(neg)bits.push(nm[neg]||(/gain/.test(neg)?'wipes gain':neg.toLowerCase()));
+  if(e&&e.auto1){const i=bits.indexOf('gives FD');if(i>=0)bits.splice(i,1);bits.push('auto 1st');}
+  else if(e&&e.pen&&e.replay)bits.push('\u2212'+e.pen.y+' yds');
+  return bits.join(' · ')||'flag';
+}
+/* v72 IMPACT: job stakes — flag options that flip the margin in/out of the House window (inside()+impactTxt) */
+function v72Stakes(kp,base,list){
+  if(!S||!S.job)return;
+  const mOf=pr=>pr.sc.home-pr.sc.away;
+  const eh=pr=>Math.round(epv(pr,'home'));
+  const bIn=inside(mOf(base)),bInE=inside(eh(base));let anyIn=false;
+  list.forEach(o=>{if(o.id==='letgo'||!o.pr)return;
+    const i=inside(mOf(o.pr));let k=null,t=null;
+    if(i!==bIn){k=i?'in':'out';t=i?(isFlag(o.id)?'House needs this flag':'House needs this'):'Window at risk';if(i)anyIn=true;}
+    else{const iE=inside(eh(o.pr));if(iE!==bInE){k=iE?'in soft':'out soft';t=iE?(isFlag(o.id)?'House needs this flag':'House needs this'):'Window at risk';if(iE)anyIn=true;}}
+    if(t){o.stake=t;o.stakeK=k;try{o.stakeTip=impactTxt(o.pr);}catch(err){o.stakeTip='';}}
+  });
+  const lg=list.find(o=>o.id==='letgo');
+  if(lg&&!bIn&&(anyIn||inside(margin()))){lg.stake='Window at risk';lg.stakeK='out';try{lg.stakeTip=impactTxt(base);}catch(err){}}
+}
+/* v72 IMPACT: tax on "free" stands */
+function v72StandTax(kp,base){
+  const why=[];let h=0,who='lenny',line='close';
+  if(kp.foul){why.push('real foul');h+=2;line='foul';}
+  if(kp.cam==='CLOSE'){why.push('close-up angle');h+=1;}
+  try{const bM=base.sc.home-base.sc.away;
+    if(S.job&&!inside(bM)){const xb=jm(bM),nd=xb<S.job.lo?S.job.team:other(S.job.team);
+      const pre={sc:{home:S.score.home,away:S.score.away},kind:'',yl:kp.los,poss:kp.off};
+      if(epv(base,nd)<epv(pre,nd)-0.25){why.push('hurts the House');h+=1;if(!kp.foul){who='house';line='house';}}}}catch(err){}
+  if(!why.length)return null;
+  return {h:Math.min(2,h),why,who,line};
+}
+const V72_TAX_LINES={
+  foul:['You let THAT go? The camera saw it. My guys saw it. My guys\' moms saw it.','A free pass on a real foul. Bold. Expensive, but bold.','That "no call" just cost somebody. Guess who I\'m calling.','Real foul, no flag. You\'re either blind or freelancing. Both cost extra.'],
+  close:['Close-up angle and you just… watched? I pay you to have opinions.','Doing nothing is still doing something, kid. It\'s in 4K.','They had the tight shot on you. Next time, look busy.','Camera was right there. So was your chance.'],
+  house:['Darling, "let it stand" is a decision. It was the wrong one.','The House noticed you did nothing. The House notices everything.','Standing still isn\'t neutral, sweetie. The number moved.','You had a whistle. You chose ambiance.','Let it stand? The window didn\'t.']
+};
+function v72TaxPing(t){
+  S.standTax=S.standTax||{n:0,heat:0,pings:[]};S.standTax.n++;S.standTax.heat+=t.h;
+  S.v72TaxUsed=S.v72TaxUsed||{};const L=V72_TAX_LINES[t.line]||V72_TAX_LINES.close;const pool=L.filter(x=>!S.v72TaxUsed[x]);const msg=pick(pool.length?pool:L);S.v72TaxUsed[msg]=1;
+  S.standTax.pings.push({who:t.who,msg,h:t.h,why:t.why.slice()});
+  try{post('sms',msg,240,{handle:t.who==='house'?'Vivian':'Lenny',tell:'📱 '+(t.who==='house'?'The House':'Lenny Odds'),hot:true,key:'v72tax'+S.plays});}catch(err){}
+  try{const FT=typeof FeedTabs!=='undefined'?FeedTabs:null;if(FT&&FT.note)FT.note('sms');}catch(err){}
+  try{AU.sfx('buzz');}catch(err){}
 }
 
 /* ---------- sim ---------- */
@@ -3224,13 +3278,16 @@ function openDecide(kp){AU.duck(1);
     if(o.id==='letgo'){const or=document.createElement('div');or.className='dor';or.textContent='OR';foot.appendChild(or);}
     const b=document.createElement('button');
     const kind=o.id==='letgo'?'keep':isFlag(o.id)?'flag':'nonflag';
-    b.className='dopt '+kind+' '+o.tag;b.id='d-'+o.id;b.dataset.c=o.id;b.style.animationDelay=(0.42+i*0.06)+'s';
+    b.className='dopt '+kind+' blind';b.dataset.tag=o.tag;b.id='d-'+o.id;b.dataset.c=o.id;b.style.animationDelay=(0.42+i*0.06)+'s';
     const tag=o.grade&&o.grade!=='obv'&&!o.legit?{phan:'✗ Phantom?',ticky:'◔ Ticky-tack?',bord:'◐ Borderline?',defn:'◑ Defensible?'}[o.grade]:o.legit&&o.grade?'✓ Obvious hold':{saw:'✓ You saw it',inv:'✗ Invented',half:'½ Half-invented',ign:'⚠ Real foul ignored',clean:'✓ Clean · no call'}[o.tag];
     const icon=o.id==='letgo'?(kp.foul?'🙈':'✋'):o.id==='spot'?'📏':o.id==='clock'?'⏱️':'🚩';
     const heat=o.heat<0?`<span class="dh cool">${o.heat}🧊<small>COOLS</small></span>`:o.heat===0?`<span class="dh zero">0🔥<small>NO HEAT</small></span>`:`<span class="dh">+${o.heat}🔥<small>${o.tag==='ign'?'HEAT':'~HEAT'}</small></span>`;
-    b.innerHTML=`<span class="dic">${icon}</span><span class="dbody"><span class="dl"><b>${o.label}</b><span class="dt ${o.tag}">${tag}</span></span><span class="dw">${o.what}</span></span>${heat}`;
+    const stake=o.stake?`<span class="dstake ${o.stakeK}" title="${(o.stakeTip||'').replace(/"/g,'&quot;')}">${o.stake}</span>`:'';
+    b.innerHTML=`<span class="dic">${icon}</span><span class="dbody"><span class="dl"><b>${o.label}</b></span><span class="dw">${o.teaser}${stake?' ':''}${stake}</span></span><span class="dh blind">?<small>HEAT</small></span>`;
     b.addEventListener('click',()=>{if(S.phase!=='post')return;if(S.call||S.letgo)return;
       b.classList.add('picked');el.classList.add('done');
+      /* v72: reveal grade + heat only after the pick */
+      try{const dh=b.querySelector('.dh');if(dh)dh.outerHTML=heat;const dl=b.querySelector('.dl');if(dl)dl.insertAdjacentHTML('beforeend',`<span class="dt ${o.tag}">${tag}</span>`);b.classList.add('revealed');}catch(err){}
       if(o.id==='letgo')S.letgo=true;else{S.call=o.id;if(holdG(o.id,kp)!=null)kp.readG=gradeOf(perceived(o.id,kp));if(isFlag(o.id))flash('🚩 FLAG','flag',0);if(navigator.vibrate)navigator.vibrate(25);}hud();});
     (o.id==='letgo'?foot:box).appendChild(b);
   });
@@ -3320,6 +3377,7 @@ function drawFlag(proj,toField,W,H,now){
   drawFlagCloth(x,y,sc,rot,fl,now);
 }
 function refreshHold(kp){if($('#decide').hidden)return;$('#dGrab').innerHTML=grabRows(kp);
+  if(window.__v72)return; /* v72 blind grades: replay sharpens the read, never shows grade/heat */
   for(const o of options(kp)){if(o.grade==null||o.legit)continue;const b=$('#d-'+o.id);if(!b)continue;
     b.className=b.className.replace(/\b(inv|ticky|bord|defn)\b/,o.tag);const t=b.querySelector('.dt');t.className='dt '+o.tag;t.textContent={phan:'✗ Phantom?',ticky:'◔ Ticky-tack?',bord:'◐ Borderline?',defn:'◑ Defensible?'}[o.grade];
     const h=b.querySelector('.dh');h.innerHTML=`+${o.heat}🔥<small>~HEAT</small>`;h.className='dh';b.animate([{filter:'brightness(1.6)'},{filter:'none'}],{duration:600});}}
@@ -3397,7 +3455,7 @@ async function resolve(kp,call,pace){
   let hgr=holdG(call,kp)!=null?gradeOf(holdG(call,kp)):null;
   if(effective&&!legit&&tier()>=3&&rnd()<0.25&&!['bord','defn','obv'].includes(hgr)){overruled=true;effective=false;}
   filmCool();const phantomK=!!call&&call!=='letgo'&&kp.foul!==call&&(hgr==='phan'||(hgr==null&&!['spot','clock','offset'].includes(call))||kp.yards>=25||!!kp.turnover);const dmK=(effective||overruled)&&!legit?defMult(call,kp,phantomK):1;
-  let e=effect(kp,effective?call:'letgo'),pr=project(kp,e),base=project(kp,effect(kp,'letgo'));const _rcd=rcSnap(kp,cap,off);
+  let e=effect(kp,effective?call:'letgo'),pr=project(kp,e),base=project(kp,effect(kp,'letgo'));const _rcd=rcSnap(kp,cap,off);let v72tax=null;
   if(kp.key){
     const neg=negTxt(kp,base,pr,e);
     const line1=overruled?`FLAG PICKED UP: crew chief Hank Dorsey overrules your ${CNAME[call]} call.`:effective?(e.pen?`FLAG: ${e.pen.txt}`:call==='offset'?'FLAG: Offsetting fouls.':call==='spot'?(kp.made?'📏 Ball spotted just short.':'📏 Generous spot.'):'⏱️ You keep the clock rolling.'):(kp.foul?`No flag. You let the ${CNAME[kp.foul]} go.`:'No flag. Play stands.');
@@ -3405,7 +3463,10 @@ async function resolve(kp,call,pace){
     const reveal=hgT?`<div class="oreveal">🔍 Replay shows: <b>${GRADES[hgT]}</b>${rg!==hgT?` · you read it as ${GRADES[rg].toLowerCase()}`:' · your read was right'}</div>`:'';
     const hc=effective?callHeat(call,kp):0;const ih=ignHeat(kp);const cm=compMult(call,kp);
     const heatLine=overruled?`🔥 About +${Math.round(estHeat(call,kp)*0.5)} heat: the crowd saw you get overruled`:effective?(legit?'🧊 −4 heat: a legit call earns trust':`🔥 About +${Math.round(hc*dmK)} heat${dmK<0.99?` (🛡 −${Math.round((1-dmK)*100)}% defenders)`:''}: ${call==='offset'?'half-invented':'invented'} call${cm>1.05?` (×${cm.toFixed(1)} repeat offender)`:''}`.replace(/invented call/,holdG(call,kp)!=null?GRADES[gradeOf(holdG(call,kp))].toLowerCase()+' hold'+(S.holdN?` · holding flag #${S.holdN+1} tonight`:''):'invented call')):kp.foul?(ih?`🔥 +${ih} heat: the cameras caught the missed foul`:'No heat: the camera angle hid the foul'):'No heat: clean play, no call';
-    gfx(`<h4>${overruled?'OVERRULED':effective?'🚩 THE CALL':'NO FLAG'} · RESULT</h4><div class="ohead sm">${line1}</div><div class="osub">${neg?neg+'. ':''}${stateTxt(pr)}.</div><div class="oimp ${inside(pr.sc.home-pr.sc.away)?'in':'out'}">${impactTxt(pr)}</div><div class="oheat">${heatLine}</div>${reveal}<div class="skip">tap to continue</div>`);
+    if(!effective&&!overruled)v72tax=v72StandTax(kp,base);
+    const gradeTxt=overruled?'✗ Invented · overruled':effective?(legit?'✓ Legit · you saw it':hgT?`${GRADES[hgT]} hold`:call==='offset'?'½ Half-invented':call==='spot'?'✗ Invented spot':call==='clock'?'⏱ Clock trick':'✗ Invented'):(kp.foul?'⚠ Real foul ignored':'✓ Clean · no call');
+    const taxLine=v72tax?`<div class="otax">🧾 Stand tax +${v72tax.h}🔥 · ${v72tax.why.join(' + ')} · ${v72tax.who==='house'?'Vivian':'Lenny'} noticed</div>`:'';
+    gfx(`<h4>${overruled?'OVERRULED':effective?'🚩 THE CALL':'NO FLAG'} · RESULT</h4><div class="ohead sm">${line1}</div><div class="osub">${neg?neg+'. ':''}${stateTxt(pr)}.</div><div class="oimp ${inside(pr.sc.home-pr.sc.away)?'in':'out'}">${impactTxt(pr)}</div><div class="ograde">📋 Grade: <b>${gradeTxt}</b></div><div class="oheat">${heatLine}</div>${taxLine}${reveal}<div class="skip">tap to continue</div>`);
     if(effective&&isFlag(call))flash('FLAG','flag',0);
     let left=AUTO&&THINK<2000?500:2600;S.skip=false;while(left>0&&!S.skip){await wait(50);left-=50;}hideGfx();
   }
@@ -3483,7 +3544,8 @@ async function resolve(kp,call,pace){
   }
   if(kp.key&&!kp.foul&&!effective&&!overruled){S.streak=Math.max(0,S.streak-1);
     if((kp.type==='run'&&kp.yards>=10&&rnd()<0.4)||(kp.grab>=60&&rnd()<0.45))holdBooth('nocall',{num:kp.fakeN,victim:T(kp.off).name});}
-  if(!S.over)S.heat=Math.max(0,S.heat-(kp.key?0.9:0.45));
+  /* v72 sticky heat: no passive per-play decay (was −0.9 key / −0.45 other). Heat cools only via legit calls (−4) and defenders/film. */
+  if(v72tax&&!effective&&!overruled&&!S.over){addHeat(v72tax.h);v72TaxPing(v72tax);}
   // stats
   const credit=!effective||call==='spot'||call==='clock'||call==='roughing';
   const cy=effective&&call==='roughing'?(kp.complete&&!kp.turnover?Math.max(0,kp.yards):0):yards;
@@ -11369,5 +11431,18 @@ try{window.standAllPlayers=standAllPlayers;}catch(e){}
 setMatch(QUICK);bindRefNameInputs();syncRefUI();showTitle();
 })();
 </script>
+
+<style id="v72-impact-css">
+#decide .dopt .dh.blind{color:#9aa3b5!important;background:rgba(255,255,255,.06)!important}
+#decide .dopt .dh.blind small{color:#6f7890!important}
+#decide .dstake{display:inline-block;vertical-align:1px;margin-left:4px;font-size:8.5px;font-weight:900;padding:1px 5px;border-radius:4px;white-space:nowrap;letter-spacing:.02em;line-height:1.3;background:#4d3d1d;color:#ffd27a}
+#decide .dstake.in{background:#1d4d33;color:#7dfcb0}
+#decide .dstake.out{background:#4d1d1d;color:#ff9a8a}
+#decide .dstake.soft{opacity:.8;font-weight:800}
+#decide .dw{color:#d9dfeb}
+#gfx .ograde{font-size:12px;margin-top:4px;color:#e6e9f2}
+#gfx .otax{font-size:11.5px;margin-top:3px;margin-bottom:12px;color:#ffb36b;font-weight:800}
+</style>
+<script>window.__v72=true;/* v72 IMPACT: blind grades, job stakes, sticky heat, stand tax (Gamer top-4, George greenlit) */</script>
 </body>
 </html>
