@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#0b0d12">
-<title>Crooked Whistle v78 POLISH</title>
+<title>Crooked Whistle v79 POPS</title>
 <style>
 :root{--bg:#0b0d12;--card:#1a1e27;--card2:#252a35;--ink:#f4f1e8;--dim:#9aa3b2;--whistle:#ffd23f;--hot:#ff5a3c;--ok:#4cd387;--line:#2c3240;--gbn:#2f6bff}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -1681,7 +1681,7 @@ window.__showThreeMissing=function(msg){
 (()=>{
 var __cwN=function(a,b){return a!=null?a:b;};/* v62: Safari ≤13-safe nullish + optional-chain shims */
 /* v73: build/version info. Future builds bump ONLY this line. */
-const CW_VERSION='v78',CW_BUILD='POLISH',CW_DATE='2026-10-29';
+const CW_VERSION='v79',CW_BUILD='POPS',CW_DATE='2026-10-29';
 const CW_VER_SHORT=(()=>{const p=CW_DATE.split('-');const M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];return CW_VERSION+' · '+CW_BUILD+' · '+M[(+p[1]||1)-1]+' '+(+p[2]||'');})();
 window.CW_VERSION=CW_VERSION;window.CW_BUILD=CW_BUILD;window.CW_DATE=CW_DATE;
 (function cwVerUI(){
@@ -6724,6 +6724,7 @@ function draw(dt){
     try{resize();}catch(e){}
   }
 
+  window.__cwPaintBadge=function(){try{paintBadge();}catch(e){}};window.__cwToggleSocial=function(on){toggleSocial(on);};
   function paintBadge(){
     ensureUI();
     const b=$('#socbadge');if(!b)return;
@@ -6737,6 +6738,7 @@ function draw(dt){
       if(!n)n=+(S&&S.notif)||0;
       if(!n){const f=$('#feed');if(f)n=Math.min(9,f.querySelectorAll('.fp').length);}
     }catch(e){n=+(S&&S.notif)||0;}
+    n+=(window.__v79miss|0);
     b.textContent=n>9?'9+':String(n);
     b.classList.toggle('on',n>0);
   }
@@ -10531,6 +10533,7 @@ html.gfx-pix #game.fs-tiny #heatrow #heatbar{border-radius:0;height:12px!importa
     const lookAhead = camMode==='ball' ? 3.5 : 6;
     const lookY = camMode==='ball' ? 1.0 : 0.6;
     camera.lookAt(camFocus.x + look*lookAhead, lookY, camFocus.z);
+    if(!window.__cw3)window.__cw3={cam:camera,pl:function(){return players;},cv:renderer.domElement};
   }
 
   function carrierKey(kp,t){
@@ -12849,8 +12852,8 @@ function v78Tick(){clearTimeout(V78_TICK);V78_TICK=null;const now=Date.now();
   if(el.textContent!==txt)el.textContent=txt;el.className='on '+(net>0?'hot':'cool')+(c.segs.length>1?' multi':'');
   const placed=v78Place(el);
   if(placed&&el.scrollWidth>el.clientWidth+1&&c.segs.length>1){txt=v78Text(c.segs,2);el.textContent=txt;if(el.scrollWidth>el.clientWidth+1){txt=v78Text(c.segs,1);el.textContent=txt;}}
-  const ok=placed&&v78Clear(el);
-  if(!ok){el.classList.remove('on');v78Nudge(el,false);if(c.shown){c.end+=150;c.paused=(c.paused||0)+1;}V78_TICK=setTimeout(v78Tick,150);return;}
+  const ovl=v79Overlay();const ok=placed&&!ovl&&v78Clear(el);
+  if(!ok){el.classList.remove('on');v78Nudge(el,false);if(c.shown){if(ovl){/* v79: an overlay came up: re-show later with the full dwell */c.shown=false;c.reshow=(c.reshow||0)+1;}else c.end+=150;c.paused=(c.paused||0)+1;}if(ovl)c.held=(c.held||0)+1;V78_TICK=setTimeout(v78Tick,150);return;}
   v78Nudge(el,true);
   if(!c.shown){c.shown=true;c.t0=now;c.end=now+v78Dur();(S.v78shown=S.v78shown||[]).push({txt:txt,segs:c.segs.length,t:now,heat:Math.round(S.heat)});if(S.v78shown.length>300)S.v78shown.shift();}
   else{const sh=S.v78shown&&S.v78shown[S.v78shown.length-1];if(sh&&sh.t===c.t0){sh.txt=txt;sh.segs=c.segs.length;sh.until=c.end;}}
@@ -12883,10 +12886,11 @@ function v78Gate(e){if(!e.isTrusted)return;try{v78Poll();}catch(_){return;}const
   const isDown=e.type==='pointerdown'||e.type==='touchstart'||e.type==='mousedown';
   if(e.type==='touchend'||e.type==='touchcancel'||(e.type==='pointerup'&&e.pointerType!=='mouse'))V78_TUP=now;
   /* compat mousedown fired after a touch tap is the SAME sequence, not a new press */
-  if(isDown&&(e.type!=='mousedown'||now-V78_TUP>1000)){V78_DOWN=now;V78_DOWNBLK=false;}
+  const fresh=isDown&&(e.type!=='mousedown'||now-V78_TUP>1000);if(fresh){V79_DOWNS.push(now);if(V79_DOWNS.length>12)V79_DOWNS.shift();V78_DOWN=now;V78_DOWNBLK=false;V79_DOWNEL=t;}
   for(const g of V78G){if(!g.on||!g.el||!g.el.contains(t))continue;
-    let why=null;if(now-g.t<450)why='too-soon';else if(!isDown&&!(e.type==='click'&&e.detail===0)&&(V78_DOWN<g.t||V78_DOWNBLK))why='started-before-card';
-    if(why){if(isDown)V78_DOWNBLK=true;if(!isDown){e.preventDefault();}e.stopImmediatePropagation();e.stopPropagation();
+    /* v79: a press counts only if it is a fresh press that STARTS on the card after it appeared; 450ms minimum, 1200ms when the player was tapping as it appeared; rapid tap bursts stay blocked */
+    let why=null;const lock=v79Lock(g);if(now-g.t<lock)why='too-soon';else if(fresh&&now-V79_LASTBLK<400)why='tap-burst';else if(!isDown&&!(e.type==='click'&&e.detail===0)&&(V78_DOWN<g.t||V78_DOWNBLK||!(V79_DOWNEL&&g.el.contains(V79_DOWNEL))))why='started-before-card';
+    if(why){if(isDown){V78_DOWNBLK=true;V79_LASTBLK=now;}if(!isDown){e.preventDefault();}e.stopImmediatePropagation();e.stopPropagation();
       const L=window.__v78guard=window.__v78guard||[];L.push({type:e.type,why:why,card:g.s,ms:Math.round(now-g.t),tgt:(t.className||t.id||t.tagName).toString().slice(0,30)});if(L.length>200)L.shift();}
     return;}}
 /* ---- 5: shop Done label lists every purchase ---- */
@@ -12925,6 +12929,217 @@ try{
   window.__v78fixes=true;
   console.info('[CW] v78 — polish: one heat setter + cause pills, pill anchoring, offer tap guard, end-screen width, purchase labels');
 }catch(err){console.error('[CW] v78 fixes failed',err);}
+
+/* ===== v79 POPS (George via Ui Bot: pop-ups stay visible longer without interfering with the game)
+   - one pop lane (#v79lane) between the field action and the scorebug: <=22% stage height, 12px margins,
+     never over the field action / callchip / top row / caption+banner lanes / heat pill / scorebug / lower third
+   - dwell 7s + 1s per 15 caption chars (cap 12s), thin countdown bar, press-and-hold pauses
+   - YOUR CALL / result / offer / shop / any sheet: the pop PAUSES (hidden, timer frozen) and resumes after
+   - one at a time, no fade overlap; queue keeps <=3 waiting, older extras + anything that expires unseen
+     go to the SOCIAL feed as unread (📌 missed) and bump the badge
+   - SOCIAL is a fixed overlay sheet (never scrolls the stage); quote padding; Skip/SOCIAL gap; #game hit layer
+   - one rewarded commercial per game (re-entry + double-tap proof) ===== */
+var V79={q:[],cur:null,leaving:false,miss:0,missLog:[],shown:[],log:[],keys:{},rep:0,paused:{},geomBad:0,lastT:0,okSince:0,flushed:0,trimmed:0,cleared:0};
+var V79_MAXQ=3,V79_MARGIN=12,V79_FRAC=0.22,V79_SEEN=1500;
+function v79Fast(){var f=1;try{f=+(new URLSearchParams(location.search).get('fast')||1);}catch(e){}if(!(f>0))f=1;return Math.max(1,Math.min(f,6));}
+/* 7s + 1s per 15 caption characters, capped at 12s (real seconds at normal speed) */
+function v79Dwell(txt){var n=String(txt||'').length;return Math.min(12000,Math.round(7000+1000*n/15));}
+function v79El(id){return document.getElementById(id);}
+function v79Vis(e){if(!e||!e.isConnected||e.hidden)return null;var cs=getComputedStyle(e);if(cs.display==='none'||cs.visibility==='hidden'||+cs.opacity<0.05)return null;var r=e.getBoundingClientRect();if(r.width<2||r.height<2)return null;return r;}
+var V79_V3=null;
+/* bottom edge of the field action (players) in client px, or null when no 3D field */
+function v79Action(){try{var c3=window.__cw3,T=window.THREE;if(!c3||!T||!c3.cam)return null;var cv=c3.cv;var cr=cv&&cv.getBoundingClientRect();if(!cr||cr.width<10||cr.height<10)return null;
+  if(cv&&getComputedStyle(cv).display==='none')return null;
+  var pl=c3.pl();if(!pl)return null;if(!V79_V3)V79_V3=new T.Vector3();var v=V79_V3,top=1e9,bot=-1e9,n=0;
+  for(var k in pl){var o=pl[k];if(!o||!o.root||!o.root.visible)continue;
+    for(var hy=0;hy<2;hy++){o.root.getWorldPosition(v);v.y+=hy?2.4:0;v.project(c3.cam);if(v.z>1||v.z<-1)continue;var y=cr.top+(1-(v.y+1)/2)*cr.height,x=cr.left+(v.x+1)/2*cr.width;if(x<cr.left-20||x>cr.right+20)continue;if(y<top)top=y;if(y>bot)bot=y;n++;}}
+  if(!n)return null;return {top:top,bottom:bot+8,n:n};}catch(e){return null;}}
+/* lane box: bottom = scorebug (or lower third) - 12; top = below every top chrome item and the action; height <= 22% */
+function v79Geom(){var tv=v79El('tv');if(!tv)return null;var tr=tv.getBoundingClientRect();if(tr.height<100)return null;
+  var bug=v79Vis(v79El('bug'));var bl=bug?bug.top:tr.bottom-160;var lw=v79Vis(v79El('lower'));if(lw&&lw.top<bl)bl=lw.top;
+  var lb=bl-V79_MARGIN;var tl=tr.top;
+  ['v75top','heatrow','v75cap','v78pill','callchip','fvbug','flagban'].forEach(function(id){var r=v79Vis(v79El(id));if(r&&r.bottom<lb-40)tl=Math.max(tl,r.bottom);});
+  var ban=v79El('v75ban');if(ban){[].forEach.call(ban.children,function(c){var r=v79Vis(c);if(r&&r.bottom<lb-40)tl=Math.max(tl,r.bottom);});}
+  var act=v79Action();var ab=act?act.bottom:(tr.top+tr.height*0.6);if(act&&act.bottom>tl)tl=Math.max(tl,act.bottom);else if(!act)tl=Math.max(tl,ab);
+  var top=Math.max(tl+V79_MARGIN,lb-Math.round(tr.height*V79_FRAC));return {top:top,bottom:lb,h:Math.floor(lb-top),tv:tr,act:act,max:Math.round(tr.height*V79_FRAC)};}
+function v79Lane(){var l=v79El('v79lane');if(l&&l.isConnected)return l;var tv=v79El('tv');if(!tv)return null;l=document.createElement('div');l.id='v79lane';l.className='off';l.setAttribute('aria-live','polite');tv.appendChild(l);return l;}
+function v79Place(g){var l=v79Lane();if(!l||!g)return;var t=Math.round(g.top-g.tv.top),h=Math.max(0,g.h);
+  if(l.__t!==t){l.style.top=t+'px';l.__t=t;}if(l.__h!==h){l.style.height=h+'px';l.style.setProperty('--v79h',h+'px');l.__h=h;}}
+/* why the pop can't be on screen right now ('' = free) */
+function v79Why(){if(V79.force!=null)return V79.force;/* test hook only */var C=window.__v75chrome;if(!S)return 'nogame';var g=v79El('game');if(!g||g.hidden)return 'nogame';if(S.over||S.phase==='done')return 'over';
+  var e=v79El('end');if(e&&!e.hidden)return 'over';
+  if(C&&C.callUp&&C.callUp())return 'call';var d=v79El('decide');if(d&&!d.hidden&&!d.classList.contains('out')&&!d.classList.contains('done'))return 'call';
+  if(C&&C.cardUp&&C.cardUp())return 'card';if(C&&C.modalUp&&C.modalUp())return 'modal';
+  var ids=['shop','adslot','adbrk','hb','refbrief','call','memo','chrev'];for(var i=0;i<ids.length;i++){var x=v79El(ids[i]);if(x&&!x.hidden)return 'modal';}
+  var sh=v79El('socsheet');if(sh&&sh.classList.contains('open'))return 'modal';
+  if(typeof adActive!=='undefined'&&adActive)return 'modal';if(S.flagToss)return 'flag';return '';}
+function v79Min(it){return it.kind==='meme'?92:54;}
+function v79Card(it){var p=it.p,d=document.createElement('div');d.className='v79pop '+it.kind+(it.o&&it.o.hot?' hot':it.o&&it.o.good?' good':'');
+  var plat=(typeof PLAT!=='undefined'&&PLAT[p.plat])||p.plat;
+  var hd='<div class="v79hd"><span class="plat '+p.plat+'">'+plat+'</span><b></b>'+(it.o&&it.o.tell?'<span class="tell"></span>':'')+'<span class="cnt"></span></div>';
+  if(it.kind==='meme')d.innerHTML='<img class="v79img" alt="meme"><div class="v79col">'+hd+'<div class="v79tx mtx"></div></div><div class="v79bar"><i></i></div>';
+  else d.innerHTML='<div class="v79col">'+hd+'<div class="v79tx"></div></div><div class="v79bar"><i></i></div>';
+  d.querySelector('b').textContent=p.handle||'';var tl=d.querySelector('.tell');if(tl)tl.textContent=it.o.tell;d.querySelector('.v79tx').textContent=p.text||'';
+  var im=d.querySelector('.v79img');if(im)im.src=p.img;
+  /* tap = done (seen), swipe = done, press-and-hold = countdown paused while held, tap the meme image = open it */
+  var x0=null,y0=0,t0=0,mv=0;
+  d.addEventListener('pointerdown',function(e){e.stopPropagation();x0=e.clientX;y0=e.clientY;t0=e.timeStamp||performance.now();mv=0;it.held=true;d.classList.add('held');try{d.setPointerCapture(e.pointerId);}catch(_){}});
+  d.addEventListener('pointermove',function(e){if(x0==null)return;mv=Math.max(mv,Math.abs(e.clientX-x0));var dx=e.clientX-x0;if(Math.abs(dx)>8)d.style.transform='translateX('+dx+'px)';});
+  var up=function(e,cancel){if(x0==null)return;e.stopPropagation();var dx=e.clientX-x0,dt=(e.timeStamp||performance.now())-t0;x0=null;it.held=false;d.classList.remove('held');d.style.transform='';
+    if(cancel)return;if(Math.abs(dx)>50){it.seenBy='swipe';v79Leave(it,dx<0?'outL':'out');return;}
+    if(dt<350&&mv<8){if(it.kind==='meme'&&e.target&&e.target.classList&&e.target.classList.contains('v79img')&&typeof openMeme==='function'){try{openMeme(p);}catch(_){}return;}it.seenBy='tap';v79Leave(it,'out');}};
+  d.addEventListener('pointerup',function(e){up(e,false);});d.addEventListener('pointercancel',function(e){up(e,true);});
+  d.addEventListener('click',function(e){e.stopPropagation();});
+  return d;}
+function v79Missed(it,why){if(!it||it.missed)return;it.missed=why;var p=it.p;if(!p)return;
+  try{var f=v79El('feed');var el=p.el;if(f&&el){if(!el.querySelector('.v79tag')){var t=document.createElement('span');t.className='v79tag';t.textContent='📌 missed';var m=el.querySelector('.meta');(m||el).appendChild(t);}
+      el.classList.add('v79miss');el.classList.remove('v79read');f.prepend(el);}}catch(e){}
+  V79.miss++;window.__v79miss=V79.miss;V79.missLog.push({k:it.kind,why:why,t:Date.now(),txt:String(p.text||'').slice(0,40)});if(V79.missLog.length>200)V79.missLog.shift();
+  try{if(window.__cwPaintBadge)window.__cwPaintBadge();}catch(e){}}
+function v79Leave(it,dir){if(!it||it.gone)return;it.gone=true;var d=it.el;V79.leaving=true;
+  var seen=it.seenBy||(it.seenMs>=V79_SEEN?'timer':null);if(!seen)v79Missed(it,'unseen');
+  V79.log.push({k:it.kind,dwell:it.dwell,ms:Math.round(it.seenMs),wall:Date.now()-it.t1,paused:it.pz,seen:seen,len:String(it.p.text||'').length});if(V79.log.length>300)V79.log.shift();
+  if(it.kind==='meme'&&it.p)it.p.pop=null;
+  if(V79.cur===it)V79.cur=null;
+  if(d){d.classList.add(dir||'out');setTimeout(function(){try{d.remove();}catch(e){}V79.leaving=false;v79Tick();},200);}else V79.leaving=false;}
+function v79Key(it){return it.kind+'|'+(it.p.img?String(it.p.key||'')+String(it.p.img).slice(-60):'')+'|'+it.p.text;}
+function v79Enq(it){it.t=Date.now();var k=v79Key(it);if(V79.keys[k]||(V79.cur&&!V79.cur.gone&&v79Key(V79.cur)===k)||V79.q.some(function(o){return v79Key(o)===k;})){V79.dup=(V79.dup||0)+1;(V79.dupT=V79.dupT||[]).push(String(it.p.text).slice(0,40));return;}/* same post already popped this game: it stays in SOCIAL, no repeat pop */V79.q.push(it);while(V79.q.length>V79_MAXQ){V79.trimmed++;v79Missed(V79.q.shift(),'backlog');}v79Tick();}
+function v79Show(it){var l=v79Lane();if(!l)return false;var d=v79Card(it);it.el=d;it.dwell=v79Dwell(it.p.text);it.scale=v79Fast();it.total=it.dwell/it.scale;it.rem=it.total;it.seenMs=0;it.pz={};it.t1=Date.now();
+  if(it.kind==='meme'){it.p.pop=d;try{paintCnt(it.p);}catch(e){}S.memePops=(S.memePops||0)+1;try{AU.sfx(Math.random()<0.18?'airhorn':'meme');}catch(e){}}
+  else{try{paintCnt(it.p);}catch(e){}}
+  var key=it.kind+'|'+(it.p.img?String(it.p.key||'')+String(it.p.img).slice(-60):'')+'|'+it.p.text;if(V79.keys[key])V79.rep++;V79.keys[key]=1;
+  l.appendChild(d);void d.offsetWidth;d.classList.add('in');V79.cur=it;V79.shown.push({k:it.kind,dwell:it.dwell,len:String(it.p.text||'').length,t:Date.now()});if(V79.shown.length>300)V79.shown.shift();return true;}
+function v79Fits(it,g){if(!g)return false;if(g.h<v79Min(it))return false;return true;}
+var V79_TIV=null;
+function v79Tick(){var now=performance.now(),dt=V79.lastT?Math.min(400,now-V79.lastT):0;V79.lastT=now;
+  var l=v79Lane();if(!l)return;var why=v79Why();
+  if(why==='over'||why==='nogame'){if(why==='over'){if(V79.cur){var c=V79.cur;v79Leave(c,'out');}while(V79.q.length){V79.flushed++;v79Missed(V79.q.shift(),'gameover');}}l.classList.add('off');return;}
+  var g=v79Geom();if(g)v79Place(g);
+  var it=V79.cur;
+  if(!why&&it&&!v79Fits(it,g))why='action';
+  if(!why&&!it&&V79.q.length&&!v79Fits(V79.q[0],g))why='action';
+  /* re-showing after an action/clip pause waits ~400ms of clear space (no flicker) */
+  if(!why){if(!V79.okSince)V79.okSince=now;}else V79.okSince=0;
+  var free=!why&&(now-V79.okSince>=(V79.lastWhy==='action'?400:/^(call|card|modal|flag)$/.test(V79.lastWhy||'')?700:0));if(free)V79.lastWhy='';else if(why)V79.lastWhy=why;
+  if(it){if(!free){l.classList.add('off');it.pz[why||'settle']=(it.pz[why||'settle']||0)+1;V79.paused[why||'settle']=(V79.paused[why||'settle']||0)+1;}
+    else{l.classList.remove('off');if(it.held){it.heldMs=(it.heldMs||0)+dt;}else{it.rem-=dt;it.seenMs+=dt*it.scale;}
+      var bar=it.el&&it.el.querySelector('.v79bar i');if(bar){var f=Math.max(0,it.rem/it.total);bar.style.transform='scaleX('+f.toFixed(4)+')';}
+      if(it.rem<=0)v79Leave(it,'out');}
+    return;}
+  if(V79.leaving)return;
+  if(free&&V79.q.length){v79Show(V79.q.shift());l.classList.remove('off');}else l.classList.add('off');}
+/* ---- replace the v75 meme/toast display with the pop lane ---- */
+try{
+  queueMeme=function(p){if(!S||!p)return;v79Enq({kind:'meme',p:p,o:{}});};
+  pumpMemes=function(){v79Tick();};
+  layoutMemes=function(){};
+  showMeme=function(p){v79Enq({kind:'meme',p:p,o:{}});};
+  hideMemesNow=function(){/* v79: memes pause under YOUR CALL / cards instead of being dropped */v79Tick();};
+  dismissMeme=function(){};
+  sbPost=function(plat,text,o,delay){o=o||{};delay=delay||0;
+    setTimeout(function(){if(!S||S.over&&!o.end)return;var p=post(plat,text,o.boost||0,o);if(!p)return;v79Enq({kind:'post',p:p,o:o});},delay/FAST);};
+  /* new play context: waiting chatter from the last snap goes to SOCIAL (unread); the card on screen stays */
+  sbClear=function(){var b=v79El('sbur');if(b)b.innerHTML='';var keep=[];for(var i=0;i<V79.q.length;i++){var x=V79.q[i];if(x.kind==='post'){V79.cleared++;v79Missed(x,'newplay');}else keep.push(x);}V79.q=keep;};
+  var _v79fresh=fresh;fresh=function(){var r=_v79fresh.apply(this,arguments);try{if(V79.cur&&V79.cur.el)V79.cur.el.remove();V79.cur=null;V79.q=[];V79.leaving=false;V79.miss=0;window.__v79miss=0;V79.keys={};V79.rep=0;V79.dup=0;V79.dupT=[];V79.log=[];V79.shown=[];V79.missLog=[];V79.paused={};V79.trimmed=V79.flushed=V79.cleared=0;var l=v79El('v79lane');if(l){l.innerHTML='';l.classList.add('off');}}catch(e){}return r;};
+  V79_TIV=setInterval(function(){try{v79Tick();}catch(e){}},100);
+  ['gfx','msban','decide','chrev','socsheet','shop','adslot','adbrk','end','lower'].forEach(function(id){var e=v79El(id);if(e&&window.MutationObserver)try{new MutationObserver(function(){try{v79Tick();}catch(_){}}).observe(e,{attributes:true,attributeFilter:['class','hidden']});}catch(_){}});
+}catch(err){console.error('[CW] v79 pops failed',err);}
+/* ---- SOCIAL: fixed overlay sheet; the stage never scrolls ---- */
+function v79SheetFit(){var g=v79El('game'),sh=v79El('socsheet'),sc=v79El('socscrim');if(!g)return;var r=g.getBoundingClientRect();
+  [sh,sc].forEach(function(e){if(!e)return;e.style.setProperty('left',Math.round(r.left)+'px','important');e.style.setProperty('width',Math.round(r.width)+'px','important');e.style.setProperty('right','auto','important');});
+  if(sc){sc.style.setProperty('top',Math.round(r.top)+'px','important');sc.style.setProperty('height',Math.round(r.height)+'px','important');}}
+var V79_NOSCROLL=['game','tv','app'];
+function v79Unscroll(){for(var i=0;i<V79_NOSCROLL.length;i++){var e=v79El(V79_NOSCROLL[i]);if(e&&(e.scrollTop||e.scrollLeft)){e.scrollTop=0;e.scrollLeft=0;V79.unscroll=(V79.unscroll||0)+1;}}
+  var en=v79El('end');var se=document.scrollingElement;if(se&&(se.scrollTop||se.scrollLeft)&&(!en||en.hidden)){se.scrollTop=0;se.scrollLeft=0;}}
+try{
+  addEventListener('scroll',function(e){var t=e.target;if(t&&t.id&&V79_NOSCROLL.indexOf(t.id)>=0)v79Unscroll();},true);
+  addEventListener('resize',function(){try{v79SheetFit();v79Tick();}catch(e){}});
+  var shp=null;var bindSheet=function(){var sh=v79El('socsheet');if(!sh||shp===sh)return;shp=sh;v79SheetFit();
+    new MutationObserver(function(){if(sh.classList.contains('open')){v79SheetFit();v79Unscroll();V79.miss=0;window.__v79miss=0;
+        var f=v79El('feed');if(f)[].forEach.call(f.querySelectorAll('.v79miss'),function(x){x.classList.add('v79read');});try{if(window.__cwPaintBadge)window.__cwPaintBadge();}catch(e){}}
+      requestAnimationFrame(v79Unscroll);setTimeout(v79Unscroll,320);}).observe(sh,{attributes:true,attributeFilter:['class']});};
+  setTimeout(bindSheet,300);setTimeout(bindSheet,1200);setInterval(bindSheet,2000);
+}catch(err){console.error('[CW] v79 sheet failed',err);}
+/* ---- Skip-to-next-key keeps >=8px from SOCIAL (CSS sets 12px; this is the safety net) ---- */
+function v79SkipGap(){var k=v79El('skipk'),f=v79El('socfab');var kr=v79Vis(k),fr=v79Vis(f);if(!kr||!fr)return null;var gap=fr.left-kr.right;
+  if(kr.bottom>fr.top&&kr.top<fr.bottom&&gap<8){var cur=parseFloat(getComputedStyle(k).right)||0;k.style.setProperty('right',Math.ceil(cur+(8-gap)+2)+'px','important');gap=8;}return gap;}
+try{setInterval(function(){try{v79SkipGap();}catch(e){}},400);}catch(e){}
+/* ---- A: one rewarded commercial per game ---- */
+var V79AD={game:0,used:{},busy:false,taps:0,blocked:0,grants:0};
+function v79AdSlot(){/* the game this watch counts for: the one in progress, else the next one */return (S&&!S.over&&S.phase!=='done')?V79AD.game:V79AD.game+1;}
+function v79AdUsed(){return !!V79AD.used[v79AdSlot()];}
+function v79AdPaint(){['shAd','hubAd'].forEach(function(id){var b=v79El(id);if(!b)return;if(!b.__v79txt)b.__v79txt=b.textContent;
+  if(v79AdUsed()){b.disabled=true;b.classList.add('v79used');b.setAttribute('aria-disabled','true');if(b.textContent!=='📺 Commercial watched ✓')b.textContent='📺 Commercial watched ✓';}
+  else{b.classList.remove('v79used');b.removeAttribute('aria-disabled');if(b.textContent!==b.__v79txt)b.textContent=b.__v79txt;b.disabled=!!V79AD.busy;}});}
+try{
+  var _v79fr2=fresh;fresh=function(){V79AD.game++;var r=_v79fr2.apply(this,arguments);try{v79AdPaint();}catch(e){}return r;};
+  var _v79rr=runRewarded;runRewarded=function(kind){V79AD.taps++;if(V79AD.busy||v79AdUsed()){V79AD.blocked++;v79AdPaint();return Promise.resolve(false);}
+    V79AD.busy=true;v79AdPaint();var slot=v79AdSlot();
+    return Promise.resolve().then(function(){return _v79rr.call(this,kind);}).then(function(ok){V79AD.busy=false;if(ok)V79AD.used[slot]=kind||'cash';v79AdPaint();return ok;},function(e){V79AD.busy=false;v79AdPaint();throw e;});};
+  V79AD.gslot={};
+  var _v79gar=grantAdReward;grantAdReward=function(kind){var slot=v79AdSlot();if(V79AD.gslot[slot]){V79AD.blocked++;return 0;}
+    V79AD.gslot[slot]=1;V79AD.used[slot]=V79AD.used[slot]||kind||'cash';V79AD.grants++;var r=_v79gar.apply(this,arguments);v79AdPaint();return r;};
+  var _v79wire=wireRewardedUI;wireRewardedUI=function(){var r=_v79wire.apply(this,arguments);['shAd','hubAd'].forEach(function(id){var b=v79El(id);if(!b||b.__v79)return;b.__v79=1;var kind=id==='hubAd'?'def':'cash';
+      b.onclick=function(e){e.stopPropagation();e.preventDefault();if(b.disabled||V79AD.busy||v79AdUsed()){V79AD.blocked++;return;}runRewarded(kind);};});v79AdPaint();return r;};
+  try{wireRewardedUI();}catch(e){}
+  setInterval(function(){try{wireRewardedUI();}catch(e){}},1000);
+  if(window.CW&&window.CW.v77&&window.CW.v77.t)window.CW.v77.t.ad=function(k){grantAdReward(k||'cash');};
+}catch(err){console.error('[CW] v79 ad-once failed',err);}
+/* ---- CSS ---- */
+(function(){var st=document.createElement('style');st.id='v79css';st.textContent=[
+  /* old meme stack / toast slot retired: the pop lane replaces them */
+  '#game #tv #sbur,#mpop{display:none!important}',
+  '#game #tv #v79lane{position:absolute!important;left:12px;right:12px;top:auto;height:0;z-index:24;display:flex;flex-direction:column;justify-content:flex-end;align-items:stretch;pointer-events:none!important;background:none;overflow:visible}',
+  '#v79lane.off{visibility:hidden!important}',
+  '#v79lane .v79pop{pointer-events:auto;position:relative;display:flex;gap:8px;align-items:stretch;box-sizing:border-box;max-height:var(--v79h,180px);overflow:hidden;padding:7px 9px 9px;border-radius:12px;background:rgba(12,15,22,.93);color:#eef2fa;box-shadow:0 4px 16px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.12);font:600 12.5px/1.3 system-ui,-apple-system,sans-serif;opacity:0;transform:translateY(8px);transition:opacity .18s ease,transform .18s ease;touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}',
+  '#v79lane .v79pop.in{opacity:1;transform:none}',
+  '#v79lane .v79pop.out,#v79lane .v79pop.outL{opacity:0!important;transition:opacity .18s ease,transform .18s ease}',
+  '#v79lane .v79pop.out{transform:translateX(24px)!important}#v79lane .v79pop.outL{transform:translateX(-24px)!important}',
+  '#v79lane .v79pop.hot{box-shadow:0 4px 16px rgba(0,0,0,.5),0 0 0 1px rgba(255,110,70,.7)}',
+  '#v79lane .v79pop.good{box-shadow:0 4px 16px rgba(0,0,0,.5),0 0 0 1px rgba(110,230,160,.6)}',
+  '#v79lane .v79pop.held{box-shadow:0 4px 16px rgba(0,0,0,.5),0 0 0 2px #ffd23f}',
+  '#v79lane .v79img{flex:none;display:block;max-width:44%;height:auto;max-height:calc(var(--v79h,180px) - 18px);object-fit:contain;border-radius:6px;align-self:center;background:#000}',
+  '#v79lane .v79col{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:3px;overflow:hidden}',
+  '#v79lane .v79hd{display:flex;align-items:center;gap:6px;font-size:10.5px;line-height:1.2;white-space:nowrap;overflow:hidden;color:#aab4c8}',
+  '#v79lane .v79hd b{overflow:hidden;text-overflow:ellipsis;min-width:0;color:#fff;font-weight:800}',
+  '#v79lane .v79hd .cnt{margin-left:auto;flex:none;font-size:10px;color:#8a95ab}',
+  '#v79lane .v79hd .tell{flex:none;font-size:9.5px;padding:1px 5px;border-radius:5px;background:#3a1d12;color:#ffc49a}',
+  '#v79lane .v79tx{overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow-wrap:anywhere}',
+  '#v79lane .meme .v79tx{-webkit-line-clamp:4}',
+  '#v79lane .v79bar{position:absolute;left:9px;right:9px;bottom:3px;height:3px;border-radius:2px;background:rgba(255,255,255,.12);overflow:hidden;pointer-events:none}',
+  '#v79lane .v79bar i{display:block;height:100%;width:100%;background:#ffd23f;transform-origin:left center;transition:transform .1s linear}',
+  '#v79lane .v79pop.held .v79bar i{background:#7fd0ff}',
+  /* missed pops in the SOCIAL feed */
+  '#feed .post.v79miss{box-shadow:inset 3px 0 0 #ffd23f}#feed .post.v79miss.v79read{box-shadow:inset 3px 0 0 rgba(255,210,63,.35)}',
+  '#feed .post .v79tag{flex:none;font:800 9.5px/1.2 system-ui,sans-serif;color:#ffd23f;margin-left:4px}',
+  /* 1: SOCIAL is a fixed overlay; the stage never scrolls */
+  '#socsheet{position:fixed!important;top:auto!important;bottom:0!important}',
+  '#socscrim{position:fixed!important}',
+  '#game,#game #tv{overflow:hidden!important;overflow:clip!important;overscroll-behavior:none}',
+  /* 2: YOUR CALL quote: room for the italic closing mark, wraps instead of clipping */
+  '#decide .grow{overflow:visible!important;flex-wrap:wrap}',
+  '#decide .grow .gv{padding:0 7px 0 3px!important;box-sizing:border-box!important;overflow:visible!important;text-overflow:clip!important;white-space:normal!important;overflow-wrap:break-word!important;max-width:100%!important}',
+  /* 3: Skip to next key play: 12px clear of SOCIAL */
+  '#game.fs-tiny #thumb #skipk{right:calc(10px + 52px + 14px)!important;max-width:min(86px,calc(50% - 35px - 76px - 6px))!important}',
+  /* 4: the transparent #game layer never takes taps; its real controls do */
+  '#game{pointer-events:none!important}',
+  ':where(#game) > *{pointer-events:auto}',
+  /* A: used commercial button */
+  '#shAd.v79used,#hubAd.v79used{opacity:.6!important;background:#2a3142!important;color:#cfe3c8!important;cursor:default}'
+  ].join('\n');document.documentElement.appendChild(st);})();
+try{window.CW.v79={ok:true,V:V79,AD:V79AD,dwell:v79Dwell,geom:v79Geom,action:v79Action,why:v79Why,tick:v79Tick,skipGap:v79SkipGap,sheetFit:v79SheetFit,adUsed:v79AdUsed,adPaint:v79AdPaint,
+  t:{enq:function(kind,text,o){o=o||{};var p=post(o.plat||'sq',text,0,{key:'v79t:'+Math.random(),img:o.img,hot:o.hot});if(!p)return null;var it={kind:kind,p:p,o:o};v79Enq(it);return it;},runRewarded:function(k){return runRewarded(k);},grant:function(k){return grantAdReward(k);}}};}catch(e){}
+window.__v79pops=true;
+console.info('[CW] v79 — pops: docked pop lane, 7–12s dwell + countdown + hold, pause/resume under cards, unread SOCIAL overflow, fixed SOCIAL sheet, one commercial per game');
+/* ---- C/D helpers used by the v78 pill + tap guard ---- */
+var V79_DOWNS=[],V79_LASTBLK=-1e9,V79_DOWNEL=null;
+function v79Lock(g){for(var i=0;i<V79_DOWNS.length;i++){var d=V79_DOWNS[i];if(d<=g.t&&g.t-d<1000)return 1200;}return 450;}
+/* any gameplay overlay up: offer, shop, drive summary / result card, YOUR CALL, sheets, ads */
+function v79Overlay(){var C=window.__v75chrome;try{if(C&&((C.cardUp&&C.cardUp())||(C.callUp&&C.callUp())||(C.modalUp&&C.modalUp())))return true;}catch(e){}
+  var d=v79El('decide');if(d&&!d.hidden&&!d.classList.contains('out')&&!d.classList.contains('done'))return true;
+  var ids=['shop','adslot','adbrk','hb','call','memo','chrev'];for(var i=0;i<ids.length;i++){var x=v79El(ids[i]);if(x&&!x.hidden)return true;}
+  var gx=v79El('gfx');if(gx&&gx.classList.contains('show'))return true;return false;}
+try{window.CW.v79.t.lock=v79Lock;window.CW.v79.overlay=v79Overlay;window.CW.v79.t.inflMaybe=function(a,b,c){return v76InflMaybe(a,b,c);};window.CW.v79.t.newGame=function(){fresh();};window.CW.v79.t.guardState=function(){return {downs:V79_DOWNS.slice(),lastBlk:V79_LASTBLK};};}catch(e){}
 
 setMatch(QUICK);bindRefNameInputs();syncRefUI();showTitle();
 })();
@@ -12965,5 +13180,6 @@ setMatch(QUICK);bindRefNameInputs();syncRefUI();showTitle();
 <script>window.__v76={ok:true,build:'COVER',cover:!!window.__v76cover,booth:'live',influencers:4};</script>
 <script>window.__v77={ok:true,build:'FIXES',fixes:!!window.__v77fixes,items:['heat-tags','per-use-price','shop-need','cash-ledger','one-final-score','margin-line']};</script>
 <script>window.__v78={ok:true,build:'POLISH',fixes:!!window.__v78fixes,items:['heat-setter-pills','pill-anchor','offer-tap-guard','end-width','purchase-labels']};</script>
+<script>window.__v79={ok:true,build:'POPS',pops:!!window.__v79pops,items:['pop-lane','dwell-countdown-hold','pause-resume','unread-overflow','fixed-social','quote-pad','skip-gap','game-hit-layer','ad-once','end-desktop']};</script>
 </body>
 </html>
