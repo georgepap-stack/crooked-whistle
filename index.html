@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#0b0d12">
-<title>Crooked Whistle v72 IMPACT</title>
+<title>Crooked Whistle v73 ADS</title>
 <style>
 :root{--bg:#0b0d12;--card:#1a1e27;--card2:#252a35;--ink:#f4f1e8;--dim:#9aa3b2;--whistle:#ffd23f;--hot:#ff5a3c;--ok:#4cd387;--line:#2c3240;--gbn:#2f6bff}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -1592,7 +1592,7 @@ window.__showThreeMissing=function(msg){
         <li>Key Plays run at real speed (about 4–8 seconds). Watch to the whistle, then an <b>Outcome</b> card shows what happened and what it does to your margin. Then you decide: options like <i>"Pass interference, defense (negates INT)"</i> or <i>"Holding, offense (wipes out first down)"</i> show a short teaser of what each call does (e.g. <i>wipes FD</i>, <i>auto 1st</i>). Grades and heat stay <b>blind</b> until you pick. <b>House needs this flag</b> / <b>Window at risk</b> tags mark job stakes. Or <b>Let it stand</b>, but standing on a real foul, a close-up, or a play that hurts the House costs a little heat. Use <b>🔁 Replay</b> (½ speed, free) any time. No timer.</li>
         <li>Routine downs fast-forward; tap <b>⏭ Skip to next key play</b> to jump ahead.</li>
         <li>Holding wipes out a gain. PI and roughing hand out yards and a first down. Spot Fudge flips a close spot. Run Clock burns time.</li>
-        <li>When a real foul happens you see it through the ref's eyes: a yellow ring and a callout like <b>"HOLDING — #75 grabbed the rusher"</b>. Calling what you saw cools heat; inventing or upgrading a call raises it; missing a visible foul raises it a little. Clean plays show a subtle <b>✓ Clean play</b> cue.</li>
+        <li>When a real foul happens you see it through the ref's eyes: a yellow ring and a callout like <b>"HOLDING — #75 grabbed the rusher"</b>. Calling what you saw cools heat (a defensible hold cools it a little); inventing or upgrading a call raises it; missing a visible foul raises it a little. Clean plays show a subtle <b>✓ Clean play</b> cue.</li>
         <li>Heat 100 = fired. Over 80 at the final gun = league review.</li>
         <li>The House ticker under the broadcast shows the margin. Keep it in the green.</li>
       </ul>
@@ -1679,6 +1679,21 @@ window.__showThreeMissing=function(msg){
 <script>
 (()=>{
 var __cwN=function(a,b){return a!=null?a:b;};/* v62: Safari ≤13-safe nullish + optional-chain shims */
+/* v73: build/version info. Future builds bump ONLY this line. */
+const CW_VERSION='v73',CW_BUILD='ADS',CW_DATE='2026-10-28';
+const CW_VER_SHORT=(()=>{const p=CW_DATE.split('-');const M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];return CW_VERSION+' · '+CW_BUILD+' · '+M[(+p[1]||1)-1]+' '+(+p[2]||'');})();
+window.CW_VERSION=CW_VERSION;window.CW_BUILD=CW_BUILD;window.CW_DATE=CW_DATE;
+(function cwVerUI(){
+  try{document.title='Crooked Whistle '+CW_VERSION+' '+CW_BUILD+(/\(CDN\)/.test(document.title)?' (CDN)':'');}catch(e){}
+  const go=()=>{try{
+    const tl=document.querySelector('#title .ttl');if(tl&&!document.getElementById('cwVerT')){const d=document.createElement('div');d.id='cwVerT';d.className='cwver';d.textContent=CW_VER_SHORT;tl.appendChild(d);}
+    const how=[...document.querySelectorAll('.card h3')].find(h=>/How to play/.test(h.textContent));if(how&&!document.getElementById('cwVerH')){const d=document.createElement('div');d.id='cwVerH';d.className='cwver';d.textContent='Build '+CW_VERSION+' · '+CW_BUILD+' · '+CW_DATE;how.parentNode.appendChild(d);}
+    const g=document.getElementById('game');if(g&&!document.getElementById('cwVerG')){const d=document.createElement('div');d.id='cwVerG';d.textContent=CW_VERSION;d.setAttribute('aria-hidden','true');g.appendChild(d);}
+    const ap=document.getElementById('audP');if(ap&&!document.getElementById('cwVerS')){const d=document.createElement('div');d.id='cwVerS';d.className='cwver';d.textContent='Crooked Whistle '+CW_VERSION+' · '+CW_BUILD+' · built '+CW_DATE;ap.appendChild(d);}
+    else if(!ap)setTimeout(go,400);
+  }catch(e){}};
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else setTimeout(go,0);
+})();
 const $=s=>document.querySelector(s);
 const rnd=Math.random, rint=(a,b)=>a+Math.floor(rnd()*(b-a+1)), pick=a=>a[Math.floor(rnd()*a.length)];
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)), lerp=(a,b,t)=>a+(b-a)*t, ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
@@ -2480,7 +2495,7 @@ Object.assign(MEMES,{
    c.save();c.translate(410,210);c.rotate(0.6);c.fillStyle='#c9a27a';c.fillRect(-26,-34,24,68);c.restore();c.save();c.translate(440,236);c.rotate(-0.4);c.fillStyle='#c9a27a';c.fillRect(-8,-30,24,62);c.restore();
    c.save();c.translate(150,220);c.rotate(-0.5);c.fillStyle='#d4161b';c.fillRect(0,-10,50,32);c.restore();
    mtext(c,cap[0],300,32,560,28,{lines:1});mtext(c,cap[1],300,272,560,28,{lines:1});}},
- finePrint:{caps:[["bet responsibly!*","*by betting more. responsibly.",10],["gambling problem? just stop betting!","— the house, a company that is very sincere",10],["your first bet is free*","*your second bet is your house",10],["the ad","the disclaimer read at 4x speed",10],["\"must be 21+\"","the only part of the ad that's true",10],["parlay insurance!","covers everything except the parlay",10],["sportsbook app: 'we believe in you'","also the app: 'deposit $500 to keep believing'",10],["boost: ref #77 throws a flag (-10000)","the most honest odds on the app",10]],
+ finePrint:{caps:[["bet responsibly!*","*by betting more. responsibly.",10],["your first bet is free*","*your second bet is your house",10],["the ad","the disclaimer read at 4x speed",10],["\"must be 21+\"","the only part of the ad that's true",10],["parlay insurance!","covers everything except the parlay",10],["sportsbook app: 'we believe in you'","also the app: 'deposit $500 to keep believing'",10],["boost: ref #77 throws a flag (-10000)","the most honest odds on the app",10]],
   draw(c,cap){const g=c.createLinearGradient(0,0,MW,MH);g.addColorStop(0,'#ffcc00');g.addColorStop(1,'#ff4f00');c.fillStyle=g;c.fillRect(0,0,MW,MH);
    for(let i=0;i<10;i++){c.save();c.translate(rnd()*MW,rnd()*130+40);c.rotate(rnd()*6);c.fillStyle='rgba(255,255,255,.4)';c.fillRect(-6,-6,12,12);c.restore();}
    face(c,110,150,52,{skin:'#f1c27d'});c.fillStyle='#fff';c.fillRect(86,140,48,5);c.fillStyle='#111';c.beginPath();c.roundRect(60,204,100,90,16);c.fill();
@@ -2539,7 +2554,7 @@ MEMES.distracted.caps.push(["the replay","ref #77","the burner phone",7],["the r
 MEMES.expect.caps.push(["head coach challenge","head coach tantrum",9],["'going under the hood'","going under the hood (to read texts)",7],["the ad: 'bet with friends'","the reality: no friends left",10],["prime time: glamour","prime time: 40 more cameras",12],["week 1: 'learning the ropes'","week {wk}: 'buying the ropes'",13]);
 MEMES.tabloid.caps.push(["coach meltdown","{coach} says replay booth 'needs glasses and a soul'",9],["tunnel vision","ref #77 seen reading burner texts under replay hood",7],["owl-gate","league insists superb owl officiating 'within normal range'",14],["cheese crisis","packets fans demand recount, refill on curds",16],["bear market","bares dad forum hits 40,000 posts tonight",15],["sports car scandal","ref #77 buys suspicious yacht-shaped sedan",17]);
 MEMES.wanted.caps.push(["","wanted for 12 counts of grand theft parlay",0],["","wanted by the packets, the bares, and one very loud dad",15],["","last seen: going under the hood and not coming back",9]);
-MEMES.holdDog.caps.push(["hold up","the coach challenged and LOST?",9],["hold up","the ref is in prime time now?",12],["hold up","the ad said 'just stop betting'?",10]);
+MEMES.holdDog.caps.push(["hold up","the coach challenged and LOST?",9],["hold up","the ref is in prime time now?",12],["hold up","the app sent 40 alerts this quarter?",10]);
 MEMES.starter.caps.push(["prime time ref starter pack",12],["superb owl ref starter pack",14],["coach challenge meltdown starter pack",9]);
 MEMES.card.caps.push(["","rare insert: 'reversed it, then reversed his opinion'",9],["","prime-time parallel /99: now with lawyer on back",12]);
 MEMES.samePic.caps.push(["ref #77's car (week 1)","ref #77's car (week {wk})","not the same picture",13],["the house ad","the gambling helpline","not the same picture",10]);
@@ -2811,7 +2826,7 @@ const holdPen=(c,kp)=>c==='holding'?kp.off:other(kp.off);
 const HOLD_F={phan:0.85,ticky:0.55,bord:0.32,defn:0.15};
 function holdOver(c,kp){const pt=holdPen(c,kp);const n=(S.holdFakeOn&&S.holdFakeOn[pt])||0;return 1+0.3*S.holdFake+(n>=2?0.15*(n-1):0);}
 function callHeat(c,kp,useP){if(c==='letgo')return ignHeat(kp);if(kp.foul===c)return -4;if(c==='offset')return Math.max(1,Math.round(estHeat('offset',kp)*0.6));
-  const g=useP?perceived(c,kp):holdG(c,kp);if(g!=null){const gr=gradeOf(g);if(gr==='obv')return -2;return Math.max(1,Math.round(estHeat(c,kp)*HOLD_F[gr]*holdOver(c,kp)));}
+  const g=useP?perceived(c,kp):holdG(c,kp);if(g!=null){const gr=gradeOf(g);if(gr==='obv')return -2;/* v73: a defensible hold (reasonable judgment call) cools a little, less than a legit call's -4 */if(gr==='defn')return (g>=70&&holdOver(c,kp)<1.3)?-2:-1;return Math.max(1,Math.round(estHeat(c,kp)*HOLD_F[gr]*holdOver(c,kp)));}
   return estHeat(c,kp);}
 const randn=()=>{let u=0;while(!u)u=rnd();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*rnd());};
 const pSd=kp=>(S.cur===kp&&S.replays>0)?6:13;
@@ -3462,7 +3477,7 @@ async function resolve(kp,call,pace){
     const hgT=holdG(call,kp)!=null&&!legit&&(effective||overruled)?gradeOf(holdG(call,kp)):null;const rg=hgT?(kp.readG||gradeOf(perceived(call,kp))):null;
     const reveal=hgT?`<div class="oreveal">🔍 Replay shows: <b>${GRADES[hgT]}</b>${rg!==hgT?` · you read it as ${GRADES[rg].toLowerCase()}`:' · your read was right'}</div>`:'';
     const hc=effective?callHeat(call,kp):0;const ih=ignHeat(kp);const cm=compMult(call,kp);
-    const heatLine=overruled?`🔥 About +${Math.round(estHeat(call,kp)*0.5)} heat: the crowd saw you get overruled`:effective?(legit?'🧊 −4 heat: a legit call earns trust':`🔥 About +${Math.round(hc*dmK)} heat${dmK<0.99?` (🛡 −${Math.round((1-dmK)*100)}% defenders)`:''}: ${call==='offset'?'half-invented':'invented'} call${cm>1.05?` (×${cm.toFixed(1)} repeat offender)`:''}`.replace(/invented call/,holdG(call,kp)!=null?GRADES[gradeOf(holdG(call,kp))].toLowerCase()+' hold'+(S.holdN?` · holding flag #${S.holdN+1} tonight`:''):'invented call')):kp.foul?(ih?`🔥 +${ih} heat: the cameras caught the missed foul`:'No heat: the camera angle hid the foul'):'No heat: clean play, no call';
+    const heatLine=overruled?`🔥 About +${Math.round(estHeat(call,kp)*0.5)} heat: the crowd saw you get overruled`:effective?(legit?'🧊 −4 heat: a legit call earns trust':hc<0?`🧊 −${-hc} heat: a defensible hold reads as fair`:`🔥 About +${Math.round(hc*dmK)} heat${dmK<0.99?` (🛡 −${Math.round((1-dmK)*100)}% defenders)`:''}: ${call==='offset'?'half-invented':'invented'} call${cm>1.05?` (×${cm.toFixed(1)} repeat offender)`:''}`.replace(/invented call/,holdG(call,kp)!=null?GRADES[gradeOf(holdG(call,kp))].toLowerCase()+' hold'+(S.holdN?` · holding flag #${S.holdN+1} tonight`:''):'invented call')):kp.foul?(ih?`🔥 +${ih} heat: the cameras caught the missed foul`:'No heat: the camera angle hid the foul'):'No heat: clean play, no call';
     if(!effective&&!overruled)v72tax=v72StandTax(kp,base);
     const gradeTxt=overruled?'✗ Invented · overruled':effective?(legit?'✓ Legit · you saw it':hgT?`${GRADES[hgT]} hold`:call==='offset'?'½ Half-invented':call==='spot'?'✗ Invented spot':call==='clock'?'⏱ Clock trick':'✗ Invented'):(kp.foul?'⚠ Real foul ignored':'✓ Clean · no call');
     const taxLine=v72tax?`<div class="otax">🧾 Stand tax +${v72tax.h}🔥 · ${v72tax.why.join(' + ')} · ${v72tax.who==='house'?'Vivian':'Lenny'} noticed</div>`:'';
@@ -3528,7 +3543,7 @@ async function resolve(kp,call,pace){
         if(S.clips>=CLIPS_MAX&&!S.front){S.front=true;post('tp','Evidence thread hits the FRONT PAGE. A reporter is asking questions.',4000);addHeat(10);}}
       }
     } else S.shady++;
-    addHeat(legit?h:Math.round(h*dmK));if(!legit&&call!=='clock'&&activeDefs().length)defend(bctx(kp,call),kp,call,Math.round(h*dmK),phantomK);
+    addHeat((legit||h<0)?h:Math.round(h*dmK));if(!legit&&h>0&&call!=='clock'&&activeDefs().length)defend(bctx(kp,call),kp,call,Math.round(h*dmK),phantomK);
     if(!legit){const bnf=benefits(call,kp);if(bnf){S.helpAt[bnf]=S.plays;S.helpN[bnf]++;}}
     if(!legit&&!(isHold&&(hgr==='bord'||hgr==='defn'))){S.streak++;S.bad++;const ben=benefits(call,kp);if(ben){if(ben===S.favT)S.favN++;else{S.favT=ben;S.favN=1;}}}
     yards=e.yards;turnover=e.turnover;complete=e.complete;auto1=e.auto1;replay=e.replay;extra=e.extra;cap+=e.capAdd;
@@ -4740,7 +4755,7 @@ const AWatch={last:-99,glances:0,n:0,open:false,tm:null,gtm:null,preFlag:0,
     const gl=document.createElement('div');gl.id='wglance';gl.innerHTML='<div class="wgarm"></div><div class="wgt">👀 glance</div>';g.appendChild(gl);
     w.onclick=e=>{e.stopPropagation();w.classList.toggle('exp');};},
   clock(){try{const d=new Date();return d.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',timeZone:'America/Chicago'}).replace(/\s?[AP]M/,'');}catch(e){return '8:17';}},
-  pickSender(){const pool=['lenny','lenny','house','vinnie','fantasy','league','home','away'];if(isKC())pool.push('skye','skye');if(S.heat>=40)pool.push('lenny','vinnie');if(S.shady>=2)pool.push('house');return pick(pool);},
+  pickSender(){const pool=['lenny','lenny','house','vinnie','fantasy','league','home','away','houseapp','hunch'];if(isKC())pool.push('skye','skye');if(S.heat>=40)pool.push('lenny','vinnie');if(S.shady>=2)pool.push('house');return pick(pool);},
   resolve(s){const x=WATCH_SENDERS[s];const name=typeof x.name==='function'?x.name():x.name;const handle=typeof x.handle==='function'?x.handle():x.handle;const col=typeof x.col==='function'?x.col():x.col;return {id:s,name,handle,col};},
   text(force){if(S.quiet||S.phase==='post'||S.phase==='call'||S.over)return;this.ensure();
     if(!force&&(S.plays-this.last<2||(S.plays-this.last<4&&rnd()>0.55+Math.min(0.25,S.heat/200))))return;
@@ -8016,7 +8031,7 @@ function aMascot(c,x,y,s,t,o={}){/* original cartoon pitchman: square jaw, visor
   const th=Math.sin(t*5)*0.5;c.save();c.translate(80,120);c.rotate(-1.1+th);c.fillStyle=o.skin||'#f0b27a';c.fillRect(-12,-110,24,110);c.beginPath();c.arc(0,-118,20,0,7);c.fill();c.restore();c.restore();}
 function aPhone(c,x,y,w,h,t,draw){c.save();aBox(c,x,y,w,h,'#111',28);aBox(c,x+10,y+18,w-20,h-36,'#f5f6fa',18);c.beginPath();c.rect(x+10,y+18,w-20,h-36);c.clip();c.translate(x+10,y+18);draw(c,w-20,h-36);c.restore();}
 const ADS=[
- {id:'house',brand:'The House Sportsbook',kind:'bet',dur:7,joke:'Gambling problem? Have you tried winning?',fine:['The House always wins is a slogan, not a guarantee, except it is.','Spread set by Vivian Lake. Do not ask Vivian Lake about the spread.'],
+ {id:'house',brand:'The House Sportsbook',kind:'bet',dur:7,joke:'Our odds are boosted. Our ethics are not.',fine:['The House always wins is a slogan, not a guarantee, except it is.','Spread set by Vivian Lake. Do not ask Vivian Lake about the spread.'],
   draw(c,t,x){aBG(c,'#0b3d2a','#04140d',t);
    c.save();c.globalAlpha=ain(t,0);c.translate(300,120);c.fillStyle='#d4a017';c.beginPath();c.moveTo(-70,0);c.lineTo(0,-62);c.lineTo(70,0);c.closePath();c.fill();c.fillRect(-52,0,104,62);c.fillStyle='#0b3d2a';c.fillRect(-14,24,28,38);c.restore();
    aT(c,'THE HOUSE',300,222,64,'#ffd77a',{a:ain(t,0.2),f:'Georgia, serif',st:'#000'});aT(c,'SPORTSBOOK',300,270,24,'#fff',{a:ain(t,0.4),w:700});
@@ -8031,7 +8046,7 @@ const ADS=[
    const legs=[`${x.favN} ML`,'Over 44.5',`${x.qbN} 250+ yds`,'1st TD: a lineman','Coin toss: tails','Anthem under 2:01',`${x.dogN} +3.5`,'Ref #77 throws 8+ flags','Halftime show: 1 wardrobe issue','Gatorade: orange','A fan runs on field',`Kicker misses PAT`];
    const n=Math.min(12,Math.floor((t-0.6)/0.4));for(let i=0;i<12;i++){const y=205+i*27;aT(c,legs[i],145,y,15,'#222',{al:'left',w:700});if(i<n)aT(c,i===11?'❌':'✅',455,y,18,'#000');}
    if(n>=12){aT(c,'SO CLOSE!',300,580,46,'#ff4d6d',{st:'#12002e',rot:-0.06,sc:1+0.1*Math.sin(t*10)});aT(c,"That's the ParlayPal promise.",300,622,18,'#fff',{w:700});}}},
- {id:'lock',brand:'LockOfTheCentury',kind:'bet',dur:7,joke:'Gambling problem? Just stop betting.',fine:['†Lock not guaranteed.','Coach Brick Thunderjaw is a cartoon and cannot be sued.','4,000 locks per season is a lot of locks.'],
+ {id:'lock',brand:'LockOfTheCentury',kind:'bet',dur:7,joke:'4,000 locks. Zero keys.',fine:['†Lock not guaranteed.','Coach Brick Thunderjaw is a cartoon and cannot be sued.','4,000 locks per season is a lot of locks.'],
   draw(c,t,x){aBG(c,'#c1121f','#3d0306',t);aT(c,'LOCK OF THE',300,64,40,'#fff',{st:'#000'});aT(c,'CENTURY',300,112,62,'#ffd23f',{st:'#000',sc:1+0.06*Math.sin(t*7)});
    aMascot(c,175,360,1.15,t,{shirt:'#1d3557'});aT(c,'COACH BRICK THUNDERJAW',175,585,17,'#fff',{w:800});
    const q=['"I got a LOCK."','"I got 4,000 LOCKS',' this season!"','"Lock of the Day:',' 100% guaranteed†"'];
@@ -8045,7 +8060,7 @@ const ADS=[
    if(t>2.9)aT(c,'Lose like everyone else.',300,400,30,'#ffd23f',{a:ain(t,2.9),st:'#023047'});
    if(t>3.6){aBox(c,90,440,420,120,'#fff',14);aT(c,'⚡ ODDS BOOST ⚡',300,468,22,'#0077b6');aT(c,`${x.favN} to win: −300 → −290!`,300,512,26,'#111',{mw:400});aT(c,'(a 3% improvement on a bad idea)',300,544,15,'#555',{w:600});}
    if(t>4.6)aT(c,'Be a Square. Be Everywhere.',300,600,24,'#fff',{a:ain(t,4.6),w:800});}},
- {id:'ot',brand:'Overtime Odds',kind:'bet',dur:6.5,joke:'Gambling problem? Have you tried betting faster?',fine:['Live odds refresh every 0.2 seconds, like your heart rate.','Flag props settled at the sole discretion of the person throwing the flag.'],
+ {id:'ot',brand:'Overtime Odds',kind:'bet',dur:6.5,joke:'Live odds: refreshed faster than your judgment.',fine:['Live odds refresh every 0.2 seconds, like your heart rate.','Flag props settled at the sole discretion of the person throwing the flag.'],
   draw(c,t,x){aBG(c,'#ff6d00','#1a0a00',t);aT(c,'OVERTIME',300,70,60,'#111',{st:'#ffb703',rot:-0.04});aT(c,'ODDS',300,128,60,'#fff',{st:'#111',rot:-0.04});
    aT(c,'BET EVERY SNAP. SLEEP NEVER.',300,180,24,'#fff',{a:ain(t,0.3)});
    aPhone(c,150,205,300,370,t,(g,w,h)=>{g.fillStyle='#111';g.fillRect(0,0,w,h);aT(g,'🔴 LIVE PROPS',w/2,26,18,'#ff4d4d');
@@ -8062,21 +8077,12 @@ const ADS=[
    aT(c,'THIS WEEK',300,320,38,'#ff2e4c',{sc:1+0.08*Math.sin(t*9)});const pr=Math.min(31.4,(t-1)*16);if(t>1)aT(c,`PROJECTED: ${pr.toFixed(1)} PTS`,300,372,26,'#111');
    if(t>2.2)aT(c,`also: ${x.star2}`,300,420,18,'#333',{w:700,mw:380});if(t>2.8)aT(c,'(the league office would love that)',300,452,15,'#7b0d1e',{w:600,a:ain(t,2.8)});
    if(t>3.6)aStar(c,300,560,80,'#ffd23f',t,'FREE ENTRY!\nWIN $1,000,000**\n**IN FIEND BUCKS',16);}},
- {id:'wiw',brand:'Waiver Wire Warriors',kind:'fantasy',dur:6.5,joke:'Fantasy problem? Just stop setting lineups.',fine:['Waivers process at 3 AM because we are not well.','Your league winner may be a kicker.'],
+ {id:'wiw',brand:'Waiver Wire Warriors',kind:'fantasy',dur:6.5,joke:'Waiver priority: you. Data priority: us.',fine:['Waivers process at 3 AM because we are not well.','Your league winner may be a kicker.'],
   draw(c,t,x){aBG(c,'#386641','#132a13',t);aT(c,'WAIVER WIRE',300,66,52,'#f2e8cf',{st:'#132a13'});aT(c,'WARRIORS',300,118,58,'#ffd23f',{st:'#132a13',rot:0.03});
    c.save();c.translate(300,270);const sh=t>1.5&&t<2.6?Math.sin(t*80)*6:0;c.translate(sh,0);c.fillStyle='#f2e8cf';c.beginPath();c.arc(0,0,92,0,7);c.fill();c.lineWidth=10;c.strokeStyle='#bc4749';c.stroke();
    c.strokeStyle='#111';c.lineWidth=8;c.beginPath();c.moveTo(0,0);c.lineTo(0,-62);c.stroke();c.beginPath();c.moveTo(0,0);c.lineTo(40,10);c.stroke();aT(c,'3:00 AM',0,58,20,'#bc4749');c.restore();
    if(t>1.2)aT(c,'Your league-winner is on waivers.',300,400,26,'#fff',{a:ain(t,1.2),st:'#132a13'});if(t>2.4)aT(c,"It's a kicker.",300,446,36,'#ffd23f',{a:ain(t,2.4),st:'#132a13'});
    if(t>3.3){aBox(c,140,480,320,64,'#bc4749',14);aT(c,`✅ CLAIMED: ${x.kFull}`,300,512,20,'#fff',{mw:300});}if(t>4.2)aT(c,'Waivers process at 3 AM. So do we.',300,590,22,'#f2e8cf',{a:ain(t,4.2),w:700});}},
- {id:'nap',brand:'NapLeague',kind:'fantasy',dur:6.5,joke:null,fine:['Autodraft may select three kickers in round one.','NapLeague is not responsible for dreams about your bench.'],
-  draw(c,t,x){const g=c.createLinearGradient(0,0,0,AH);g.addColorStop(0,'#0d1b2a');g.addColorStop(1,'#415a77');c.fillStyle=g;c.fillRect(0,0,AW,AH);
-   for(let i=0;i<40;i++){const sx=(i*137)%AW,sy=(i*71)%300;c.globalAlpha=0.4+0.4*Math.sin(t*3+i);c.fillStyle='#fff';c.fillRect(sx,sy,3,3);}c.globalAlpha=1;
-   c.fillStyle='#ffe66d';c.beginPath();c.arc(530,70,42,0,7);c.fill();c.fillStyle='#0d1b2a';c.beginPath();c.arc(549,58,38,0,7);c.fill();
-   aT(c,'NapLeague',300,92,58,'#e0e1dd',{st:'#0d1b2a',f:'Georgia, serif'});aT(c,'Draft in your sleep. Literally.',300,150,24,'#ffe66d',{a:ain(t,0.4),w:700});
-   c.save();c.translate(300,330);c.fillStyle='#778da9';c.beginPath();c.ellipse(0,40,170,40,0,0,7);c.fill();c.fillStyle='#e0e1dd';c.beginPath();c.arc(-80,0,46,0,7);c.fill();c.fillStyle='#1b263b';c.fillRect(-100,-8,40,6);c.restore();
-   for(let i=0;i<3;i++){const z=(t*0.8+i*0.33)%1;aT(c,'Z',250+z*120,280-z*120,20+z*30,'#e0e1dd',{a:1-z});}
-   if(t>2){aBox(c,110,420,380,140,'#e0e1dd',16);aT(c,'AUTODRAFT RESULTS',300,446,18,'#415a77');const picks=['Rd 1: a kicker','Rd 2: another kicker','Rd 3: a third kicker'];picks.forEach((p,i)=>{if(t>2.4+i*0.5)aT(c,p,300,480+i*26,18,'#0d1b2a',{w:800});});}
-   if(t>4.2)aT(c,'Season-long leagues. Season-long naps.',300,600,20,'#e0e1dd',{w:700,a:ain(t,4.2)});}},
  {id:'integrity',brand:'Integrity of the Game™',kind:'psa',dur:7,joke:null,fine:['Integrity not available in all markets.','Integrity of the Game™ is a registered trademark of The House Sportsbook.','Official Integrity Partner status purchased at auction.'],
   draw(c,t,x){c.fillStyle='#f4f6fb';c.fillRect(0,0,AW,AH);c.fillStyle='#14306e';c.fillRect(0,0,AW,70);aT(c,'A MESSAGE FROM THE IFL',300,36,22,'#fff',{w:800});
    aT(c,'The IFL is committed to the',300,112,24,'#14306e',{a:ain(t,0.2),w:700});aT(c,'INTEGRITY OF THE GAME™',300,152,36,'#14306e',{a:ain(t,0.5)});
@@ -8136,7 +8142,9 @@ let adQ=[];
 function pickAd(where){if(P.get('ad')){const f=ADS.find(a=>a.id===P.get('ad'));if(f)return f;}
   if(!adQ.length)adQ=[...ADS].sort(()=>Math.random()-0.5);
   /* v50: lawyer spots rotate into half / quarter breaks */
-  const pref=where==='2min'?['ot','parlay','docket']:where==='week'?['fiend','wiw','nap','house','margin']:where==='half'?['docket','margin','stripeclear','grokbot','house','integrity','lock']:where==='q1'||where==='q3'?['stripeclear','docket','margin','grokbot','parlay']:[];
+  const pref0=where==='2min'?['ot','parlay','docket']:where==='week'?['fiend','wiw','house','margin']:where==='half'?['docket','margin','stripeclear','grokbot','house','integrity','lock']:where==='q1'||where==='q3'?['stripeclear','docket','margin','grokbot','parlay']:[];
+  /* v73: Meme ad pack placements (PREF_V71); fall back to the old list */
+  const P71=window.PREF_V71;const pref=(P71&&P71[where]&&P71[where].length)?P71[where]:pref0;
   let i=adQ.findIndex(a=>pref.includes(a.id));if(i<0)i=0;return adQ.splice(i,1)[0];}
 function adCtx(where){const A=T('away'),H=T('home');const wk=where==='week'&&MATCH.season&&SEA&&!SEA.over&&curWeek();
   const favN=wk?nick(wk.fav):A.name,dogN=wk?nick(wk.dog):H.name;
@@ -8175,11 +8183,186 @@ async function adBreak(where,force){
  * Never interrupt mid-decision or mid-call; helpline stays legible.
  */
 const AD_SLOT_BRANDS=[
-  {brand:'LockBox Sportsbook',sub:'Parody sponsor · not a real offer',body:'This is where a real interstitial would play. Tap through after the beat.'},
-  {brand:'BonusVibes Casino',sub:'Placeholder creative',body:'Rewarded / interstitial unit stub. Native build plugs AdMob here.'},
-  {brand:'IFL Presented By Nobody',sub:'House-friendly filler',body:'Your attention is the product. The product is briefly unavailable.'},
-  {brand:'WhistleClean™',sub:'Official integrity spray (parody)',body:'Spray on. Flag off. Results may include heat.'}
+  {brand:'The House Sportsbook',sub:'Sponsored · parody',body:'Your first bet is on us.* *The rest are on you. Forever.'},
+  {brand:'Fantasy Floor',sub:'Sponsored · parody',body:'Waivers clear in 3 minutes. Your heart rate will not.'},
+  {brand:'Hunch Board',sub:'Sponsored · parody',body:'More or less? (Less. It\'s always less.)'},
+  {brand:'Leg Up by Lenny',sub:'Sponsored · parody',body:'Parlay insurance that charges interest. Lenny says hi. Lenny knows your car.'},
+  {brand:'Bad Beat Barristers',sub:'Paid attorney ad · parody',body:'Covered for 59 minutes? Call 1-800-BAD-BEAT. (Fictional. Like justice.)'},
+  {brand:'WhistleClean™',sub:'Official integrity spray · parody',body:'Spray on. Flag off. Results may include heat.'}
 ];
+/* ===== v73: Meme parody ad pack (fantasy + betting apps; all brands invented) ===== */
+/* ===== Crooked Whistle · v71 PARODY AD PACK (fantasy + football-betting apps) =====
+ * v73: pasted after const AD_SLOT_BRANDS (which follows const ADS) so every target is initialized (no TDZ).
+ * All brands are ORIGINAL IFL parody. No real sportsbook/DFS names or logos.
+ * Ad-draw placeholders come from adCtx(): {favN} {dogN} {s} {pub} {net} {qbN} {kFull} + {ref} via fill().
+ * Satire target = the APPS' tactics (bonus bets, boosts, SGPs, push notifs, rollover, chasing). Never the bettor.
+ * The real helpline line (HELP / 1-800-GAMBLER) stays sincere and untouched.
+ */
+(function(){
+const sub=(s,x)=>fill(String(s).replace(/\{(favN|dogN|s|pub|net|qbN|kFull)\}/g,(m,k)=>x&&x[k]!=null?x[k]:m));
+
+/* Generic animated card for copy-driven spots (uses existing aBG/aT/aBox/aStar/aMascot/aPhone helpers). */
+function adCopyDraw(o){return function(c,t,x){
+  aBG(c,o.bg[0],o.bg[1],t);
+  if(o.kicker)aT(c,sub(o.kicker,x),300,34,15,o.accent,{w:800,a:ain(t,0)});
+  aT(c,sub(o.title,x),300,90,o.titleSz||56,'#fff',{st:'#000',a:ain(t,0.1),sc:1+0.04*Math.sin(t*8),mw:560});
+  aT(c,sub(o.tag,x),300,140,20,o.accent,{w:800,a:ain(t,0.35),mw:540});
+  if(o.mascot)aMascot(c,120,380,0.8,t,o.mascot);
+  const bx=o.mascot?220:60,bw=o.mascot?350:480,cx=bx+bw/2;
+  if(o.phone){aPhone(c,bx,170,bw,330,t,(g,w,h)=>{g.fillStyle='#111';g.fillRect(0,0,w,h);
+    o.beats.forEach((b,i)=>{if(t<0.6+i*0.55)return;const y=24+i*62;aBox(g,10,y,w-20,54,'#2a2a2a',10);
+      aT(g,sub(b,x),w/2,y+27,15,'#fff',{w:800,mw:w-36,a:ain(t,0.6+i*0.55)});});});}
+  else o.beats.forEach((b,i)=>{const at=0.6+i*0.6;if(t<at)return;aBox(c,bx,170+i*66,bw,56,'rgba(255,255,255,.12)',12);
+    aT(c,sub(b,x),cx,198+i*66,20,'#fff',{w:800,mw:bw-24,a:ain(t,at)});});
+  if(o.star&&t>3.4)aStar(c,470,560,70,o.accent,t,sub(o.star,x),16);
+  if(o.sign&&t>4.2)aT(c,sub(o.sign,x),o.star?220:300,590,19,o.accent,{w:800,a:ain(t,4.2),mw:o.star?360:540,f:'Georgia, serif'});
+};}
+
+/* ---------- 1. AD SPOTS (append to ADS) ---------- */
+const NEW_ADS=[
+ /* THE HOUSE (extended): push-notification spot */
+ {id:'housePing',brand:'The House Sportsbook',kind:'bet',dur:7,
+  joke:'Notifications are on. They were always on. You never turned them on.',
+  fine:['The House sends 40 alerts a game so you never miss an opportunity to miss.','Opting out takes 9 taps. Opting in took zero.','"Personalized offers" means we noticed.'],
+  draw:adCopyDraw({bg:['#0b3d2a','#04140d'],accent:'#ffd77a',kicker:'THE HOUSE · ALWAYS ON',title:'THE HOUSE',tag:'We\'ll text you. A lot.',phone:true,
+   beats:['🔔 {favN} −{s}. Your gut says yes ➡','🔔 Flag on the field! Live odds just moved ➡','🔔 You seem sad. Bonus bet? ➡','🔔 It\'s 2:14 AM. Big night for darts ➡'],
+   star:'BET $5\nGET $200\nIN VIBES*',sign:'"The House is always… open." — Vivian Lake'})},
+ /* THE HOUSE (extended): "No-Sweat" spot */
+ {id:'houseSweat',brand:'The House Sportsbook',kind:'bet',dur:7,joke:'No-Sweat Bet™: you won\'t sweat. Your wallet will.',
+  fine:['"No-Sweat" refunds arrive as Bonus Vibes, not money.','Bonus Vibes must be wagered 1x, then 1x again, then forever.','Max refund: one (1) small towel.'],
+  draw:adCopyDraw({bg:['#0e4d36','#020b07'],accent:'#9fe0b8',kicker:'TONIGHT ON {net}',title:'NO-SWEAT BET™',tag:'If it loses, we give you another chance to lose it.',
+   beats:['Bet {favN} −{s}','It loses (phantom flag)','We refund you in BONUS VIBES','Bonus Vibes expire in 7 days','So… bet again? ➡'],
+   star:'NO\nSWEAT*',sign:'*Sweat sold separately.'})},
+
+ /* FANTASY FLOOR (fantasy app; Kev already texts the ref) */
+ {id:'ffloor',brand:'Fantasy Floor',kind:'fantasy',dur:7,joke:'Start your studs. Sit your feelings. Bench your family.',
+  fine:['Projections are a vibe with a decimal point.','Fantasy Floor is not responsible for your kicker.','Trade analyzer powered by Kev\'s cousin.'],
+  draw:adCopyDraw({bg:['#14532d','#052012'],accent:'#86efac',kicker:'FANTASY FLOOR · WEEK-LONG ANXIETY',title:'FANTASY FLOOR',tag:'Where your floor is the basement.',
+   beats:['🔔 {qbN} is QUESTIONABLE (vibes)','🔔 Waivers process in 3 min. Panic? ➡','📊 Projected: 112.4 · Actual: a flag','🤝 Trade offer: your RB for 2 kickers'],
+   mascot:{shirt:'#22c55e',visor:'#fff'},star:'LINEUP\nLOCKED*',sign:'"I checked 400 times. It\'s locked."'})},
+ {id:'ffloorOpt',brand:'Fantasy Floor',kind:'fantasy',dur:6.5,joke:'Our Lineup Optimizer™ has never lost. It has never played.',
+  fine:['Optimizer optimizes for engagement, not points.','"Start" recommendations may be influenced by whichever player you\'re most attached to.'],
+  draw:adCopyDraw({bg:['#166534','#022c16'],accent:'#facc15',kicker:'NEW · LINEUP OPTIMIZER™',title:'OPTIMIZE ME',titleSz:52,tag:'Our AI read the injury report. And your texts.',
+   beats:['START: {qbN}','START: {kFull} (trust us)','SIT: your instincts','BENCH: your group-chat dignity'],
+   star:'99.7%\nCONFIDENT\n(±99.7%)',sign:'Fantasy Floor · Your floor, our ceiling.'})},
+
+ /* MORE OR LESS (DFS pick'em) */
+ {id:'moreless',brand:'Hunch Board',kind:'fantasy',dur:6.8,joke:'It\'s not betting. It\'s "picking." With money. On outcomes.',
+  fine:['Hunch Board is a game of skill, per our lawyer, who is also on Hunch Board.','Flex Play: lose a little, a lot of times.','Payout multipliers shrink when you look away.'],
+  draw:adCopyDraw({bg:['#7c2d12','#1c0702'],accent:'#fdba74',kicker:'HUNCH BOARD · PICK MORE OR LESS',title:'MORE? OR LESS?',titleSz:50,tag:'Two buttons. Infinite opinions.',
+   beats:['{qbN} passing yds: 248.5 ⬆ ⬇','{ref} flags: 6.5 ⬆ ⬇','Booth replays shown: 11.5 ⬆ ⬇','Times Marv says "Doug": 3.5 ⬆'],
+   star:'6-PICK\n25X\nPOWER!',sign:'"It\'s basically math." — a guy at a gas station'})},
+
+ /* LENNY'S LEG UP (parlay insurance / loan-style "help") */
+ {id:'legup',brand:'Leg Up by Lenny',kind:'bet',dur:7,joke:'Parlay died on leg 12? We\'ll lend you leg 13. At 10% a week.',
+  fine:['Leg Up is a "parlay continuation product," not a loan, legally, today.','Vig compounds weekly, like your enthusiasm.','Lenny Odds is not a bank. Lenny Odds has a car you should know about.'],
+  draw:adCopyDraw({bg:['#7f1d1d','#1a0505'],accent:'#fca5a5',kicker:'A LENNY ODDS COMPANY',title:'LEG UP',titleSz:64,tag:'Parlay insurance for people who can\'t afford insurance.',
+   beats:['11 legs hit ✅','Leg 12: phantom flag ❌','Leg Up: we "cover" leg 12 💸','You now owe leg 12 + vig','Recover with a 14-leg parlay? ➡'],
+   mascot:{shirt:'#111',visor:'#c45c26'},star:'CHASE\nTHE LOSS\nIN STYLE',sign:'"Leg Up. We\'re always nearby." — Lenny'})},
+ {id:'legupBoost',brand:'Leg Up by Lenny',kind:'bet',dur:6.5,joke:'Profit Boost™: boosts profit. Ours.',
+  fine:['30% Profit Boost applies to profits we don\'t expect you to have.','Boost tokens expire faster than your patience.'],
+  draw:adCopyDraw({bg:['#991b1b','#200404'],accent:'#fde047',kicker:'TONIGHT ONLY · EXPIRES IN 00:04:59',title:'MEGA BOOST',titleSz:58,tag:'Old odds +250 → NEW odds +260!!!',
+   beats:['{favN} cover + {ref} 8+ flags','+ {dogN} kicker misses a PAT','+ the anthem runs long','= BOOSTED (by a rounding error)'],
+   star:'⚡ BOOST\n⚡ BOOST\n⚡ BOOST',sign:'Hurry. Urgency is our only product.'})},
+
+ /* BAD BEAT BARRISTERS (lawyer, bettor-facing) */
+ {id:'badbeat',brand:'Bad Beat Barristers',kind:'law',dur:7,joke:'Hurt by a whistle? You may be entitled to a very long phone call.',
+  fine:['Not a real law firm. Parody only.','Bad beats are not a recognized injury in any jurisdiction, including Bad Beat Barristers\' office.','1-800-BAD-BEAT is fictional.'],
+  draw:adCopyDraw({bg:['#1e1b4b','#07061a'],accent:'#fde047',kicker:'PAID ATTORNEY ADVERTISEMENT (PARODY)',title:'BAD BEAT?',titleSz:62,tag:'Were you or a loved one covered for 59 minutes?',
+   beats:['Phantom holding in garbage time?','Backdoor cover denied by {ref}?','Parlay leg ruled "no catch"?','Fantasy points erased by replay?'],
+   mascot:{shirt:'#1e1b4b',visor:'#fde047'},star:'1-800-\nBAD-BEAT',sign:'"We can\'t un-throw the flag. We can yell."'})},
+
+ /* THE HOUSE CARES™ (responsible-gaming PR parody — mocks the app's PR, NOT people who need help) */
+ {id:'housecares',brand:'The House Cares™',kind:'psa',dur:7,joke:null,
+  fine:['The House Cares™ is funded by 0.0001% of The House.','This responsible-gaming message was interrupted by 3 promotional offers.','Deposit limits can be set in Settings › Account › More › Legal › Why?'],
+  draw:adCopyDraw({bg:['#1e293b','#0b1220'],accent:'#cbd5e1',kicker:'A RESPONSIBLE GAMING MINUTE',title:'THE HOUSE CARES™',titleSz:46,tag:'Please play responsibly. (Bet now ➡)',
+   beats:['Set a budget. 🔔 Deposit match 100%! ➡','Take breaks. 🔔 Live bet: next flag? ➡','Know the odds. 🔔 SGP boost! ➡','Ask for help: 1-800-GAMBLER (real, free, 24/7)'],
+   sign:'The House: we care at the exact volume legally required.'})}
+];
+
+/* ---------- 2. Placement prefs (merge into pickAd pref lists) ---------- */
+const PREF_V71={
+  '2min':['housePing','legupBoost','moreless','ot','parlay'],
+  q1:['houseSweat','ffloor','badbeat','docket','grokbot'],
+  q3:['legup','moreless','badbeat','stripeclear','margin'],
+  half:['housecares','houseSweat','legup','docket','integrity','house'],
+  week:['ffloor','ffloorOpt','moreless','wiw','house','margin']
+};
+
+/* ---------- 3. AD_SLOT_BRANDS replacement (sponsored-placeholder cards; default "mixed" mode shows these!) ---------- */
+const AD_SLOT_BRANDS_V71=[
+  {brand:'The House Sportsbook',sub:'Sponsored · parody',body:'Your first bet is on us.* *The rest are on you. Forever.'},
+  {brand:'Fantasy Floor',sub:'Sponsored · parody',body:'Waivers clear in 3 minutes. Your heart rate will not.'},
+  {brand:'Hunch Board',sub:'Sponsored · parody',body:'More or less? (Less. It\'s always less.)'},
+  {brand:'Leg Up by Lenny',sub:'Sponsored · parody',body:'Parlay insurance that charges interest. Lenny says hi. Lenny knows your car.'},
+  {brand:'Bad Beat Barristers',sub:'Paid attorney ad · parody',body:'Covered for 59 minutes? Call 1-800-BAD-BEAT. (Fictional. Like justice.)'},
+  {brand:'WhistleClean™',sub:'Official integrity spray · parody',body:'Spray on. Flag off. Results may include heat.'}
+];
+
+/* ---------- 4. Extra speed-read FINE lines (append to FINE; these go through fill()) ---------- */
+const FINE_V71=[
+  'Bonus Vibes are not money, cash, credit, or emotionally real.',
+  'Deposit match matches your deposit\'s feelings, not its amount.',
+  'Same-game parlays are priced by a guy who has seen your parlays.',
+  'Odds boosted from bad to slightly less bad. Boost ends in 4:59, 4:58…',
+  'Notifications: on by default, off by 9-step quest.',
+  'Free bet stake not returned. "Free" not returned.',
+  '{ref} is not a paid spokesperson. {ref} is an unpaid spokesperson.',
+  'Promo valid until you read this sentence.',
+  'Celebrity endorser has never placed a bet and wants you to know that legally.',
+  'Cash-out value calculated by The House, for The House, with love.'
+];
+
+/* ---------- 5. Booth sponsor reads (CHIP/MARV) — push onto CHIP_READS / BOOTH_X ---------- */
+const CHIP_READS_V71=[
+  "This drive is brought to you by The House Sportsbook. Vivian Lake asked me to say 'responsibly.' I said it. Twice. She said once was enough.",
+  "This flag is presented by Hunch Board. Will {ref} throw more or less? Marv, don't answer that, there's money involved.",
+  "This timeout is brought to you by Fantasy Floor. If you started our kicker, I'm so sorry.",
+  "This replay review is sponsored by Leg Up by Lenny. Lenny's people are in the parking lot. Please don't make eye contact.",
+  "Folks, The House wants me to mention the Same-Game Parlay Boost. I've mentioned it. My lawyer wants me to stop mentioning it."];
+const BOOTH_X_V71=[
+  ["MARV","Chip, my phone has buzzed 31 times this quarter. 30 are The House. One is my wife asking why it's buzzing."],
+  ["CHIP","Our in-game odds just refreshed, Marv. So did the replay. Neither one makes sense."],
+  ["MARV","Fantasy Floor says my lineup is 'optimized,' Chip. I'm losing to my dentist AND an algorithm."],
+  ["CHIP","Hunch Board has a prop on how many times I say 'brought to you by.' I'm legally not allowed to know the line."],
+  ["MARV","That's what the apps call a 'boosted moment,' Chip. I call it a holding call."]];
+
+/* ---------- 6. Phone/watch push-notification parodies (WATCH_SENDERS + WATCH_LINES) ---------- */
+const WATCH_SENDERS_V71={
+  houseapp:{name:'The House (app)',col:'#0f5132',handle:'🏦 House'},
+  hunch:{name:'Hunch Board',col:'#c2410c',handle:'⬆⬇ Hunch'}
+};
+const WATCH_LINES_V71={
+  houseapp:[()=>'🔔 Flag on the play! Live odds moved ➡ BET NOW',()=>'🔔 Your friends are already in. (You have 0 friends on here.)',()=>'🔔 We miss you. Here\'s a Bonus Vibe 💚',()=>`🔔 Same-game parlay builder: add "${refWho()} flag" ➡`],
+  hunch:[()=>`🔔 ${refShort()} flags: 6.5. More or less? ⬆⬇`,()=>'🔔 Flex Play is back. Lose flexibly ➡',()=>'🔔 Picks lock at kickoff. Panic unlocks now.'],
+  fantasy:[()=>'🔔 Fantasy Floor: Your projection dropped 0.4 after that flag. Blame the ref ➡',()=>'🔔 Kev accepted a trade you didn\'t send.']
+};
+
+/* ---------- 7. Meme caps for social cards (finePrint / vegas / slot / parlay) ---------- */
+const MEME_CAPS_V71={
+  finePrint:[["bet $5 get $200*","*in bonus vibes, which are feelings",10],["no-sweat bet","you won't sweat. your wallet will",10],["notifications: on","they were always on",10],["deposit match 100%!","we match your regret",10],["responsible gaming reminder","sent by the app 40 times tonight",10]],
+  vegas:[["the app: 'your friends are already in'","the friends: bots named @lock_lord_9",0],["profit boost","+250 → +260. thank you, the house",0]],
+  slot:[["same-game parlay builder","add a leg for ref #77's mood",0],["leg up by lenny","parlay insurance with interest",8]],
+  parlay:[["","11 legs hit. leg 12: 'ref #77 throws <6.5 flags'. hunch board says LESS",20],["","the app boosted my parlay. then the ref boosted the flag",20]]
+};
+
+/* ---------- 8. Wire it ---------- */
+try{
+  if(typeof ADS!=='undefined')NEW_ADS.forEach(a=>{if(!ADS.find(b=>b.id===a.id))ADS.push(a);});
+  if(typeof FINE!=='undefined')FINE.push(...FINE_V71);
+  if(typeof CHIP_READS!=='undefined')CHIP_READS.push(...CHIP_READS_V71);
+  if(typeof BOOTH_X!=='undefined')BOOTH_X.push(...BOOTH_X_V71);
+  if(typeof AD_SLOT_BRANDS!=='undefined'){AD_SLOT_BRANDS.length=0;AD_SLOT_BRANDS.push(...AD_SLOT_BRANDS_V71);}
+  if(typeof WATCH_SENDERS!=='undefined')Object.assign(WATCH_SENDERS,WATCH_SENDERS_V71);
+  if(typeof WATCH_LINES!=='undefined')for(const k in WATCH_LINES_V71)WATCH_LINES[k]=(WATCH_LINES[k]||[]).concat(WATCH_LINES_V71[k]);
+  if(typeof MEMES!=='undefined')for(const k in MEME_CAPS_V71)if(MEMES[k])MEMES[k].caps.push(...MEME_CAPS_V71[k]);
+  window.PREF_V71=PREF_V71;
+  window.__v71ads={ok:true,ids:NEW_ADS.map(a=>a.id),PREF_V71};
+}catch(e){console.error('[v71 ads]',e);}
+/* v73: pickAd reads window.PREF_V71[where] (falls back to its old inline list). */
+/* v73: pickSender pool includes 'houseapp','hunch'. */
+})();
+
 const AD_HELP_HTML='21+ only. Gambling problem? Call <b>1-800-GAMBLER</b>';
 function adsReadMode(){
   const q=P.get('ads');
@@ -8325,7 +8508,7 @@ function wireAdsSettings(){
       <option value="parody">Parody only</option>
       <option value="mixed">Mixed (parody + sponsored)</option>
       <option value="off">Off (VIP preview)</option></select>
-      <small>Sponsored = placeholder for real interstitial. ?ads=0 forces off.</small>`;
+      <small>Sponsored = parody sponsor cards. ?ads=0 forces off.</small>`;
     p.appendChild(row);
   }
   // pregame: replace checkbox with select if present
@@ -8336,7 +8519,7 @@ function wireAdsSettings(){
       <option value="parody">Parody only</option>
       <option value="mixed">Mixed (parody + sponsored)</option>
       <option value="off">Off (VIP preview)</option></select>
-      <small>Commercial breaks · sponsored placeholder ready for AdMob</small>`;
+      <small>Commercial breaks · parody sponsor cards</small>`;
     lab.replaceWith(wrap);
   }
   document.querySelectorAll('.adsMode').forEach(sel=>{
@@ -8746,6 +8929,7 @@ async function bcIntro(){const o=$('#intro');if(!o)return;const d=inData();IN={d
 requestAnimationFrame(frame);
 window.CW={AU,openDecide,_dbg:{T,memePost,showMeme,get S(){return S;}},drawLogo,logoURL,LEAGUE,need(){const x=jm(margin());return x<S.job.lo?S.job.team:x>S.job.hi?other(S.job.team):null;},get memeActive(){return mActive.length;},makeMeme,MEME_FMTS,MEMES,gagSigns,gagWallet,gagRefCam,boothX,charReact,charSay,CHARS,charAv,sinkBuy,booth,hud,recapFlush,preBurst,postBurst,FLOW,lmAdj,lmSteps,sprPick,sprDesc,sprJob,rateGame,ratingHTML,starsH,atsOf,sprHud,lateSwing,memeCtxX,CHIP_READS,MARV_FEUD,fill,memePost:(k='inv')=>memePost(bctx(S.cur||makePlay(),'holding'),k),get S(){return S;},result:null,setAuto(v,calls=true){AUTO=v;AUTOCALLS=calls;},setFast(f){FAST=f;},start(){$('#startBtn').click();}};
 Object.assign(window.CW,{setMatch,newSeason,seaLoad,seaSave,showHub,showTitle,showRecap,adBreak,ADS,SLOTS,rosterFor,LZ,startSeasonGame,refWho,refShort,refBrand,showRefBriefing,syncRefUI});Object.defineProperty(window.CW,'SEA',{get(){return SEA;}});Object.defineProperty(window.CW,'MATCH',{get(){return MATCH;}});
+CW._v73={P,AWatch,AD_SLOT_BRANDS,FINE,adslotEnsure,set adActive(v){adActive=v;}};/* v73 test hook */
 
 /* ===== v37 HUD + loco + collide + field paint ===== */
 (()=>{
@@ -11442,7 +11626,12 @@ setMatch(QUICK);bindRefNameInputs();syncRefUI();showTitle();
 #decide .dw{color:#d9dfeb}
 #gfx .ograde{font-size:12px;margin-top:4px;color:#e6e9f2}
 #gfx .otax{font-size:11.5px;margin-top:3px;margin-bottom:12px;color:#ffb36b;font-weight:800}
+/* v73 version tags */
+.cwver{font:600 10px/1.3 -apple-system,system-ui,sans-serif;color:var(--dim);opacity:.55;text-align:center;margin:8px 0 2px;letter-spacing:.3px}
+#audP .cwver{margin:10px 0 0;font-size:10px}
+#cwVerG{position:absolute;left:5px;bottom:calc(env(safe-area-inset-bottom) + 3px);font:600 9px/1 -apple-system,system-ui,sans-serif;color:#fff;opacity:.35;pointer-events:none;z-index:5;letter-spacing:.3px}
 </style>
 <script>window.__v72=true;/* v72 IMPACT: blind grades, job stakes, sticky heat, stand tax (Gamer top-4, George greenlit) */</script>
+<script>window.__v73={ok:true,adPack:true,ids:(window.__v71ads&&window.__v71ads.ids)||[],prefV71:!!window.PREF_V71,napRetired:true,senders:['houseapp','hunch']};/* v73 ADS: Meme parody ad pack (fantasy + betting apps), helpline kept sincere */</script>
 </body>
 </html>
