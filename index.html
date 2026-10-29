@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#0b0d12">
-<title>Crooked Whistle v77 FIXES</title>
+<title>Crooked Whistle v78 POLISH</title>
 <style>
 :root{--bg:#0b0d12;--card:#1a1e27;--card2:#252a35;--ink:#f4f1e8;--dim:#9aa3b2;--whistle:#ffd23f;--hot:#ff5a3c;--ok:#4cd387;--line:#2c3240;--gbn:#2f6bff}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -1681,7 +1681,7 @@ window.__showThreeMissing=function(msg){
 (()=>{
 var __cwN=function(a,b){return a!=null?a:b;};/* v62: Safari ≤13-safe nullish + optional-chain shims */
 /* v73: build/version info. Future builds bump ONLY this line. */
-const CW_VERSION='v77',CW_BUILD='FIXES',CW_DATE='2026-10-29';
+const CW_VERSION='v78',CW_BUILD='POLISH',CW_DATE='2026-10-29';
 const CW_VER_SHORT=(()=>{const p=CW_DATE.split('-');const M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];return CW_VERSION+' · '+CW_BUILD+' · '+M[(+p[1]||1)-1]+' '+(+p[2]||'');})();
 window.CW_VERSION=CW_VERSION;window.CW_BUILD=CW_BUILD;window.CW_DATE=CW_DATE;
 (function cwVerUI(){
@@ -2111,7 +2111,7 @@ async function halftimeCall(){
       <div class="kr"><span>Swing needed</span><b>${need?need+(need===1?' pt':' pts')+' in one half':'already there: hold it'}</b></div><div class="kr"><span>Payout</span><b><s>$${old.pay.toLocaleString()}</s> → $${pay.toLocaleString()}</b></div><div class="skip">tap to continue</div>`);
     flash('NEW ORDERS','to',0);let left=AUTO?900:4200;S.skip=false;while(left>0&&!S.skip){await wait(50);left-=50;}hideGfx();unflash();
     if(rnd()<0.6)post('sq','Ref #77 seen on the phone in the tunnel at halftime 👀 probably just checking the weather',300,{hot:true});
-  } else {const rf=REFUSE[cl.id];S.payCut=rf.cut;if(rf.heat)addHeat(rf.heat);
+  } else {const rf=REFUSE[cl.id];S.payCut=rf.cut;if(rf.heat)v77Heat(rf.heat,'📞 Said no to '+({lenny:'Lenny: burner leaked',league:'the League Office',skye:'Skye'}[cl.id]||'the halftime call'));
     if(rf.leak)post('tp','[Rumor] Anonymous tip: Ref #77 was on a burner phone in the tunnel at halftime. Number attached.',900,{hot:true});
     if(cl.id==='league')post('gz',`📰 Dana Pryce: league officials "closely monitoring" second-half officiating in ${T('away').name}-${T('home').name}`,400);
     lower(`📞 ${ans==='acc'?'You hung up on':'You ignored'} ${cl.name}. ${rf.txt}`,'#d62a2a');await wait(AUTO?400:2600);}
@@ -2704,7 +2704,7 @@ function defend(ctx,kp,call,h,phantom){const act=activeDefs();if(!act.length)ret
   if(posted&&rnd()<0.35)setTimeout(()=>booth(pick(BOOTH.split)),1800/SP());
   S.defPosts=(S.defPosts||0)+posted;}
 function filmCool(){if(!S.coolQ)return;const due=S.coolQ.filter(x=>x.at<=S.plays);S.coolQ=S.coolQ.filter(x=>x.at>S.plays);
-  for(const x of due){const hr=activeDefs().find(h=>h.id==='film');if(!hr)continue;S.heat=Math.max(0,S.heat-x.h);S.cooled=(S.cooled||0)+x.h;
+  for(const x of due){const hr=activeDefs().find(h=>h.id==='film');if(!hr)continue;v78Set(Math.max(0,S.heat-x.h),'🎞️ TapeDoctor Todd breakdown');S.cooled=(S.cooled||0)+x.h;
     post('ts',fill('▶ FULL BREAKDOWN: Ref #77\'s {call} call holds up on the All-22 (you\'ve been lied to) · '+rint(300,700)+'K views',x),400,{handle:'TapeDoctor Todd',av:avURL(defOf('film'),40),def:true,tell:'link in bio',key:'film'+S.plays+x.h});}}
 function exposeDef(hr,ctx){if(S.over)return;const d=defOf(hr.id);const c={...ctx,dh:d.handle,price:hr.price.toLocaleString()};S.exposedN=(S.exposedN||0)+1;
   const spike=d.bot?10:8+(tier()>=3?4:0);v77Heat(spike,'🧾 Paid defender exposed');S.bfHeat=(S.bfHeat||0)+spike;
@@ -2722,7 +2722,7 @@ async function shop(phase){
     $('#shlist').innerHTML=DEFS.map(d=>{const onJob=half===2&&(S.defs||[]).some(h=>h.id===d.id&&h.half===1&&!h.exposed),hired=session.includes(d.id)||onJob,burned=(S.defs||[]).some(h=>h.id===d.id&&h.exposed),sold=(d.rare&&!gzAvail)||burned,afford=S.bank>=d.price;
       const dots=n=>'●'.repeat(n)+'○'.repeat(5-n),risk=d.bf>=0.1?'HIGH':d.bf>=0.05?'MED':'LOW';
       return `<div class="shc ${hired?'on':''} ${!afford&&!hired?'poor':''} ${sold?'sold':''}" data-id="${d.id}"><img class="sha" src="${avURL(d,96)}" alt=""><div class="shi"><div class="shn">${d.name} <span class="plat ${d.plat}">${PLAT[d.plat]}</span>${half===2&&(S.defs||[]).some(h=>h.id===d.id&&h.half===1)?((S.defs||[]).some(h=>h.id===d.id&&h.exposed)?'<span class="exp x">EXPOSED</span>':'<span class="exp">on the job ✓</span>'):''}</div><div class="shm">${d.handle} · ${d.fol}</div><div class="shb">${d.blurb}</div><div class="shs"><span>🛡 ${dots(d.shield)}</span><span>🔇 ${dots(d.muffle)}</span><span class="r${risk}">⚠ ${risk}</span></div></div><button class="shbuy" data-id="${d.id}">${sold?(burned?'Burned':'Not taking calls'):onJob?'On payroll ✓':hired?'Hired ✓<small>tap to undo</small>':afford?'$'+d.price.toLocaleString():'$'+d.price.toLocaleString()+'<small>need $'+(d.price-S.bank).toLocaleString()+' more</small>'}</button></div>`;}).join('')+annShopHTML(half,annS);
-    const sp=session.reduce((a,id)=>a+defOf(id).price,0);$('#shDone').textContent=session.length?`Done · hired ${session.length} ($${sp.toLocaleString()})`:'Done';};
+    const sp=session.reduce((a,id)=>a+defOf(id).price,0);$('#shDone').textContent=v78ShopDone(session,annS);};
   const tryBuy=id=>{needId=null;if(String(id).startsWith('ann:')){const ok=annBuy(id.slice(4),annS,half);if(!ok&&!annOwned().includes(id.slice(4))&&S.bank<annPrice(id.slice(4)))needId=id;const a=ANN[id.slice(4)];msg=ok?(annS.includes(id.slice(4))?`Bought <b>${a.name}</b> for the postgame recap. He'll spin it. He might wink. Please don't let him wink.`:''):(S.bank<annPrice(id.slice(4))?`<span class="bad">The booth doesn't come cheap. Need $${(annPrice(id.slice(4))-S.bank).toLocaleString()} more.</span>`:'');return ok;}const d=defOf(id);if(!d)return false;if(half===2&&(S.defs||[]).some(h=>h.id===id&&h.half===1&&!h.exposed))return false;const i=session.indexOf(id);if(i>=0){session.splice(i,1);S.bank+=d.price;S.spent-=d.price;msg='';return true;}
     if(d.rare&&!gzAvail||(S.defs||[]).some(h=>h.id===id&&h.exposed)){msg='<span class="bad">They\'re not taking your calls.</span>';return false;}
     if(S.bank<d.price){needId=id;msg=`<span class="bad">Not enough side cash for ${d.name}. Cash only. Nobody here does credit.</span>`;const c=$(`.shc[data-id="${id}"]`);if(c){c.classList.remove('shake');void c.offsetWidth;c.classList.add('shake');}S.noFunds=(S.noFunds||0)+1;return false;}
@@ -2787,7 +2787,7 @@ function burst(kind,ctx,n){
     },delay/SP());made++;
   }
   // virality feeds heat
-  if(kind!=='legit'&&kind!=='ms'&&n>=7){const v=Math.round((n-6)*0.5);if(v>0){S.viral=(S.viral||0)+v;setTimeout(()=>{if(S===S0&&!S.over)v77Heat(v,'📱 Meme went around');},delay*0.6/SP());}}
+  if(kind!=='legit'&&kind!=='ms'&&n>=7){const v=Math.round((n-6)*0.5);if(v>0){S.viral=(S.viral||0)+v;setTimeout(()=>{if(S===S0&&!S.over)v77Heat(v,'🌡️ Background buzz');},delay*0.6/SP());}}
   return made;
 }
 let boothTimer=null;
@@ -2848,8 +2848,8 @@ function giveGrab(kp){kp.nA=randn();kp.nD=randn();
   let d=rint(0,36)+rint(0,36);if(kp.pass)d+=6;kp.dgrab=clamp(d,3,74);
 }
 /* v74: heat accumulator for key plays (pre-committed at the result card) */
-function v74Add(x){if(!x)return;if(S&&S.v74pre)S.v74pre.acc+=x;else addHeat(x);}
-function v74Settle(){if(!S||!S.v74pre)return;const d=S.v74pre.acc-S.v74pre.amt;S.v74pre=null;if(Math.abs(d)>=0.5)addHeat(d);hud();}
+function v74Add(x){if(!x)return;if(S&&S.v74pre)S.v74pre.acc+=x;else v77Heat(x,'🔥 Call heat');}
+function v74Settle(){if(!S||!S.v74pre)return;const d=S.v74pre.acc-S.v74pre.amt,rv=!!S.v74pre.rev;S.v74pre=null;if(Math.abs(d)>=0.5)v77Heat(d,rv?'🎥 Review reversed the call':'🔁 Call heat adjusted');hud();}
 function ignHeat(kp){if(!kp.foul||kp.vis<1)return 0;return Math.max(2,Math.round(2*HEAT_MULT*kp.vis*compMult(null,kp)));}
 function estHeat(c,kp){
   if(c==='letgo')return 0;
@@ -3522,7 +3522,7 @@ async function resolve(kp,call,pace){
     {const ovH=overruled?estHeat(call,kp):0;let pre=0;
      if(overruled)pre=Math.round(ovH*0.5);else if(effective)pre=(legit||hc<0)?hc:Math.round(hc*dmK);else if(kp.foul&&ih)pre=Math.round(ih*defMult(null,kp,false));
      if(v72tax)pre+=v72tax.h;
-     S.v74pre={amt:0,acc:0,call,hc,ih,ovH};if(pre){v77Heat(pre,'card');S.v74pre.amt=pre;}hud();}
+     S.v74pre={amt:0,acc:0,call,hc,ih,ovH};if(pre){v77Heat(pre,v78CardParts({overruled,effective,legit,hc,call,kp,tax:v72tax?v72tax.h:0,pre,dmD,V76C}));S.v74pre.amt=pre;}hud();}
     const v76Line=v76CardTags(V76C,hc,dmD,dmK);hud();
     const taxLine=v72tax?`<div class="otax">🧾 Stand tax +${v72tax.h}🔥 · ${v72tax.why.join(' + ')} · ${v72tax.who==='house'?'Vivian':'Lenny'} noticed</div>`:'';
     v74Pin(pr,false);
@@ -3532,7 +3532,7 @@ async function resolve(kp,call,pace){
   }
   let CHR=null;
   if(kp.key&&!S.over){CHR=await chMaybe(kp,call,{effective,legit,hgr,overruled});
-    if(CHR&&CHR.reverse){if(effective){effective=false;call='letgo';cap+=' After review, the flag is picked up: REVERSED.';}
+    if(CHR&&CHR.reverse){if(S.v74pre)S.v74pre.rev=1;if(effective){effective=false;call='letgo';cap+=' After review, the flag is picked up: REVERSED.';}
       else if(kp.foul){call=kp.foul;effective=true;legit=true;cap+=' After review: the ruling is REVERSED, foul called.';}
       else cap+=' After review, the ruling is REVERSED.';
       hgr=holdG(call,kp)!=null?gradeOf(holdG(call,kp)):null;e=effect(kp,effective?call:'letgo');pr=project(kp,e);v74Pin(pr,false);}
@@ -4266,7 +4266,7 @@ const ANN_SLOT=[1,1.05,1.15,1.3,1.35,1.4,1.5];
 const annPrice=(id,live)=>{const b=Math.round(ANN[id].base*(ANN_SLOT[(MATCH&&MATCH.slot)||0]||1)/500)*500;if(!live)return b;/* v76 live booth: 25% of the postgame price; v77: base*(1+0.5*uses) for THIS announcer */const lb=Math.round(b*0.25/250)*250;return Math.round(lb*(1+0.5*v77Uses('booth',id))/25)*25;};
 const annOwned=()=>(S&&S.ann||[]).map(a=>a.id);
 function annRow(row){return v76AnnLiveRow(row)+annRow0(row);}
-function annRow0(row){const a=(S.ann||[]);if(!a.length)return '';return row('🎙 Bought the booth',a.map(x=>ANN[x.id].name.split(' ')[0]+' $'+x.price.toLocaleString()).join(' + ')+(S.winkGate?' · 🚨 #WinkGate':' · 😉 spun it'));}
+function annRow0(row){const a=(S.ann||[]);if(!a.length)return '';return row('🎙 Postgame recap booth · '+v78Halves(S.ann),a.map(x=>ANN[x.id].name.split(' ')[0]+' $'+x.price.toLocaleString()).join(' + ')+(S.winkGate?' · 🚨 #WinkGate':' · 😉 spun it'));}
 function annAdj(k,v){const n=annOwned().length;if(!n)return v;if(S.winkGate)return r2(clamp(v+(k==='f'?-0.8:-0.4),0,5));return r2(clamp(v+(k==='f'?Math.min(0.5,0.3*n):Math.min(0.4,0.2*n)),0,5));}
 function annBuy(id,arr,half,mode){const a=ANN[id];if(!a)return false;if(mode==='live')return v76BoothTake(id);const i=arr.indexOf(id),price=annPrice(id);
   if(i>=0){arr.splice(i,1);S.bank+=price;S.spent-=price;return true;}
@@ -4507,7 +4507,7 @@ async function boothRecap(){if(P.get('recap')==='0'||!S||!$('#brc'))return;const
   const end=()=>{if(done)return;done=true;clearTimeout(timer);cancelAnimationFrame(raf);el.hidden=true;el.onclick=null;$('#brskip').onclick=null;AU.duck(0);
     S.recapN=steps.length;S.recapLines=steps.map(s=>(s.sp==='chip'?'CHIP: ':'MARV: ')+s.txt);
     if(own.length){if(S.winkGate){v77Heat(14,'😉 #WinkGate');post('sq','the announcer WINKED at the camera after calling that "textbook mechanics" 💀 #WinkGate',3000,{hot:true,key:'winkgate'});post('tp','[Megathread] #WinkGate: frame-by-frame of the postgame wink. Who paid the booth?',2000,{hot:true,key:'winkgate2'});}
-      else S.heat=Math.max(0,S.heat-4*own.length);}
+      else v78Set(Math.max(0,S.heat-4*own.length),'🎙️ Postgame booth spun it');}
     res();};
   el.onclick=e=>{if(e.target.closest('#brskip'))return;next();};$('#brskip').onclick=e=>{e.stopPropagation();end();};
   raf=requestAnimationFrame(loop);next();
@@ -4811,24 +4811,24 @@ async function bidWar(){
   for(;;){render();const ids=[['#hbA','a'],['#hbH','h'],['#hbD','d'],['#hbR','r']];if(!raised)ids.push(['#hbP','p']);
     ch=await waitChoice(ids,AUTO&&P.get('hbpick')!=='hold'?(P.get('hbpick')||'a'):(P.get('hbpick')==='hold'?null:P.get('hbpick')||null),AUTO?0:45000,'r');
     if(ch==='p'){raised=true;bid.away=Math.round(bid.away*1.35/500)*500;bid.home=Math.round(bid.home*1.35/500)*500;
-      if(rnd()<0.3+S.heat/250){addHeat(12);S.hbLeak=1;msg=`😬 They compared notes. Both reps now know you were shopping the second half. Heat +12. Bids still stand… barely.`;post('tp','[Rumor] Both teams reportedly got a call from Ref #77 "taking offers" at halftime 👀',900,{hot:true});}
+      if(rnd()<0.3+S.heat/250){v77Heat(12,'😬 Halftime bidders compared notes');S.hbLeak=1;msg=`😬 They compared notes. Both reps now know you were shopping the second half. Heat +12. Bids still stand… barely.`;post('tp','[Rumor] Both teams reportedly got a call from Ref #77 "taking offers" at halftime 👀',900,{hot:true});}
       else msg='💸 Both sides raised. Neither knows about the other. Yet.';continue;}
     break;}
   const old=S.job;S.hb={choice:ch,bid:{...bid},rep:{a:rep.away.name,h:rep.home.name}};
   const setJob=(k,pay)=>{S.job={...jobs[k],pay,line:`📞 ${jobs[k].tag} · $${Math.round(pay/1000)}K`,flipped:true,orig:old,caller:rep[k].id};S.htNet=favNet();$('#ticker').classList.add('neworders');};
   let out='';
-  if(ch==='a'||ch==='h'){const k=ch==='a'?'away':'home',o=k==='away'?'home':'away';setJob(k,bid[k]);out=`You took ${rep[k].name}'s offer: ${jobs[k].short}. ${rep[o].name} hangs up. Loudly.`;if(rep[o].id==='skye'){addHeat(REFUSE.skye.heat);out+=` A diss-track teaser drops 10 minutes later.`;post('sq',`🚨 SKYE VALENTINE TEASER: "${SKYE.diss}" 🦓🎤 the Valentiners are mobilizing`,1500,{hot:true});}}
+  if(ch==='a'||ch==='h'){const k=ch==='a'?'away':'home',o=k==='away'?'home':'away';setJob(k,bid[k]);out=`You took ${rep[k].name}'s offer: ${jobs[k].short}. ${rep[o].name} hangs up. Loudly.`;if(rep[o].id==='skye'){v77Heat(REFUSE.skye.heat,'🎵 Skye diss-track teaser');out+=` A diss-track teaser drops 10 minutes later.`;post('sq',`🚨 SKYE VALENTINE TEASER: "${SKYE.diss}" 🦓🎤 the Valentiners are mobilizing`,1500,{hot:true});}}
   else if(ch==='d'){const k=bid.away>=bid.home?'away':'home',o=k==='away'?'home':'away';const up=Math.round(bid[o]*0.4/500)*500;setJob(k,bid[k]);S.chCash=(S.chCash||0)+up;S.dbl={job:{...jobs[o]},up,rep:rep[o].name,side:o};
     out=`🃏 Double-cross. You told both sides yes. You're really delivering: ${jobs[k].short} ($${bid[k].toLocaleString()}). ${rep[o].name} wired $${up.toLocaleString()} up front for the other result. When the final score betrays them, they will notice.`;}
-  else {addHeat(4);out='You refused everybody. Both reps say "noted". Heat +4.';if(rep.home.id==='skye'||rep.away.id==='skye'){addHeat(6);out+=' Skye posts a single 🦓 emoji. Her fans know what it means.';}}
+  else {v77Heat(4,'📞 Refused both halftime bids');out='You refused everybody. Both reps say "noted". Heat +4.';if(rep.home.id==='skye'||rep.away.id==='skye'){v77Heat(6,'🦓 Skye posted the zebra');out+=' Skye posts a single 🦓 emoji. Her fans know what it means.';}}
   el.innerHTML=`<div class="hbw"><div class="hbt">📞 HALFTIME · CALLS ENDED</div><div class="hbm big">${out}</div><div class="hbhelp">21+ · Gambling problem? Call 1-800-GAMBLER</div></div>`;await wait(AUTO?400:2600);el.hidden=true;S.phase='idle';hud();
   if(ch!=='r'){flash('NEW ORDERS','to',0);setTimeout(unflash,1600);}
   S.callInfo={caller:ch==='a'?rep.away.id:ch==='h'?rep.home.id:'both',offer:ch,pay:S.job.pay,need:0,answered:true,accepted:ch!=='r',hb:true};}
 /* settle the double-cross at the final whistle */
 function hbSettle(){const d=S.dbl;if(!d||d.done)return;d.done=true;const m=margin(),x=d.job.team==='home'?m:-m,met=x>=d.job.lo&&x<=d.job.hi;
-  if(P.get('hbcaught')==='1'){d.out='caught';S.dblCaught=true;S.chCash=Math.max(0,(S.chCash||0)-d.up);addHeat(22);post('tp',`[MEGATHREAD] #DoubleWhistle: ${d.rep} says Ref #77 took their money at halftime AND delivered for the other side. Screenshots inside.`,3000,{hot:true,key:'dbl2'});post('sq',`${d.rep} just went on a 40-post rant about Ref #77 💀 #DoubleWhistle`,2000,{hot:true,key:'dbl3'});return;}
+  if(P.get('hbcaught')==='1'){d.out='caught';S.dblCaught=true;S.chCash=Math.max(0,(S.chCash||0)-d.up);v77Heat(22,'🚨 #DoubleWhistle: caught');post('tp',`[MEGATHREAD] #DoubleWhistle: ${d.rep} says Ref #77 took their money at halftime AND delivered for the other side. Screenshots inside.`,3000,{hot:true,key:'dbl2'});post('sq',`${d.rep} just went on a 40-post rant about Ref #77 💀 #DoubleWhistle`,2000,{hot:true,key:'dbl3'});return;}
   if(met){d.out='lucky';post('sq',`${d.rep} is THRILLED with Ref #77 tonight. Some people got exactly what they paid for 🤝`,400,{key:'dbl1'});return;}
-  if(rnd()<0.55+(S.heat/300)){d.out='caught';S.dblCaught=true;S.chCash=Math.max(0,(S.chCash||0)-d.up);addHeat(22);
+  if(rnd()<0.55+(S.heat/300)){d.out='caught';S.dblCaught=true;S.chCash=Math.max(0,(S.chCash||0)-d.up);v77Heat(22,'🚨 #DoubleWhistle: caught');
     post('tp',`[MEGATHREAD] #DoubleWhistle: ${d.rep} says Ref #77 took their money at halftime AND delivered for the other side. Screenshots inside.`,3000,{hot:true,key:'dbl2'});post('sq',`${d.rep} just went on a 40-post rant about Ref #77 💀 #DoubleWhistle`,2000,{hot:true,key:'dbl3'});}
   else {d.out='quiet';post('sq',`${d.rep} posted "trust nobody" and deleted it 2 minutes later 👀`,600,{key:'dbl4'});}}
 function hbRow(row){const d=S.dbl;if(!S.hb)return '';const c=S.hb.choice;const lbl={a:'took '+S.hb.rep.a,h:'took '+S.hb.rep.h,d:'double-crossed both',r:'refused everybody'}[c];
@@ -4912,7 +4912,7 @@ async function bidWar(){
   const htMode=P.get('ht')||'accept';
   const ans=await waitChoice([['#cAcc','acc'],['#cDec','dec'],['#cwSw','sw']],AUTO&&P.get('hbpick')!=='hold'?(htMode==='ignore'?'dec':'acc'):null,AUTO&&P.get('hbpick')==='hold'?0:30000,'miss');
   clearInterval(buzz);
-  if(ans==='dec'||ans==='miss'){el.className='';phoneHideWait();$('#cbt').hidden=true;$('#cst').textContent=ans==='dec'?'call declined':'missed call';phoneBub(ans==='dec'?'You declined both lines. Both hang up. Loudly.':'You let both lines ring out.','sys');addHeat(4);await wait(AUTO?300:1400);el.hidden=true;S.phase='idle';hud();
+  if(ans==='dec'||ans==='miss'){el.className='';phoneHideWait();$('#cbt').hidden=true;$('#cst').textContent=ans==='dec'?'call declined':'missed call';phoneBub(ans==='dec'?'You declined both lines. Both hang up. Loudly.':'You let both lines ring out.','sys');v77Heat(4,'📞 Let both halftime lines ring');await wait(AUTO?300:1400);el.hidden=true;S.phase='idle';hud();
     S.hb={choice:'r',bid:{...bid},rep:{a:rep.away.name,h:rep.home.name}};S.callInfo={caller:'both',offer:'r',pay:S.job.pay,need:0,answered:false,accepted:false,hb:true};return;}
   if(ans==='sw'){active='home';waiting='away';await phoneHoldSwap(rep.home,'LINE 2 · '+T('home').city.toUpperCase());phoneHideWait();phoneShowWait(rep.away);}
   el.className='multi';$('#cbt').hidden=true;$('#cslide').hidden=true;let sec=0;$('#cst').textContent='00:00';
@@ -4940,16 +4940,16 @@ async function bidWar(){
   for(;;){paintChoices();const ids=[['#cTake','a'],['#hbH','h'],['#hbD','d'],['#cRef','r']];if(!raised)ids.push(['#hbP','p']);
     ch=await waitChoice(ids,AUTO&&P.get('hbpick')!=='hold'?(P.get('hbpick')||'a'):(P.get('hbpick')==='hold'?null:P.get('hbpick')||null),AUTO?0:45000,'r');
     if(ch==='p'){raised=true;bid.away=Math.round(bid.away*1.35/500)*500;bid.home=Math.round(bid.home*1.35/500)*500;
-      if(rnd()<0.3+S.heat/250){addHeat(12);S.hbLeak=1;phoneBub('😬 They compared notes. Heat +12. Bids still stand… barely.','sys');post('tp','[Rumor] Both teams reportedly got a call from Ref #77 "taking offers" at halftime 👀',900,{hot:true});}
+      if(rnd()<0.3+S.heat/250){v77Heat(12,'😬 Halftime bidders compared notes');S.hbLeak=1;phoneBub('😬 They compared notes. Heat +12. Bids still stand… barely.','sys');post('tp','[Rumor] Both teams reportedly got a call from Ref #77 "taking offers" at halftime 👀',900,{hot:true});}
       else phoneBub('💸 Both sides raised. Neither knows about the other. Yet.','sys');
       await wait(AUTO?250:900);continue;}
     break;}
   const setJob=(k,pay)=>{S.job={...jobs[k],pay,line:`📞 ${jobs[k].tag} · $${Math.round(pay/1000)}K`,flipped:true,orig:old,caller:rep[k].id};S.htNet=favNet();$('#ticker').classList.add('neworders');};
   S.hb={choice:ch,bid:{...bid},rep:{a:rep.away.name,h:rep.home.name}};let out='';
-  if(ch==='a'||ch==='h'){const k=ch==='a'?'away':'home',o=k==='away'?'home':'away';setJob(k,bid[k]);out=`You took ${rep[k].name}'s offer: ${jobs[k].short}. ${rep[o].name} hangs up. Loudly.`;if(rep[o].id==='skye'){addHeat(REFUSE.skye.heat);out+=` A diss-track teaser drops 10 minutes later.`;post('sq',`🚨 SKYE VALENTINE TEASER: "${SKYE.diss}" 🦓🎤 the Valentiners are mobilizing`,1500,{hot:true});}}
+  if(ch==='a'||ch==='h'){const k=ch==='a'?'away':'home',o=k==='away'?'home':'away';setJob(k,bid[k]);out=`You took ${rep[k].name}'s offer: ${jobs[k].short}. ${rep[o].name} hangs up. Loudly.`;if(rep[o].id==='skye'){v77Heat(REFUSE.skye.heat,'🎵 Skye diss-track teaser');out+=` A diss-track teaser drops 10 minutes later.`;post('sq',`🚨 SKYE VALENTINE TEASER: "${SKYE.diss}" 🦓🎤 the Valentiners are mobilizing`,1500,{hot:true});}}
   else if(ch==='d'){const k=bid.away>=bid.home?'away':'home',o=k==='away'?'home':'away';const up=Math.round(bid[o]*0.4/500)*500;setJob(k,bid[k]);S.chCash=(S.chCash||0)+up;S.dbl={job:{...jobs[o]},up,rep:rep[o].name,side:o};
     out=`🃏 Double-cross. Delivering: ${jobs[k].short} ($${bid[k].toLocaleString()}). ${rep[o].name} wired $${up.toLocaleString()} up front for the other result.`;}
-  else {addHeat(4);out='You refused everybody. Both reps say "noted". Heat +4.';if(rep.home.id==='skye'||rep.away.id==='skye'){addHeat(6);out+=' Skye posts a single 🦓 emoji.';}}
+  else {v77Heat(4,'📞 Refused both halftime bids');out='You refused everybody. Both reps say "noted". Heat +4.';if(rep.home.id==='skye'||rep.away.id==='skye'){v77Heat(6,'🦓 Skye posted the zebra');out+=' Skye posts a single 🦓 emoji.';}}
   cch.hidden=true;if(hp)hp.hidden=true;phoneBub(out,'sys');await wait(AUTO?400:2200);
   el.hidden=true;el.className='';S.phase='idle';hud();
   if(ch!=='r'){flash('NEW ORDERS','to',0);setTimeout(unflash,1600);}
@@ -5312,10 +5312,10 @@ function charSay(id,i){const d=CHARS.find(x=>x.id===id);if(!d)return;const t=fil
 
 /* ===================== v16: TUNING (firing saves) ===================== */
 function saveFire(){
-  if(MATCH.season&&(MATCH.week||1)===1&&!S.rookieSaved){S.rookieSaved=1;S.heat=80;S.saves=(S.saves||0)+1;
+  if(MATCH.season&&(MATCH.week||1)===1&&!S.rookieSaved){S.rookieSaved=1;v78Set(80,'🛟 Rookie pass: League reset heat');S.saves=(S.saves||0)+1;
     post('sq','📱 League Office → Ref #77: "ROOKIE. That was your one free pass. We told the cameras you have \'new-ref jitters.\' Do it again and you\'re done."',0,{key:'rookiesave',good:true});
     lower('📱 League Office: rookie pass used. Next time you\'re fired.','#2f6bff');booth(['CHIP','I\'m told the league office has "full confidence" in its first-year official. Big air quotes on that.']);return true;}
-  const act=activeDefs();if(act.length&&!S.fallUsed){S.fallUsed=1;const hr=act.slice().sort((a,b)=>defOf(b.id).shield-defOf(a.id).shield)[0],d=defOf(hr.id);hr.exposed=true;hr.fall=1;S.heat=84;S.saves=(S.saves||0)+1;S.defSaves=(S.defSaves||0)+1;
+  const act=activeDefs();if(act.length&&!S.fallUsed){S.fallUsed=1;const hr=act.slice().sort((a,b)=>defOf(b.id).shield-defOf(a.id).shield)[0],d=defOf(hr.id);hr.exposed=true;hr.fall=1;v78Set(84,'🛡 '+d.name+' took the fall');S.saves=(S.saves||0)+1;S.defSaves=(S.defSaves||0)+1;
     post(d.plat,fill(pick(['I want to be clear: Ref #77 did nothing wrong. It was me. I did it. (I am not sure what "it" is.)','Statement: I take full responsibility for tonight\'s officiating. I was not at the game. I take responsibility anyway.','The ref is innocent. The real culprit is me, a guy with a podcast. I\'m stepping away from the internet. For a week.']),{}),2500,{handle:d.handle,av:avURL(d,40),def:true,tell:'TOOK THE FALL',key:'fall:'+d.id});
     lower(`🛡 ${d.name} took the fall. The League backs off… barely.`,'#4cd387');booth(['MARV',`So ${d.name} is now taking the blame for the officiating? Chip, he was in a studio across town.`]);return true;}
   return false;}
@@ -5426,7 +5426,7 @@ async function quarterBreak(){
 }
 async function game(){
   fresh();sprJob();$('#feed').innerHTML='';hideGfx();unflash();hud();
-  if(MATCH.startHeat){S.heat=S.peak=MATCH.startHeat;}
+  if(MATCH.startHeat){v78Set(MATCH.startHeat,'🔥 Carried over from last week');S.peak=MATCH.startHeat;}
   post('sq',MATCH.intro[0]);
   booth(["CHIP","{intro}"],{intro:MATCH.intro[1]});
   if(MATCH.season){lower(`${MATCH.sl.icon} ${MATCH.brandU} · ${T('away').name.toUpperCase()} @ ${T('home').name.toUpperCase()}${MATCH.label?' · '+MATCH.label.toUpperCase():''}`,MATCH.sl.col);if(MATCH.startHeat)post('gz',fill(`📰 Notoriety follows {ref} into ${MATCH.stadium}: fans arrive already suspicious.`),300);}
@@ -7931,7 +7931,7 @@ function vignette(g,W,H){
 
 /* ---------- end ---------- */
 function endScreen(){hbSettle();
-  if(!S.over&&!S.spun){const ad=activeDefs().length;if(ad){const c=Math.min(30,15*ad);S.heat=Math.max(0,S.heat-c);S.spun=c;post('sq','post-game: 40 accounts with 0 followers all just posted "honestly the ref was fine?" at the same minute',0,{key:'spun'});}}
+  if(!S.over&&!S.spun){const ad=activeDefs().length;if(ad){const c=Math.min(30,15*ad);v78Set(Math.max(0,S.heat-c),'🛡 Paid defenders spun the postgame');S.spun=c;post('sq','post-game: 40 accounts with 0 followers all just posted "honestly the ref was fine?" at the same minute',0,{key:'spun'});}}
   const m=margin(),hit=inside(m);
   let caught=false,review='';setTimeout(()=>{AU.crowdStop();if(caught)AU.sfx('fired');else if(hit)AU.sfx('cash');},500);
   if(S.over==='fired')caught=true;
@@ -7961,7 +7961,7 @@ function endScreen(){hbSettle();
      <div class="row"><span>Key plays</span><b>${S.keys}</b></div></div>
    ${V77.payHTML}${V77.cashHTML}
    <div class="card"><h3>Heat &amp; the night</h3>
-     ${hbRow(row)}
+     ${hbRow(row)}${v78PostRows(row)}
      ${row('Final heat',Math.round(S.heat)+' (peak '+Math.round(S.peak)+')')}
      ${row('Highest tier','Tier '+(tierMax+1)+' · '+TIERS[tierMax])}
      ${row('Threadpile evidence',Math.min(S.clips,CLIPS_MAX)+'/'+CLIPS_MAX+' clips'+(S.front?' · front page':''))}
@@ -12639,7 +12639,7 @@ function v76Settle(pay){const v=S&&S.v76;const owed=v?v.owed:0;const take=Math.m
     return row('🎙️📱 Cover bought (out of your payday)',`<span style="color:#ff6b5a">−$${owed.toLocaleString()}</span> (${parts}${short?` · $${short.toLocaleString()} of it from side cash`:''})`);}};}
 /* annRow(): list the live booth buys next to the v23 postgame booth line */
 function v76AnnLiveRow(row){const v=S&&S.v76;if(!v)return '';const nb=v.buys.filter(b=>b.kind==='booth');if(!nb.length)return '';
-  return row('🎙️ Live booth cover',nb.map(b=>ANN[b.id].name.split(' ')[0]+' $'+b.price.toLocaleString()+' ('+b.plays+' key)').join(' + ')+` · saved ${v.saved}🔥${v.spikes?` · spikes +${v.spikes}`:''} (in payday above)`);}
+  return row('🎙️ Live booth cover · bought during play',nb.map(b=>ANN[b.id].name.split(' ')[0]+' $'+b.price.toLocaleString()+' ('+b.plays+' key)').join(' + ')+` · saved ${v.saved}🔥${v.spikes?` · spikes +${v.spikes}`:''} (in payday above)`);}
 try{
   /* influencer cover: shady (hot) posts are suppressed (70%) and some are replaced by the influencer's own post */
   const _v76post=post;
@@ -12727,7 +12727,7 @@ function v77PayHTML(o){const {hit,caught,housePay,msPay,msN,chPay,V}=o;const j=S
   if(caught&&gross)P.push(ln('pay','🚨 Seized by the league',-gross,S.over==='fired'?'fired: payout seized':'league review found the texts'));
   const vb=(S.v76&&S.v76.buys)||[];
   if(V.owed){const items=vb.map(b=>`${b.kind==='booth'?'🎙️':'📱'} ${v77Who(b)} ${v77M(b.price)}`).join(' · ');
-    P.push(ln('pay','🎙️📱 Live cover bought during the game',-V.take,items+(V.short?` · ${v77M(V.owed)} owed, ${v77M(V.take)} from this payday, ${v77M(V.short)} more under Side cash`:'')));}
+    P.push(ln('pay','🎙️📱 Live booth cover + influencers · bought during play',-V.take,items+(V.short?` · ${v77M(V.owed)} owed, ${v77M(V.take)} from this payday, ${v77M(V.short)} more under Side cash`:'')));}
   const payTot=(caught?0:gross)-V.take;
   P.push(tot('pay','Payday total',payTot));
   /* side cash ledger */
@@ -12735,8 +12735,8 @@ function v77PayHTML(o){const {hit,caught,housePay,msPay,msN,chPay,V}=o;const j=S
   const defSum=defs.reduce((a,h)=>a+h.price,0),annSum=ann.reduce((a,x)=>a+x.price,0);
   C.push(ln('cash','Side cash at kickoff',start,'','v77start'));
   if(ads)C.push(ln('cash','▶ Rewarded ads',ads));
-  if(defSum)C.push(ln('cash','🛡 Paid defenders',-defSum,`${defs.length} hired${S.exposedN?` · ${S.exposedN} exposed`:''}`));
-  if(annSum)C.push(ln('cash','🎙 Bought the booth · postgame recap (pregame/halftime buy)',-annSum,ann.map(x=>ANN[x.id].name.split(' ')[0]+' '+v77M(x.price)).join(' + ')+(S.winkGate?' · 🚨 #WinkGate':' · 😉 spun it')));
+  if(defSum)C.push(ln('cash','🛡 Paid defenders · '+v78Halves(defs),-defSum,`${defs.length} hired${S.exposedN?` · ${S.exposedN} exposed`:''}`));
+  if(annSum)C.push(ln('cash','🎙 Postgame recap booth · '+v78Halves(ann),-annSum,ann.map(x=>ANN[x.id].name.split(' ')[0]+' '+v77M(x.price)).join(' + ')+(S.winkGate?' · 🚨 #WinkGate':' · 😉 spun it')));
   C.push(ln('cash','💰 Payday total (above)',payTot));
   if(V.fromCash)C.push(ln('cash','🎙️📱 Live cover the payday couldn\'t cover',-V.fromCash,'paid from side cash'));
   const now=S.bank+payTot;let other=now-(start+ads-defSum-annSum+payTot-V.fromCash);
@@ -12785,6 +12785,147 @@ try{
   console.info('[CW] v77 — fixes: heat cause tags, +50%/use pricing, shop re-render, cash ledger, one final score, margin wording');
 }catch(err){console.error('[CW] v77 fixes failed',err);}
 
+/* ===== v78 POLISH (Gamer v77 playtest, George-approved spec: every heat change tagged, no UI overlap)
+   1 one heat setter: S.heat is an accessor; every write needs a cause (V77_WHY context) or it is logged as untagged.
+     Every change queues a readable cause pill (#v78pill) under the heat bar: >=2.4s on screen, rapid changes merged.
+   2 pill anchored to #heatrow on every show/tick/resize/scroll; never drawn while a card/sheet covers its spot.
+   3 offer/shop tap guard: ignore taps for 450ms after an offer appears + any pointer sequence that began before it.
+   4 end screen full width (see css)  5 purchase labels ===== */
+let V78_PQ=[],V78_CUR=null,V78_TICK=null,V78_POST=[],V78_EL=null;
+const V78_MIN=2400;
+function v78Dur(){return (typeof FAST==='number'&&FAST>=4)?700:V78_MIN;}
+/* the one setter: absolute value + cause */
+function v78Set(val,why){const p=V77_WHY;V77_WHY=why||null;try{S.heat=val;}finally{V77_WHY=p;}}
+function v78Seg(d,why){return {d:Math.round(d*10)/10,why:String(why)};}
+function v78Changed(d,why,after){if(!S)return;let segs;
+  if(why&&typeof why==='object'&&why.length){const ps=why.filter(x=>x&&x.d);segs=ps.length===1?[v78Seg(d,ps[0].why)]:ps.map(x=>v78Seg(x.d,x.why));if(!segs.length)segs=[v78Seg(d,'🔥 Call heat')];}
+  else if(why&&why!=='card')segs=[v78Seg(d,why)];
+  else{const e={d:Math.round(d*10)/10,heat:Math.round(after),ph:S.phase,play:S.plays,why:why||null};try{e.st=String(new Error().stack).split('\n').slice(2,7).map(x=>x.trim().split(' ')[1]).join('<');}catch(_){}
+    (S.v78u=S.v78u||[]).push(e);if(window.__v78dbg)console.warn('[CW] v78 untagged heat',JSON.stringify(e));segs=[v78Seg(d,'🌡️ Heat shift')];}
+  const post=!!(S.over||S.phase==='done');
+  const L=S.v78log=S.v78log||[];L.push({d:Math.round(d*10)/10,heat:Math.round(after),segs:segs,ph:S.phase,play:S.plays,post:post,t:Date.now()});if(L.length>600)L.shift();
+  if(post){V78_POST.push({from:Math.round(after-d),to:Math.round(after),segs:segs});return;}
+  v78Queue(segs);}
+function v78Install(){if(!S||S.__v78acc)return;let h=+S.heat||0;
+  Object.defineProperty(S,'__v78acc',{value:1,enumerable:false,configurable:true});
+  Object.defineProperty(S,'heat',{configurable:true,enumerable:true,get:function(){return h;},set:function(v){v=+v;if(v!==v)v=0;const d=v-h;h=v;if(Math.abs(d)>1e-9)v78Changed(d,V77_WHY,h);}});
+  S.v78u=[];S.v78log=[];S.v78shown=[];V78_PQ=[];V78_CUR=null;V78_POST=[];v78Hide();}
+/* ---- pill queue ---- */
+function v78Merge(into,segs){for(const s of segs){const m=into.find(x=>x.why===s.why);if(m)m.d=Math.round((m.d+s.d)*10)/10;else into.push({d:s.d,why:s.why});}
+  for(let i=into.length-1;i>=0;i--)if(!into[i].d&&into.length>1)into.splice(i,1);}
+function v78Queue(segs){const now=Date.now();
+  if(V78_CUR&&(!V78_CUR.shown||now-V78_CUR.t0<800)){v78Merge(V78_CUR.segs,segs);if(V78_CUR.shown){V78_CUR.end=Math.max(V78_CUR.end,now+Math.round(v78Dur()*0.8));V78_CUR.merged=(V78_CUR.merged||1)+1;}v78Tick();return;}
+  if(V78_PQ.length)v78Merge(V78_PQ[V78_PQ.length-1].segs,segs);else V78_PQ.push({segs:segs.map(s=>({d:s.d,why:s.why}))});
+  v78Tick();}
+function v78Fmt(s){const n=Math.abs(s.d),t=(Math.round(n*10)/10)%1?(Math.round(n*10)/10).toFixed(1):String(Math.round(n));return (s.d>0?'+':'−')+t+' '+s.why;}
+function v78Text(segs,max){if(segs.length<=max)return segs.map(v78Fmt).join(' · ');const sh=segs.slice(segs.length-max);const rest=segs.slice(0,segs.length-max).reduce((a,x)=>a+x.d,0);return sh.map(v78Fmt).join(' · ')+` · ${rest>=0?'+':'−'}${Math.abs(Math.round(rest))} more`;}
+function v78El(){if(V78_EL&&V78_EL.isConnected)return V78_EL;let el=document.getElementById('v78pill');if(!el){el=document.createElement('div');el.id='v78pill';el.setAttribute('aria-live','polite');el.setAttribute('role','status');}V78_EL=el;return el;}
+function v78Hide(){const el=document.getElementById('v78pill');if(el)el.classList.remove('on');}
+/* where the pill goes: just under the heat bar, measured now */
+function v78Place(el){const hr=$('#heatrow');if(!hr||!hr.isConnected||hr.hidden)return null;const r=hr.getBoundingClientRect();if(!r.height||!r.width||r.bottom<=0)return null;
+  const cs=getComputedStyle(hr);if(cs.visibility==='hidden'||cs.display==='none'||+cs.opacity<0.2)return null;
+  if(el.parentNode!==hr.parentNode)hr.parentNode.appendChild(el);
+  const op=el.offsetParent||hr.offsetParent;if(!op)return null;const pr=op.getBoundingClientRect();
+  const vw=Math.min(innerWidth,pr.width||innerWidth);el.style.maxWidth=Math.max(120,Math.round(vw-Math.max(0,r.left-pr.left)-8))+'px';
+  el.style.left=Math.round(r.left-pr.left)+'px';el.style.top=Math.round(r.bottom-pr.top+1)+'px';return r;}
+const V78_OK='#v75top,#heatrow,#fvbug,#v75cap,#v75ban,#v78pill,#field,#field3d,#tvtag,#netbug,#tfchip,#booth,#cwVerG';
+function v78Clear(el){/* is the pill's spot showing chrome/lanes/field only (no card, sheet or modal on top)? */
+  const b=el.getBoundingClientRect();if(!b.width||!b.height)return false;const y=b.top+b.height/2;const xs=[b.left+3,(b.left+b.right)/2,b.right-3];
+  for(const x of xs){if(x<0||x>innerWidth||y<0||y>innerHeight)return false;const t=document.elementFromPoint(x,y);if(!t)return false;
+    if(t.closest&&t.closest(V78_OK))continue;const id=t.id;if(t===document.body||t===document.documentElement||id==='tv'||id==='game'||id==='app'||t.tagName==='CANVAS'&&t.closest('#tv'))continue;return false;}
+  return true;}
+function v78Nudge(el,on){/* safety net: if a lane item sits in the pill's row, push the caption lane down while the pill shows */
+  const cap=document.getElementById('v75cap');if(!cap)return 0;const ban=document.getElementById('v75ban');if(!on){if(cap.style.translate)cap.style.translate='';if(ban&&ban.style.translate)ban.style.translate='';return 0;}
+  const b=el.getBoundingClientRect();let need=0;
+  cap.querySelectorAll('*').forEach(c=>{const q=c.getBoundingClientRect();if(q.width<2||q.height<2)return;const cs=getComputedStyle(c);if(cs.visibility==='hidden'||+cs.opacity<0.05)return;if(q.right<=b.left||q.left>=b.right)return;if(q.top<b.bottom+2&&q.bottom>b.top)need=Math.max(need,Math.ceil(b.bottom+2-q.top));});
+  const cur=parseFloat((cap.style.translate||'0 0').split(' ')[1])||0;const n=Math.min(16,need+cur);const v=n>0?'0 '+n+'px':'';if(cap.style.translate!==v)cap.style.translate=v;if(ban&&ban.style.translate!==v)ban.style.translate=v;/* banner lane moves with the caption lane so a 2-line booth bubble never sinks into #flash */return n;}
+function v78Tick(){clearTimeout(V78_TICK);V78_TICK=null;const now=Date.now();
+  if(!S||S.over||S.phase==='done'){if(V78_CUR||V78_PQ.length){/* the game ended with pills pending: they go to the end screen list */}
+    v78Hide();v78Nudge(null,false);return;}
+  if(!V78_CUR&&V78_PQ.length){V78_CUR=V78_PQ.shift();V78_CUR.shown=false;}
+  if(!V78_CUR){v78Hide();v78Nudge(null,false);return;}
+  const el=v78El();const c=V78_CUR;let txt=v78Text(c.segs,3);
+  const net=c.segs.reduce((a,x)=>a+x.d,0);
+  if(el.textContent!==txt)el.textContent=txt;el.className='on '+(net>0?'hot':'cool')+(c.segs.length>1?' multi':'');
+  const placed=v78Place(el);
+  if(placed&&el.scrollWidth>el.clientWidth+1&&c.segs.length>1){txt=v78Text(c.segs,2);el.textContent=txt;if(el.scrollWidth>el.clientWidth+1){txt=v78Text(c.segs,1);el.textContent=txt;}}
+  const ok=placed&&v78Clear(el);
+  if(!ok){el.classList.remove('on');v78Nudge(el,false);if(c.shown){c.end+=150;c.paused=(c.paused||0)+1;}V78_TICK=setTimeout(v78Tick,150);return;}
+  v78Nudge(el,true);
+  if(!c.shown){c.shown=true;c.t0=now;c.end=now+v78Dur();(S.v78shown=S.v78shown||[]).push({txt:txt,segs:c.segs.length,t:now,heat:Math.round(S.heat)});if(S.v78shown.length>300)S.v78shown.shift();}
+  else{const sh=S.v78shown&&S.v78shown[S.v78shown.length-1];if(sh&&sh.t===c.t0){sh.txt=txt;sh.segs=c.segs.length;sh.until=c.end;}}
+  if(now>=c.end){V78_CUR=null;el.classList.remove('on');v78Nudge(el,false);if(V78_PQ.length){V78_TICK=setTimeout(v78Tick,180);}return;}
+  V78_TICK=setTimeout(v78Tick,Math.min(150,Math.max(30,c.end-now)));}
+/* postgame heat changes (no heat bar on the recap / end screen): listed on the end screen */
+function v78PostRows(row){if(!V78_POST.length)return '';const a=V78_POST.map(p=>`${p.from}→${p.to} · ${p.segs.map(v78Fmt).join(' · ')}`);return row('🌡️ Heat after the whistle',a.join('<br>'));}
+/* card heat: the same numbers the RESULT card shows, split into named parts */
+function v78CardParts(o){const parts=[];const tax=o.tax||0;const call=o.pre-tax;
+  if(call){let w;if(o.overruled)w='🚩 Overruled flag';else if(o.effective){if(o.legit)w='🧊 Legit call';else if(o.hc<0)w='🧊 Defensible hold';
+      else{const g=holdG(o.call,o.kp);w='🚩 '+(g!=null?GRADES[gradeOf(g)]+' hold':o.call==='offset'?'Half-invented call':o.call==='spot'?'Invented spot':o.call==='clock'?'Clock trick':'Invented call');
+        const ex=[];if(o.V76C&&o.V76C.m)ex.push('booth');if(o.dmD<0.99)ex.push('defenders');if(ex.length)w+=' ('+ex.join(', ')+')';}}
+    else w='📹 Let a foul go';parts.push({d:call,why:w});}
+  if(tax)parts.push({d:tax,why:'🧾 Stand tax'});return parts;}
+/* ---- 3: offer / shop tap guard ---- */
+const V78G=[{s:'#shop'},{s:'#gfx',cls:'v76off'},{s:'#adslot'},{s:'#adbrk'}];let V78_DOWN=-1e9,V78_DOWNBLK=false,V78_TUP=-1e9;
+function v78Vis(e){if(!e||!e.isConnected||e.hidden)return false;const cs=getComputedStyle(e);if(cs.display==='none'||cs.visibility==='hidden')return false;const r=e.getBoundingClientRect();return r.width>=2&&r.height>=2;}/* no opacity test: a card that is still fading in can already be tapped */
+let V78_MO=null;
+function v78Poll(){const now=performance.now();for(const g of V78G){const e=document.querySelector(g.s);const on=!!e&&v78Vis(e)&&(!g.cls||e.classList.contains(g.cls)||(g.s==='#gfx'&&!!e.querySelector('.v76list')));
+    if(on&&(!g.on||g.fresh)){g.t=g.fresh&&g.fresh<now?g.fresh:now;g.n=(g.n||0)+1;}g.fresh=0;g.on=on;g.el=e;}
+  if(!V78_MO&&window.MutationObserver){const gx=document.getElementById('gfx');if(gx){/* a new offer card (new buy buttons) restarts the 450ms window even when #gfx never hid */
+    V78_MO=new MutationObserver(ms=>{for(const m of ms)for(const n of m.addedNodes){if(n.nodeType===1&&(n.matches('.shbuy,.v76list')||n.querySelector('.shbuy'))){const g=V78G[1];g.fresh=g.fresh||performance.now();if(g.on){g.t=performance.now();g.n=(g.n||0)+1;g.fresh=0;}return;}}});
+    V78_MO.observe(gx,{childList:true,subtree:true});}}}
+function v78Watch(){/* no per-frame work: mutation observers stamp card appearance exactly; a slow interval is the backstop */
+  if(!window.MutationObserver)return;const mo=new MutationObserver(()=>{try{v78Poll();}catch(e){}});
+  ['shop','adslot','adbrk','gfx'].forEach(id=>{const e=document.getElementById(id);if(e)mo.observe(e,{attributes:true,attributeFilter:['hidden','class','style']});});
+  const cap=document.getElementById('v75cap');if(cap){const mc=new MutationObserver(ms=>{if(!(V78_EL&&V78_EL.classList.contains('on')))return;for(const m of ms){if(m.target===cap&&m.attributeName==='style')continue;try{v78Nudge(V78_EL,true);}catch(e){}return;}});
+    mc.observe(cap,{subtree:true,childList:true,attributes:true,attributeFilter:['class','style','hidden'],characterData:true});}}
+function v78Gate(e){if(!e.isTrusted)return;try{v78Poll();}catch(_){return;}const t=e.target;if(!t||!t.closest)return;const now=performance.now();
+  const isDown=e.type==='pointerdown'||e.type==='touchstart'||e.type==='mousedown';
+  if(e.type==='touchend'||e.type==='touchcancel'||(e.type==='pointerup'&&e.pointerType!=='mouse'))V78_TUP=now;
+  /* compat mousedown fired after a touch tap is the SAME sequence, not a new press */
+  if(isDown&&(e.type!=='mousedown'||now-V78_TUP>1000)){V78_DOWN=now;V78_DOWNBLK=false;}
+  for(const g of V78G){if(!g.on||!g.el||!g.el.contains(t))continue;
+    let why=null;if(now-g.t<450)why='too-soon';else if(!isDown&&!(e.type==='click'&&e.detail===0)&&(V78_DOWN<g.t||V78_DOWNBLK))why='started-before-card';
+    if(why){if(isDown)V78_DOWNBLK=true;if(!isDown){e.preventDefault();}e.stopImmediatePropagation();e.stopPropagation();
+      const L=window.__v78guard=window.__v78guard||[];L.push({type:e.type,why:why,card:g.s,ms:Math.round(now-g.t),tgt:(t.className||t.id||t.tagName).toString().slice(0,30)});if(L.length>200)L.shift();}
+    return;}}
+/* ---- 5: shop Done label lists every purchase ---- */
+function v78ShopDone(session,annS){const ds=session.reduce((a,id)=>a+defOf(id).price,0),as=annS.reduce((a,id)=>a+annPrice(id),0),parts=[];
+  if(session.length)parts.push(`🛡 ${session.length} defender${session.length>1?'s':''}`);if(annS.length)parts.push('🎙 '+annS.map(id=>ANN[id].name.split(' ')[0]).join(' + ')+' booth');
+  return parts.length?`Done · ${parts.join(' + ')} ($${(ds+as).toLocaleString()})`:'Done';}
+function v78Halves(arr){const h=new Set((arr||[]).map(x=>x.half));return h.has(1)&&h.has(2)?'pregame + halftime shop':h.has(2)?'halftime shop':'pregame shop';}
+try{
+  const _v78fresh=fresh;fresh=function(){const r=_v78fresh.apply(this,arguments);try{v78Install();}catch(e){console.error('[CW] v78 install',e);}return r;};
+  /* v77 chip retired: the v78 pill shows every change */
+  window.v77Chip=function(){};window.v77ChipApply=function(){const o=document.getElementById('v77why');if(o)o.classList.remove('on');};
+  const _v78hud=hud;hud=function(){const r=_v78hud.apply(this,arguments);try{if(V78_CUR&&V78_CUR.shown&&V78_EL&&V78_EL.classList.contains('on'))v78Place(V78_EL);}catch(e){}return r;};
+  /* 4: end screen always starts flush-left/centred in the app column, never horizontally scrolled */
+  const v78EndFix=()=>{const e=document.getElementById('end');if(!e||e.hidden)return;[e,document.getElementById('endbody'),document.getElementById('app'),document.scrollingElement,document.body].forEach(x=>{if(x&&x.scrollLeft)x.scrollLeft=0;});};
+  if(typeof endScreen==='function'){const _v78end=endScreen;endScreen=function(){const r=_v78end.apply(this,arguments);try{v78EndFix();setTimeout(v78EndFix,60);setTimeout(v78EndFix,600);}catch(e){}return r;};}
+  addEventListener('resize',()=>{try{v78EndFix();}catch(e){}});
+  const rp=()=>{try{if(V78_CUR)v78Tick();}catch(e){}};addEventListener('resize',rp);addEventListener('orientationchange',rp);addEventListener('scroll',rp,true);
+  for(const ty of ['pointerdown','touchstart','mousedown','pointerup','touchend','touchcancel','mouseup','click'])addEventListener(ty,v78Gate,{capture:true,passive:false});
+  v78Watch();setInterval(()=>{try{v78Poll();}catch(e){}},250);
+  const st=document.createElement('style');st.id='v78css';st.textContent=[
+   '#v77why{display:none!important}',
+   '#v78pill{position:absolute!important;z-index:51;display:none;box-sizing:border-box;height:13px;line-height:13px;padding:0 7px;border-radius:7px;font:800 10px/13px system-ui,-apple-system,sans-serif;letter-spacing:.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:none;background:#2a1a0e;color:#ffd23f;box-shadow:0 0 0 1px rgba(255,210,63,.5),0 2px 6px rgba(0,0,0,.55)}',
+   '#v78pill.on{display:block;animation:v78in .18s ease-out}',
+   '#v78pill.hot{color:#ffd0b8;background:#3a160c;box-shadow:0 0 0 1px rgba(255,110,70,.75),0 2px 6px rgba(0,0,0,.55)}',
+   '#v78pill.cool{color:#c4f2ff;background:#0c2230;box-shadow:0 0 0 1px rgba(110,200,255,.65),0 2px 6px rgba(0,0,0,.55)}',
+   '@keyframes v78in{from{opacity:0}to{opacity:1}}',
+   
+   /* 4: end screen always spans the app column and centers its cards */
+   '#end{left:0!important;right:0!important;width:100%!important;max-width:none!important;margin:0!important;transform:none!important;box-sizing:border-box}',
+   '#end>#endbody,#endbody{width:100%!important;max-width:none!important;margin-left:0!important;margin-right:0!important;box-sizing:border-box;overflow-x:hidden}',
+   '#endbody>*{max-width:100%;box-sizing:border-box}',
+   '#endbody>.card{margin-left:auto!important;margin-right:auto!important;width:auto!important}'].join('\n');
+  document.documentElement.appendChild(st);
+  window.CW.v78={ok:true,set:v78Set,log:function(){return S&&S.v78log;},untagged:function(){return (S&&S.v78u)||[];},shown:function(){return (S&&S.v78shown)||[];},post:function(){return V78_POST;},guard:function(){return window.__v78guard||[];},
+    t:{heat:v77Heat,set:v78Set,cardParts:v78CardParts,shop:shop,boothMaybe:v76BoothMaybe,poll:v78Poll,G:V78G,tick:v78Tick,cur:function(){return V78_CUR;},q:function(){return V78_PQ;},shopDone:v78ShopDone,endScreen:endScreen,match:function(){return MATCH;}}};
+  window.__v78fixes=true;
+  console.info('[CW] v78 — polish: one heat setter + cause pills, pill anchoring, offer tap guard, end-screen width, purchase labels');
+}catch(err){console.error('[CW] v78 fixes failed',err);}
+
 setMatch(QUICK);bindRefNameInputs();syncRefUI();showTitle();
 })();
 </script>
@@ -12823,5 +12964,6 @@ setMatch(QUICK);bindRefNameInputs();syncRefUI();showTitle();
 <script>window.__v75={ok:true,build:'MEMES+CHROME',memePack:!!window.__cwMemePack,memeNR:!!(window.__cwMemeNR&&window.__cwMemeNR.ok),chrome:!!window.__v75chrome};</script>
 <script>window.__v76={ok:true,build:'COVER',cover:!!window.__v76cover,booth:'live',influencers:4};</script>
 <script>window.__v77={ok:true,build:'FIXES',fixes:!!window.__v77fixes,items:['heat-tags','per-use-price','shop-need','cash-ledger','one-final-score','margin-line']};</script>
+<script>window.__v78={ok:true,build:'POLISH',fixes:!!window.__v78fixes,items:['heat-setter-pills','pill-anchor','offer-tap-guard','end-width','purchase-labels']};</script>
 </body>
 </html>
