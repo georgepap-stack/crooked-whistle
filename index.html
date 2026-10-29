@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#0b0d12">
-<title>Crooked Whistle v74 AUDIO+HARD</title>
+<title>Crooked Whistle v75 MEMES+CHROME</title>
 <style>
 :root{--bg:#0b0d12;--card:#1a1e27;--card2:#252a35;--ink:#f4f1e8;--dim:#9aa3b2;--whistle:#ffd23f;--hot:#ff5a3c;--ok:#4cd387;--line:#2c3240;--gbn:#2f6bff}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -1680,7 +1680,7 @@ window.__showThreeMissing=function(msg){
 (()=>{
 var __cwN=function(a,b){return a!=null?a:b;};/* v62: Safari ≤13-safe nullish + optional-chain shims */
 /* v73: build/version info. Future builds bump ONLY this line. */
-const CW_VERSION='v74',CW_BUILD='AUDIO+HARD',CW_DATE='2026-10-29';
+const CW_VERSION='v75',CW_BUILD='MEMES+CHROME',CW_DATE='2026-10-29';
 const CW_VER_SHORT=(()=>{const p=CW_DATE.split('-');const M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];return CW_VERSION+' · '+CW_BUILD+' · '+M[(+p[1]||1)-1]+' '+(+p[2]||'');})();
 window.CW_VERSION=CW_VERSION;window.CW_BUILD=CW_BUILD;window.CW_DATE=CW_DATE;
 (function cwVerUI(){
@@ -8541,9 +8541,9 @@ const NEW_ADS=[
  /* LENNY'S LEG UP (parlay insurance / loan-style "help") */
  {id:'legup',brand:'Leg Up by Lenny',kind:'bet',dur:7,joke:'Parlay died on leg 12? We\'ll lend you leg 13. At 10% a week.',
   fine:['Leg Up is a "parlay continuation product," not a loan, legally, today.','Vig compounds weekly, like your enthusiasm.','Lenny Odds is not a bank. Lenny Odds has a car you should know about.'],
-  draw:adCopyDraw({bg:['#7f1d1d','#1a0505'],accent:'#fca5a5',kicker:'A LENNY ODDS COMPANY',title:'LEG UP',titleSz:64,tag:'Parlay insurance for people who can\'t afford insurance.',
+  draw:adCopyDraw({bg:['#7f1d1d','#1a0505'],accent:'#fca5a5',kicker:'A LENNY ODDS COMPANY',title:'LEG UP',titleSz:64,tag:'Parlay insurance that\'s mostly a loan. With vig.',
    beats:['11 legs hit ✅','Leg 12: phantom flag ❌','Leg Up: we "cover" leg 12 💸','You now owe leg 12 + vig','Recover with a 14-leg parlay? ➡'],
-   mascot:{shirt:'#111',visor:'#c45c26'},star:'CHASE\nTHE LOSS\nIN STYLE',sign:'"Leg Up. We\'re always nearby." — Lenny'})},
+   mascot:{shirt:'#111',visor:'#c45c26'},star:'WE PROFIT\nWHEN YOU\nCHASE.',sign:'"Leg Up. We\'re always nearby." — Lenny'})},
  {id:'legupBoost',brand:'Leg Up by Lenny',kind:'bet',dur:6.5,joke:'Profit Boost™: boosts profit. Ours.',
   fine:['30% Profit Boost applies to profits we don\'t expect you to have.','Boost tokens expire faster than your patience.'],
   draw:adCopyDraw({bg:['#991b1b','#200404'],accent:'#fde047',kicker:'TONIGHT ONLY · EXPIRES IN 00:04:59',title:'MEGA BOOST',titleSz:58,tag:'Old odds +250 → NEW odds +260!!!',
@@ -8901,7 +8901,7 @@ async function chToss(H,coach,boothRev,ruling,ask){
   if(!boothRev){const f=document.createElement('div');f.className='redflag';f.innerHTML='<i></i>';g.appendChild(f);
     const fromL=H==='away';const x0=fromL?-30:g.clientWidth+30,x1=g.clientWidth*(fromL?0.42:0.58);
     try{f.animate([{transform:`translate(${x0}px,${g.clientHeight*0.42}px) rotate(0deg)`},{transform:`translate(${(x0+x1)/2}px,${g.clientHeight*0.12}px) rotate(${fromL?380:-380}deg)`,offset:0.55},{transform:`translate(${x1}px,${g.clientHeight*0.36}px) rotate(${fromL?720:-720}deg)`}],{duration:900/Math.min(SP(),3),easing:'cubic-bezier(.3,.7,.4,1)',fill:'forwards'});}catch(e){}
-    setTimeout(()=>f.remove(),2600/Math.min(SP(),3));}
+    try{f.animate([{opacity:1},{opacity:1,offset:0.5},{opacity:0,offset:0.72},{opacity:0}],{duration:900/Math.min(SP(),3),fill:'forwards'});}catch(e){}setTimeout(()=>f.remove(),1000/Math.min(SP(),3));}
   flash(boothRev?'BOOTH REVIEW':'CHALLENGE','chal',1600,'#d4161b');
   gfx(`<div class="chg"><div class="chbar">${boothRev?'🎥 REPLAY ASSISTANT':'🟥 HEAD COACH CHALLENGE'}</div>
    <div class="chbig">${boothRev?'BOOTH REVIEW':'CHALLENGE'}</div>
@@ -11915,6 +11915,584 @@ try{window.standAllPlayers=standAllPlayers;}catch(e){}
 })();
 
 
+/* ===== v75 PART A: Meme overhaul pack + no-repeat (files from Meme, pasted verbatim) ===== */
+/* =====================================================================
+   CROOKED WHISTLE — v74 MEME PACK OVERHAUL  (paste-in, all-original text)
+   ---------------------------------------------------------------------
+   WHERE: paste INSIDE the main game IIFE, directly ABOVE
+   cw-meme-norepeat.js, both directly above the main IIFE's last line:
+       setMatch(QUICK);bindRefNameInputs();syncRefUI();showTitle();
+   (i.e. after v70 pushCaps packs, after the refWatch.caps reassignment,
+    after the v73 ad pack's MEME_CAPS_V71 pushes)
+
+   What it does
+     1. CUT: removes weak / duplicate / borderline captions (exact match).
+     2. ADD: pushes new captions into EXISTING formats only (no new art),
+        matching each format's line count. Codes = existing gating codes:
+          0 generic · 1 holding · 2 flip · 3 favor · 4 milestone(ms)
+          5 defender bots(def) · 6 exposed · 7 hood · 9 challenge(chal)
+          20 bad beat · 23 chant / home-leading · 26 suite (KC game)
+          29/30/31 roughing no-call (rtp)
+        Placeholders used are only ones memePost's c2 supplies for that
+        trigger: everywhere {ref} {call} {favt} {unfav} {team} {victim}
+        {hs} {as} {flags} {heat} {coach} {mobn} {hcity} {acity} {home}
+        {away}; ms-only {name} {val} {unit}; rtp-only {player};
+        def/exposed-only {dh}.
+     3. MEME_POST_TXT_X: per-trigger post text pools read by the
+        no-repeat module (so the line above the image never repeats).
+   Parody only: fictional league/teams/people; no real marks or brands.
+   Satire targets the corrupt ref, the house, the mob and the apps,
+   never people who have a gambling problem. Helpline stays sincere.
+   ===================================================================== */
+var MEME_POST_TXT_X;
+(function(){try{
+  if(typeof MEMES==='undefined')return;
+  var REPORT=window.__cwMemePack={v:'74',cut:[],added:0,missingFmt:[]};
+
+  /* ---------- 1. CUT list (template text, exact) ---------- */
+  var CUT=[
+    ['surprised','Nobody:  /  {ref}: {call}'],          /* dupes the "nobody" format */
+    ['surprised',"My face when heat doesn't move"],       /* meta / UI joke, not a meme */
+    ['surprised','Original shocked face when {call} stands'], /* weak, same beat as next two */
+    ['surprised','Booth: play stands. Me:'],              /* near-dupe of "when the booth says play stands" */
+    ['crowdSign','{acity} sucks!'],                       /* same line as chantMeme's first caption */
+    ['whatsUpBrah','Booth vs reality. What\'s up brah.'], /* weak */
+    ['finePrint','gambling problem? just stop betting!'], /* borderline: reads as dismissing people with a problem */
+    ['holdDog',"the ad said 'just stop betting'?"]        /* same borderline beat */
+  ];
+  CUT.forEach(function(c){var m=MEMES[c[0]];if(!m||!m.caps)return;
+    for(var i=m.caps.length-1;i>=0;i--){if(m.caps[i].indexOf(c[1])>=0&&typeof c[1]==='string'){m.caps.splice(i,1);REPORT.cut.push(c[0]+': '+c[1]);}}});
+
+  /* ---------- 2. ADD ---------- */
+  var ADD={
+  /* ===== rtp: roughing not called (29 / 30 / 31) ===== */
+  qbGrave:[["HERE LIES {player}","SACKED 4 TIMES · FLAGGED 0 TIMES",29],["IN LOVING MEMORY","OF THE ROUGHING RULE",29],["GONE TOO SOON","HIT TOO LATE",29]],
+  qbPaper:[["OFFENSIVE LINE","PRINTED ON NAPKINS",30],["PROTECTION PLAN","EXPIRED AT THE SNAP",30]],
+  qbPeace:[["LATE HIT","REF #77: 'WHAT HIT'",31],["{player} SEEING STARS","REF #77 SEEING NOTHING",31]],
+  tabloid:[["QB FOUND IN TURF","ref #77: 'he tripped on air'",29],["EXCLUSIVE","the pocket files a missing persons report",29],
+           ["BAD BEAT","sources: the late flag 'just felt right'",20],["EXPERTS AGREE","(the experts are me and my alt account)",5],
+           ["SUITE LIFE","cameraman finds a 9th angle of the luxury box",26],["HOLD THE PHONE","ref #77 seen texting during a TV timeout",0]],
+  breaking:[["BREAKING","{player} now officially part of the field paint",29],["DEVELOPING","late hit ruled 'an aggressive hug'",29],
+            ["BREAKING","late flag moves the score exactly one hook",20],["BREAKING","ref #77 voted best ref by accounts paid to vote",5],
+            ["BREAKING","{name} reaches {val} {unit}; one flag 'assisted'",4],["BREAKING","{hcity} crowd achieves perfect harmony; target: one ref",23],
+            ["DEVELOPING","the {victim} sideline requests a second referee to referee the referee",0]],
+  thisFine:[["{player} under four linemen","this is fine",29],["{name}'s stat line has a co-author","this is fine",4],
+            ["the away bench hearing the {hcity} crowd","this is fine",23],["my integrity at flag #{flags}","this is fine",0]],
+  expect:[["what the rulebook says about hitting QBs","what ref #77 says about hitting QBs",29],["covering all game","covering until ref #77 remembered",20],
+          ["what you saw","what the 2009 rulebook pdf says, if you squint",5],["what the broadcast promised","a luxury box, 9 replays",26],
+          ["a holding call","a holding call (with a referral bonus)",1],["the coin toss","the coin toss (after a phone call)",0]],
+  twoButtons:[["throw the roughing flag","check the spread first",29],["let the cover stand","one more flag for the house",20],
+              ["trust your eyes","trust an account made on tuesday",5],["show the play","show the suite",26],
+              ["keep the job","keep the car",8],["call it straight","call it 'complicated'",0]],
+  refImpact:[["{player} on the turf","ref #77 checking his watch",29],["the cover at 0:04","ref #77: 'not so fast'",20],
+             ["the haters","a rulebook i skimmed once",5],["{name} hits {val} {unit}","ref #77 takes a small bow",4],
+             ["{hcity} crowd: 70,000 voices","ref #77: 'i hear nothing'",23],["the {unfav} offense","a flag-shaped wall",3]],
+  freeze:[["the hit: late","the flag: later. like, never.",29],["frame 88","the hand of the house, clearly visible",0]],
+  wanted:[["","for letting {player} get folded like laundry",29],["","for {flags} flags and 0 apologies",0]],
+  courtroom:[["exhibit A: the late hit","ref #77: 'objection, vibes'",29],["the defense","calls ref #77 'the cleanest man alive' (paid)",5],
+             ["the jury","12 {victim} fans and a very nervous ref",0]],
+  pressConf:[["'did you see the hit on {player}?'","'i saw a hug. a firm hug.'",29],["'why the flag at 0:04?'","'i felt a disturbance in the spread'",20],
+             ["'any regrets tonight?'","'just one. the flag i didn't throw.'",0]],
+  holdDog:[["hold up","the QB is supposed to bend that way?",29],["hold up","the cover got flagged back?",20],["hold up","{coach} challenged THAT?",9]],
+  nahYeah:[["flagging a late hit on the QB","flagging the QB for being in the way",29],["admitting the call was bad","a 40-post thread defending it",5],
+           ["earning {val} {unit}","receiving {val} {unit} as a gift",4],["one flag a quarter","one flag a down",1]],
+  glasses:[["how ref #77 sees a late hit","a gentle breeze",29],["how real fans see it","a perfectly fine call (i was told)",5],
+           ["how the box score sees it","{val} {unit}, mostly {name}",4],["how ref #77 sees the {unfav}","a list of suspects",3]],
+  mocking:[["\"that hit was totally clean\"",29],["\"actually if you read rule 7 section 3…\"",5],["\"the league takes integrity very seriously\"",0],["\"it's not about the money\"",0]],
+  changeMind:[["roughing the passer is just a rumor",29],["ref #77 has never made a bad call",5],["the replay booth has a minibar",0]],
+  scientistsReveal:[["Scientists reveal the pocket was a myth.",29],["Scientists reveal the ref was right. (scientists: me.)",5],
+                    ["Scientists reveal {name}'s {val} {unit} had help.",4],["Scientists reveal the flag was thrown before the snap.",0]],
+  laPeace:[["{player} flattened. No flag. La peace.",29],["Cover gone. Flag thrown. La peace.",20]],
+  codec:[["[!?] QB down. Flag? …Negative.",29],["[!?] Cover was clean. Was.",20],["[!?] {name} at {val}. Script on schedule.",4],["[!?] Lenny on line 2. Hold.",8]],
+  surprised:[["{player}'s face when the flag stays in his pocket",29],["The house acting shocked by a backdoor cover",20],["{coach} when the review takes 9 minutes",9]],
+  monkeyScroll:[["Me scrolling for the roughing flag. Still scrolling.",29],["Scrolling past 400 'the ref is fine' accounts",5],["Me scrolling the rulebook for 'vibes'",0]],
+  eyeChart:[["","ref #77 reads line 1: 'NO FLAG'",29],["","line 2: whatever the spread needs",0]],
+  scoreboard:[["sacks: 4","roughing flags: 0",29],["final","the spread had other plans",20],["{name}: {val} {unit}","assists: one striped shirt",4]],
+  flagCount:[["","roughing calls tonight: 0. QB bruises: yes",29],["","flags on the {unfav}: double digits. on the {favt}: shy",3]],
+
+  /* ===== badbeat (20) ===== */
+  vegas:[["the house watching a backdoor cover","pretending to be surprised",20],["the line opened at 3","ref #77 closed it at 3.5",0]],
+  slot:[["final whistle","cherry · cherry · flag",20],["pull the lever","yellow · yellow · yellow",0]],
+  stonks:[["the cover","after a flag with 4 seconds left",20],["the {favt}","after a quarter of flags",3]],
+  pointing:[["the bad beat","the guy holding the flag",20],["the replay booth","the burner phone",8]],
+  thenNow:[["the line at kickoff","the line after one flag at 0:02",20],["ref #77 at the coin toss","ref #77 by the 4th quarter",0]],
+  sameOld:[["same old hook","same old flag",20],["same old {hcity} crowd","same old reason to be loud",23]],
+
+  /* ===== def: paid defender bots (5) ===== */
+  card:[["","certified flawless official (certified by me)",5],["","ultra-rare: a ref #77 clean game (does not exist)",0]],
+  starter:[["defending ref #77 for free (not free) starter pack",5],["lenny odds' errand boy starter pack",8]],
+  samePic:[["the rulebook","my unbiased opinion","same picture (trust me)",5],["the ref's paycheck","the {favt} payroll","not the same picture",0]],
+  receipts:[["receipts","{dh} posted 40 times in 2 minutes",6],["exhibit B","the defender's other account",6],["the 'fan' account","the payroll stub",6]],
+
+  /* ===== exposed (6) ===== */
+  distracted:[["the truth","everyone","{dh}'s invoice",6],["the cover","the house","one late flag",20],["actual fans","ref #77","the {favt} sideline",3]],
+  galaxy:[["defending the ref","defending the ref for money","defending the ref for exposure","getting exposed",6],
+          ["a late hit","a late, late hit","a hit filed under 'incidental'","ref #77 watching the QB's helmet roll by",29]],
+  isThis:[["{dh}","a sponsored post","is this an opinion?",6],["ref #77","a QB lying very still","is this fine?",29]],
+
+  /* ===== ms: milestone with help (4) ===== */
+  fantasyCry:[["{name}'s fantasy managers","sending ref #77 a fruit basket",4],["my fantasy kicker","benched by a flag on the PAT",0]],
+  tierList:[["S: {name}'s stat line","A: the flag that helped","B: the script","F: defense",4],["S: phantom flags","A: real flags","B: missed flags","F: thrown-then-picked-up flags",0]],
+  iceberg:[["the stat line","the assist","the script","the guy who wrote the script",4],["the call","the review","the text","the boat",0]],
+
+  /* ===== chal: coach challenge (9) ===== */
+  coachMelt:[["{coach}","watching the review timer like a stock ticker",9],["{coach}'s challenge flag","landing in the lake behind the stadium",9]],
+  hoodie:[["{coach}","challenging the challenge",9]],
+
+  /* ===== hood (7) ===== */
+  hood:[["what the booth sees","what ref #77 sees: a voicemail",7],["the replay angle","the angle ref #77 was paid for",7],["under the hood","3 bars, 4 new messages",7]],
+  burner:[["unknown number","under the hood is the only place we can talk",7],["unknown number","great review. greater car.",8]],
+
+  /* ===== chant / home-leading (23) ===== */
+  chantMeme:[["the {hcity} crowd","chanting ref #77's number. not fondly.",23],["section 300","has a chant for every flag now",23],["the {acity} fans","learning the chant against their will",23]],
+  crowdSign:[["we came for football","we got refball",23],["home crowd volume","measured in flags",23]],
+  nobody:[["nobody:","the {hcity} crowd after every first down:","LOUDER",23],["nobody:","ref #77 at 4th and 1:","*reaches for pocket*",0]],
+
+  /* ===== suite (26) ===== */
+  suiteCam:[["the suite cam","the suite cam reacting to the suite cam",26],["the director","finding a 4th angle of the same suite",26]],
+
+  /* ===== flip (2) / hold (1) / favor (3) ===== */
+  sepDec:[["ref #77 before the phone call","ref #77 after the phone call",2],["the {unfav} in the 1st","the {unfav} after the flags start",3]],
+  alignment:[["lawful: first half","neutral: halftime","chaotic: whoever called",2],["lawful good: the o-line","true neutral: the d-line","chaotic: ref #77's flag hand",1]],
+  holdAll:[["holding","the sequel","the director's cut",1],["the left tackle","holding? sure. why not.",1]],
+  refball:[["REFBALL","new season: 'the comeback (scheduled)'",2],["REFBALL","the {favt} have a 12th man and he wears stripes",3]],
+  glowUp:[["the {orig} at kickoff","the {newt} after the phone call",2]],
+  theySaid:[["\"it's one phone call,\" they said","\"just switch sides,\" they said",2],["\"one holding call,\" they said","\"per drive,\" they said",1]],
+  barChart:[["","holding flags by team. guess which bar is the {unfav}.",1],["","flag timing vs. spread: very correlated",0]],
+  groupchat:[["the {victim} fan chat","another holding??","the o-line is just hugging now","rename the chat 'flag watch'",1]],
+  lennyTab:[["LENNY'S TAB","1 halftime switch ...... $5,000","1 'quiet' review ...... $2,500","TIP: no tip. just do it.",2]],
+  ratings:[["the commissioner","when the halftime comeback 'happens naturally'",2]],
+  payroll:[["payroll: week {wk}","ref #77 · 'consulting'",0],["direct deposit","memo: 'for the 2nd half'",2]],
+  marquee:[["coming this fall","FLAG ON THE PLAY 2: THE SPREAD STRIKES BACK",0]],
+
+  /* ===== generic (0) top-ups for thin formats ===== */
+  catClap:[["Me applauding a flag I threw from 40 yards away",0],["Ref #77 clapping for his own mechanics",0]],
+  hauntedHouse:[["Haunted house… every mirror shows a flag",0],["Haunted house… the ghost is a holding call from 1998",0]],
+  scribDoon:[["{flags} flags. No notes. Scrib doon.",0],["Phantom on 3rd and 2. Scrib doon.",0]],
+  whatsUpBrah:[["The rulebook vs ref #77's pocket. What's up brah.",0]],
+  odysseusYell:[["Tied to the mast, still reaching for the flag",0],["Plugging my ears so I can't hear the replay",0]],
+  outPartying:[["While they're out partying… I'm studying the spread.",0]],
+  prosStandards:[["Pros standards: look the camera in the eye",0],["Pros standards: never flag the guy who texts you",8]],
+  refWatch:[["the play clock","ref #77's screen time",0],["2-minute warning","2 unread messages",0]],
+  yips:[["the kicker lining up","ref #77 reaching for his pocket",0],["the extra point","flagged for 'vibes'",0]],
+  tnf:[["thursday night fumble","now with a mystery flag",22]],
+  cornerParty:[["they don't know the flag was in my hand before the snap",0]],
+  winkZoom:[["#WinkGate","the booth's other eye: also winking",21]],
+  deskPanel:[["pregame desk: 'keys to the game'","1. the ref. that's it. that's the key.",11]],
+  baresDad:[["bares dad","explaining the flag to the dog",15]],
+  cheese:[["packets fans","hiding the cheese from the ref",16]],
+  owl:[["the superb owl ring","engraved: 'thanks for the flags'",14]],
+  finePrint:[["the helpline number","printed bigger than the parlay boost (as it should be)",10]],
+  parlay:[["","leg 7: ref #77 picks up his own flag",0]],
+  fanArmy:[["the stadium jumbotron","the suite, again",26]]
+  };
+
+  /* arity guard: only accept captions whose line count matches the format's
+     most common existing line count (prevents half-drawn memes) */
+  function arity(fmt){var c={},best=0,b=2;(MEMES[fmt].caps||[]).forEach(function(cp){var n=cp.filter(function(x){return typeof x==='string';}).length;c[n]=(c[n]||0)+1;});for(var k in c)if(c[k]>best){best=c[k];b=+k;}return {mode:b,all:c};}
+  Object.keys(ADD).forEach(function(fmt){
+    if(!ADD[fmt].length)return;
+    if(!MEMES[fmt]||!MEMES[fmt].caps){REPORT.missingFmt.push(fmt);return;}
+    var a=arity(fmt);
+    ADD[fmt].forEach(function(cp){var n=cp.filter(function(x){return typeof x==='string';}).length;
+      if(!a.all[n]){REPORT.rejected=(REPORT.rejected||[]).concat(fmt+': '+cp.join(' / '));return;}
+      MEMES[fmt].caps.push(cp);REPORT.added++;});
+  });
+
+  /* ---------- 3. post text above the meme, per trigger ---------- */
+  MEME_POST_TXT_X={
+    rtp:['the pocket has left the chat','QB requested a flag. request denied.','turf 1, QB 0','sending thoughts. not flags.','helmet still spinning 🌀','late hit, early whistle (for the other guys)','roughing? never heard of her','the o-line sent flowers 💐'],
+    exposed:['the invoice has entered the chat 🧾','sponsored opinion detected','#ad (the whole defense)','receipts, itemized','"independent" is doing a lot of work here','the bot farm forgot to log out'],
+    def:['respect the stripes 🫡 (not sponsored) (sponsored)','unbiased take incoming','i read the rulebook (the cover)','ref #77 is a hero and i was not paid to say that','haters will say it\'s a burner','100% organic opinion 🌱'],
+    badbeat:['backdoor flag special','the hook found a way','one flag. one point. one ref.','the house says "gg"','covered for 59:56 🙃','the late flag strikes again'],
+    chal:['red flag, red face','challenge denied. dignity also denied.','{coach} is out of timeouts and patience','the review took longer than the game','"after further review": nope'],
+    hood:['what is he looking at under there 👀','longest review in IFL history','"reviewing the angle" 📱','the hood has wifi apparently','under the hood: 3 bars of signal'],
+    ms:['stat padding with extra padding','box score has an asterisk','career night, co-written','fantasy points with a referral code','the record book wants a word'],
+    chant:['the whole stadium on the same page','loudest it\'s been since the last flag','they printed shirts already','unity, finally. against one guy.'],
+    suite:['the director found the suite again','more suite than football tonight','the luxury box has more airtime than the punter'],
+    _any:['the timeline is undefeated','posted this from the parking lot','screenshot before the league deletes it','first meme of the rest of my life','the zebra stripes are doing a lot tonight','someone get the commissioner on the phone','the replay booth is shaking','framed. literally.','this is going in the group chat','league office in shambles','i have watched this 40 times','900 unread in the group chat','ref cam, please','tonight\'s mvp: the flag']
+  };
+  MEME_POST_TXT_X.flip=MEME_POST_TXT_X.flip||['halftime phone call energy','the second half is a different sport','ref switched teams faster than my fantasy roster'];
+  try{window.__cwMemePack.txt=MEME_POST_TXT_X;}catch(e){}
+  console.info('[CW] v74 — meme pack: +'+REPORT.added+' captions, cut '+REPORT.cut.length+(REPORT.missingFmt.length?' · missing fmts '+REPORT.missingFmt.join(','):''));
+}catch(err){console.error('[CW] v74 meme pack failed',err);}})();
+/* =====================================================================
+   CROOKED WHISTLE — v74 MEME NO-REPEAT  (paste-in module, original code)
+   ---------------------------------------------------------------------
+   WHERE: paste INSIDE the main game IIFE, on its own lines, directly
+   ABOVE the main IIFE's last statement:
+       setMatch(QUICK);bindRefNameInputs();syncRefUI();showTitle();
+   ORDER: after v71/v72/v73 blocks, AFTER cw-meme-pack-overhaul.js
+   (the pack must already be in MEMES when this runs; the sig index is
+   lazy anyway, so order vs. the pack only matters for MEME_POST_TXT_X).
+
+   HOOKS (by name, closure bindings inside the main IIFE):
+     memePost       -> REPLACED (same signature/side-effects as v72; new picker)
+     synthMemeCand  -> REPLACED with ()=>null  (no "twist" recycling, ever)
+     pickU          -> WRAPPED: only arrays that contain '📸' meme-text lines
+                       get skeleton de-dupe; every other call is untouched.
+     CW._dbg.memePost -> repointed to the new memePost (debug handle only)
+   NOT touched: makeMeme, queueMeme, post, burst, MEMES draw fns,
+     memeOkX/memeCtxX (called live, so all their wrappers still apply),
+     S.usedMemes (still filled -> stats at recap/season keep working).
+
+   RULES (per game; state lives on S, and fresh() makes a new S):
+     1. A caption skeleton is never shown twice, across ALL formats.
+        skeleton = template with {placeholders} removed, lowercased,
+        accents/emoji/punctuation/numbers stripped, spaces collapsed.
+        (so "{heat}% heat" with different fills = same joke = blocked)
+     2. Any caption LINE with >= 4 skeleton words is never reused in a
+        different caption (kills "this is fine" style shared punchlines).
+     3. Exact image+caption can never repeat (implied by 1).
+     4. Never the same format twice in a row (hard, no fallback).
+     5. Per-format cap per game: CFG.fmtCap (default 2).
+     6. Soft variety: formats in the last 3 memes get weight x0.12.
+     7. Fallback: context pool -> generic code-0 pool -> SKIP (null).
+        Never synth, never twist, never repeat.
+     8. Post text under the image (o.txt / MEME_TXT / DEF_MEME_TXT /
+        MEME_POST_TXT_X[kind]) also never repeats by skeleton; last
+        resort is the meme's own first caption line (unique by rule 1).
+     9. '📸 [meme: …]' text posts: each skeleton once per game, and
+        blocked if its punchline skeleton was already used by an image.
+   ===================================================================== */
+(function(){try{
+  var CFG={fmtCap:2,recentN:3,recentW:0.12,minLineWords:4,trace:false};
+  var NR=(typeof window!=='undefined'?(window.__cwMemeNR=window.__cwMemeNR||{}):{});
+  NR.v='74';NR.cfg=CFG;NR.hooked=[];
+
+  /* ---------- pure core (also loaded by the node sim harness) ---------- */
+  function norm(s){
+    return String(s==null?'':s)
+      .replace(/\{[^}]*\}/g,' ')
+      .replace(/\[meme:[^\]]*\]/gi,' ')
+      .toLowerCase()
+      .normalize('NFKD').replace(/[\u0300-\u036f]/g,'')
+      .replace(/[^a-z\s]/g,' ')
+      .replace(/\s+/g,' ').trim();
+  }
+  function strs(cp){var o=[];for(var i=0;i<cp.length;i++)if(typeof cp[i]==='string')o.push(cp[i]);return o;}
+  function codeOf(cp){var x=cp[cp.length-1];return typeof x==='number'?x:0;}
+  /* label lines: a line that recurs inside ONE format is that template's
+     fixed label ("this is fine", "same picture", "not the same picture");
+     labels are exempt from the shared-line rule but still count in capSig. */
+  var LABELS={},LABELN=-1;
+  function buildLabels(M,fmts){var n=0,L={};fmts.forEach(function(f){if(!M[f]||!M[f].caps)return;var c={};M[f].caps.forEach(function(cp){n++;strs(cp).forEach(function(t){var x=norm(t);if(x)c[x]=(c[x]||0)+1;});});L[f]={};for(var x in c)if(c[x]>=2)L[f][x]=1;});LABELS=L;LABELN=n;}
+  function capSig(cp,filled){var s=strs(cp).map(norm).filter(Boolean).join('|');
+    /* placeholder-only captions (teamGag {tgH6}/{tgH7}): judge the filled text */
+    if(s.replace(/[|\s]/g,'').length<6&&filled)s='~'+filled.map(norm).filter(Boolean).join('|');return s;}
+  function lineSigs(cp,f){var o=[],lab=LABELS[f]||{};strs(cp).forEach(function(t){var n=norm(t);if(n&&!lab[n]&&n.split(' ').length>=CFG.minLineWords)o.push(n);});return o;}
+  function newState(){return {cap:{},line:{},fmtN:{},txt:{},photo:{},last:null,hist:[],shown:0,skips:{},fallbacks:0,byKind:{}};}
+  function blocked(st,f,cp,filled){
+    if(f===st.last)return 'b2b';
+    if((st.fmtN[f]||0)>=CFG.fmtCap)return 'cap';
+    var s=capSig(cp,filled);if(!s||st.cap[s])return 'cap-text';
+    var ls=lineSigs(cp,f);for(var i=0;i<ls.length;i++)if(st.line[ls[i]])return 'line';
+    return null;
+  }
+  /* cands: [{f,cp,w,filled}] ; returns chosen cand or null */
+  function choose(cands,st,rand){
+    rand=rand||Math.random;
+    var pool=[];for(var i=0;i<cands.length;i++){if(!blocked(st,cands[i].f,cands[i].cp,cands[i].filled))pool.push(cands[i]);}
+    if(!pool.length)return null;
+    var recent={};st.hist.slice(-CFG.recentN).forEach(function(f){recent[f]=1;});
+    var wOf=function(x){return Math.max(0.01,x.w*(recent[x.f]?CFG.recentW:1));};
+    var tot=0;pool.forEach(function(x){tot+=wOf(x);});
+    var r=rand()*tot,ch=pool[0];for(var j=0;j<pool.length;j++){r-=wOf(pool[j]);if(r<=0){ch=pool[j];break;}}
+    return ch;
+  }
+  function commit(st,ch,kind){
+    st.cap[capSig(ch.cp,ch.filled)]=1;lineSigs(ch.cp,ch.f).forEach(function(l){st.line[l]=1;});
+    st.fmtN[ch.f]=(st.fmtN[ch.f]||0)+1;st.last=ch.f;st.hist.push(ch.f);if(st.hist.length>12)st.hist.shift();
+    st.shown++;st.byKind[kind]=(st.byKind[kind]||0)+1;
+  }
+  function txtFree(st,t){var n=norm(t);return !!n&&!st.txt[n];}
+  function txtUse(st,t){var n=norm(t);if(n)st.txt[n]=1;}
+  NR.core={buildLabels:buildLabels,labels:function(){return LABELS;},norm:norm,capSig:capSig,lineSigs:lineSigs,codeOf:codeOf,strs:strs,newState:newState,blocked:blocked,choose:choose,commit:commit,txtFree:txtFree,txtUse:txtUse,CFG:CFG};
+
+  /* ---------- in-game wiring (skipped when loaded by the node sim) ---------- */
+  if(typeof memePost!=='function'||typeof MEMES==='undefined'||typeof MEME_FMTS==='undefined')return;
+
+  var stOf=function(){if(!S.__nr)S.__nr=newState();return S.__nr;};
+  NR.state=function(){return stOf();};
+  var X_TXT=(typeof MEME_POST_TXT_X!=='undefined'&&MEME_POST_TXT_X)||(window.__cwMemePack&&window.__cwMemePack.txt)||{};
+  var DEF_TXT=(typeof DEF_MEME_TXT!=='undefined'&&DEF_MEME_TXT)||[];
+  var EMOJI_TXT=['💀','🫠','👀','🧾','🚩','📉','🪦','🔔','🍿','🫡'];
+
+  function pickTxt(st,kind,o,c2,caps){
+    var tries=[];
+    if(o.txt)tries.push([o.txt]);
+    if(X_TXT[kind])tries.push(X_TXT[kind]);
+    if(kind==='def'&&DEF_TXT.length)tries.push(DEF_TXT);
+    tries.push(MEME_TXT);
+    if(X_TXT._any)tries.push(X_TXT._any);
+    tries.push(EMOJI_TXT);
+    for(var i=0;i<tries.length;i++){
+      var c=tries[i].filter(function(t){return typeof t==='string'&&txtFree(st,t);});
+      if(c.length){var t=pick(c);txtUse(st,t);return fill(t,c2);}
+    }
+    return fill(caps[0]||'📸',c2); /* unique by caption rule */
+  }
+
+  var _oldMemePost=memePost;
+  memePost=function(ctx,kind,o){
+    o=o||{};ctx=ctx||{};
+    if(!S.usedMemes)S.usedMemes=new Set();
+    if(!S.memeHist)S.memeHist=[];
+    var st=stOf();
+    var isHold=kind==='hold'||kind==='holdOver'||ctx.callTag==='Holding';
+    var fi=favInfo(),j=S.job;
+    /* c2 = identical to v72 memePost */
+    var c2=Object.assign({favt:fi.fav?T(fi.fav).name:T('away').name,unfav:fi.fav?T(other(fi.fav)).name:T('home').name,FAVT:(fi.fav?T(fi.fav).name:T('away').name).toUpperCase(),fy:fi.fy,uy:fi.uy,orig:j.orig?T(j.orig.team).name:T('away').name,newt:T(j.team).name,neworders:j.tag.toLowerCase(),heat:Math.round(S.heat),name:FULL[T('away').qb],val:300,unit:'pass yds',target:300,victim:T('home').name,vcity:T('home').city,team:T('away').name,call:'holding',CALL:'HOLDING'},memeCtxX(),ctx,{flags:S.shady+S.legit,hs:S.score.home,as:S.score.away,nth:ctx.nth||ordN(Math.max(1,S.holdN)),count:ctx.count||S.holdN});
+    /* ok map = identical to v72 memePost */
+    var spK=['ms','def','exposed','hood','chal','badbeat','rtp'].indexOf(kind)>=0;
+    var ok={0:!spK,1:isHold&&!spK,2:!!j.flipped&&!spK,3:fi.mag>=35&&!spK,4:kind==='ms',5:kind==='def',6:kind==='exposed',7:kind==='hood'};
+    var special=kind==='flip'?2:kind==='favor'?3:0;
+    memeOkX(ok,kind,spK);
+    ok[20]=kind==='badbeat';if(kind==='badbeat')for(var k in ok)if(+k!==20)ok[k]=false;
+    ok[29]=ok[30]=ok[31]=kind==='rtp';if(kind==='rtp'){for(var k2 in ok)if(+k2!==29&&+k2!==30&&+k2!==31)ok[k2]=false;}
+
+    var nCaps=0;MEME_FMTS.forEach(function(f){if(MEMES[f]&&MEMES[f].caps)nCaps+=MEMES[f].caps.length;});if(nCaps!==LABELN)buildLabels(MEMES,MEME_FMTS);
+    var ctxC=[],genC=[];
+    for(var a=0;a<MEME_FMTS.length;a++){var f=MEME_FMTS[a];if(!MEMES[f]||!MEMES[f].caps)continue;
+      var cs=MEMES[f].caps;
+      for(var b=0;b<cs.length;b++){var cp=cs[b];var cd=codeOf(cp);
+        var inCtx=!!ok[cd],inGen=!inCtx&&cd===0&&spK&&kind!=='def'&&kind!=='ms';if(!inCtx&&!inGen)continue;
+        var fl=strs(cp).map(function(t){return fill(t,c2);});
+        if(inCtx)ctxC.push({f:f,cp:cp,filled:fl,w:(cd===special&&cd)?6:__cwN(MEME_W[cd],(cd?3:1))});else genC.push({f:f,cp:cp,filled:fl,w:1});
+      }}
+    var ch=choose(ctxC,st,rnd),tierUsed='ctx';
+    if(!ch&&genC.length){ch=choose(genC,st,rnd);tierUsed='generic';}
+    if(!ch){st.skips[kind]=(st.skips[kind]||0)+1;if(CFG.trace)console.info('[CW nr] skip',kind);return null;}
+    if(tierUsed==='generic')st.fallbacks++;
+    var caps=strs(ch.cp);
+    var key=ch.f+':'+ch.filled.join('|');
+    commit(st,ch,kind);
+    S.usedMemes.add(key);S.lastMemeFmt=ch.f;S.lastMemeKey=key;S.memeHist=(S.memeHist||[]).concat(ch.f).slice(-12);S.lastMemeAt=S.keys||0;
+    var img=makeMeme(ch.f,caps,c2);var plat=o.plat||pick(['gl','gl','sq','tp','cc']);
+    var txt=pickTxt(st,kind,o,c2,caps);S.memes=(S.memes||0)+1;
+    var pp=post(plat,txt,tier()*300+500,{hot:!o.def,img:img,key:'meme:'+key,rate:(o.def?0.6:1.2)+tier()*0.5,fmt:ch.f,handle:o.handle,av:o.av,def:o.def,tell:o.tell});
+    if(pp){pp.grow=90;queueMeme(pp);var mc=$('#memecnt');if(mc)mc.textContent=S.memes;var mb=$('#memebtn');if(mb)mb.classList.add('on');}
+    if(CFG.trace)console.info('[CW nr]',kind,tierUsed,ch.f,caps.join(' / '));
+    return pp;
+  };
+  NR.hooked.push('memePost');NR._old={memePost:_oldMemePost};
+
+  if(typeof synthMemeCand==='function'){synthMemeCand=function(){return null;};NR.hooked.push('synthMemeCand');}
+
+  if(typeof pickU==='function'){
+    var _pickU=pickU;
+    var isPhoto=function(t){return typeof t==='string'&&t.indexOf('\uD83D\uDCF8')>=0;};
+    pickU=function(arr,ctx){
+      if(!Array.isArray(arr)||!arr.some(isPhoto))return _pickU.apply(this,arguments);
+      ctx=ctx||{};var st=stOf();
+      var c=[];arr.forEach(function(t){var ft=fill(t,ctx);if(S.used.has(ft))return;
+        if(isPhoto(t)){var n=norm(t);if(!n||st.photo[n]||st.line[n]||st.cap[n])return;}
+        c.push([t,ft]);});
+      if(!c.length)return null;
+      var x=pick(c);if(isPhoto(x[0]))st.photo[norm(x[0])]=1;
+      return x[1];
+    };
+    NR.hooked.push('pickU(📸 only)');
+  }
+  try{if(window.CW&&window.CW._dbg)window.CW._dbg.memePost=memePost;}catch(e){}
+  NR.ok=true;
+  try{if(window.CW)window.CW.v74nr=NR;}catch(e){}
+  console.info('[CW] v74 — meme no-repeat: hooked '+NR.hooked.join(', '));
+}catch(err){console.error('[CW] v74 meme no-repeat failed',err);}})();
+
+/* ===== v75 CHROME PASS 3 (Ui Bot spec, George greenlit): one overlay queue, opaque top row + caption lane,
+   banner lane (FLAG/CHALLENGE/KEY PLAY off the scorebug), edge-safe cards, hood bubbles off the replay ===== */
+(function(){
+  if(window.__v75chrome)return;
+  try{
+  var $i=function(id){return document.getElementById(id);};
+  var tv=$i('tv'),game=$i('game');if(!tv||!game)return;
+  var TOPH='calc(var(--cw-mtop) + 40px)';            /* meter row (36) + 4 */
+  var CAPT='calc(var(--cw-mtop) + 40px)';            /* caption lane top */
+  var BANT='calc(var(--cw-mtop) + 84px)';            /* banner lane top (caption 40 + 4) */
+  var CARDT='calc(var(--cw-mtop) + 128px)';          /* cards start below both lanes */
+  var BUGRES='calc(96px + 58px + 10px + env(safe-area-inset-bottom))'; /* scorebug top + gap, measured from the bottom */
+  var MODAL_HAS='#app:has(#shop:not([hidden])) #v75top,#app:has(#memo:not([hidden])) #v75top,#app:has(#call:not([hidden])) #v75top,#app:has(#chrev:not([hidden])) #v75top,#app:has(#adbrk:not([hidden])) #v75top,#app:has(#mgal.show) #v75top,#app:has(#hb:not([hidden])) #v75top,#app:has(#refbrief:not([hidden])) #v75top,body.cw-modal #v75top';
+  var css=[
+  /* --- lanes --- */
+  '#game #tv #v75top{position:absolute!important;left:0;right:0;top:0;height:'+TOPH+';background:#07090d;z-index:50;pointer-events:none;box-shadow:0 2px 0 rgba(0,0,0,.35)}',
+  MODAL_HAS+'{display:none!important}',
+  'html.gfx-pix #tv #v75top{background:#0a0c10}',
+  '#game #tv #v75cap{position:absolute!important;left:8px;right:8px;top:'+CAPT+';height:40px;z-index:19;display:flex;align-items:center;gap:6px;pointer-events:none;overflow:hidden}',
+  '#game #tv #v75ban{position:absolute!important;left:0;right:0;top:'+BANT+';z-index:22;display:flex;flex-direction:column;align-items:stretch;gap:4px;pointer-events:none}',
+  /* caption lane members: static, inline, never peeking behind the meter row */
+  '#game #tv #v75cap #netbug,#game #tv #v75cap #tvtag,#game #v75cap #tfchip{position:static!important;inset:auto!important;transform:none!important;margin:0!important;flex:none!important;white-space:nowrap!important;z-index:auto!important;opacity:.95}',
+  '#game #tv #v75cap #netbug{font-size:9px;line-height:1;padding:3px 5px;border-radius:4px;background:rgba(0,0,0,.6)}',
+  '#game #tv #v75cap #tvtag{font-size:9.5px!important;padding:3px 6px!important;line-height:1.1}',
+  '#game #v75cap #tfchip{font-size:9px!important;padding:4px 8px!important}',
+  '#game #tv #v75cap #booth{position:relative!important;inset:auto!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;margin:0!important;flex:1 1 0!important;width:auto!important;max-width:100%!important;min-width:0!important;max-height:40px!important;box-sizing:border-box!important;padding:3px 7px!important;font-size:11.5px!important;line-height:1.25!important;overflow:hidden!important;display:none;-webkit-line-clamp:2;-webkit-box-orient:vertical;white-space:normal!important;overflow-wrap:anywhere}',
+  '#game #tv #v75cap #booth.show{display:-webkit-box!important}',
+  '#game #tv #v75cap #booth b{display:inline!important;font-size:9.5px!important;margin-right:5px}',
+  '#tv #v75cap.bo #tvtag,#v75cap.bo #tfchip{display:none!important}',
+  /* banner lane members */
+  '#game #tv #v75ban #flagban{position:relative!important;inset:auto!important;left:auto!important;top:auto!important;margin:0!important;align-self:flex-start;max-width:92%}',
+  '#game #tv #v75ban #flash{position:relative!important;inset:auto!important;margin:0 8px!important;height:26px;border-radius:6px;box-shadow:0 3px 12px rgba(0,0,0,.45);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:900}',
+  '#game #tv #v75ban #flash:not(.flag):not(.fd):not(.to):not(.info){background:#1b2130;color:#fff}',
+  '#game #tv #v75ban #flash.chal{background:#d4161b}',
+  /* --- cards: edge-safe, centered, wrap, scroll inside, never over top row or scorebug --- */
+  '#game #tv #gfx{position:absolute!important;left:0!important;right:0!important;margin:0 auto!important;width:calc(100% - 24px)!important;max-width:366px!important;box-sizing:border-box!important;top:'+CARDT+'!important;bottom:auto!important;max-height:calc(100% - var(--cw-mtop) - 128px - '+BUGRES+')!important;overflow-x:hidden!important;overflow-y:auto!important;-webkit-overflow-scrolling:touch;white-space:normal!important;overflow-wrap:anywhere;border-radius:12px!important}',
+  '#game #tv #gfx *{max-width:100%;box-sizing:border-box}',
+  '#game #tv #gfx .kr,#game #tv #gfx .row{flex-wrap:wrap}',
+  '#game #tv #gfx .kr>*,#game #tv #gfx .row>*{min-width:0}',
+  '#game #tv #gfx .kr b,#game #tv #gfx .row b{flex:1 1 50%;text-align:right}',
+  '#game #tv #gfx .skip{position:static!important;display:block;text-align:right;font-size:13px!important;margin-top:4px;padding:2px 0}',
+  '#game #tv #msban{position:absolute!important;left:0!important;right:0!important;margin:0 auto!important;width:calc(100% - 24px)!important;max-width:366px!important;box-sizing:border-box!important;top:'+CARDT+'!important;bottom:auto!important}',
+  '#game #tv #chant{position:absolute!important;top:'+CARDT+'!important}',
+  'body.v75card #chant,body.v75call #chant{opacity:0!important;visibility:hidden!important}',
+  /* lower third: its own lane right above the scorebug (was relative => floated to the top under the booth) */
+  '#game #tv #lower{position:absolute!important;left:8px!important;right:8px!important;top:auto!important;bottom:calc(96px + 58px + 6px + env(safe-area-inset-bottom))!important;margin:0!important;max-height:44px;overflow:hidden;display:none;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:12px!important;line-height:1.25!important;padding:4px 8px!important;box-sizing:border-box}',
+  '#game #tv #lower.show{display:-webkit-box!important}',
+  /* social toasts + meme stack share one slot above the lower third (never both: queue) */
+  '#game #tv #sbur{position:absolute!important;left:6px!important;right:6px!important;top:auto!important;bottom:calc(96px + 58px + 54px + env(safe-area-inset-bottom))!important}',
+  '#mpop,#game.fs-tiny ~ #mpop,#app:has(#game.fs-tiny) #mpop,#game.fs-tiny #mpop{bottom:calc(96px + 58px + 54px + env(safe-area-inset-bottom))!important}',
+  '#tv.v75busy #sbur{opacity:0!important;visibility:hidden!important;pointer-events:none!important}',
+  'body.v75card #mpop,body.v75call #mpop{opacity:0!important;visibility:hidden!important;pointer-events:none!important}',
+  /* HEAT: number never clips — the bar shrinks instead */
+  '#game #heatrow > span:first-child{flex:none!important;min-width:max-content!important;overflow:visible!important}',
+  '#game #heatrow #heatnum{display:inline-block;min-width:2.1ch;font-variant-numeric:tabular-nums}',
+  '#game.fs-tiny #heatrow #heatbar{min-width:14px!important;flex:1 1 0!important}',
+  /* Skip-to-next-key sits left of the SOCIAL button, never under it */
+  '#game.fs-tiny #thumb #skipk{position:absolute!important;right:calc(10px + 52px + 8px)!important;left:auto!important;bottom:calc(14px + env(safe-area-inset-bottom))!important;margin:0!important;max-width:min(86px,calc(50% - 35px - 70px - 6px))!important;box-sizing:border-box;overflow:hidden;white-space:normal!important;font-size:11px!important;padding-left:4px!important;padding-right:4px!important}',
+  /* Under the Hood: DM bubbles below the replay, timer always visible */
+  '#chrev .chmsgs{margin-top:0!important;min-height:0!important;flex:1 1 0!important;justify-content:flex-end!important;overflow:hidden!important}',
+  '#chrev .chtop{z-index:3!important}',
+  '#chrev .chtop i,#chtime{position:relative;z-index:4;flex:none}',
+  /* YOUR CALL: the OR divider fades in with the Let-it-stand row instead of flashing alone */
+  '@keyframes v75or{from{opacity:0}to{opacity:1}}',
+  '#decide #dFoot .dor{animation:v75or .2s ease-out both;animation-delay:.42s}',
+  '#decide.done #dFoot .dor{animation:none}',
+  '#dScroll{scrollbar-gutter:stable}',
+  /* meme card: rotated card stays inside the screen edges */
+  '@keyframes v75mIn{0%{transform:scale(.4) rotate(-14deg);opacity:0}60%{transform:scale(1) rotate(.5deg);opacity:1}100%{transform:rotate(-2.5deg)}}',
+  '#mpop .mcard.enter{animation-name:v75mIn!important}',
+  '#mpop .mcard{left:14px!important;width:calc(100% - 28px)!important;box-sizing:border-box}',
+  /* YOUR CALL: no overshoot bounce up under the meter row */
+  '#decide.enter{animation-timing-function:cubic-bezier(.2,.9,.3,1),ease-in-out!important}',
+  '#decide.out{transform:translateY(calc(-100% - 64px))!important}',
+  '#decide.v75tight2 .gcap{white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}',
+  '#decide.v75tight2 .grow .gl{white-space:nowrap!important;width:auto!important;min-width:0!important;flex:none!important}',
+  '#decide.v75tight2 #dSaw{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}',
+  'body.v75nochip #callchip{display:none!important}',
+  '#decide .grow .gv{min-width:0!important;max-width:100%!important;white-space:normal!important;overflow-wrap:anywhere}',
+  '#game #tv #v75cap #booth.show,#game #tv #lower.show{animation:v75or .2s ease-out both!important}',
+  '#decide.v75tight .dout{padding:2px 8px!important;margin-bottom:3px!important}',
+  '#decide.v75tight .dq{margin:2px 0!important}',
+  '#decide.v75tight #dOpts{gap:5px!important}',
+  '#decide.v75tight .dopt{padding:3px 8px!important}'
+  ].join('\n');
+  var st=document.createElement('style');st.id='v75chrome';st.textContent=css;document.documentElement.appendChild(st);
+
+  /* --- build lanes + move nodes --- */
+  var top=document.createElement('div');top.id='v75top';tv.appendChild(top);
+  var cap=document.createElement('div');cap.id='v75cap';tv.appendChild(cap);
+  var ban=document.createElement('div');ban.id='v75ban';tv.appendChild(ban);
+  function mv(id,dst){var e=$i(id);if(e&&e.parentNode!==dst)dst.appendChild(e);return e;}
+  function lanes(){mv('netbug',cap);mv('tvtag',cap);mv('tfchip',cap);mv('booth',cap);mv('flagban',ban);mv('flash',ban);}
+  lanes();
+  try{new MutationObserver(function(){if(!$i('tfchip')||$i('tfchip').parentNode!==cap)lanes();}).observe(game,{childList:true});}catch(e){}
+  var bo=$i('booth');
+  function syncBo(){try{cap.classList.toggle('bo',!!(bo&&bo.classList.contains('show')));}catch(e){}}
+  try{if(bo)new MutationObserver(syncBo).observe(bo,{attributes:true,attributeFilter:['class']});}catch(e){}
+
+  /* --- ONE overlay queue: gameplay cards > memes > social toasts; YOUR CALL drops memes --- */
+  function on(id,cls){var e=$i(id);return !!(e&&e.classList.contains(cls));}
+  function vis(id){var e=$i(id);return !!(e&&!e.hidden);}
+  function cardUp(){return on('gfx','show')||on('msban','show');}
+  function callUp(){var d=$i('decide');return !!(d&&!d.hidden&&!d.classList.contains('out'));}
+  function modalUp(){return document.body.classList.contains('cw-modal')||vis('chrev')||vis('call')||vis('memo')||vis('shop')||vis('adbrk')||on('socsheet','open')||on('mgal','show')||on('memeview','show');}
+  var Q={drops:0,parked:0,toastHeld:0,toastShown:0,toastDropped:0};
+  if(typeof memeBlocked==='function'){var _mb=memeBlocked;memeBlocked=function(){return _mb.apply(this,arguments)||cardUp()||callUp()||modalUp();};}
+  function dropAllMemes(){try{if(typeof hideMemesNow==='function'&&mActive.length)hideMemesNow();if(S&&S.memeQ&&S.memeQ.length){Q.drops+=S.memeQ.length;S.memeDropped=(S.memeDropped||0)+S.memeQ.length;S.memeQ.length=0;}}catch(e){}}
+  if(typeof pumpMemes==='function'){var _pm=pumpMemes;pumpMemes=function(){
+    if(!S)return;
+    if(callUp()){dropAllMemes();return;}
+    if(memeBlocked()){
+      if(mActive.length&&(cardUp()||modalUp()||$i('game').hidden||S.phase==='done')){Q.parked++;hideMemesNow();}   /* front meme waits, gets a fresh timer later */
+      return;}
+    var q=S.memeQ||[];while(q.length>3)q.shift();
+    while(q.length&&mActive.length<1)showMeme(q.shift());   /* one card on screen at a time */
+  };pumpMemes.__v75=1;}
+  /* memes live 4.5s (Ui Bot: 4–5s), tap/swipe still dismisses */
+  if(typeof layoutMemes==='function'){layoutMemes=function(){mActive.forEach(function(m,i){var d=m.pop;if(!d)return;d.classList.toggle('front',i===0);d.classList.toggle('hasmore',i===0&&mActive.length>1);d.classList.toggle('back',i===1);
+    if(i===0&&!m.timerOn){m.timerOn=true;var ms=4500/Math.min(SP(),6);var bar=d.querySelector('.mbar i');if(bar){bar.style.animationDuration=ms+'ms';bar.classList.add('run');}m.tmr=setTimeout(function(){dismissMeme(m,'out',true);},ms);}});};}
+  /* social toasts: post() still lands in the feed immediately; the toast waits behind cards/memes/YOUR CALL */
+  var pend=[];
+  function memeOnScreen(){return (mActive&&mActive.length>0)||!!document.querySelector('#mpop .mcard');}
+  function toastBusy(){return cardUp()||callUp()||modalUp()||memeOnScreen();}
+  function renderToast(plat,text,o,p){var b=$i('sbur');if(!b)return;
+    var c=document.createElement('div');c.className='sbp'+(o.hot?' hot':o.good?' good':'');
+    c.innerHTML='<div class="sbm">'+(o.av?'<img src="'+o.av+'" alt="">':'')+'<span class="plat '+plat+'">'+(PLAT[plat]||plat)+'</span><b></b>'+(o.tell?'<span class="tell">'+o.tell+'</span>':'')+'</div><div class="sbt"></div>';
+    c.querySelector('b').textContent=p.handle;c.querySelector('.sbt').textContent=text;
+    c.addEventListener('click',function(e){e.stopPropagation();c.remove();sbLayout();});
+    b.appendChild(c);while(b.children.length>5)b.firstChild.remove();sbLayout();Q.toastShown++;trimToasts();
+    setTimeout(function(){c.classList.add('out');setTimeout(function(){c.remove();sbLayout();},400);},(o.life||4200)/FAST);}
+  /* toast stack never climbs into the card area / lanes: drop the oldest until it fits */
+  function trimToasts(){try{var b=$i('sbur');if(!b)return;var lim=$i('v75ban').getBoundingClientRect().bottom+40;var n=0;
+    while(b.children.length>1&&b.getBoundingClientRect().top<lim&&n++<6)b.firstChild.remove();}catch(e){}}
+  if(typeof sbPost==='function'){sbPost=function(plat,text,o,delay){o=o||{};delay=delay||0;
+    setTimeout(function(){if(!S||S.over&&!o.end)return;var p=post(plat,text,o.boost||0,o);if(!p)return;
+      if(toastBusy()){pend.push({plat:plat,text:text,o:o,p:p,t:Date.now()});Q.toastHeld++;while(pend.length>3){pend.shift();Q.toastDropped++;}return;}
+      renderToast(plat,text,o,p);},delay/FAST);};}
+  var wasBusy=false,wasCall=false;
+  function tick(){try{
+    var c=cardUp(),k=callUp(),m=modalUp(),busy=c||k||m||memeOnScreen();
+    document.body.classList.toggle('v75card',c||m);document.body.classList.toggle('v75call',k);
+    tv.classList.toggle('v75busy',busy);
+    if(busy&&!wasBusy){var b=$i('sbur');if(b&&b.children.length){b.innerHTML='';try{sbLayout();}catch(e){}}}
+    if(k&&!wasCall)dropAllMemes();
+    wasBusy=busy;wasCall=k;
+    if(!S)return;
+    if(!c&&!k&&!m&&S.memeQ&&S.memeQ.length&&!mActive.length)pumpMemes();
+    else if((c||m)&&mActive.length)pumpMemes();
+    if(!busy&&pend.length){var now=Date.now(),lim=7000/Math.max(1,Math.min(FAST||1,4));
+      var fresh=pend.filter(function(x){return now-x.t<lim;});Q.toastDropped+=pend.length-fresh.length;pend=[];
+      fresh.slice(-2).forEach(function(x){renderToast(x.plat,x.text,x.o,x.p);});}
+    else if(S.over&&pend.length)pend=[];
+  }catch(e){}}
+  var tiv=setInterval(tick,120);
+  ['gfx','msban','decide','chrev','socsheet','mgal','memeview'].forEach(function(id){var e=$i(id);if(e)try{new MutationObserver(tick).observe(e,{attributes:true,attributeFilter:['class','hidden']});}catch(_){}});
+
+  /* YOUR CALL: the first two choices are always fully visible — tighten spacing, then grow the sheet
+     (never past the scorebug; the PLAN chip follows the sheet bottom) */
+  function decRect(){var de=$i('decide');return de?de.getBoundingClientRect():null;}
+  function opt2Short(){var sc=$i('dScroll');var os=document.querySelectorAll('#dOpts .dopt');if(!sc||os.length<1)return 0;var o=os[Math.min(1,os.length-1)];
+    var sr=sc.getBoundingClientRect(),orr=o.getBoundingClientRect();return Math.max(0,orr.bottom-(sr.bottom-1));}
+  function resetDecide(){var de=$i('decide'),ch=$i('callchip');document.body.classList.remove('v75nochip');if(de){de.classList.remove('v75tight','v75tight2');de.style.removeProperty('max-height');}if(ch)ch.style.removeProperty('top');}
+  function fitDecide(){try{var de=$i('decide');if(!de||de.hidden||de.classList.contains('out')||de.classList.contains('done'))return;
+    var sc=$i('dScroll');if(sc&&sc.scrollTop>4)return;
+    var need=opt2Short();if(need<=0)return;
+    if(!de.classList.contains('v75tight')){de.classList.add('v75tight');need=opt2Short();if(need<=0)return;}
+    var bug=$i('bug'),ch=$i('callchip');var bt=bug?bug.getBoundingClientRect().top:innerHeight;
+    var grow=function(maxB){var r=decRect();var h=Math.min(Math.ceil(r.height+opt2Short()+6),Math.floor(maxB-r.top));if(h<=r.height+1)return false;
+      if(sc){sc.style.removeProperty('height');sc.style.removeProperty('max-height');}de.style.setProperty('max-height',h+'px','important');return true;};
+    var chH=ch?Math.max(28,ch.getBoundingClientRect().height):28;
+    if(grow(bt-chH-18))Q.decideGrow=(Q.decideGrow||0)+1;
+    if(opt2Short()>0&&!de.classList.contains('v75tight2')){de.classList.add('v75tight2');Q.decideTight2=(Q.decideTight2||0)+1;}
+    if(opt2Short()>0){document.body.classList.add('v75nochip');grow(bt-8);Q.decideNoChip=(Q.decideNoChip||0)+1;}
+    var r2=decRect();if(ch&&!document.body.classList.contains('v75nochip'))ch.style.setProperty('top',(r2.top+r2.height+2)+'px','important');
+    }catch(e){}}
+  if(typeof closeDecide==='function'){var _cd=closeDecide;closeDecide=function(){var r=_cd.apply(this,arguments);Promise.resolve(r).then(function(){setTimeout(resetDecide,260);});return r;};}
+  /* YOUR CALL: OR divider waits for the Let-it-stand row (same delay as that option) */
+  if(typeof openDecide==='function'){var _od=openDecide;openDecide=function(){dropAllMemes();resetDecide();var r=_od.apply(this,arguments);
+    try{var or=document.querySelector('#dFoot .dor'),lg=document.querySelector('#dFoot .dopt');if(or&&lg&&lg.style.animationDelay)or.style.animationDelay=lg.style.animationDelay;}catch(e){}
+    fitDecide();[60,450,900,1500,2400].forEach(function(t){setTimeout(fitDecide,t);});
+    return r;};openDecide.__v74=1;openDecide.__v75=1;try{window.CW.openDecide=openDecide;}catch(e){}}
+
+  if(typeof refreshHold==='function'){var _rh=refreshHold;refreshHold=function(){var r=_rh.apply(this,arguments);setTimeout(fitDecide,30);return r;};}
+  /* Under the Hood: when a new DM would overflow the lane, drop the oldest bubble (no half-clipped bubbles under the replay) */
+  function trimHood(){try{var m=$i('chmsgs');if(!m)return;var g=0;while(m.children.length>1&&m.scrollHeight>m.clientHeight+1&&g++<6){m.removeChild(m.firstElementChild);Q.hoodTrim=(Q.hoodTrim||0)+1;}}catch(e){}}
+  try{var crv=$i('chrev');if(crv)new MutationObserver(function(){trimHood();setTimeout(trimHood,40);}).observe(crv,{childList:true,subtree:true});}catch(e){}
+  window.__v75chrome={ok:true,lanes:true,queue:true,Q:Q,pending:function(){return pend.length;},cardUp:cardUp,callUp:callUp,modalUp:modalUp,tick:tick};
+  try{if(window.CW)Object.assign(window.CW,{v75chrome:window.__v75chrome,_v75:{booth:booth,flash:flash,gfx:gfx,hideGfx:hideGfx,lower:lower,sbPost:sbPost,memePost:memePost,pumpMemes:pumpMemes,hideMemesNow:hideMemesNow,openDecide:openDecide,mActive:function(){return mActive;}}});}catch(e){}
+  console.info('[CW] v75 — chrome pass 3: overlay queue, top row + caption lane, banner lane, edge-safe cards, hood bubbles');
+  }catch(err){console.error('[CW] v75 chrome failed',err);}
+})();
+
 setMatch(QUICK);bindRefNameInputs();syncRefUI();showTitle();
 })();
 </script>
@@ -11947,8 +12525,9 @@ setMatch(QUICK);bindRefNameInputs();syncRefUI();showTitle();
 #decide .dopt.picked,#decide.done .dopt:not(.picked){animation:none}
 #decide .dopt{touch-action:pan-y}
 /* v74: social posts and meme stack yield to gameplay cards (drive summary, result, key play) — full overlay queue lands in v75 */
-#tv.v74gfx #sbur,#tv.v74gfx #mpop{opacity:0!important;visibility:hidden!important;pointer-events:none!important;transition:none!important}
+/* (v75: replaced by the one overlay queue in v75 chrome) */
 </style>
 <script>window.__v74={ok:true,build:'AUDIO+HARD',audio:'v2',auVoiceCap:110,hard:true,fixes:['heat-live','scorebug-pin','gfx-social','sheet-tap']};</script>
+<script>window.__v75={ok:true,build:'MEMES+CHROME',memePack:!!window.__cwMemePack,memeNR:!!(window.__cwMemeNR&&window.__cwMemeNR.ok),chrome:!!window.__v75chrome};</script>
 </body>
 </html>
