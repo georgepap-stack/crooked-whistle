@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#0b0d12">
-<title>After Further Review: The IFL v84 MEMEFIX</title>
+<title>After Further Review: The IFL v85 MEMETIME</title>
 <style>
 :root{--bg:#0b0d12;--card:#1a1e27;--card2:#252a35;--ink:#f4f1e8;--dim:#9aa3b2;--whistle:#ffd23f;--hot:#ff5a3c;--ok:#4cd387;--line:#2c3240;--gbn:#2f6bff}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -1678,7 +1678,7 @@ window.__showThreeMissing=function(msg){
 (()=>{
 var __cwN=function(a,b){return a!=null?a:b;};/* v62: Safari ≤13-safe nullish + optional-chain shims */
 /* v73: build/version info. Future builds bump ONLY this line. */
-const CW_VERSION='v84',CW_BUILD='MEMEFIX',CW_DATE='2026-10-29';
+const CW_VERSION='v85',CW_BUILD='MEMETIME',CW_DATE='2026-10-29';
 const CW_VER_SHORT=(()=>{const p=CW_DATE.split('-');const M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];return CW_VERSION+' · '+CW_BUILD+' · '+M[(+p[1]||1)-1]+' '+(+p[2]||'');})();
 window.CW_VERSION=CW_VERSION;window.CW_BUILD=CW_BUILD;window.CW_DATE=CW_DATE;
 (function cwVerUI(){
@@ -13370,13 +13370,30 @@ function v82MEnq(p){if(!S||!p)return;if(V82M.testOnly&&!p.t82)return;var k=Strin
   V82M.keys[k]=1;V82M.q.push({p:p,k:k,t:Date.now()});while(V82M.q.length>V82M_MAXQ)v82MDrop(V82M.q.shift(),'backlog');v82MTick();}
 /* v84 MEMEFIX: only the live play dims a meme (replay/ff/sim stretches no longer count) */
 function v82MSnap(){if(V82M.snapForce!=null)return !!V82M.snapForce;return !!(S&&S.phase==='live');}
-var V84M_CAP=15000,V84M_HID=20000,V84M_QAGE=20000;
-function v84MOn(it){return (it.vis||0)+(it.dimMs||0)+(it.heldMs||0);}
+/* v85 MEMETIME: new memes wait in the queue while a snap is coming (KEY PLAY card, pre-snap cadence) or the ball is live,
+   then show after the play at full brightness. */
+function v85MHold(){if(V82M.holdForce!=null)return !!V82M.holdForce;if(v82MSnap())return true;var ph=S&&S.phase;return ph==='presnap'||ph==='keygfx';}
+var V84M_CAP=15000,V84M_HID=20000,V84M_QAGE=20000,V85M_AFTER=3000,V85M_LIVE=12500;
+var V85M={holdTicks:0,keep:0,requeue:0,doneAtSnap:0,capDrop:0,afterOk:0,afterShort:0,log:[]};
+function v85MLog(o){V85M.log.push(o);if(V85M.log.length>60)V85M.log.shift();}
+function v84MOn(it){return (it.on0||0)+(it.vis||0)+(it.dimMs||0)+(it.heldMs||0);}
+function v85MFull(it){return (it.full0||0)+(it.vis||0)+(it.heldMs||0);}
+function v85MLiveEst(sc){if(V82M.liveForce)return V82M.liveForce/(sc||1);var d=(S&&S.cur&&S.cur.key&&S.cur.dur)||(S&&S.animDur)||V85M_LIVE;/* v85: a key play's live stretch runs ~12-14s at 1x (slow-mo beats), well past kp.dur, so never estimate under 12.5s */return Math.max(V85M_LIVE,d)/(sc||1);}
+/* a snap landed on a showing meme: keep it dimmed only if the 15s cap still leaves 3s at full brightness after the play;
+   otherwise it either already had its 3s (it leaves now) or it goes back to the front of the queue and returns after the play */
+function v85MSnapHit(it,l){var sc=it.scale||1,left=V84M_CAP/sc-v84MOn(it),need=v85MLiveEst(sc)+V85M_AFTER/sc;
+  if(left>=need){it.owe=V85M_AFTER/sc;it.after=0;V85M.keep++;v85MLog({t:Date.now(),a:'keep',left:Math.round(left*sc)});return 'keep';}
+  if(v85MFull(it)>=V85M_AFTER/sc){it.seenBy=it.seenBy||'snap';V85M.doneAtSnap++;v85MLog({t:Date.now(),a:'done',full:Math.round(v85MFull(it)*sc)});v82MLeave(it,'out');return 'done';}
+  var q={p:it.p,k:it.k,t:Date.now(),hq:0,re:1,on0:v84MOn(it),full0:v85MFull(it),touched:it.touched};
+  it.seenBy='requeue';it.requeued=true;V85M.requeue++;V82M.shown--;v85MLog({t:Date.now(),a:'requeue',full:Math.round(v85MFull(it)*sc)});
+  v82MLeave(it,'out');V82M.q.unshift(q);while(V82M.q.length>V82M_MAXQ)v82MDrop(V82M.q.pop(),'backlog');return 'requeue';}
 function v82MTick(){var now=performance.now(),dt=V82M.lastT?Math.min(400,now-V82M.lastT):0;V82M.lastT=now;var l=v82MLayer();if(!l)return;
   var why=v79Why();if(why==='action')why='';
   if(why==='over'||why==='nogame'){if(why==='over'){if(V82M.cur)v82MLeave(V82M.cur,'out');while(V82M.q.length)v82MDrop(V82M.q.shift(),'gameover');}l.classList.add('off');return;}
-  /* v84: stale queue entries (waited behind cards/plays > 20s) are dropped, not shown late */
-  var wn=Date.now();while(V82M.q.length&&wn-V82M.q[0].t>V84M_QAGE/(V82M.sc||v79Fast()))v82MDrop(V82M.q.shift(),'stale');
+  var hold=v85MHold();
+  /* v84: stale queue entries (waited behind cards > 20s) are dropped, not shown late. v85: time spent held for the snap/live play is not "waiting" */
+  if(hold&&V82M.q.length){V85M.holdTicks++;var hn=Date.now();for(var qi=0;qi<V82M.q.length;qi++){var qq=V82M.q[qi];qq.hq=Math.min(hn-qq.t,(qq.hq||0)+dt);}}
+  var wn=Date.now();while(V82M.q.length&&wn-V82M.q[0].t-(V82M.q[0].hq||0)>V84M_QAGE/(V82M.sc||v79Fast()))v82MDrop(V82M.q.shift(),'stale');
   var g=v82MGeom();V82M.geo=g;var it=V82M.cur;
   if(!why){if(!V82M.okSince)V82M.okSince=now;}else V82M.okSince=0;
   var free=!why&&(now-V82M.okSince>=(/^(call|card|modal|flag|impact)$/.test(V82M.lastWhy)?300:0));if(free)V82M.lastWhy='';else if(why)V82M.lastWhy=why;
@@ -13385,18 +13402,22 @@ function v82MTick(){var now=performance.now(),dt=V82M.lastT?Math.min(400,now-V82
       if(it.hidMs>=V84M_HID/it.scale){it.capBy='hidden';v82MDrop(it,'hidden');v82MLeave(it,'out');}return;}
     if(it.callHit){it.callHit=false;var back=4000/it.scale;if(it.rem<back){it.rem=back;}it.callBack=(it.callBack||0)+1;it.wall=Math.min(it.wall,Math.max(0,12000/it.scale-it.rem));}
     l.classList.remove('off');var snap=v82MSnap();
+    if(snap&&!it.wasDim&&!it.owe){if(v85MSnapHit(it,l)!=='keep')return;}
     /* v84: full opacity the moment the live play ends (no fade back from 35%) */
-    if(!snap&&it.el.classList.contains('dim')){it.el.classList.add('undim');it.el.classList.remove('dim');void it.el.offsetWidth;(function(e){setTimeout(function(){e.classList.remove('undim');},250);})(it.el);it.undimN=(it.undimN||0)+1;}else it.el.classList.toggle('dim',snap);
-    /* v84: dimmed memes keep counting down at half speed (was frozen) */
-    if(snap){if(!it.wasDim)V82M.dimN++;it.wasDim=true;it.dimMs+=dt;it.wall+=dt;it.rem-=dt*0.5;it.pz.snap=(it.pz.snap||0)+1;}
-    else{it.wasDim=false;if(it.held){it.heldMs=(it.heldMs||0)+dt;}else{it.rem-=dt;it.vis+=dt;it.wall+=dt;}}
+    if(!snap&&it.el.classList.contains('dim')){it.el.classList.add('undim');it.el.classList.remove('dim');void it.el.offsetWidth;(function(e){setTimeout(function(){e.classList.remove('undim');},250);})(it.el);it.undimN=(it.undimN||0)+1;
+      /* v85: after a dimmed play the meme gets at least 3s back at full brightness */
+      if(it.owe){it.after=0;if(it.rem<it.owe)it.rem=it.owe;}}else it.el.classList.toggle('dim',snap);
+    /* v85: dimmed time no longer eats the meme's timer (it still counts toward the 15s cap) */
+    if(snap){if(!it.wasDim)V82M.dimN++;it.wasDim=true;it.dimMs+=dt;it.pz.snap=(it.pz.snap||0)+1;}
+    else{it.wasDim=false;if(it.owe)it.after=(it.after||0)+dt;if(it.held){it.heldMs=(it.heldMs||0)+dt;}else{it.rem-=dt;it.vis+=dt;it.wall+=dt;}}
     if(!it.fitT||now-it.fitT>500){it.fitT=now;v82MFit(it,g);}
-    var bar=it.el.querySelector('.v82bar i');if(bar)bar.style.transform='scaleX('+Math.max(0,it.rem/it.total).toFixed(4)+')';
+    var bar=it.el.querySelector('.v82bar i');if(bar)bar.style.transform='scaleX('+Math.max(0,Math.min(1,it.rem/it.total)).toFixed(4)+')';
     /* v84: hard cap - 15s on screen (visible + dimmed + held), touched or not */
-    if(v84MOn(it)>=V84M_CAP/it.scale){it.capBy='cap15';if(!it.seenBy)it.seenBy='cap';v82MLeave(it,'out');return;}
-    if(it.rem<=0||(!it.touched&&it.wall>=11900/it.scale&&it.vis>=Math.min(it.total,5000/it.scale)))v82MLeave(it,'out');return;}
+    if(v84MOn(it)>=V84M_CAP/it.scale){it.capBy='cap15';if(!it.seenBy)it.seenBy='cap';if(it.owe&&(it.after||0)<it.owe)V85M.afterShort++;V85M.capDrop++;v82MLeave(it,'out');return;}
+    var oweOk=!it.owe||(!snap&&(it.after||0)>=it.owe);
+    if(oweOk&&(it.rem<=0||(!it.touched&&it.wall>=11900/it.scale&&v85MFull(it)>=Math.min(it.total,5000/it.scale)))){if(it.owe)V85M.afterOk++;v82MLeave(it,'out');}return;}
   if(V82M.leaving)return;
-  if(free&&!v82MSnap()&&V82M.q.length){v82MShow(V82M.q.shift());l.classList.remove('off');}else if(!V82M.cur)l.classList.add('off');}
+  if(free&&!hold&&V82M.q.length){var nq=V82M.q.shift();if(v82MShow(nq)&&nq.re){var c=V82M.cur;c.on0=nq.on0||0;c.full0=nq.full0||0;c.touched=!!nq.touched;c.rem=Math.max(V85M_AFTER/c.scale,c.total-c.full0);}l.classList.remove('off');}else if(!V82M.cur)l.classList.add('off');}
 (function(){
   try{queueMeme=function(p){if(!S||!p)return;v82MEnq(p);};showMeme=function(p){v82MEnq(p);};hideMemesNow=function(){v82MTick();};}catch(e){console.error('[CW] v82 meme hook',e);}
   /* pops yield the space the meme card uses: v79 lane top moves below the card */
@@ -13829,7 +13850,7 @@ var V82H={on:0,heldMs:0,left:0,get:function(){return false;},set:function(){}};
 (function(){var st=document.createElement('style');st.textContent='#gfx.v82held .v76bar i{background:#ffd23f!important;transition:none!important}#gfx.v82held h4::after{content:" · ⏸ HELD";color:#ffd23f}#gfx .v76bar{position:relative}';document.head.appendChild(st);})();
 V82.hold=V82H;(window.__v82items=window.__v82items||[]).push('p7-hold');
 /* ---- v82: test/QA hook ---- */
-try{V82.S=function(){return S;};window.CW.v82=V82;window.CW.v82.items=window.__v82items;console.info('[CW] v84 MEMEFIX — '+window.__v82items.join(', '));}catch(e){console.error('[CW] v82 hook',e);}
+try{V82.S=function(){return S;};window.CW.v82=V82;window.CW.v82.items=window.__v82items;console.info('[CW] v85 MEMETIME — '+window.__v82items.join(', '));}catch(e){console.error('[CW] v82 hook',e);}
 /* ===== v84 MEMEFIX ===== */
 window.__v84={items:[]};
 /* --- 2: meme throttle + dedupe at the source: ~1 meme per key play (big moments get a 2nd slot), queue cap stays 3 --- */
@@ -13846,12 +13867,12 @@ function v84MTake(kind){var k=(S&&S.keys)||0;V84G.byKey[k]=(V84G.byKey[k]||0)+1;
   try{var e0=v82MEnq;v82MEnq=function(p){if(p&&!p.t82){var im=String(p.img||'').slice(-80),tx=String(p.text||'');V84G.seen=V84G.seen||{};var kk='i:'+im,kt='t:'+tx;if((im&&V84G.seen[kk])||(tx.length>3&&V84G.seen[kt])){V82M.dup=(V82M.dup||0)+1;return;}if(im)V84G.seen[kk]=1;if(tx.length>3)V84G.seen[kt]=1;}return e0.apply(this,arguments);};}catch(e){}
 })();
 /* --- 3: no near-twins. PI = spot foul; roughing = +15 & auto 1st & extra heat; defensive holding = +5 & auto 1st --- */
-(function(){try{var t0=v72Teaser;v72Teaser=function(kp,id,e,neg){var t=t0.apply(this,arguments);try{if(id==='opi'&&e&&e.replay&&!e.auto1){t=String(t)+' · on the receiver';}
+(function(){try{var t0=v72Teaser;v72Teaser=function(kp,id,e,neg){var t=t0.apply(this,arguments);try{
     if(e&&e.auto1&&(id==='pi'||id==='roughing'||id==='dholding')){
     var bits=String(t).split(' · ').filter(function(b){return b&&b!=='auto 1st'&&b!=='flag';});var y=e.pen&&e.pen.y?e.pen.y:Math.max(0,e.yards||0);
     if(id==='pi')bits.push('spot foul +'+y+' yds');else if(id==='roughing')bits.push('+'+y+' yds · auto 1st · extra heat');else bits.push('+'+y+' yds · auto 1st');t=bits.join(' · ');}}catch(err){}return t;};}catch(e){}
   try{var ch0=callHeat;callHeat=function(c,kp,useP){var h=ch0.apply(this,arguments);try{if(c==='roughing'&&kp&&kp.foul!=='roughing'&&h>=5)h=h+4;}catch(e){}return h;};}catch(e){}
-  try{var o0=options;options=function(kp){var L=o0.apply(this,arguments);try{var seen={},out=[];L.forEach(function(o){if(o.id==='letgo'){out.push(o);return;}var k=String(o.teaser||'')+'|'+String(o.v82s||'');if(seen[k]){seen[k].alsoIds=(seen[k].alsoIds||[]).concat([o.id]);V84T.merged++;return;}seen[k]=o;out.push(o);});return out;}catch(e){return L;}};}catch(e){}
+  try{var o0=options;options=function(kp){var L=o0.apply(this,arguments);try{return v85Dedupe(L);}catch(e){return L;}};}catch(e){}
   window.__v84.items.push('no-twins');})();
 var V84T={merged:0};
 /* --- 4: FLAG FAVOR moves during the impact beat (with the heat swing), not after the card --- */
@@ -13883,6 +13904,86 @@ window.__v84.twinScan=function(n,force){var keep={h0:V82I.h0,h0k:V82I.h0k,kp:V82
   var avg=function(a){return a.length?Math.round(a.reduce(function(x,y){return x+y;},0)/a.length*10)/10:null;};res.heatAvg={pi:avg(res.heat.pi),roughing:avg(res.heat.roughing),dholding:avg(res.heat.dholding)};delete res.heat;return res;};
 window.__v84.intPlay=function(){var kp=makePlay();kp.key=true;kp.pass=true;kp.type='short';kp.complete=false;kp.turnover=true;kp.sack=false;kp.yards=0;kp.foul=null;return kp;};
 window.__v84.booth=function(l){return booth(l);};
+
+/* ===== v85 MEMETIME ===== */
+window.__v85=Object.assign(window.__v85||{},{items:[]});
+window.__v85.V85M=V85M;
+/* v85 item 1: MEME BEAT - at 1x the gap between a play ending and the next KEY PLAY card is only ~1.1s, so a meme that
+   pops after the play would be cut off. Before the next key play starts, a meme on screen at full brightness gets topped
+   up to 3s (wait at most 3s, never while a card/call is up or the game is over). */
+(function(){try{var V85B={n:0,ms:0,max:0,log:[]};V85M.beat=V85B;var _rf=recapFlush;
+  var vis=function(){var c=V82M.cur;if(!c||c.gone)return null;var l=v82MLayer();if(!l||l.classList.contains('off'))return null;return c;};
+  recapFlush=async function(why){
+    if(why==='key'&&S&&!S.over&&!S.menu){var t0=performance.now(),sc=V82M.sc||v79Fast(),lim=V85M_AFTER/sc;
+      try{if(!V82M.cur&&V82M.q.length&&!v79Why())await new Promise(function(r){setTimeout(r,150);});
+        var c=vis();if(c){var need=V85M_AFTER/(c.scale||1);
+          while(c&&!c.gone&&v85MFull(c)<need&&performance.now()-t0<lim&&!S.over&&!S.menu){await new Promise(function(r){setTimeout(r,50);});if(v79Why())break;}
+          var ms=Math.round((performance.now()-t0)*sc);if(ms>60){V85B.n++;V85B.ms+=ms;if(ms>V85B.max)V85B.max=ms;V85B.log.push(ms);if(V85B.log.length>40)V85B.log.shift();}}}catch(e){}}
+    return _rf.apply(this,arguments);};
+  window.__v85.items.push('meme-beat');}catch(e){console.error('[CW] v85 beat',e);}})();
+/* --- 2: no outcome twins. Offensive PI = 10 yds + loss of down; offensive holding = 10 yds, replay the down --- */
+var V85T={lists:0,merged:0,mergeLog:[],both:0,bothDiff:0,real:[]};
+function v85OKey(o){if(!o)return '';if(o.id==='clock')return 'clock';var p=o.pr||{};return [p.kind,p.poss,p.yl,p.down,p.togo,p.sc?(p.sc.home+'-'+p.sc.away):''].join('|');}
+function v85Twin(a,b){return !!a&&!!b&&a.id!=='letgo'&&b.id!=='letgo'&&v85OKey(a)===v85OKey(b)&&Math.abs((+a.heat||0)-(+b.heat||0))<6;}
+(function(){try{var ef0=effect;effect=function(kp,call){var e=ef0.apply(this,arguments);
+    try{if(call==='opi'&&e&&e.pen&&e.replay){e.replay=false;e.lod=true;e.pen.txt='Offensive pass interference, #'+kp.wrN+' '+kp.wr+'. '+e.pen.y+' yards and loss of down.';e.pen.short=e.pen.y+'-yd penalty and loss of down';}}catch(err){}return e;};
+  }catch(e){console.error('[CW] v85 opi',e);}
+  try{var t0=v72Teaser;v72Teaser=function(kp,id,e,neg){var t=t0.apply(this,arguments);
+    try{if(id==='opi'&&e&&e.lod){var pr=project(kp,e);var nm={'Wipes out the TD':'wipes TD','Wipes out the first down':'wipes FD','Gives a first down':'gives FD'};var bits=[];
+        if(neg)bits.push(nm[neg]||neg.toLowerCase());else if(kp.yards>0)bits.push('wipes gain');
+        bits.push('\u2212'+e.pen.y+' yds');bits.push(pr.kind==='DOWNS'?'turnover on downs':'loss of down');t=bits.join(' · ');}
+      else if((id==='holding'||id==='formation')&&e&&e.replay&&e.pen&&!/replay/.test(t)){t=String(t)+' · replay down';}}catch(err){}return t;};}catch(e){}
+  window.__v85.items.push('opi-loss-of-down');})();
+/* outcome-based dedupe replaces the v84 text dedupe (see the options() wrapper in the v84 block) */
+function v85Dedupe(L){var out=[];V85T.lists++;var ids=L.map(function(o){return o.id;});
+  if(ids.indexOf('opi')>=0&&ids.indexOf('holding')>=0){V85T.both++;var a=L[ids.indexOf('opi')],b=L[ids.indexOf('holding')];if(!v85Twin(a,b))V85T.bothDiff++;
+    if(V85T.real.length<12)V85T.real.push({opi:a.teaser,hold:b.teaser,opiH:a.heat,holdH:b.heat,opiK:v85OKey(a),holdK:v85OKey(b)});}
+  L.forEach(function(o){if(o.id==='letgo'){out.push(o);return;}for(var i=0;i<out.length;i++){if(v85Twin(out[i],o)){out[i].alsoIds=(out[i].alsoIds||[]).concat([o.id]);V85T.merged++;V84T.merged++;V85T.mergeLog.push([out[i].id,o.id,v85OKey(o)]);if(V85T.mergeLog.length>40)V85T.mergeLog.shift();return;}}out.push(o);});
+  return out;}
+/* --- 3a: talking pulse is cyan (gold now means on payroll only); it uses outline so a payroll ring stays visible --- */
+(function(){var st=document.createElement('style');st.id='v85css';st.textContent=[
+  '#booth.show .v82bf>img,#booth.show .v82bf>.v82face{animation:v85talk 1.2s linear infinite!important}',
+  '@keyframes v85talk{0%,30%{box-shadow:0 0 0 2.5px rgba(94,226,255,.95),0 0 8px 2px rgba(94,226,255,.55)}75%{box-shadow:0 0 0 5px rgba(94,226,255,0),0 0 8px 2px rgba(94,226,255,0)}100%{box-shadow:0 0 0 2.5px rgba(94,226,255,0),0 0 0 0 rgba(94,226,255,0)}}',
+  '@media (prefers-reduced-motion: reduce){#booth.show .v82bf>img,#booth.show .v82bf>.v82face{animation:none!important;box-shadow:0 0 0 2.5px rgba(94,226,255,.9)!important}}'
+  ].join('\n');document.head.appendChild(st);window.__v85.items.push('talk-cyan');})();
+/* --- 3b: one call can swing FLAG FAVOR at most 50% of the meter (45 favor units = 50%) --- */
+var V85F={capped:0,maxSwing:0,log:[]};var V85F_MAX=45;
+(function(){try{var fu=favorUpdate;favorUpdate=function(kp,call){
+    var n0;try{if(!V84F.inEarly&&V84F.early&&V84F.early.kp===kp){var ea=V84F.early,fv=S.fv,fb=S.v82fb;S.fv=ea.snap.fv;S.v82fb=ea.snap.fb;n0=favNet();S.fv=fv;S.v82fb=fb;}else n0=favNet();}catch(e){n0=favNet();}
+    var r=fu.apply(this,arguments);
+    try{var n1=favNet(),d=n1-n0;var sw=Math.abs(d)/0.9;if(sw>V85F.maxSwing)V85F.maxSwing=Math.round(sw);
+      if(Math.abs(d)>V85F_MAX){var fix=d-V85F_MAX*Math.sign(d);S.v82fb=(S.v82fb||0)-fix;V85F.capped++;V85F.log.push({call:call,from:Math.round(d/0.9),to:Math.round(V85F_MAX/0.9)});if(V85F.log.length>20)V85F.log.shift();
+        try{if(V82I.lastFav&&V82I.lastFav.pct>50)V82I.lastFav.pct=50;}catch(e){}fvUI();}}catch(e){}
+    return r;};}catch(e){console.error('[CW] v85 favcap',e);}
+  window.__v85.items.push('favor-cap-50');})();
+/* --- 3c: the pre-snap cadence line counts as occupied the moment it is shown (its fade-in started at opacity 0, so pops briefly covered it) --- */
+(function(){try{var vv=v79Vis;v79Vis=function(e){var r=vv.apply(this,arguments);if(r||!e||e.id!=='lower'||!e.classList.contains('show')||e.hidden||!e.isConnected)return r;
+    try{var tv=document.getElementById('tv');if(tv&&tv.classList.contains('mdock'))return r;var cs=getComputedStyle(e);if(cs.display==='none'||cs.visibility==='hidden')return r;var b=e.getBoundingClientRect();if(b.width<2||b.height<2)return r;return b;}catch(err){return r;}};}catch(e){}
+  window.__v85.items.push('lower-lane');})();
+window.__v85.V85T=V85T;window.__v85.V85F=V85F;window.__v85.okey=v85OKey;window.__v85.twin=v85Twin;
+/* QA hook (test only, no game effect): scan option lists for OUTCOME twins (same result, heat within 6) */
+window.__v85.twinScan=function(n,force){var keep={h0:V82I.h0,h0k:V82I.h0k,kp:V82I.kp},res={lists:0,twins:0,ex:[],both:0,bothDiff:0,kinds:{},sample:null};
+  try{for(var i=0;i<(n||200);i++){var kp=makePlay();kp.key=true;var f=force||['int','inc','sack','comp','td','asis'][i%6];
+      if(f==='int'){kp.pass=true;kp.type='short';kp.complete=false;kp.turnover=true;kp.sack=false;kp.yards=0;kp.foul=null;}
+      else if(f==='inc'){kp.pass=true;kp.type='short';kp.complete=false;kp.turnover=false;kp.sack=false;kp.yards=0;}
+      else if(f==='sack'){kp.pass=true;kp.sack=true;kp.complete=false;kp.turnover=false;kp.yards=-5;}
+      else if(f==='comp'){kp.pass=true;kp.type='short';kp.complete=true;kp.turnover=false;kp.sack=false;kp.yards=2+Math.floor(Math.random()*22);}
+      else if(f==='td'){kp.pass=true;kp.type='deep';kp.complete=true;kp.turnover=false;kp.sack=false;kp.yards=100-kp.los;}
+      try{if(kp._plan)delete kp._plan;}catch(e){}
+      var L=options(kp);res.lists++;res.kinds[f]=(res.kinds[f]||0)+1;var fl=L.filter(function(o){return o.id!=='letgo';});
+      for(var a=0;a<fl.length;a++)for(var b=a+1;b<fl.length;b++)if(v85Twin(fl[a],fl[b])){res.twins++;if(res.ex.length<5)res.ex.push([fl[a].id,fl[b].id,v85OKey(fl[a]),fl[a].teaser,fl[b].teaser]);}
+      var ids=fl.map(function(o){return o.id;});if(ids.indexOf('opi')>=0&&ids.indexOf('holding')>=0){res.both++;var A=fl[ids.indexOf('opi')],B=fl[ids.indexOf('holding')];if(v85OKey(A)!==v85OKey(B)||Math.abs(A.heat-B.heat)>=6)res.bothDiff++;
+        if(!res.sample)res.sample=fl.map(function(o){return {id:o.id,label:o.label,teaser:o.teaser,heat:o.heat,key:v85OKey(o)};});}}}
+  finally{V82I.h0=keep.h0;V82I.h0k=keep.h0k;V82I.kp=keep.kp;}return res;};
+window.__v84.twinScan=window.__v85.twinScan;
+/* QA hooks (test only) */
+window.__v85.compPlay=function(y){var kp=makePlay();kp.key=true;kp.pass=true;kp.type='short';kp.complete=true;kp.turnover=false;kp.sack=false;kp.foul=null;kp.yards=y||8;try{delete kp._plan;}catch(e){}return kp;};
+window.__v85.tdPlay=function(){var kp=makePlay();kp.key=true;kp.pass=true;kp.type='deep';kp.complete=true;kp.turnover=false;kp.sack=false;kp.foul=null;kp.yards=100-kp.los;try{delete kp._plan;}catch(e){}return kp;};
+window.__v85.favTry=function(kp,call){var keep={fv:JSON.parse(JSON.stringify(S.fv)),fb:S.v82fb||0,inv:JSON.parse(JSON.stringify(S.fvInv||{})),trig:JSON.parse(JSON.stringify(S.fvTrig||{})),heat:S.heat};
+  var e=effect(kp,call),pr=project(kp,e),base=project(kp,effect(kp,'letgo'));var n0=favNet(),c0=V85F.capped;favorUpdate(kp,call,e,pr,base,false);var n1=favNet();var lbl=(document.getElementById('fvl')||{}).textContent;
+  S.fv=keep.fv;S.v82fb=keep.fb;S.fvInv=keep.inv;S.fvTrig=keep.trig;S.heat=keep.heat;fvUI();return {call:call,swingPct:Math.round(Math.abs(n1-n0)/0.9),capped:V85F.capped>c0,lbl:lbl};};
+window.__v85.lower=function(t){lower(t,'#fff');};window.__v85.hideLower=function(){hideLower();};
+window.__v85.pop=function(t){var p=post('tw',t,0,{});if(p)v79Enq({kind:'post',p:p,o:{}});return !!p;};
 
 setMatch(QUICK);bindRefNameInputs();syncRefUI();showTitle();
 })();
@@ -13927,6 +14028,7 @@ setMatch(QUICK);bindRefNameInputs();syncRefUI();showTitle();
 <script>window.__v80={ok:true,build:'FLAMES',flames:!!window.__v80flames,items:['embers-50','flames-65','hot-80','blaze-100','flare-once','smoke-drop','clip-pill','track-fill','reduced-motion','tierup-sync','raf-pause','E-hold-until-release','F-card-below-toprow','G-audio-v2','H1-review-parts','H2-skip-keylead','H3-half-crossfade','H4-lower-gap']};</script>
 <script>window.__v83={ok:true,build:'PROFILES',items:window.__v82items||[]};</script>
 <script>window.__v84=Object.assign(window.__v84||{},{ok:true,build:'MEMEFIX'});</script>
+<script>window.__v85=Object.assign(window.__v85||{},{ok:true,build:'MEMETIME'});</script>
 <script>window.__v81={ok:true,build:'LEGAL',items:['celebrity-invented','gag-helplines','teams-gales-wedges','new-colors','new-emblems','slot-renames','credits-legal-screen','head-copyright']};</script>
 </body>
 </html>
