@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#0b0d12">
-<title>After Further Review: The IFL v85 MEMETIME</title>
+<title>After Further Review: The IFL v86 MEMEDWELL</title>
 <style>
 :root{--bg:#0b0d12;--card:#1a1e27;--card2:#252a35;--ink:#f4f1e8;--dim:#9aa3b2;--whistle:#ffd23f;--hot:#ff5a3c;--ok:#4cd387;--line:#2c3240;--gbn:#2f6bff}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -1678,7 +1678,7 @@ window.__showThreeMissing=function(msg){
 (()=>{
 var __cwN=function(a,b){return a!=null?a:b;};/* v62: Safari ≤13-safe nullish + optional-chain shims */
 /* v73: build/version info. Future builds bump ONLY this line. */
-const CW_VERSION='v85',CW_BUILD='MEMETIME',CW_DATE='2026-10-29';
+const CW_VERSION='v86',CW_BUILD='MEMEDWELL',CW_DATE='2026-10-29';
 const CW_VER_SHORT=(()=>{const p=CW_DATE.split('-');const M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];return CW_VERSION+' · '+CW_BUILD+' · '+M[(+p[1]||1)-1]+' '+(+p[2]||'');})();
 window.CW_VERSION=CW_VERSION;window.CW_BUILD=CW_BUILD;window.CW_DATE=CW_DATE;
 (function cwVerUI(){
@@ -13415,7 +13415,7 @@ function v82MTick(){var now=performance.now(),dt=V82M.lastT?Math.min(400,now-V82
     /* v84: hard cap - 15s on screen (visible + dimmed + held), touched or not */
     if(v84MOn(it)>=V84M_CAP/it.scale){it.capBy='cap15';if(!it.seenBy)it.seenBy='cap';if(it.owe&&(it.after||0)<it.owe)V85M.afterShort++;V85M.capDrop++;v82MLeave(it,'out');return;}
     var oweOk=!it.owe||(!snap&&(it.after||0)>=it.owe);
-    if(oweOk&&(it.rem<=0||(!it.touched&&it.wall>=11900/it.scale&&v85MFull(it)>=Math.min(it.total,5000/it.scale)))){if(it.owe)V85M.afterOk++;v82MLeave(it,'out');}return;}
+    if(oweOk&&(it.rem<=0||(!it.touched&&it.wall>=11900/it.scale&&v85MFull(it)>=Math.min(it.total,6000/it.scale)))){if(it.owe)V85M.afterOk++;v82MLeave(it,'out');}return;}
   if(V82M.leaving)return;
   if(free&&!hold&&V82M.q.length){var nq=V82M.q.shift();if(v82MShow(nq)&&nq.re){var c=V82M.cur;c.on0=nq.on0||0;c.full0=nq.full0||0;c.touched=!!nq.touched;c.rem=Math.max(V85M_AFTER/c.scale,c.total-c.full0);}l.classList.remove('off');}else if(!V82M.cur)l.classList.add('off');}
 (function(){
@@ -13850,7 +13850,7 @@ var V82H={on:0,heldMs:0,left:0,get:function(){return false;},set:function(){}};
 (function(){var st=document.createElement('style');st.textContent='#gfx.v82held .v76bar i{background:#ffd23f!important;transition:none!important}#gfx.v82held h4::after{content:" · ⏸ HELD";color:#ffd23f}#gfx .v76bar{position:relative}';document.head.appendChild(st);})();
 V82.hold=V82H;(window.__v82items=window.__v82items||[]).push('p7-hold');
 /* ---- v82: test/QA hook ---- */
-try{V82.S=function(){return S;};window.CW.v82=V82;window.CW.v82.items=window.__v82items;console.info('[CW] v85 MEMETIME — '+window.__v82items.join(', '));}catch(e){console.error('[CW] v82 hook',e);}
+try{V82.S=function(){return S;};window.CW.v82=V82;window.CW.v82.items=window.__v82items;console.info('[CW] v86 MEMEDWELL — '+window.__v82items.join(', '));}catch(e){console.error('[CW] v82 hook',e);}
 /* ===== v84 MEMEFIX ===== */
 window.__v84={items:[]};
 /* --- 2: meme throttle + dedupe at the source: ~1 meme per key play (big moments get a 2nd slot), queue cap stays 3 --- */
@@ -13985,6 +13985,37 @@ window.__v85.favTry=function(kp,call){var keep={fv:JSON.parse(JSON.stringify(S.f
 window.__v85.lower=function(t){lower(t,'#fff');};window.__v85.hideLower=function(){hideLower();};
 window.__v85.pop=function(t){var p=post('tw',t,0,{});if(p)v79Enq({kind:'post',p:p,o:{}});return !!p;};
 
+/* ===== v86 MEMEDWELL ===== */
+window.__v86=Object.assign(window.__v86||{},{items:[]});
+/* v86 item 1: MEME DWELL - before the next KEY PLAY card, a meme on screen at full brightness is held until it reaches
+   its own dwell (v82MDwell: min 6s, max 10s, at 1x). A tap/swipe dismiss (it.gone) ends the wait early; a call/card
+   interrupt breaks the wait; the 15s on-screen cap still applies. If it is somehow still up when the wait ends it
+   leaves, so a meme never sits under/over the KEY PLAY card. */
+var V86D={n:0,ms:0,max:0,early:0,forced:0,log:[]};window.__v86.V86D=V86D;
+(function(){try{var _rf=recapFlush;
+  var vis=function(){var c=V82M.cur;if(!c||c.gone)return null;var l=v82MLayer();if(!l||l.classList.contains('off'))return null;return c;};
+  recapFlush=async function(why){
+    if(why==='key'&&S&&!S.over&&!S.menu){var t0=performance.now(),sc=V82M.sc||v79Fast();
+      try{if(!V82M.cur&&V82M.q.length&&!v79Why())await new Promise(function(r){setTimeout(r,150);});
+        var c=vis();if(c){var s1=c.scale||1,dw=Math.max(6000,Math.min(10000,c.dwell||6000))/s1,lim=10500/s1;
+          var capLeft=V84M_CAP/s1-v84MOn(c);var need=Math.min(dw,v85MFull(c)+Math.max(0,capLeft));
+          if(c.rem<need-v85MFull(c))c.rem=need-v85MFull(c);
+          while(c&&!c.gone&&v85MFull(c)<need&&performance.now()-t0<lim&&!S.over&&!S.menu){await new Promise(function(r){setTimeout(r,50);});if(v79Why()&&v79Why()!=='action')break;}
+          var full=Math.round(v85MFull(c)*s1),ms=Math.round((performance.now()-t0)*sc);
+          if(c.gone&&full<dw*s1-150)V86D.early++;
+          if(!c.gone&&!v79Why()){c.seenBy=c.seenBy||'dwell';V86D.forced++;v82MLeave(c,'out');await new Promise(function(r){setTimeout(r,350);});}
+          V86D.n++;V86D.ms+=ms;if(ms>V86D.max)V86D.max=ms;V86D.log.push({ms:ms,full:full,dw:Math.round(dw*s1),touched:!!c.touched});if(V86D.log.length>40)V86D.log.shift();}}catch(e){}}
+    return _rf.apply(this,arguments);};
+  window.__v86.items.push('meme-dwell');}catch(e){console.error('[CW] v86 dwell',e);}})();
+/* v86 item 2: gold payroll ring on hire. The pregame shop keeps hires in a local session list until Done, so v82State
+   saw 'avail'. A shop row marked .on (Hired ✓) now counts as payroll for every portrait of that person. */
+(function(){try{var st0=v82State;
+  v82State=function(id){var r=st0.apply(this,arguments);try{if(r&&(r.k==='avail'||r.k==='none')){var sh=document.getElementById('shop');
+      if(sh&&!sh.hidden&&sh.querySelector('.shc.on[data-id="'+id+'"],.shc.on[data-id="ann:'+id+'"]'))return {k:'payroll',txt:'HIRED · ON PAYROLL'};}}catch(e){}return r;};
+  var rf=function(){try{v82Refresh();}catch(e){}};
+  document.addEventListener('click',function(e){if(e.target&&e.target.closest&&e.target.closest('#shop'))setTimeout(rf,0);},false);
+  window.__v86.items.push('hire-ring');}catch(e){console.error('[CW] v86 ring',e);}})();
+
 setMatch(QUICK);bindRefNameInputs();syncRefUI();showTitle();
 })();
 </script>
@@ -14029,6 +14060,7 @@ setMatch(QUICK);bindRefNameInputs();syncRefUI();showTitle();
 <script>window.__v83={ok:true,build:'PROFILES',items:window.__v82items||[]};</script>
 <script>window.__v84=Object.assign(window.__v84||{},{ok:true,build:'MEMEFIX'});</script>
 <script>window.__v85=Object.assign(window.__v85||{},{ok:true,build:'MEMETIME'});</script>
+<script>window.__v86=Object.assign(window.__v86||{},{ok:true,build:'MEMEDWELL'});</script>
 <script>window.__v81={ok:true,build:'LEGAL',items:['celebrity-invented','gag-helplines','teams-gales-wedges','new-colors','new-emblems','slot-renames','credits-legal-screen','head-copyright']};</script>
 </body>
 </html>
