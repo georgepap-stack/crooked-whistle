@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#0b0d12">
-<title>After Further Review: The IFL v86 MEMEDWELL</title>
+<title>After Further Review: The IFL v92 MOMENTUM2</title>
 <style>
 :root{--bg:#0b0d12;--card:#1a1e27;--card2:#252a35;--ink:#f4f1e8;--dim:#9aa3b2;--whistle:#ffd23f;--hot:#ff5a3c;--ok:#4cd387;--line:#2c3240;--gbn:#2f6bff}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -1606,7 +1606,7 @@ window.__showThreeMissing=function(msg){
 
 <section id="game" class="screen" hidden>
 <div id="dscrim"></div>
-<div id="decide" hidden><div class="dgrab"></div><div class="dhdr"><div class="dtitle"><span class="dwh">🚩</span><div><b>YOUR CALL</b><small><i></i>GAME PAUSED · TAKE YOUR TIME</small></div></div><button id="dReplay">🔁 Replay<small>½ speed · free</small></button></div>
+<div id="decide" hidden><div class="dgrab"></div><div class="dhdr"><div class="dtitle"><span class="dwh">🚩</span><div><b>YOUR CALL</b><small><i></i>GAME PAUSED · TAKE YOUR TIME</small></div></div><button id="dReplay">🔁 Replay</button></div>
 <div id="dScroll"><div class="dout"><div class="dk">WHAT HAPPENED</div><b id="dHead"></b><span id="dSub"></span><em id="dImp"></em><i id="dSaw"></i><div id="dGrab"></div></div><div id="ddt"><i id="ddtbar"></i></div><div class="dq">Throw a flag or let it stand</div><div id="dOpts"></div><div id="dmore">▼ MORE CALLS BELOW · SCROLL</div></div><div id="dFoot"></div></div>
   <div id="tv">
     <canvas id="field"></canvas>
@@ -1634,9 +1634,9 @@ window.__showThreeMissing=function(msg){
       <div id="linebar"><div id="zone"></div><div id="mark"></div></div></div>
     <div id="ats"></div>
   </div>
-  <div id="heatrow"><span>🔥 HEAT <b id="heatnum">0</b></span><div id="heatbar"><div id="heatfill"></div><i class="tick" style="left:20%"></i><i class="tick" style="left:40%"></i><i class="tick" style="left:60%"></i><i class="tick" style="left:80%"></i></div><span id="tiername">TIER 1 · QUIET</span><div id="floaty"></div></div>
+  <div id="heatrow"><span id="v88sus">👁 SUSPICION <b id="heatnum">0</b></span><div id="heatbar"><div id="heatfill"></div><i class="tick" style="left:20%"></i><i class="tick" style="left:40%"></i><i class="tick" style="left:60%"></i><i class="tick" style="left:80%"></i></div><span id="tiername">TIER 1 · QUIET</span><div id="floaty"></div></div>
   <div id="subrow"><div id="mstrack"></div></div>
-  <div id="thumb"><button id="bigbtn" disabled>…</button><button id="letgo" style="display:none">Let it go ▶</button><button id="replay" style="display:none">🔁 Replay<small>½ speed · free</small></button><button id="skipk" style="display:none">⏭ Skip to<small>next key play</small></button><div id="dt" style="display:none"><i id="dtbar"></i></div><div id="kpbox">KEY PLAYS<b id="kpc">0/20</b></div><div id="hint"></div></div>
+  <div id="thumb"><button id="bigbtn" disabled>…</button><button id="letgo" style="display:none">Let it go ▶</button><button id="replay" style="display:none">🔁 Replay</button><button id="skipk" style="display:none">⏭ Skip to<small>next key play</small></button><div id="dt" style="display:none"><i id="dtbar"></i></div><div id="kpbox">KEY PLAYS<b id="kpc">0/20</b></div><div id="hint"></div></div>
   <div id="scrim"></div>
   <div id="radial"></div>
 </section>
@@ -1678,7 +1678,7 @@ window.__showThreeMissing=function(msg){
 (()=>{
 var __cwN=function(a,b){return a!=null?a:b;};/* v62: Safari ≤13-safe nullish + optional-chain shims */
 /* v73: build/version info. Future builds bump ONLY this line. */
-const CW_VERSION='v86',CW_BUILD='MEMEDWELL',CW_DATE='2026-10-29';
+const CW_VERSION='v92',CW_BUILD='MOMENTUM2',CW_DATE='2026-11-04';
 const CW_VER_SHORT=(()=>{const p=CW_DATE.split('-');const M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];return CW_VERSION+' · '+CW_BUILD+' · '+M[(+p[1]||1)-1]+' '+(+p[2]||'');})();
 window.CW_VERSION=CW_VERSION;window.CW_BUILD=CW_BUILD;window.CW_DATE=CW_DATE;
 (function cwVerUI(){
@@ -1823,7 +1823,7 @@ const HANDLES={sq:SQ_H.concat(['@flagonfire','@zebra_hater_69','@bet_slip_benny'
   gl:['@memequeen.gb','@gales.memes','@gridiron.goblin','@ref.watch.daily','@wedgehead.content','@windycity.wings'],cc:['@deepdishdan','@cleatcam','@flagonthe.play','@ifl.edits','@tailgate.tina','@slowmo.steve'],
   ts:['FilmRoom Fred','The Zebra Report','GridironBreakdowns','RefTalk Weekly'],nb:['Linda K.','Doug P.','Gary from church','Uncle Ron','Barb (Green Bay)','Walt K. Jr.'],hth:['Hot Take Hour'],gz:['Gridiron Gazette']};
 const TPL={
- inv:{sq:["{call}?? on THAT?? {ref} is cooking something","I have watched that {call} 40 times. there is nothing there","{ref} just threw a flag on vibes","the {victim} are playing 11 on 12 tonight","{call} called on a play where nobody touched anybody. incredible","my grandma saw that {call} from her nursing home and said 'no'","{ref} invented a new rule and named it {call}","zero contact. ZERO. {call}. ok","that flag had a destination before the snap","refs: 1, {victim}: 0","{ref} owes somebody money. that's all I'm saying","{player} gets robbed and {ref} doesn't even blink","somebody explain this {call} to me like I'm five","that's not {call}, that's fan fiction","when the {team} need a flag, {ref} delivers. every time","{ref} grabbed that flag like his bookie just texted","the flag was in the air before the play was even over","I'm not a conspiracy guy but {ref}…","{vcity} is in shambles right now","{ref} should have to explain that one under oath","{ref} with the {call} flag again. we see you","the {team} should put {ref} on the payroll. oh wait"],
+ inv:{sq:["{call}?? on THAT?? {ref} is cooking something","I have watched that {call} 40 times. there is nothing there","{ref} just threw a flag on vibes","the {victim} are playing 7 on 8 tonight","{call} called on a play where nobody touched anybody. incredible","my grandma saw that {call} from her nursing home and said 'no'","{ref} invented a new rule and named it {call}","zero contact. ZERO. {call}. ok","that flag had a destination before the snap","refs: 1, {victim}: 0","{ref} owes somebody money. that's all I'm saying","{player} gets robbed and {ref} doesn't even blink","somebody explain this {call} to me like I'm five","that's not {call}, that's fan fiction","when the {team} need a flag, {ref} delivers. every time","{ref} grabbed that flag like his bookie just texted","the flag was in the air before the play was even over","I'm not a conspiracy guy but {ref}…","{vcity} is in shambles right now","{ref} should have to explain that one under oath","{ref} with the {call} flag again. we see you","the {team} should put {ref} on the payroll. oh wait"],
   tp:["[Clip] {ref} calls {call} with zero contact on {player} ({qtr})","[Highlight] Phantom {call} wipes out a huge {victim} play","Megathread: {ref} and the {call} call","I slowed the {call} down to 0.25x. there is no contact. Thread 🧵","[Discussion] Is {ref} betting on this game? (serious)","[OC] I circled where the {call} supposedly happened. it's empty grass","{victim} fans, how are we feeling (do not answer)","Mods please pin: every flag {ref} threw tonight, ranked by how fake"],
   gl:["📸 [meme: guy blinking] {ref} watching the {call} replay","📸 [meme: 'is this a {call}?' butterfly] {ref}: 🚩","📸 [meme: drake no/yes] real fouls ❌ invented {call} ✅","📸 [meme: clown makeup, 4 panels] {ref} getting ready for the {qtr}","📸 [photo: {ref} squinting] caption this 👇","📸 [meme: distracted boyfriend] {ref} · the {team} · the rulebook"],
   cc:["🎵 POV: you're {ref} and your phone just buzzed · 1.2M views","🎵 me explaining the {call} to my {victim} fan dad · 840K views","🎵 {ref} throwing flags but it's a nature documentary · 2.1M views","🎵 rating {ref}'s {call} call: -10/10 · 930K views","🎵 the {call} flag in slow-mo with sad violin · 3.4M views"],
@@ -2403,7 +2403,7 @@ Object.assign(MEMES,{
    c.strokeStyle='#111';c.lineWidth=2;c.beginPath();c.arc(0,-18,24,0.3,Math.PI-0.3);c.stroke();c.fillStyle='#bbb';c.fillRect(-6,3,12,7);c.restore();
    mtext(c,cap[0],300,34,560,40,{lines:1});mtext(c,cap[1],300,272,560,32,{lines:1});}}
 });
-MEMES.refImpact.caps.push(["ref #77 in the 1st half","vs after the phone rang at halftime",2],["the {unfav}","playing 11 on 12 tonight",3],["{name}: {val} {unit}","ref #77: you're welcome",4],["penalty yards","{fy} to {uy}. pure coincidence",3]);
+MEMES.refImpact.caps.push(["ref #77 in the 1st half","vs after the phone rang at halftime",2],["the {unfav}","playing 7 on 8 tonight",3],["{name}: {val} {unit}","ref #77: you're welcome",4],["penalty yards","{fy} to {uy}. pure coincidence",3]);
 MEMES.vegas.caps.push(["when the phone","rings at halftime",2],["the script said {target}","ref #77 delivered {target}",4],["the {favt}","thank their 12th man",3]);
 MEMES.twoButtons.caps.push(["keep my word","answer the phone",2],["let the stats happen","make the stats happen",4],["flag the {favt}","flag the {unfav} again",3]);
 MEMES.distracted.caps.push(["the {orig}","ref #77","{neworders}",2],["fairness","ref #77","the {favt}",3]);
@@ -2598,10 +2598,10 @@ function memePost(ctx,kind,o={}){
   let cands=build();
   if(!cands.length){const syn=synthMemeCand(ok,c2);if(syn)cands=[syn];}
   if(!cands.length)return null;
-  const lastFmt=S.lastMemeFmt, recent=new Set((S.memeHist||[]).slice(-3));
+  const lastFmt=S.lastMemeFmt, recent=new Set((S.memeHist||[]).slice(-8).concat((window.__v87&&window.__v87.V&&window.__v87.V.shownHist||[]).slice(-8)));
   const wOf=x=>{let w=x[3];if(x[0]===lastFmt)w*=0.04;else if(recent.has(x[0]))w*=0.12;return Math.max(0.01,w);};
   let pool=cands.filter(x=>x[0]!==lastFmt);if(!pool.length)pool=cands;
-  const cool=pool.filter(x=>!recent.has(x[0]));if(cool.length)pool=cool;
+  const cool=pool.filter(x=>!recent.has(x[0]));if(cool.length)pool=cool;else{if(!o._v87fb&&kind!=='gen')return memePost(ctx,'gen',Object.assign({},o,{_v87fb:1,txt:null}));if(window.__v87&&window.__v87.V)window.__v87.V.memeSkips=(window.__v87.V.memeSkips||0)+1;return null;}
   const tot=pool.reduce((a,x)=>a+wOf(x),0);let r=rnd()*tot,ch=pool[0];for(const x of pool){r-=wOf(x);if(r<=0){ch=x;break;}}
   const [f,cp,key]=ch;S.usedMemes.add(key);S.lastMemeFmt=f;S.lastMemeKey=key;S.memeHist=(S.memeHist||[]).concat(f).slice(-12);S.lastMemeAt=S.keys||0;
   const caps=cp.filter(x=>typeof x==='string');
@@ -2855,14 +2855,14 @@ function effect(kp,call){
       const py=Math.min(call==='formation'?5:10,Math.floor(L/2));
       Object.assign(e,{yards:-py,replay:true,complete:false,turnover:false});
       const who=call==='holding'?`Holding, offense, #${kp.foul==='holding'?kp.foulN:kp.fakeN}`:call==='opi'?`Offensive pass interference, #${kp.wrN} ${kp.wr}`:'Illegal formation, offense';
-      e.pen={team:off,y:py,txt:`${who}. ${py} yards, replay ${replayDn} down.`,short:`${py}-yd penalty, replay ${replayDn} down`};break;}
+      e.pen={team:off,y:py,txt:`${who}. ${py}${Math.abs(py)===1?' yard':' yards'}, replay ${replayDn} down.`,short:`${py}-yd penalty, replay ${replayDn} down`};break;}
     case 'pi':{const y=Math.max(1,Math.min(kp.piY,99-L));Object.assign(e,{yards:y,turnover:false,complete:false,auto1:true});
       e.pen={team:def,y,txt:`Pass interference, defense, #${D.dbN} ${D.db}. ${y}-yard spot foul, automatic first down.`,short:`spot foul, +${y}, automatic 1st down`};break;}
     case 'dholding':{const py=Math.max(1,Math.min(5,Math.floor((100-L)/2)));Object.assign(e,{yards:py,turnover:false,complete:false,auto1:true});
-      e.pen={team:def,y:py,txt:`Holding, defense, #${D.dbN} ${D.db}. ${py} yards, automatic first down.`,short:`+${py}, automatic 1st down`};break;}
+      e.pen={team:def,y:py,txt:`Holding, defense, #${D.dbN} ${D.db}. ${py}${Math.abs(py)===1?' yard':' yards'}, automatic first down.`,short:`+${py}, automatic 1st down`};break;}
     case 'roughing':{let y=(kp.complete&&!kp.turnover?Math.max(kp.yards,0):0);const py=Math.max(1,Math.min(15,Math.floor((100-L-y)/2)));
       Object.assign(e,{yards:y+py,turnover:false,auto1:true});
-      e.pen={team:def,y:py,txt:`Roughing the passer, #${D.dlN} ${D.dl}. ${py} yards, automatic first down.`,short:`+${py}${y?' on top of the gain':''}, automatic 1st down`};break;}
+      e.pen={team:def,y:py,txt:`Roughing the passer, #${D.dlN} ${D.dl}. ${py}${Math.abs(py)===1?' yard':' yards'}, automatic first down.`,short:`+${py}${y?' on top of the gain':''}, automatic 1st down`};break;}
     case 'offset':Object.assign(e,{yards:0,replay:true,complete:false,turnover:false});e.capAdd=` FLAG: Offsetting fouls. Replay ${replayDn} down.`;break;
     case 'spot':if(kp.made){e.yards=kp.togo-1;e.capAdd=' 📏 Spotted just short!';}else{e.yards=kp.togo;e.capAdd=' 📏 Generous spot… first down!';}break;
     case 'clock':e.extra=25;e.capAdd=' ⏱️ Ref #77 keeps the clock rolling.';break;
@@ -2913,7 +2913,7 @@ function headline(kp){
   const planKind=kp._plan&&kp._plan.kind;
   let h;
   if(kp.turnover)h=kp.pass?`INTERCEPTED by ${D.db} — ${D.name} ball`:`FUMBLE! ${D.db} recovers — ${D.name} ball`;
-  else if(planScored || (pr.kind==='TD'&&planScored!==false&&(!kp._plan||kp._plan.scored)))h=`TOUCHDOWN ${O.name}! ${kp.pass?`${O.qb} to ${kp.wr}, ${kp.yards} yds · INTO END ZONE`:`${O.rb} runs it in from ${kp.yards}`}`;
+  else if(planScored || (pr.kind==='TD'&&planScored!==false&&(!kp._plan||kp._plan.scored)))h=`TOUCHDOWN ${O.name}! ${kp.pass?`${O.qb} to ${kp.wr}, ${kp.yards}${Math.abs(kp.yards)===1?' yd':' yds'} · INTO END ZONE`:`${O.rb} runs it in from ${kp.yards}`}`;
   else if(pr.kind==='SAF')h=`SAFETY! ${O.qb} brought down in the end zone`;
   else if(kp.sack||planKind==='SACK'){h=`SACKED by ${D.dl}, −${-kp.yards}`;if(kp.los>=63&&pr.yl<63)h+=' — out of field goal range';}
   else if(kp.pass&&kp.complete)h=`${O.qb} to ${kp.wr} for ${kp.yards}${pr.kind==='FD'||planKind==='COMP_FD'?' — FIRST DOWN':''}`;
@@ -3051,6 +3051,7 @@ function makePlay(){
     if(rnd()<0.06){sack=true;yards=-rint(3,9);}
     else{complete=rnd()<o.comp;yards=complete?rint(3,13)+(rnd()<0.15?rint(5,22):0):0;turnover=!complete&&rnd()<0.06;}
   } else {complete=rnd()<o.deep;yards=complete?rint(22,48):0;turnover=!complete&&rnd()<0.12;}
+  try{if(typeof V89T!=='undefined'&&V89T>0&&pass&&!sack&&rnd()<V89T){complete=false;yards=0;turnover=true;}if(typeof V90F!=='undefined'&&V90F>0&&!pass&&rnd()<V90F){turnover=true;}}catch(e){}
   /* v74 HARD: more plays end right at the sticks on 3rd/4th down (more spot calls), stronger when the half has had no big decision yet */
   try{if(S.down>=3&&!turnover&&!sack&&type!=='deep'&&(type==='run'||complete)&&S.togo<100-S.yl-1){const hn=v74Need();if(rnd()<(hn?0.38:0.16)){const ny=S.togo+pick([-1,0,0,1]);if(ny>0&&S.yl+ny<99)yards=ny;}}}catch(e){}
   if(S.yl+yards>100)yards=100-S.yl;
@@ -3069,7 +3070,7 @@ function makePlay(){
   const key=false;
   const wrI=pick([0,0,1,1,2]);
   const tgt=pass?(deep?[8,9][wrI%2]:[8,9,10][wrI]):7;
-  const kp={off:S.poss,type,pass,deep,complete,sack,yards,made,turnover,foul,qbHit,cam,vis,close,near,key,tgt,wr:o.wr[wrI],wrN:o.wrN[wrI],los:S.yl,down:S.down,togo:S.togo,goal,score,piY:deep?rint(15,35):Math.max(yards,rint(8,15)),fakeN:pick([63,66,68,72,74,76,78]),_uid:'p'+(S.plays|0)+'_'+((S.dN|0))+'_'+rint(1000,9999)};
+  const kp={off:S.poss,type,pass,deep,complete,sack,yards,made,turnover,foul,qbHit,cam,vis,close,near,key,tgt,wr:o.wr[wrI],wrN:o.wrN[wrI],los:S.yl,down:S.down,togo:S.togo,goal,score,piY:deep?rint(15,35):Math.max(yards,rint(8,15)),fakeN:pick([62,85]),_uid:'p'+(S.plays|0)+'_'+((S.dN|0))+'_'+rint(1000,9999)};
   try{stampFieldPlan(kp);}catch(e){}
   return kp;
 }
@@ -3127,7 +3128,7 @@ async function special(kind){(S.lg=S.lg||[]).push({ev:'play',type:kind,kick:kind
   }
   if(kind==='punt'){
     const net=rint(36,49);let land=S.yl+net;let ny=land>=100?20:100-land;
-    lower(`Punt, ${net} yards. ${land>=100?'Touchback.':'Fair catch'} ${T(def).name} at the ${spotTxt(ny,def)}.`,T(off).c1);
+    lower(`Punt, ${net}${Math.abs(net)===1?' yard':' yards'}. ${land>=100?'Touchback.':'Fair catch'} ${T(def).name} at the ${spotTxt(ny,def)}.`,T(off).c1);
     const end=burnClock(rint(8,12),false);await wait(1300);
     S.drive.endYl=S.yl;await endDrive('PUNT');changePoss(def,ny);return end?'clock':null;
   }
@@ -3250,7 +3251,7 @@ async function runPlay(){
     const {h,pr}=headline(kp);kp.head=h;
     v74Pin(pr,true);
     gfx(`<h4>OUTCOME · ${ord(kp.down).toUpperCase()} & ${kp.goal?'GOAL':kp.togo} · ${T(kp.off).ab} BALL</h4><div class="ohead">${h}</div><div class="osub">${stateTxt(pr)}</div><div class="oimp ${inside(pr.sc.home-pr.sc.away)?'in':'out'}">${impactTxt(pr)}</div><div class="skip">tap to decide</div>`);
-    {let left=AUTO&&THINK<2000?350:1100;S.skip=false;while(left>0&&!S.skip){await wait(50);left-=50;}}hideGfx();
+    {let left=0;S.skip=false;while(left>0&&!S.skip){await wait(50);left-=50;}}hideGfx();
     S.dn0=S.nom;S.phase='post';S.decT0=performance.now();openDecide(kp);hud();
     if(AUTO){
       if(REPLAYTEST&&(kp.foul||rnd()<0.25)&&!S.call)await doReplay();
@@ -3276,7 +3277,7 @@ async function runPlay(){
 function describeFoul(kp){
   if(!kp.foul){kp.saw=null;return;}
   const off=T(kp.off),def=T(other(kp.off));
-  if(kp.foul==='holding'){kp.foulN=pick([62,64,67,71,73,75,77]);kp.holdI=0;kp.short=`HOLDING — #${kp.foulN} grabbed the rusher`;kp.saw=`Holding, offense, #${kp.foulN}`;}
+  if(kp.foul==='holding'){kp.holdI=pick([0,5]);kp.foulN=kp.holdI?85:62;kp.short=`HOLDING — #${kp.foulN} grabbed the rusher`;kp.saw=`Holding, offense, #${kp.foulN}`;}
   else if(kp.foul==='pi'){kp.foulN=def.dbN;kp.short=`PI — #${def.dbN} ${def.db}, early contact`;kp.saw=`Pass interference, defense, #${def.dbN} ${def.db} on ${kp.wr}`;}
   else {kp.foulN=def.dlN;kp.short=`LATE HIT — #${def.dlN} ${def.dl} on ${off.qb}`;kp.saw=`Roughing the passer, #${def.dlN} ${def.dl}`;}
 }
@@ -3345,7 +3346,7 @@ function flagSpot(kp,call){
   // local [lateral, depth] coords
   const f=fouler(kp);
   if(call===kp.foul&&f){const P=positions(kp,clamp(kp.foulT,0,1));return (f[0]==='off'?P.off:P.def)[f[1]].slice();}
-  if(call==='holding')return positions(kp,0.3).off[kp.holdI||1].slice();
+  if(call==='holding')return positions(kp,0.3).off[kp.holdI!=null?kp.holdI:(kp.fakeN===85?5:0)].slice();
   if(call==='pi'){const w=wrPos(kp,0.6);return [w[0]+0.04,w[1]+0.8];}
   if(call==='opi')return wrPos(kp,0.6).slice();
   if(call==='roughing')return qbPos(kp,0.55).slice();
@@ -3477,9 +3478,9 @@ async function resolve(kp,call,pace){
   let cap=''; let pen=null; let extra=0;
   const LW=(t,c)=>lower((kp.key?'':'▶▶ ')+t,c);
   // base caption
-  if(kp.type==='run')cap=kp.turnover?`${tm.rb} FUMBLES! ${T(def).db} recovers for the ${T(def).name}.`:`${tm.rb} runs ${pick(['up the middle','off right tackle','around the left end','between the guards'])} for ${yards===0?'no gain':yards<0?`a loss of ${-yards}`:yards+(yards===1?' yard':' yards')}.`;
+  if(kp.type==='run')cap=kp.turnover?`${tm.rb} FUMBLES! ${T(def).db} recovers for the ${T(def).name}.`:`${tm.rb} runs ${pick(['up the middle','off the tight end','around the left end','behind the center'])} for ${yards===0?'no gain':yards<0?`a loss of ${-yards}`:yards+(yards===1?' yard':' yards')}.`;
   else if(kp.sack)cap=`${tm.qb} is SACKED by ${T(def).dl} for a loss of ${-yards}.`;
-  else if(complete)cap=`${tm.qb} ${kp.deep?'goes deep… COMPLETE':'pass complete'} to ${kp.wr} for ${yards} yards.`;
+  else if(complete)cap=`${tm.qb} ${kp.deep?'goes deep… COMPLETE':'pass complete'} to ${kp.wr} for ${yards}${Math.abs(yards)===1?' yard':' yards'}.`;
   else cap=turnover?`${tm.qb} pass… INTERCEPTED by ${T(def).db}!`:`${tm.qb} pass incomplete, intended for ${kp.wr}.`;
   let effective=!!call&&call!=='letgo';let legit=effective&&kp.foul===call;let overruled=false;
   let hgr=holdG(call,kp)!=null?gradeOf(holdG(call,kp)):null;
@@ -3505,7 +3506,7 @@ async function resolve(kp,call,pace){
     v74Pin(pr,false);
     gfx(`<h4>${overruled?'OVERRULED':effective?'🚩 THE CALL':'NO FLAG'} · RESULT</h4><div class="ohead sm">${line1}</div><div class="osub">${neg?neg+'. ':''}${stateTxt(pr)}.</div><div class="oimp ${inside(pr.sc.home-pr.sc.away)?'in':'out'}">${impactTxt(pr)}</div><div class="ograde">📋 Grade: <b>${gradeTxt}</b></div><div class="oheat">${heatLine}</div>${taxLine}${v76Line}${reveal}<div class="skip">tap to continue</div>`);
     if(effective&&isFlag(call))flash('FLAG','flag',0);
-    let left=AUTO&&THINK<2000?500:(V76C&&V76C.kind!=='none'&&V76C.kind!=='legit'?3400:2600);S.skip=false;while(left>0&&!S.skip){await wait(50);left-=50;}hideGfx();v76Air(V76C);
+    let left=AUTO&&THINK<2000?150:400;S.skip=false;while(left>0&&!S.skip){await wait(50);left-=50;}hideGfx();v76Air(V76C);
   }
   let CHR=null;
   if(kp.key&&!S.over){CHR=await chMaybe(kp,call,{effective,legit,hgr,overruled});
@@ -3594,6 +3595,7 @@ async function resolve(kp,call,pace){
   // clock
   const inb=(kp.type==='run'&&!turnover)||kp.sack||(complete&&rnd()<0.75);
   let clockEnd=burnClock((pen?rint(8,12):inb?rint(48,56):rint(9,13))+extra,!pen&&inb);
+  try{v87RecHook(kp,{yards,turnover,complete,pen,call:effective?call:null,auto1,replay,inb});}catch(e){console.warn('[v87] rec',e);}
   // apply result
   let result=null;
   const color=tm.c1;
@@ -3638,7 +3640,7 @@ async function resolve(kp,call,pace){
 const FLOW=P.get('flow')!=='0';
 function rcNew(){return {ats:(S&&S.job&&S.score)?atsOf(margin()):null,n:0,dr:[],last:'',sc:S?{...S.score}:{home:0,away:0},q:S?S.q:1,ck:S?S.clock:900,ms:(S&&S.ms||[]).map(m=>msVal(m))};}
 function rcShort(t){t=String(t||'').replace(/^▶▶ /,'');let m;
-  if((m=t.match(/^(.+?) (?:goes deep… COMPLETE|pass complete) to (.+?) for (\d+) yards/)))return `${m[1]} to ${m[2]}, ${m[3]} yds`;
+  if((m=t.match(/^(.+?) (?:goes deep… COMPLETE|pass complete) to (.+?) for (\d+) yards/)))return `${m[1]} to ${m[2]}, ${m[3]}${Math.abs(m[3])===1?' yd':' yds'}`;
   if((m=t.match(/^(.+?) runs .*? for (\d+) yards/)))return `${m[1]} ${m[2]}-yd run`;
   if((m=t.match(/^(.+?)'s (\d+)-yard field goal/)))return `${m[1]} from ${m[2]}`;
   if((m=t.match(/INTERCEPTED by (.+?)!/)))return `picked off by ${m[1]}`;
@@ -3654,14 +3656,14 @@ async function recapFlush(why){
   if(!rcMean(R)){S.recapsFold=(S.recapsFold||0)+1;if(why==='key'){S.rcKey=`<div class="rcf">${rcLine(R)}</div>`;return;}
     if(why==='end')return;sbClear();lower(`${rcLine(R)} · ${T('away').ab} ${S.score.away}–${T('home').ab} ${S.score.home}${why==='q'?' · end of '+ord(S.q):''}`,'#9fb0d8');await wait(AUTO&&THINK<2000?200:1100);return;}
   if(why==='key'){S.recaps=(S.recaps||0)+1;const rc0=r=>r==='TOUCHDOWN'||r==='FIELD GOAL'?'sc':/PUNT/.test(r)?'pt':'to';
-    const rows0=R.dr.slice(-3).map(d=>`<div class="rcd"><img src="${logoURL(T(d.team).name,40)}" alt=""><div><b>${T(d.team).name}</b> ${d.plays} play${d.plays===1?'':'s'}, ${d.yds} yds${d.key?` <u class="rck2">incl. ${d.key} key</u>`:''} <i class="${rc0(d.res)}">${d.res==='TOUCHDOWN'?'TD':d.res}</i>${d.hl?`<small>${d.res==='TOUCHDOWN'?'TD ':''}${d.hl}</small>`:''}</div></div>`).join('');
+    const rows0=R.dr.slice(-3).map(d=>`<div class="rcd"><img src="${logoURL(T(d.team).name,40)}" alt=""><div><b>${T(d.team).name}</b> ${d.plays} play${d.plays===1?'':'s'}, ${d.yds}${Math.abs(d.yds)===1?' yd':' yds'}${d.key?` <u class="rck2">incl. ${d.key} key</u>`:''} <i class="${rc0(d.res)}">${d.res==='TOUCHDOWN'?'TD':d.res}</i>${d.hl?`<small>${d.res==='TOUCHDOWN'?'TD ':''}${d.hl}</small>`:''}</div></div>`).join('');
     const md=(S.ms||[]).map((x,i)=>{const d=msVal(x)-(R.ms[i]||0);return d>0&&!x.hit?`<span>🎯 ${x.who} +${d} → ${msVal(x)}/${x.target}</span>`:'';}).filter(Boolean).join('');
-    const cur=S.drive&&S.drive.plays>0&&!R.dr.length?`<div class="rcd now"><img src="${logoURL(T(S.drive.team).name,40)}" alt=""><div><b>${T(S.drive.team).name}</b> driving · ${S.drive.plays} play${S.drive.plays===1?'':'s'}, ${S.drive.yds} yds${S.drive.key?` <u class="rck2">incl. ${S.drive.key} key</u>`:''}</div></div>`:'';
+    const cur=S.drive&&S.drive.plays>0&&!R.dr.length?`<div class="rcd now"><img src="${logoURL(T(S.drive.team).name,40)}" alt=""><div><b>${T(S.drive.team).name}</b> driving · ${S.drive.plays} play${S.drive.plays===1?'':'s'}, ${S.drive.yds}${Math.abs(S.drive.yds)===1?' yd':' yds'}${S.drive.key?` <u class="rck2">incl. ${S.drive.key} key</u>`:''}</div></div>`:'';
     S.rcKey=`<div class="rcap rck"><h5>⏩ SINCE LAST KEY PLAY · ${R.n} play${R.n===1?'':'s'} simmed</h5>${rows0}${cur}${md?`<div class="rcm">${md}</div>`:''}</div>`;return;}
   const A=T('away'),H=T('home'),m=margin(),s=sprS(),ats=atsOf(m),fm=-m;
   const rc=r=>r==='TOUCHDOWN'||r==='FIELD GOAL'?'sc':/PUNT/.test(r)?'pt':'to';
-  const rows=R.dr.slice(-4).map(d=>`<div class="rcd"><img src="${logoURL(T(d.team).name,40)}" alt=""><div><b>${T(d.team).name}</b> drive · ${d.plays} play${d.plays===1?'':'s'}, ${d.yds} yds${d.key?` <u class="rck2">incl. ${d.key} key</u>`:''} <i class="${rc(d.res)}">${d.res==='TOUCHDOWN'?'TD':d.res}</i>${d.hl?`<small>${d.res==='TOUCHDOWN'?'TD ':''}${d.hl}</small>`:''}</div></div>`).join('');
-  const cur=S.drive&&!S.over&&S.drive.plays>0?`<div class="rcd now"><img src="${logoURL(T(S.drive.team).name,40)}" alt=""><div><b>${T(S.drive.team).name}</b> driving · ${S.drive.plays} play${S.drive.plays===1?'':'s'}, ${S.drive.yds} yds${S.drive.key?` <u class="rck2">incl. ${S.drive.key} key</u>`:''}<small>${ddTxt()} at the ${spotTxt(S.yl)}</small></div></div>`:'';
+  const rows=R.dr.slice(-4).map(d=>`<div class="rcd"><img src="${logoURL(T(d.team).name,40)}" alt=""><div><b>${T(d.team).name}</b> drive · ${d.plays} play${d.plays===1?'':'s'}, ${d.yds}${Math.abs(d.yds)===1?' yd':' yds'}${d.key?` <u class="rck2">incl. ${d.key} key</u>`:''} <i class="${rc(d.res)}">${d.res==='TOUCHDOWN'?'TD':d.res}</i>${d.hl?`<small>${d.res==='TOUCHDOWN'?'TD ':''}${d.hl}</small>`:''}</div></div>`).join('');
+  const cur=S.drive&&!S.over&&S.drive.plays>0?`<div class="rcd now"><img src="${logoURL(T(S.drive.team).name,40)}" alt=""><div><b>${T(S.drive.team).name}</b> driving · ${S.drive.plays} play${S.drive.plays===1?'':'s'}, ${S.drive.yds}${Math.abs(S.drive.yds)===1?' yd':' yds'}${S.drive.key?` <u class="rck2">incl. ${S.drive.key} key</u>`:''}<small>${ddTxt()} at the ${spotTxt(S.yl)}</small></div></div>`:'';
   const dA=S.score.away-R.sc.away,dH=S.score.home-R.sc.home;
   const ms=(S.ms||[]).map((x,i)=>{const v=msVal(x),d=v-(R.ms[i]||0);return `<span class="${x.hit?'ok':''}">${x.hit?'✅':'🎯'} ${x.who} ${v}/${x.target}${d>0&&!x.hit?` <em>+${d}</em>`:''}</span>`;}).join('');
   sbClear();
@@ -3700,7 +3702,7 @@ function preBurst(kp){
   if(fid)A.push([chA(fid).plat,pick([`${dd}. ${o.qb} is about to throw it and the ${o.name} line is ALREADY holding. look at #${kp.fakeN}. FLAG HIM 🙏`,`${dd} at the ${sp}. ${d.name} fans already booing a phantom. classic`,`${o.name} snap · ${dd}. if #77 pockets the flag I riot in the group chat`]),chA(fid)]);
   A.push(['sq',pick([`${dd} at the ${sp}. watch #77's hands on this snap. ${c.line} is the script. he already knows 🧠`,`cameras on #77. ${dd}. the whistle has a favorite and we all know who`,`crowd chant starting early on ${dd}. they smell a flag`]),chA('truth')]);
   if(rnd()<0.85){const lenny=S.job.src==='lenny';A.push(['sms',`${jobWant()}. ${inside(margin())?'You are inside the number. Keep it there.':'You are NOT inside the number. Fix it.'} This snap matters, 77.`,{handle:lenny?'Lenny Odds':'Unknown number',tell:lenny?'📱 BURNER':'📱 THE HOUSE'}]);}
-  if(rnd()<0.75){const who=kp.pass?kp.wr:o.rb;A.push(['sq',pick([`need ${rint(6,19)} yds from ${who} to win my matchup. ${dd}. ${kp.pass?'throw it to':'feed'} ${who} I am begging`,`fantasy tip: ${who} on ${dd}. if the flag kills this drive I quit sports`,`sit/start panic: ${who}, ${dd}, ${sp}. #77 please be normal`]),chA('fantasy')]);}
+  if(rnd()<0.75){const who=kp.pass?kp.wr:o.rb;A.push(['sq',pick([`need ${rint(6,19)}${Math.abs(rint(6,19))===1?' yd':' yds'} from ${who} to win my matchup. ${dd}. ${kp.pass?'throw it to':'feed'} ${who} I am begging`,`fantasy tip: ${who} on ${dd}. if the flag kills this drive I quit sports`,`sit/start panic: ${who}, ${dd}, ${sp}. #77 please be normal`]),chA('fantasy')]);}
   if(rnd()<0.55)A.push(['sq',pick([`section 112: "${dd.toUpperCase()} — DON'T CHOKE" painted on a bedsheet`,`someone just yelled "WE SEE YOU 77" and it echoed. ${dd}`,`the guy next to me is whispering the spread. ${c.line}. ${dd}`]),{boost:80}]);
   A.forEach((a,i)=>sbPost(a[0],a[1],{...a[2],pre:1,key:'pb'+k+':'+i},180+i*rint(280,480)));
 }
@@ -3770,8 +3772,8 @@ function rcMean(R){const sc=S.score.away!==R.sc.away||S.score.home!==R.sc.home,f
   return sc||fl||ms||to||(R.dr.length>0&&R.n>=3);}
 function rcLine(R){const d=R.dr[R.dr.length-1];const bits=[`⏩ ${R.n} play${R.n===1?'':'s'} simmed`];
   const kk=x=>x.key?` (incl. ${x.key} key play${x.key>1?'s':''})`:'';
-  if(d)bits.push(`${T(d.team).name} ${d.plays} play${d.plays===1?'':'s'}, ${d.yds} yds${kk(d)} · ${d.res.toLowerCase()}`);
-  else if(S.drive&&S.drive.plays>0)bits.push(`${T(S.drive.team).name} ${S.drive.plays} play${S.drive.plays===1?'':'s'}, ${S.drive.yds>=0?'+':''}${S.drive.yds} yds this drive${kk(S.drive)}`);
+  if(d)bits.push(`${T(d.team).name} ${d.plays} play${d.plays===1?'':'s'}, ${d.yds}${Math.abs(d.yds)===1?' yd':' yds'}${kk(d)} · ${d.res.toLowerCase()}`);
+  else if(S.drive&&S.drive.plays>0)bits.push(`${T(S.drive.team).name} ${S.drive.plays} play${S.drive.plays===1?'':'s'}, ${S.drive.yds>=0?'+':''}${S.drive.yds}${Math.abs(S.drive.yds)===1?' yd':' yds'} this drive${kk(S.drive)}`);
   return bits.join(' · ');}
 
 /* ===================== AUDIO v2 — original procedural score + SFX + crowd (Web Audio, no asset files) =====================
@@ -4722,7 +4724,7 @@ function boothRaw(line){const r=LZRE;LZRE=null;try{booth(line,{});}finally{LZRE=
 const crowd24={lumiCall(){["LUMI LARK IS ON THE PHONE IN THE LUXURY BOX who is she calling 👀📱","the larkers have triangulated the call. it's going to the REF'S LOCKER ROOM??","if she's calling about the 1st half refs i will personally ride the Lark tour bus into battle 💖"].forEach((t,i)=>setTimeout(()=>post(pick(['sq','gl']),t,1200,{handle:'@'+pick(['Larker','confetti.season','lumi.lark.fan'])+rint(10,999),hot:true,key:'skc'+i}),200+i*500));},last:-99,lastSuite:-99,lastFan:-99,n:0,
  fan(side,txt){const g=tg(side);post('sq',txt,200,{handle:g?g[0]:undefined,key:'fan24:'+txt});},
  play(kp){if(!kp||S.quiet)return;try{const hs=S.score.home-S.score.away;
-   if(kp.yards>=15&&kp.off==='home'&&S.plays-this.lastFan>=5&&rnd()<0.45){this.lastFan=S.plays;const g=tg('home');this.fan('home',pick([`${T('home').city.toUpperCase()} IS ROCKING. that's ${kp.yards} yards and ${T('away').name} fans are silent 🔊`,`HOME CROWD SAYS: ${g?g[1]:'LET\'S GO'}`,`this stadium is SHAKING after that ${kp.yards}-yard play`]));}
+   if(kp.yards>=15&&kp.off==='home'&&S.plays-this.lastFan>=5&&rnd()<0.45){this.lastFan=S.plays;const g=tg('home');this.fan('home',pick([`${T('home').city.toUpperCase()} IS ROCKING. that's ${kp.yards}${Math.abs(kp.yards)===1?' yard':' yards'} and ${T('away').name} fans are silent 🔊`,`HOME CROWD SAYS: ${g?g[1]:'LET\'S GO'}`,`this stadium is SHAKING after that ${kp.yards}-yard play`]));}
    if(kp.off==='home'&&kp.yards>=15&&hs>0&&rnd()<this.p()*0.5)this.chant();
    S.tgQ=S.tgQ||{};for(const sd of ['home','away']){const g=tg(sd);if(g&&!S.tgQ[sd]&&S.plays>=(sd==='home'?6:20)&&S.plays-(S.lastBooth||0)>=3&&rnd()<0.2){S.tgQ[sd]=1;setTimeout(()=>{if(S.phase!=='post')boothRaw([sd==='home'?'CHIP':'MARV',g[2]]);},400);break;}}
    if(isStar()&&S.plays-this.lastSuite>=7&&rnd()<0.35)this.suite();}catch(e){}},
@@ -5404,7 +5406,7 @@ async function quarterBreak(){
     S.q=3;S.clock=900;S.tos={home:3,away:3};await kickoffTo('home');hud();return;
   }
   if(S.drive){S.drive.endYl=S.yl;await endDrive('END OF GAME');}
-  S.over=S.over||'final';
+  S.over=S.over||'final';try{if(typeof v88Final==='function')v88Final();}catch(e){}
 }
 async function game(){
   fresh();sprJob();$('#feed').innerHTML='';hideGfx();unflash();hud();
@@ -5435,8 +5437,8 @@ function statRows(){
 }
 function plRows(){const out=[];for(const t of ['away','home']){const o=T(t),q=ps(o.qb),r=ps(o.rb),qr=ps(o.qb).rush;
   const wr=Object.entries(S.ps).filter(([n,v])=>v.recN>0&&v.tm===t).sort((a,b)=>b[1].rec-a[1].rec);
-  const rec=wr.map(([n,v])=>`${n} ${v.recN} rec, ${v.rec} yds${v.rectd?`, ${v.rectd} TD`:''}`).join('<br>');
-  out.push(`<tr><th colspan="2">${o.ab}</th></tr><tr><td>Pass</td><td>${o.qb} ${q.cmp}/${q.att}, ${q.pass} yds${q.ptd?`, ${q.ptd} TD`:''}${q.int?`, ${q.int} INT`:''}</td></tr><tr><td>Rush</td><td>${o.rb} ${r.car} car, ${r.rush} yds${r.rtd?`, ${r.rtd} TD`:''}${q.car?` · ${o.qb} ${q.car} car, ${String(qr).replace('-','−')} yds`:''}</td></tr>${rec?`<tr><td>Rec</td><td>${rec}</td></tr>`:''}`);}
+  const rec=wr.map(([n,v])=>`${n} ${v.recN} rec, ${v.rec}${Math.abs(v.rec)===1?' yd':' yds'}${v.rectd?`, ${v.rectd} TD`:''}`).join('<br>');
+  out.push(`<tr><th colspan="2">${o.ab}</th></tr><tr><td>Pass</td><td>${o.qb} ${q.cmp}/${q.att}, ${q.pass}${Math.abs(q.pass)===1?' yd':' yds'}${q.ptd?`, ${q.ptd} TD`:''}${q.int?`, ${q.int} INT`:''}</td></tr><tr><td>Rush</td><td>${o.rb} ${r.car} car, ${r.rush}${Math.abs(r.rush)===1?' yd':' yds'}${r.rtd?`, ${r.rtd} TD`:''}${q.car?` · ${o.qb} ${q.car} car, ${String(qr).replace('-','−')}${Math.abs(String(qr).replace('-','−'))===1?' yd':' yds'}`:''}</td></tr>${rec?`<tr><td>Rec</td><td>${rec}</td></tr>`:''}`);}
   return `<table class="pl">${out.join('')}</table><div class="pln">Passing = QB gross · Total = pass + rush − sack yds · drive yds = scrimmage yds (penalties listed separately)</div>`;}
 function gfx(html){$('#booth').classList.remove('show');hideLower();const e=$('#gfx');e.innerHTML=html;e.classList.add('show');}
 function hideGfx(){$('#gfx').classList.remove('show');}
@@ -5451,8 +5453,8 @@ const LMIN=-14,LMAX=21;
 /* v74: scorebug pin = the after-call (or pending) state shown on the result card */
 function v74Pin(pr,pending){try{if(!pr){S.sbPin=null;return;}let dd,sp='';
   if(pr.kind==='TD')dd='TOUCHDOWN';else if(pr.kind==='SAF')dd='SAFETY';
-  else{const s='BALL ON '+spotTxt(pr.yl,pr.poss);if(pr.kind==='TO'||pr.kind==='DOWNS'){dd='1ST & '+(pr.togo>=100-pr.yl?'GOAL':pr.togo);sp=s;}else{dd=ord(Math.min(4,pr.down)).toUpperCase()+' & '+(pr.togo>=100-pr.yl?'GOAL':pr.togo);sp=s;}}
-  if(!pending)S.v74lastPr={kind:pr.kind,yl:pr.yl,down:pr.down,togo:pr.togo,poss:pr.poss};S.sbPin={dd,sp:pending?(sp?sp+' · ':'')+'CALL PENDING':sp,sc:{home:pr.sc.home,away:pr.sc.away},poss:pr.poss,pending:!!pending};hud();}catch(e){S.sbPin=null;}}
+  else{const s=spotTxt(pr.yl,pr.poss);if(pr.kind==='TO'||pr.kind==='DOWNS'){dd='1ST & '+(pr.togo>=100-pr.yl?'GOAL':pr.togo);sp=s;}else{dd=ord(Math.min(4,pr.down)).toUpperCase()+' & '+(pr.togo>=100-pr.yl?'GOAL':pr.togo);sp=s;}}
+  if(!pending)S.v74lastPr={kind:pr.kind,yl:pr.yl,down:pr.down,togo:pr.togo,poss:pr.poss};S.sbPin={dd,sp:sp,sc:{home:pr.sc.home,away:pr.sc.away},poss:pr.poss,pending:!!pending};hud();}catch(e){S.sbPin=null;}}
 function v74PinApply(){if(!S||!S.sbPin)return;if(S.over||S.phase==='done'){S.sbPin=null;return;}/* v77: after the gun the scorebug reads S.score only */const p=S.sbPin;const de=$('#decide');if(de&&!de.hidden&&!de.classList.contains('out'))return;
   $('#bdd').textContent=p.dd;$('#bspot').textContent=p.sp;$('#sA').textContent=p.sc.away;$('#sH').textContent=p.sc.home;
   $('#btA').classList.toggle('has',p.poss==='away');$('#btH').classList.toggle('has',p.poss==='home');}
@@ -5461,7 +5463,7 @@ function hud(){
   $('#btA').classList.toggle('has',S.poss==='away');$('#btH').classList.toggle('has',S.poss==='home');
   for(const [k,id] of [['away','#toA'],['home','#toH']])$(id).innerHTML=[0,1,2].map(i=>`<i class="${i<S.tos[k]?'':'used'}"></i>`).join('');
   $('#bqq').textContent=ord(S.q).toUpperCase();$('#bqc').textContent=fmtClock(S.clock);
-  $('#bdd').textContent=S.drive?ddTxt():'—';$('#bspot').textContent=S.drive?`BALL ON ${spotTxt(S.yl)}`:'';
+  $('#bdd').textContent=S.drive?ddTxt():'—';$('#bspot').textContent=S.drive?spotTxt(S.yl):'';
   $('#brz').classList.toggle('on',!!S.drive&&S.yl>=80);
   const m=margin();
   $('#linestat').textContent=jobStat(m);
@@ -5474,7 +5476,7 @@ function hud(){
   msUI();fvUI();
   $('#tvtag').textContent=S.phase==='ff'?(S.skipFF?'⏭ SKIPPING TO NEXT KEY PLAY':'▶▶ FAST-FORWARD'):S.phase==='replay'?'🔁 REPLAY · ½ SPEED':`LIVE`;
   {const el=$('#decide');if(!el.hidden&&!el.classList.contains('out')){const pk=S.phase==='replay';el.classList.toggle('peek',pk);if(pk)el.classList.remove('enter');$('#dscrim').classList.toggle('peek',pk);}}
-  const dec=false;$('#dReplay').disabled=S.phase==='replay';$('#dReplay').innerHTML=S.phase==='replay'?'🔁 Playing…<small>½ speed</small>':'🔁 Replay<small>½ speed · free</small>';
+  const dec=false;$('#dReplay').disabled=S.phase==='replay';$('#dReplay').innerHTML=S.phase==='replay'?'🔁 Playing…<small>½ speed</small>':'🔁 Replay';
   $('#replay').style.display=dec?'':'none';$('#kpbox').style.visibility=dec||S.menu?'hidden':'';
   $('#skipk').style.display=(S.phase==='ff'||(S.phase==='result'&&S.cur&&!S.cur.key))&&!S.skipFF&&!S.menu?'':'none';
   $('#dt').style.display=dec&&TIMER?'':'none';
@@ -9342,7 +9344,7 @@ html.gfx-pix #game.fs-tiny #heatrow #heatbar{border-radius:0;height:12px!importa
   scene.fog=new THREE.Fog(0xb8dcf5, 120, 280);
 
   // v43: wider FOV + pulled back so BOTH sidelines read (YT walkthrough / STF framing)
-  const camera=new THREE.PerspectiveCamera(64, 1, 0.5, 500);
+  const camera=new THREE.PerspectiveCamera(64, 1, 0.5, 500);window.__v87cam=camera;
   let camFocus=new THREE.Vector3(50,0,26.65);
   let camGoal=new THREE.Vector3(50,0,26.65);
   let camWide=true;
@@ -9588,7 +9590,7 @@ html.gfx-pix #game.fs-tiny #heatrow #heatbar{border-radius:0;height:12px!importa
     g.visible=false;scene.add(g);
     return g;
   }
-  const ballMesh=makeFootballMesh();
+  const ballMesh=makeFootballMesh();window.__v87ball=ballMesh;
   const ballTrail=[];
   for(let i=0;i<14;i++){
     const t=new THREE.Mesh(
@@ -10514,6 +10516,7 @@ html.gfx-pix #game.fs-tiny #heatrow #heatbar{border-radius:0;height:12px!importa
         Object.keys(disp).forEach(key=>{
           const xy=disp[key];if(!xy)return;
           const side=key[0], i=+key.slice(1);
+          if(!(side==='o'?OFF7:DEF7).has(i)){const Px=players[key];if(Px&&Px.root)Px.root.visible=false;return;}
           const tm=side==='o'?offT:defT;
           const P=ensurePlayer(key,tm);
           const dead=playIsDead(phase);
@@ -10812,7 +10815,7 @@ html.gfx-pix #game.fs-tiny #heatrow #heatbar{border-radius:0;height:12px!importa
         }catch(e){}
         Object.keys(players).forEach(k=>{
           if(k==='o6'){ players[k].root.visible=true; return; }
-          if(!disp[k]) players[k].root.visible=false;
+          if(!disp[k]||!(k[0]==='o'?OFF7:DEF7).has(+k.slice(1))) players[k].root.visible=false;
         });
         separate3d(active);
 
@@ -10833,8 +10836,9 @@ html.gfx-pix #game.fs-tiny #heatrow #heatbar{border-radius:0;height:12px!importa
         }catch(e){ try{carrierRing.visible=false;}catch(_e){} }
 
         // LOS / FD markers (+ poles)
-        const los=kp.los!=null?kp.los:(S.yl||50);
-        const togo=kp.togo!=null?kp.togo:(S.togo||10);
+        const _v87l=(window.__v87&&window.__v87.V&&window.__v87.V.lines)?window.__v87.V.lines(kp):null;
+        const los=_v87l?_v87l.los:(kp.los!=null?kp.los:(S.yl||50));
+        const togo=_v87l?_v87l.togo:(kp.togo!=null?kp.togo:(S.togo||10));
         const losX=typeof absX==='function'?absX(los,offT): (50+(los-50));
         const fdYard=clamp(los+(look>0?togo:-togo),0,100);
         const fdX=typeof absX==='function'?absX(fdYard,offT):fdYard;
@@ -10935,6 +10939,7 @@ html.gfx-pix #game.fs-tiny #heatrow #heatbar{border-radius:0;height:12px!importa
             by=0.55+Math.max(0.35,(S.ballDisp[2]||0)*0.14);
           }
           ballMesh.visible=true;
+          if(window.__v87&&window.__v87.V&&window.__v87.V.spotX!=null){bx=window.__v87.V.spotX;by=0.32;}
           ballMesh.position.set(bx, by + (inFlight?0.28:0), bz);
           ballMesh.rotation.x += (dt||16)*0.014;
           ballMesh.rotation.y += (dt||16)*0.01;
@@ -11196,21 +11201,21 @@ try{window.standAllPlayers=standAllPlayers;}catch(e){}
       if(!bdd||!bspot)return;
       if(pr.kind==='TD'){
         bdd.textContent='TOUCHDOWN';
-        bspot.textContent='CALL PENDING';
+        bspot.textContent='';
       }else if(pr.kind==='SAF'){
         bdd.textContent='SAFETY';
-        bspot.textContent='CALL PENDING';
+        bspot.textContent='';
       }else if(pr.kind==='TO'){
-        bdd.textContent='TURNOVER';
-        bspot.textContent=(typeof spotTxt==='function'?('BALL ON '+spotTxt(pr.yl,pr.poss)+' · '):'')+'CALL PENDING';
+        bdd.textContent=(pr.yl!=null&&100-pr.yl<10)?'1ST & GOAL':'1ST & 10';
+        bspot.textContent=(typeof spotTxt==='function'?spotTxt(pr.yl,pr.poss):'');
       }else if(pr.kind==='DOWNS'){
-        bdd.textContent='TURNOVER ON DOWNS';
-        bspot.textContent=(typeof spotTxt==='function'?('BALL ON '+spotTxt(pr.yl,pr.poss)+' · '):'')+'CALL PENDING';
+        bdd.textContent=(pr.yl!=null&&100-pr.yl<10)?'1ST & GOAL':'1ST & 10';
+        bspot.textContent=(typeof spotTxt==='function'?spotTxt(pr.yl,pr.poss):'');
       }else{
         var tg=pr.togo>=100-pr.yl?'GOAL':pr.togo;
         var dd=(typeof ord==='function'?ord(Math.min(4,pr.down)):pr.down).toString().toUpperCase()+' & '+tg;
         bdd.textContent=dd;
-        bspot.textContent=(typeof spotTxt==='function'?('BALL ON '+spotTxt(pr.yl,pr.poss)+' · '):'')+'CALL PENDING';
+        bspot.textContent=(typeof spotTxt==='function'?spotTxt(pr.yl,pr.poss):'');
       }
       bspot.classList.add('cw-pending');
     }catch(e){}
@@ -13850,7 +13855,7 @@ var V82H={on:0,heldMs:0,left:0,get:function(){return false;},set:function(){}};
 (function(){var st=document.createElement('style');st.textContent='#gfx.v82held .v76bar i{background:#ffd23f!important;transition:none!important}#gfx.v82held h4::after{content:" · ⏸ HELD";color:#ffd23f}#gfx .v76bar{position:relative}';document.head.appendChild(st);})();
 V82.hold=V82H;(window.__v82items=window.__v82items||[]).push('p7-hold');
 /* ---- v82: test/QA hook ---- */
-try{V82.S=function(){return S;};window.CW.v82=V82;window.CW.v82.items=window.__v82items;console.info('[CW] v86 MEMEDWELL — '+window.__v82items.join(', '));}catch(e){console.error('[CW] v82 hook',e);}
+try{V82.S=function(){return S;};window.CW.v82=V82;window.CW.v82.items=window.__v82items;console.info('[CW] v92 MOMENTUM2 — '+window.__v82items.join(', '));}catch(e){console.error('[CW] v82 hook',e);}
 /* ===== v84 MEMEFIX ===== */
 window.__v84={items:[]};
 /* --- 2: meme throttle + dedupe at the source: ~1 meme per key play (big moments get a 2nd slot), queue cap stays 3 --- */
@@ -14016,6 +14021,691 @@ var V86D={n:0,ms:0,max:0,early:0,forced:0,log:[]};window.__v86.V86D=V86D;
   document.addEventListener('click',function(e){if(e.target&&e.target.closest&&e.target.closest('#shop'))setTimeout(rf,0);},false);
   window.__v86.items.push('hire-ring');}catch(e){console.error('[CW] v86 ring',e);}})();
 
+/* ===== v87 DISCREET & EFFECTIVE ===== */
+window.__v87=Object.assign(window.__v87||{},{items:[]});
+var V87={P:new URLSearchParams(location.search),log:[],banLog:[],memeLog:[],recs:[],ban:null,banUntil:0,seq:0,offers:[],c:{taken:false,offers:0,passes:0}};
+window.__v87.V=V87;
+V87.debug=V87.P.has('debug');
+V87.now=function(){return performance.now();};
+V87.fastF=function(){try{return Math.max(1,+FAST||1);}catch(e){return 1;}};
+/* ---------- CSS ---------- */
+(function(){try{var st=document.createElement('style');st.id='v87css';st.textContent=[
+ /* (a) text budget: cut tier text, heat number, LIVE/MATCH CAM chips, plan chip, version tag (debug only) */
+ 'html body #app #game #heatrow #tiername,html body #app #game #heatrow #heatnum,html body #app #game #tiername,#tiername,#heatnum,#callchip,#tvtag,#v75cap,#mstrack .msc.ev,#mstrack .msc.cash{display:none!important}',
+ 'body:not(.v87dbg) #cwVerG{display:none!important}',
+ '#heatrow>span:first-child{font-size:0!important}#heatrow>span:first-child::before{content:"👁";font-size:18px}',
+ /* decide sheet collapse */
+ '#decide .dtitle small,#decide .dk,#dSub,#dImp,#dGrab,#decide .dq,#decide .dh.blind,#decide .dstake,#decide .v82stk,#decide>small,#decide .dor{display:none!important}',
+ '#decide .dopt.v87cut{display:none!important}#decide .dopt .dw{font-size:13px}#decide .v87pip{letter-spacing:1px;margin-left:6px}',
+ '#dSaw{display:block;margin-top:4px}',
+ /* play-by-play (#lower): 2 lines max, never under the scorebug */
+ '#lower{display:-webkit-box!important;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden!important;max-height:3.1em;white-space:normal!important}',
+ /* (f) result banner */
+ 'body:has(#v82meme.in) #lower{visibility:hidden!important}html body #chrev small,html body #chmsgs,html body #chboo{display:none!important}',
+ 'html body #gfx .shm,html body #gfx .shs span:nth-child(n+2),html body #gfx .shbuy small,body:has(#gfx.show.v76off) #lower,body:has(#gfx.show button) #lower{display:none!important}',
+ 'html body #gfx .chg .chco,html body #gfx .chg .chbar,html body #gfx .chg .skip,html body #gfx .chg .row~.row,body:has(#gfx.show .chg) #lower{display:none!important}',
+ 'body:has(#v82meme > *) #lower,body:has(#v82meme > *) #flash,body:has(#v87ban.on) #lower{visibility:hidden!important}',
+ 'html body #gfx .v76sub,html body #fvl,html body #v79lane,html body #v78pill,html body #skipk small{display:none!important}',
+ 'body.v87kg #lower{visibility:hidden!important}',
+ '#v87ban{position:fixed;left:4%;width:92%;height:64px;box-sizing:border-box;z-index:9000;display:flex;align-items:center;justify-content:center;gap:12px;border-radius:14px;background:rgba(10,14,30,.88);border:2px solid #ffd23f;color:#fff;font-family:system-ui,sans-serif;pointer-events:none;opacity:0;transform:scale(.9);transition:opacity .15s,transform .2s}',
+ '#v87ban.on{opacity:1!important;transform:none!important;transition:none!important}#v87ban.shrink{opacity:0;transform:translateY(var(--v87dy,300px)) scale(.3);transition:opacity .35s,transform .35s}',
+ '#v87ban .n{font-size:40px;font-weight:900;line-height:1}#v87ban .l{font-size:22px;font-weight:800;letter-spacing:.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}#v87eye{margin-left:6px;font-size:13px;letter-spacing:1px;white-space:nowrap}',
+ '#v87ban.sc{border-color:#4cd387}#v87ban.to{border-color:#ff5a3c}#v87ban.fl{border-color:#ffd23f;background:rgba(60,45,0,.9)}',
+ '@media (max-height:700px){#v87ban{height:56px}#v87ban .n{font-size:34px}#v87ban .l{font-size:19px}}',
+ /* yardage tag rides the spot */
+ '#v87tag{position:fixed;z-index:60;pointer-events:none;font:900 15px system-ui;color:#fff;background:#1f5fff;border-radius:8px;padding:1px 6px;opacity:0;transition:opacity .2s}#v87tag.on{opacity:1}',
+ /* owed chip / fish pips / goals */
+ '#v87owe{margin-left:6px;font-weight:800}#v87fish{margin-left:4px}',
+ '#mstrack .msc.v87g{display:inline-flex;align-items:center;gap:3px;padding:1px 5px}#mstrack .msc.v87g i{display:inline-block;width:26px;height:5px;background:rgba(255,255,255,.25);border-radius:3px;overflow:hidden}#mstrack .msc.v87g i b{display:block;height:100%;background:#ffd23f}',
+ /* mob / contract cards */
+ '#v87card{position:fixed;inset:0;z-index:9000;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.6)}#v87card[hidden]{display:none}',
+ '#v87card .cc{width:min(86vw,340px);background:#15131c;border:2px solid #c9a227;border-radius:18px;padding:16px;color:#fff;text-align:center;font-family:system-ui,sans-serif}',
+ '#v87card .face{font-size:54px;line-height:1}#v87card .ln{font-size:22px;font-weight:900;margin:10px 0 14px}#v87card .mm{font-size:46px;margin:4px 0}',
+ '#v87card .bb{display:flex;gap:10px}#v87card button{flex:1;font:800 18px system-ui;padding:12px;border-radius:12px;border:0}#v87take{background:#c9a227;color:#111}#v87pass{background:#2a2a3a;color:#fff}',
+ '#v87end{position:fixed;inset:0;z-index:9500;background:linear-gradient(#0a2740,#02101c);color:#cfe8ff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-family:system-ui;padding:20px}#v87end[hidden]{display:none}#v87end .big{font-size:30px;font-weight:900;margin:12px 0}#v87end .art{font-size:64px}',
+ /* difficulty row */
+ '#v87diff{display:flex;gap:6px;justify-content:center;margin:8px 0}#v87diff button{font:700 12px system-ui;padding:6px 8px;border-radius:10px;border:1px solid #555;background:#1c1c28;color:#ddd}#v87diff button.on{background:#ffd23f;color:#111;border-color:#ffd23f}',
+ /* satire gags (icons only) */
+ '#v87com{position:fixed;z-index:58;right:10px;font-size:22px;pointer-events:none;opacity:0;transition:opacity .25s}#v87com.on{opacity:1}',
+ '#v87odds{position:absolute;right:6px;bottom:2px;font:700 9px system-ui;color:#9fb0d8;opacity:.8;pointer-events:none}'
+].join('\n');document.head.appendChild(st);if(V87.debug)document.body.classList.add('v87dbg');window.__v87.items.push('css');}catch(e){console.error('[CW] v87 css',e);}})();
+function v87El(id,tag,parent){var e=document.getElementById(id);if(!e){e=document.createElement(tag||'div');e.id=id;(parent||document.body).appendChild(e);}return e;}
+function v87Words(s){return String(s||'').split(/\s+/).filter(function(x){return /[A-Za-z0-9]/.test(x);}).length;}
+function v87Clip(s,n){var w=String(s||'').split(/\s+/),o=[],c=0;for(var i=0;i<w.length;i++){if(/[A-Za-z0-9]/.test(w[i]))c++;if(c>n)break;o.push(w[i]);}return o.join(' ');}
+/* ---------- (e) difficulty ---------- */
+var V87D={rookie:{k:'rookie',lbl:'Rookie',m:0.7,win:1},veteran:{k:'veteran',lbl:'Veteran',m:1,win:0},commish:{k:'commish',lbl:"Commish's Pick",m:1.4,win:-1}};
+function v87Diff(){var q=V87.P.get('diff');if(q&&V87D[q])return V87D[q];var s=null;try{s=localStorage.getItem('cw87diff');}catch(e){}return V87D[s]||V87D.veteran;}
+(function(){try{var tq=document.getElementById('tQuick');if(tq&&tq.parentNode){var row=document.createElement('div');row.id='v87diff';
+  ['rookie','veteran','commish'].forEach(function(k){var b=document.createElement('button');b.textContent=V87D[k].lbl;b.dataset.k=k;b.onclick=function(e){e.stopPropagation();try{localStorage.setItem('cw87diff',k);}catch(_){}sync();};row.appendChild(b);});
+  tq.parentNode.insertBefore(row,tq);var sync=function(){var d=v87Diff().k;[].forEach.call(row.children,function(b){b.classList.toggle('on',b.dataset.k===d);});};sync();}
+  var ah=addHeat;addHeat=function(h){if(h>0&&!V87.noScale)h=h*v87Diff().m;return ah.call(this,h);};
+  window.__v87.items.push('difficulty');}catch(e){console.error('[CW] v87 diff',e);}})();
+/* ---------- (d) suspicion: correct call/no-call = 0; subtle tools 1 pip; eye pips on options ---------- */
+function v87Pips(h){h=Math.round(h||0);return h<=0?0:h<=5?1:h<=11?2:3;}
+(function(){try{var ch=callHeat;callHeat=function(call,kp){var r=ch.apply(this,arguments);try{if(kp&&kp.foul===call)return 0;if(call==='spot'||call==='clock')return Math.min(r,3);}catch(e){}return r;};
+  var st=v72StandTax;v72StandTax=function(kp){if(kp&&!kp.foul)return null;return st.apply(this,arguments);};
+  /* floaty toast: icon + number, 1.5s */
+  var ah=addHeat;addHeat=function(h){var r=ah.apply(this,arguments);try{var fl=document.getElementById('floaty');if(fl&&h){var hs=h>0&&!V87.noScale?h*v87Diff().m:h;fl.textContent='👁'+(hs>0?'+':'')+Math.round(hs);}}catch(e){}return r;};
+  window.__v87.items.push('suspicion');}catch(e){console.error('[CW] v87 susp',e);}})();
+/* ---------- (g) play record ---------- */
+var V87TAG={holding:'HOLDING',pi:'PI',roughing:'ROUGHING',opi:'OPI',formation:'FORMATION',dholding:'HOLDING',offset:'OFFSETTING'};
+function v87Sign(n){n=Math.round(n);return (n>0?'+':n<0?'\u2212':'')+Math.abs(n);}
+function v87RecHook(kp,o){/* called inside resolve() right before the result is applied: every value here is final */
+  var off=kp.off,yards=o.yards,ny=kp.los+yards,rec={id:++V87.seq,uid:kp._uid,key:!!kp.key,quiet:!!S.quiet,off:off,
+    type:kp.sack?'sack':kp.type==='run'?'run':'pass',carrier:kp.type==='run'?T(off).rb:kp.sack?T(off).qb:kp.wr,passer:kp.pass?T(off).qb:null,
+    complete:!!o.complete,turnover:!!o.turnover,yds:yards,los:kp.los,downBefore:kp.down,togoBefore:kp.togo,
+    pen:o.pen?{team:o.pen.team,y:o.pen.y,call:o.call}:null,call:o.call||null,chosen:S.call||null,clockBefore:V87.clk0!=null?V87.clk0:S.clock,inb:!!o.inb,
+    scoreBefore:{home:S.score.home,away:S.score.away},t:V87.now()};
+  if(o.turnover){rec.endSpot=kp.los+(kp.deep?18:Math.max(0,yards));rec.ruling=kp.pass?'INTERCEPTED':'FUMBLE';rec.cls='to';}
+  else if(ny>=100){rec.endSpot=100;rec.ruling='TOUCHDOWN';rec.cls='sc';}
+  else if(ny<=0){rec.endSpot=0;rec.ruling='SAFETY';rec.cls='sc';}
+  else{rec.endSpot=ny;var fd=o.auto1||(!o.replay&&yards>=kp.togo);
+    if(o.pen){var tg=V87TAG[o.call]||'FLAG';rec.ruling='FLAG: '+tg+' '+v87Sign(o.pen.team===off?-o.pen.y:o.pen.y)+(kp.score?' \u00b7 NO TD':fd?' \u00b7 1ST DOWN':'');rec.cls='fl';}
+    else if(o.call==='offset'){rec.ruling='OFFSETTING \u00b7 REPLAY DOWN';rec.cls='fl';}
+    else if(kp.sack)rec.ruling='SACK '+v87Sign(yards);
+    else if(kp.pass&&!o.complete)rec.ruling='INCOMPLETE';
+    else rec.ruling=v87Sign(yards)+' '+(kp.type==='run'?'RUSH':'PASS')+(fd?' \u00b7 1ST DOWN':'');
+    if(!fd&&!o.replay&&kp.down>=4&&!o.pen){rec.ruling='TURNOVER ON DOWNS';rec.cls='to';}
+    rec.fd=!!fd;}
+  rec.banner=rec.ruling;rec.words=v87Words(rec.banner);
+  V87.cur=rec;V87.recs.push(rec);if(V87.recs.length>400)V87.recs.shift();kp._v87=rec;
+  if(!S.quiet)v87Banner(rec);
+  return rec;}
+function v87RecDone(kp){var rec=kp&&kp._v87;if(!rec||rec.done)return;rec.done=true;
+  rec.clockAfter=S.clock;rec.scoreDelta={home:S.score.home-rec.scoreBefore.home,away:S.score.away-rec.scoreBefore.away};
+  rec.after={poss:S.poss,yl:S.yl,down:S.down,togo:S.togo,drive:!!S.drive};
+  try{var lw=document.getElementById('lower');rec.pbp=V87.lastLower||'';}catch(e){}
+  try{rec.bug={dd:(document.getElementById('bdd')||{}).textContent,spot:(document.getElementById('bspot')||{}).textContent,sA:+((document.getElementById('sA')||{}).textContent),sH:+((document.getElementById('sH')||{}).textContent)};}catch(e){}
+  v87Publish(rec);}
+function v87Publish(rec){var pub={next:v87ActualNext(rec),preview:(rec.key&&V87.prevKp&&V87.prevKp._v87===rec&&V87.prev)?(V87.prev[rec.call||'letgo']||V87.prev[S.call||'letgo']||null):null,pick:rec.call||'letgo',chosen:rec.chosen||null,uid:rec.uid,id:rec.id,type:rec.type,carrier:rec.carrier,onField:(function(){try{return V87.onField(rec.off);}catch(e){return null;}})(),passer:rec.passer,yds:rec.yds,endSpot:rec.endSpot,renderedEndSpot:rec.renderedEndSpot!=null?rec.renderedEndSpot:null,renderedSrc:rec.renderedSrc||null,tackleSpot:rec.tackleSpot!=null?rec.tackleSpot:null,drawn:rec.drawn||null,
+  ruling:rec.ruling,banner:rec.banner,pbp:rec.pbp||'',scoreDelta:rec.scoreDelta||null,clockBefore:rec.clockBefore,clockAfter:rec.clockAfter!=null?rec.clockAfter:null,
+  los:rec.los,downBefore:rec.downBefore,togoBefore:rec.togoBefore,pen:rec.pen,turnover:rec.turnover,complete:rec.complete,inb:rec.inb,fd:!!rec.fd,after:rec.after||null,bug:rec.bug||null,lev:rec.lev!=null?rec.lev:null,momentum:rec.mom!=null?rec.mom:null,threat:rec.threat||null,watch:rec.watch!=null?rec.watch:null,band:rec.band!=null?rec.band:null,key:rec.key,quiet:rec.quiet,off:rec.off,shownAt:rec.shownAt||null,banDur:rec.banDur||null};
+  V87.last=JSON.parse(JSON.stringify(pub));deepFreeze(V87.last);V87.pubs=V87.pubs||[];V87.pubs.push(V87.last);if(V87.pubs.length>3000)V87.pubs.shift();
+  function deepFreeze(o){Object.keys(o).forEach(function(k){if(o[k]&&typeof o[k]==='object')deepFreeze(o[k]);});return Object.freeze(o);}}
+(function(){try{window.CW=window.CW||{};Object.defineProperty(window.CW,'lastPlay',{get:function(){return V87.last||null;},set:function(){},configurable:false,enumerable:true});
+  window.CW.v87=V87;window.__v87.items.push('lastPlay');}catch(e){console.error('[CW] v87 hook',e);}})();
+/* resolve wrapper: clockBefore + completion */
+(function(){try{var rs=resolve;resolve=async function(kp){V87.clk0=S.clock;try{return await rs.apply(this,arguments);}finally{try{v87RecDone(kp);}catch(e){}V87.clk0=null;}};
+  var lw=lower;lower=function(txt){if(!(S&&S.quiet))V87.lastLower=String(txt||'').replace(/^▶▶ /,'');return lw.apply(this,arguments);};
+  /* the banner replaces the per-play flash words; the gun/halftime flashes stay */
+  var fl=flash;flash=function(txt,cls,ms){if(V87.banUntil>V87.now()&&/^(TOUCHDOWN|1ST DOWN|TURNOVER|FLAG|SAFETY|TURNOVER ON DOWNS)/.test(String(txt)))return;return fl.apply(this,arguments);};
+  window.__v87.items.push('record');}catch(e){console.error('[CW] v87 rec',e);}})();
+/* no projected score on the scorebug before the final ruling (scorebug reads live state only) */
+(function(){try{var pin=v74Pin;v74Pin=function(pr,pending){if(!pr){S.sbPin=null;return;}try{if(!pending)S.v74lastPr={kind:pr.kind,yl:pr.yl,down:pr.down,togo:pr.togo,poss:pr.poss};}catch(e){}S.sbPin=null;try{hud();}catch(e){}};
+  window.__v87.items.push('no-early-score');}catch(e){console.error('[CW] v87 pin',e);}})();
+/* ---------- (f) banner ---------- */
+function v87BanGeom(){var hr=document.getElementById('heatrow')||document.getElementById('v80pill');var r=hr&&hr.getBoundingClientRect();var hb=r&&r.height>0?r.bottom:40;var small=innerHeight<700;return {top:Math.round(hb+(small?96:120)),h:small?56:64};}
+function v87Banner(rec){var b=v87El('v87ban');var g=v87BanGeom();b.style.top=g.top+'px';
+  var m=String(rec.banner).match(/^([+\u2212]\d+)\s+(.*)$/);var num='',lbl=rec.banner;
+  if(m){num=m[1];lbl=m[2];}else{var m2=String(rec.banner).match(/^(SACK|FLAG: \w+)\s+([+\u2212]\d+)(.*)$/);if(m2){lbl=m2[1]+m2[3];num=m2[2];}}
+  b.innerHTML=(num?'<span class="n"></span>':'')+'<span class="l"></span>';if(num)b.querySelector('.n').textContent=num;b.querySelector('.l').textContent=lbl;
+  b.className='on '+(rec.cls||'');var dur=2450/V87.fastF();rec.shownAt=V87.now();V87.banUntil=rec.shownAt+dur;V87.ban=rec;
+  V87.banLog.push({id:rec.id,t0:rec.shownAt,t1:null,txt:rec.banner,whistle:V87.whistleT||null,fast:V87.fastF()});if(V87.banLog.length>300)V87.banLog.shift();
+  clearTimeout(V87.banT);V87.banT=setTimeout(function(){var bg=document.getElementById('bug');var br=b.getBoundingClientRect();if(bg){var gr=bg.getBoundingClientRect();b.style.setProperty('--v87dy',Math.round(gr.top-br.top)+'px');}
+    b.className='shrink '+(rec.cls||'');var L=V87.banLog[V87.banLog.length-1];if(L&&L.id===rec.id){L.t1=V87.now();rec.banDur=Math.round((L.t1-L.t0)*V87.fastF());}V87.ban=null;V87.banUntil=0;
+    try{v87Commish(rec);}catch(e){}},dur);
+  try{v87SpotBall(rec);}catch(e){}try{v87YdTag(rec,dur);}catch(e){}}
+V87.banUp=function(){return V87.banUntil>V87.now();};
+/* ball spot: the drawn ball is spotted where the record says, then read back from the mesh */
+function v87SpotBall(rec){var kp=S.cur;if(!kp||kp._v87!==rec)return;var x=absX(Math.max(0,Math.min(100,rec.endSpot)),rec.off);
+  V87.spotX=x;if(S.ballDisp)S.ballDisp[0]=x;else S.ballDisp=[x,26.65,0];
+  setTimeout(function(){try{var bm=window.__v87ball;var bx=bm&&bm.visible!==false?bm.position.x:(S.ballDisp?S.ballDisp[0]:null);if(bx==null)return;rec.renderedEndSpot=Math.round((dir(rec.off)>0?bx:100-bx)*2)/2;rec.renderedSrc=bm?'mesh':'disp';if(rec.done)v87Publish(rec);}catch(e){}},120);}
+function v87Screen(x,z,y){try{var cam=window.__v87cam,cv=document.getElementById('field3d');if(!cam||!cv||!window.THREE)return null;var v=new THREE.Vector3(x,y||0.5,z);var bm=window.__v87ball;if(bm&&bm.parent){bm.parent.localToWorld(v);}v.project(cam);var r=cv.getBoundingClientRect();if(v.z>1)return null;return {x:r.left+(v.x+1)/2*r.width,y:r.top+(1-v.y)/2*r.height};}catch(e){return null;}}
+V87.ballRect=function(){try{var bm=window.__v87ball;if(!bm||!window.__v87cam)return null;var v=new THREE.Vector3();bm.getWorldPosition(v);v.project(window.__v87cam);var cv=document.getElementById('field3d');var r=cv.getBoundingClientRect();if(r.width<10)return null;var x=r.left+(v.x+1)/2*r.width,y=r.top+(1-v.y)/2*r.height;return {left:x-10,right:x+10,top:y-10,bottom:y+10,visible:bm.visible!==false};}catch(e){return null;}};
+function v87YdTag(rec,dur){if(rec.type==='pass'&&!rec.complete)return;if(rec.turnover)return;var t=v87El('v87tag');var br=V87.ballRect();if(!br)return;t.textContent=v87Sign(rec.yds);t.style.left=Math.round(br.right+2)+'px';t.style.top=Math.round(br.top-14)+'px';t.className='on';clearTimeout(V87.tagT);V87.tagT=setTimeout(function(){t.className='';},dur);}
+/* (e) Commissioner nod / frown at dead balls: icon only */
+function v87Commish(rec){var c=v87El('v87com');var g=v87BanGeom();c.style.top=(g.top-34)+'px';var bad=rec.pen&&rec.call&&!(S.cur&&S.cur.foul===rec.call);c.textContent=bad?'🧐👎':'🧐👍';c.className='on';clearTimeout(V87.comT);V87.comT=setTimeout(function(){c.className='';},1500/V87.fastF());}
+/* LOS / line-to-gain slide (400ms) to the new spot when the banner lands */
+function v87Lines(kp,look){var los=kp.los!=null?kp.los:(S.yl||50),togo=kp.togo!=null?kp.togo:(S.togo||10);var rec=kp._v87;
+  if(rec&&rec.after&&rec.after.poss===rec.off&&rec.after.drive&&rec.shownAt){var f=Math.min(1,(V87.now()-rec.shownAt)*V87.fastF()/400);f=f<0.5?2*f*f:1-Math.pow(-2*f+2,2)/2;
+    los=los+(rec.after.yl-los)*f;togo=togo+(rec.after.togo-togo)*f;rec.linesF=f;}
+  else if(rec&&!rec.after&&rec.shownAt&&!rec.turnover&&rec.endSpot>0&&rec.endSpot<100){/* banner up before resolve finished: slide toward the reported spot */
+    var f2=Math.min(1,(V87.now()-rec.shownAt)*V87.fastF()/400);var tl=rec.endSpot,tt=rec.fd?Math.min(10,100-tl):Math.max(1,kp.togo-rec.yds);if(rec.pen){tl=kp.los+rec.yds;tt=rec.fd?Math.min(10,100-tl):kp.togo-rec.yds;}
+    los=los+(tl-los)*f2;togo=togo+(tt-togo)*f2;}
+  return {los:los,togo:togo};}
+V87.lines=v87Lines;
+/* ---------- memes wait for the banner; the KEY PLAY card waits for both ---------- */
+(function(){try{var h=v85MHold;v85MHold=function(){if(V87.banUp())return true;return h.apply(this,arguments);};
+  var rf=recapFlush;recapFlush=async function(why){if(why==='key'){var t0=V87.now();while(V87.banUp()&&V87.now()-t0<4000)await new Promise(function(r){setTimeout(r,40);});}return rf.apply(this,arguments);};
+  /* meme timeline log for the overlap sweep */
+  var sh=v82MShow;v82MShow=function(it){var r=sh.apply(this,arguments);if(r){V87.memeLog.push({t0:V87.now(),banUp:V87.banUp()});if(V87.memeLog.length>300)V87.memeLog.shift();}return r;};
+  window.__v87.items.push('banner-meme-order');}catch(e){console.error('[CW] v87 meme order',e);}})();
+/* ---------- (a) text budget: collapse the decide sheet, result cards, booth ---------- */
+function v87Head(kp){var O=T(kp.off),y=kp.yards;if(kp.turnover)return kp.pass?'Pass intercepted':'Fumble';if(kp.sack)return O.qb+' sacked, '+v87Sign(y);
+  if(kp.type==='run')return O.rb+' run, '+v87Sign(y);if(!kp.complete)return 'Incomplete to '+kp.wr;return O.qb+' \u2192 '+kp.wr+', '+v87Sign(y);}
+function v87SawTxt(kp){if(kp.foul)return '👁 Saw: '+(V87TAG[kp.foul]||'foul').toLowerCase()+(kp.foulN?' #'+kp.foulN:'');return '👁 Saw: clean play';}
+(function(){try{var od=openDecide;openDecide=function(kp){var r=od.apply(this,arguments);try{v87Sheet(kp);}catch(e){console.warn('[v87] sheet',e);}
+    try{if(V87.mob&&V87.mob.favor&&kp.key&&!S.call){var c=['holding','pi','dholding','opi'].find(function(x){return x!==kp.foul&&available(x,kp);});if(c){V87.mob.favor=0;v87MobSave();V87.forced=c;setTimeout(function(){if(!S.call)S.call=c;},300/V87.fastF());}}}catch(e){}
+    return r;};
+  window.__v87.items.push('sheet');}catch(e){console.error('[CW] v87 sheet',e);}})();
+function v87Sheet(kp){V87.prev={};V87.prevKp=kp;var hd=document.getElementById('dHead');if(hd)hd.textContent=v87Head(kp);var sw=document.getElementById('dSaw');if(sw)sw.textContent=v87SawTxt(kp);
+  var opts=[];try{opts=options(kp);}catch(e){}var by={};opts.forEach(function(o){by[o.id]=o;});
+  var btns=[].slice.call(document.querySelectorAll('#dOpts .dopt'));var keep=[];
+  /* keep the real foul first, then the most useful rows, 4 max */
+  btns.sort(function(a,b){var oa=by[a.dataset.c]||{},ob=by[b.dataset.c]||{};return (ob.legit?1:0)-(oa.legit?1:0);});
+  btns.forEach(function(b,i){var o=by[b.dataset.c]||{};if(keep.length<4){keep.push(b);b.classList.remove('v87cut');}else b.classList.add('v87cut');
+    var lb=b.querySelector('.dl b');if(lb)lb.textContent=v87OptName(b.dataset.c,o,kp);
+    var dw=b.querySelector('.dw');var h=o.heat!=null?o.heat:0;var p=v87Pips(h);var yd=v87Prev(kp,b.dataset.c);
+    if(dw){dw.innerHTML='';var s1=document.createElement('span');s1.textContent=yd;dw.appendChild(s1);var s2=document.createElement('span');s2.className='v87pip';s2.textContent=p?'👁'.repeat(p):'';dw.appendChild(s2);}
+    b.dataset.v87pips=p;b.dataset.v87heat=h;
+    var lp=null;b.addEventListener('pointerdown',function(){lp=setTimeout(function(){try{var w=b.querySelector('.dw');if(w)w.title=o.what||'';lower(v87Clip(o.what||'',12),'#ffd23f');}catch(e){}},600);});b.addEventListener('pointerup',function(){clearTimeout(lp);});});
+  var lg=document.querySelector('#dFoot .dopt');if(lg){var lb2=lg.querySelector('.dl b');if(lb2)lb2.textContent='No flag';var dw2=lg.querySelector('.dw');if(dw2)dw2.textContent=v87Prev(kp,'letgo');lg.dataset.v87pips=0;}}
+function v87OptName(id,o,kp){return {holding:'Holding',pi:'Pass interference',roughing:'Roughing',opi:'Offensive PI',formation:'Formation',dholding:'Def. holding',offset:'Offsetting',spot:kp.made?'Spot short':'Generous spot',clock:'Clock nudge'}[id]||(o.label||id);}
+function v87OptYds(id,o,kp){if(id==='clock')return '\u221225s';if(id==='spot')return kp.made?'no 1st':'1st down';try{var e=effect(kp,id);if(e&&e.pen)return (e.pen.team===kp.off?'\u2212':'+')+e.pen.y;}catch(_){}return '';}
+(function(){try{var gx=gfx;gfx=function(html){var s=String(html||'');
+    if(/<h4>OUTCOME \u00b7/.test(s))return; /* the YOUR CALL sheet follows: no pre-ruling card */
+    if(/\u00b7 RESULT<\/h4>/.test(s))return; /* the result banner replaces the result card */
+    if(/class="rcap rck"/.test(s)){var m=s.match(/(\d+) play/);s='<div class="rcap rck"><h5>\u23e9 '+(m?m[1]:'')+' plays simmed</h5></div>';}
+    s=s.replace(/<h4>(\uD83D\uDCF1 DAMAGE CONTROL|\uD83C\uDF99\uFE0F BUY THE BOOTH)[^<]*<\/h4>/,'<h4>$1</h4>');
+    if(/<h4>KEY PLAY<\/h4>/.test(s)){var rk=(s.match(/<div class="rcap rck">[\s\S]*?<\/div>/)||[''])[0];
+      var v91t=null;try{v91t=window.CW&&CW.v91&&CW.v91.curThr;}catch(e){}
+      s=rk+'<h4>KEY PLAY'+(v91t?' \u00b7 \u26A1 '+v91t:'')+'</h4><div class="gt">'+ddTxt()+' \u00b7 '+spotTxt(S.yl)+'</div><div class="kr"><span>Q'+S.q+'</span><b>'+fmtClock(S.clock)+'</b></div><div class="kr"><span>\uD83C\uDFC8</span><b>'+T('away').ab+' '+S.score.away+' \u2013 '+T('home').ab+' '+S.score.home+'</b></div>';
+      document.body.classList.add('v87kg');}
+    return gx.call(this,s);};
+  var hg=hideGfx;hideGfx=function(){document.body.classList.remove('v87kg');return hg.apply(this,arguments);};
+  var bo=booth;booth=function(line,ctx){try{var de=document.getElementById('decide');if(de&&!de.hidden&&!de.classList.contains('out'))return;if(S&&(S.phase==='live'||S.phase==='presnap'))return;
+      if(line&&line.length>1){line=[line[0],v87Clip(line[1],12)];}}catch(e){}return bo.call(this,line,ctx);};
+  /* league goals: icons on the strip, not text */
+  var mu=msUI;msUI=function(){var box=document.getElementById('mstrack');if(!box||!S)return mu.apply(this,arguments);
+    var h=(S.ms||[]).map(function(m){var v=msVal(m),pc=Math.min(100,Math.max(0,v)/m.target*100);return '<span class="msc v87g '+(m.hit?'hit':'')+'" title="'+m.big+'">'+(m.hit?'✅':'🎯')+'<i><b style="width:'+pc+'%"></b></i></span>';}).join('');
+    if(box._h!==h){box._h=h;box.innerHTML=h;}};
+  window.__v87.items.push('text-budget');}catch(e){console.error('[CW] v87 budget',e);}})();
+/* ---------- (b)(c) contracts opt-in + mob strikes ---------- */
+V87.mob={strikes:0,favor:0,dead:0};
+function v87MobLoad(){try{if(MATCH&&MATCH.season&&SEA){V87.mob=SEA.v87mob||(SEA.v87mob={strikes:0,favor:0,dead:0});return V87.mob;}}catch(e){}return V87.mob;}
+function v87MobSave(){try{if(MATCH&&MATCH.season&&SEA){SEA.v87mob=V87.mob;seaSave();}}catch(e){}}
+function v87Card(o){return new Promise(function(res){var c=v87El('v87card');c.hidden=false;c.innerHTML='<div class="cc"><div class="face"></div><div class="mm"></div><div class="ln"></div><div class="bb"></div></div>';
+  c.querySelector('.face').textContent=o.face||'🕴️';c.querySelector('.mm').textContent=o.meme||'';c.querySelector('.ln').textContent=o.line;var bb=c.querySelector('.bb');var done=false,t0=V87.now();
+  var fin=function(v){if(done)return;done=true;c.hidden=true;c.innerHTML='';res(v);};
+  (o.btns||[]).forEach(function(x){var b=document.createElement('button');b.id=x.id;b.textContent=x.t;b.onclick=function(e){e.stopPropagation();fin(x.v);};bb.appendChild(b);});
+  if(!(o.btns||[]).length){c.onclick=function(){if(V87.now()-t0>=(o.min||2500)/V87.fastF())fin('ok');};}else c.onclick=null;
+  var A=V87.P.get('contract');var autoV=o.btns&&o.btns.length?(A==='pass'?'pass':A==='take'?'take':(AUTO?'take':null)):'ok';
+  if(autoV&&(AUTO||A))setTimeout(function(){fin(autoV);},Math.max(o.min||0,1400)/V87.fastF());
+  if(o.btns&&o.btns.length&&!AUTO&&!A)setTimeout(function(){fin('pass');},45000);
+  if(!(o.btns||[]).length)setTimeout(function(){fin('ok');},Math.max(4000,o.min||0)/V87.fastF()*(AUTO?1:3));});}
+function v87MaxBonus(){var m=0;try{(S.ms||[]).forEach(function(x){m=Math.max(m,x.reward||0);});}catch(e){}return m||MS_REWARD;}
+function v87JobLine(){var j=S.job;if(!j)return '';var t=T(j.team).ab,o=T(j.team==='home'?'away':'home').ab,lo=j.lo,hi=j.hi;
+ if(lo>=1)return t+' by '+lo+(hi>=60?'+':(hi>lo?'\u2013'+hi:''));
+ if(hi>=60)return t+' +'+(-lo);
+ if(hi<=-1)return o+' by '+(-hi)+(lo<=-60?'+':(-lo>-hi?'\u2013'+(-lo):''));
+ return t+' +'+(-lo)+'/\u2264'+hi;}
+async function v87Offer(when){if(!S||S.over)return;v87MobLoad();if(V87.mob.dead)return;if(V87.c.taken&&when!=='half')return;
+  var j=S.job;if(!j)return;V87.c.offers++;var pay=Math.max(j.pay||0,Math.round(v87MaxBonus()*3.5/500)*500);
+  var line=v87JobLine()+'. $'+Math.round(pay/1000)+'k.';
+  var snap=v87Snap();var v=await v87Card({face:'🕴️',line:line,btns:[{id:'v87take',t:'🤝 Take',v:'take'},{id:'v87pass',t:'✋ Pass',v:'pass'}]});
+  V87.offers.push({when:when,line:line,words:v87Words(line),v:v,pay:pay});
+  if(v==='take'){V87.c.taken=true;V87.c.when=when;var d=v87Diff();if(d.win>0){j.lo=j.lo>=2?j.lo-1:(j.lo>=1?1:j.lo-1);j.hi=j.hi+1;}else if(d.win<0&&j.hi-j.lo>2){j.hi=j.hi-1;}j.pay=pay;V87.c.pay=pay;V87.c.line=v87JobLine();}
+  else{V87.c.passes++;V87.passCheck={before:snap,after:v87Snap()};}
+  v87Owe();}
+function v87Snap(){try{return JSON.stringify({heat:S.heat,peak:S.peak,bank:S.bank,chCash:S.chCash||0,job:S.job,fav:S.favoritism,mob:V87.mob,sea:(MATCH.season&&SEA)?{bank:SEA.bank,mob:SEA.mob,notor:SEA.notor,prestige:SEA.prestige}:null,offersLeft:V87.offerPlan||null});}catch(e){return '';}}
+function v87Owe(){var ls=document.getElementById('linestat'),lt=document.getElementById('linetxt');var bs=document.getElementById('bsprd');
+  var chip=v87El('v87owe','span',(bs&&bs.parentNode)||document.getElementById('bug')||document.body);
+  if(!V87.c.taken){chip.textContent='';if(bs)bs.style.display='none';var f0=document.getElementById('v87fish');if(f0)f0.textContent='';return;}
+  if(bs)bs.style.display='none';var inn=false;try{inn=inside(margin());}catch(e){}chip.textContent='🤝 '+v87JobLine()+' '+(inn?'✅':'❌');
+  var f=v87El('v87fish','span',chip.parentNode);f.textContent=V87.mob.strikes?'🐟'.repeat(V87.mob.strikes):'';}
+(function(){try{var sp=shop;shop=async function(kind){var r=await sp.apply(this,arguments);try{if(kind==='pre')await v87Offer('pre');else if(kind==='half')await v87Offer('half');}catch(e){console.warn('[v87] offer',e);}return r;};
+  var hd=hud;hud=function(){var r=hd.apply(this,arguments);try{v87Owe();}catch(e){}return r;};
+    var es=endScreen;endScreen=function(){var taken=!!V87.c.taken,j0=S.job?JSON.parse(JSON.stringify(S.job)):null,fail=false,xm=null;
+    try{if(!taken&&S.job){S.job.pay=0;S.chBonus=0;}}catch(e){}
+    V87.c.esCalls=(V87.c.esCalls||0)+1;
+    var r=es.apply(this,arguments);
+    try{
+      /* evaluate AFTER endScreen so scores/over are final; never leave a false negative */
+      if(taken&&S.over!=='fired'&&j0){
+        var m=margin();xm=(j0.team==='home'?m:-m);fail=!(xm>=j0.lo&&xm<=j0.hi);
+      }else if(taken&&S.over==='fired'){fail=false;}
+      V87.c.finalDone=true;
+      V87.c.failEval={over:S.over||'final',fail:fail,taken:taken,xm:xm,lo:j0&&j0.lo,hi:j0&&j0.hi,team:j0&&j0.team,t:Date.now()};
+      V87.result={taken:taken,fail:fail,job:j0,over:S.over||'final',heat:Math.round(S.heat),xm:xm};
+      if(fail&&!V87.c._strikeForEnd){V87.c._strikeForEnd=V87.c.esCalls;setTimeout(function(){v87Strike().catch(function(e){console.warn(e);});},600);}
+    }catch(e){V87.c.failErr=String(e&&e.message||e);}
+    return r;};
+  window.__v87.items.push('contracts');}catch(e){console.error('[CW] v87 contracts',e);}})();
+var V87STRIKE=[null,{face:'🕴️',meme:'🐟🚗',line:"🐟 Sal's disappointed."},{face:'🕴️',meme:'🪑💨',line:'💼 Payroll seized.'},{face:'🕴️',meme:'📞🚩',line:"📞 You'll make this call."}];
+async function v87Strike(){v87MobLoad();V87.mob.strikes=Math.min(4,(V87.mob.strikes||0)+1);var k=V87.mob.strikes;V87.strikeLog=(V87.strikeLog||[]).concat([{k:k,t:Date.now()}]);
+  if(k>=4){V87.mob.dead=1;v87MobSave();return v87Fishes();}
+  if(k===2){try{if(MATCH.season&&SEA){SEA.bank=Math.round(SEA.bank*0.5);}else S.bank=Math.round((S.bank||0)*0.5);}catch(e){}try{V87.noScale=true;v77Heat(15,'🐟 The Collection');}finally{V87.noScale=false;}try{if(MATCH.season&&SEA)MATCH.startHeat=Math.min(99,(MATCH.startHeat||0)+15);}catch(e){}}
+  if(k===3)V87.mob.favor=1;
+  v87MobSave();await v87Card(Object.assign({min:2500},V87STRIKE[k]));}
+async function v87Fishes(){var e=v87El('v87end');e.hidden=false;e.innerHTML='<div class="art">🐟🫧🪨</div><div class="big">Sleeps with the fishes.</div><div>Cement shoes. Lake Michigan. 🎺</div><button class="btn" id="v87endOk" style="margin-top:18px">Main menu</button>';
+  try{if(MATCH.season&&SEA){SEA.over=true;SEA.v87dead=1;seaSave();}}catch(_){}
+  await new Promise(function(r){var b=document.getElementById('v87endOk');b.onclick=function(){e.hidden=true;r();try{showTitle();}catch(_){}};if(AUTO)setTimeout(function(){r();},4000/V87.fastF());});}
+(function(){try{var stt=showTitle;showTitle=function(){var r=stt.apply(this,arguments);try{var s=seaLoad();var c=document.getElementById('tContinue');if(s&&s.v87dead&&c){c.disabled=true;c.innerHTML='Continue Season <small>🐟 sleeps with the fishes</small>';}}catch(e){}return r;};
+  V87.mobTest={fail:function(){return v87Strike();},reset:function(){V87.mob={strikes:0,favor:0,dead:0};v87MobSave();}};
+  window.__v87.items.push('mob');}catch(e){console.error('[CW] v87 mob',e);}})();
+/* ---------- (e) satire gags: commissioner hood on review, odds sliver ---------- */
+(function(){try{var lw=lower;lower=function(txt,c){var t=String(txt||'');if(/^🔁 REPLAY/.test(t))t='🔁 👁 COMMISSIONER IS WATCHING';var full=String(txt||'').replace(/^▶▶ /,'');var cl=v87Clip(t,5);if(cl.length<t.length)cl+='…';var r=lw.call(this,cl,c);if(!(S&&S.quiet)&&!/^🔁/.test(full))V87.lastLower=full;try{document.getElementById('lower').title=t;}catch(e){}return r;};
+  var tv=document.getElementById('tv');if(tv&&!document.getElementById('v87odds')){var o=document.createElement('div');o.id='v87odds';o.textContent='🦉 HouseLine';var bug=document.getElementById('bug');(bug||tv).appendChild(o);}
+  var nb=document.getElementById('netbug');if(nb&&!nb.querySelector('.v87owl')){var ow=document.createElement('span');ow.className='v87owl';ow.textContent=' 🦉';ow.title='SUPERB OWL';nb.appendChild(ow);}
+  window.__v87.items.push('satire');}catch(e){console.error('[CW] v87 satire',e);}})();
+/* ---------- v86 polish: swipe = dismissed at swipe start ---------- */
+(function(){try{var card=v82MCard;v82MCard=function(it){var d=card.apply(this,arguments);try{var x0=null;d.addEventListener('pointerdown',function(e){x0=e.clientX;},true);
+    d.addEventListener('pointermove',function(e){if(x0==null||it.gone)return;var dx=e.clientX-x0;if(Math.abs(dx)>50){it.seenBy='swipe';x0=null;v82MLeave(it,dx<0?'outL':'outR');}},true);
+    d.addEventListener('pointerup',function(){x0=null;},true);}catch(e){}return d;};
+  window.__v87.items.push('swipe-fast');}catch(e){console.error('[CW] v87 swipe',e);}})();
+/* whistle timestamp (end of animation) for the banner latency sweep */
+(function(){try{var pe=AU.playEnd;AU.playEnd=function(){V87.whistleT=V87.now();return pe.apply(this,arguments);};}catch(e){}})();
+
+/* (d) eye pips in the heat pill replace the number/tier text */
+(function(){try{setInterval(function(){var r=document.getElementById('heatrow');if(!r)return;var e=document.getElementById('v87eye');if(!e){e=document.createElement('span');e.id='v87eye';r.appendChild(e);}
+var n=S.heat>=100?5:Math.min(4,Math.floor(S.heat/20))+1;var t='\uD83D\uDC41'.repeat(n);if(e.textContent!==t)e.textContent=t;},250);window.__v87.items.push('eye-pill');}catch(e){}})();
+
+(function(){try{var k=document.getElementById('skipk');if(k){k.setAttribute('aria-label','Skip');k.textContent='\u23ED';}}catch(e){}})();
+/* the ruling's whistle on a key play is when YOUR CALL closes (the call is the ruling) */
+(function(){try{var cd=closeDecide;closeDecide=async function(){var r=await cd.apply(this,arguments);V87.whistleT=V87.now();return r;};}catch(e){}})();
+(function(){try{var rp=runPlay;runPlay=async function(){V87.spotX=null;return rp.apply(this,arguments);};}catch(e){}})();
+/* final-ruling whistle: the flag toss, a coach's challenge and the damage-control menu all end before the ruling is final */
+(function(){try{
+  var ft=flagToss;flagToss=async function(){var r=await ft.apply(this,arguments);V87.whistleT=V87.now();return r;};
+  var cm=chMaybe;chMaybe=async function(){var r=await cm.apply(this,arguments);if(r)V87.whistleT=V87.now();return r;};
+  var im=v76InflMaybe;v76InflMaybe=async function(){var t=V87.now();var r=await im.apply(this,arguments);if(V87.now()-t>200)V87.whistleT=V87.now();return r;};}catch(e){console.warn('[v87] whistle',e);}})();
+V87.makePlay=function(){return makePlay();};
+V87.addHeat=function(n){addHeat(n);};
+/* 7v7: the seven per side, named where the roster names them (C #62, TE #85 are numbers only) */
+V87.SEVEN={off:{0:'C #62',5:'TE #85',6:'qb',7:'rb',8:'wr0',9:'wr1',10:'wr2'},def:{0:'dl',1:'DL2',4:'LB',5:'LB2',7:'NB',9:'db',10:'DB2'}};
+V87.onField=function(team){var t=T(team);return [ 'C #62','TE #85',t.qb,t.rb,t.wr[0],t.wr[1],t.wr[2] ];};
+/* YOUR CALL preview: resulting down & distance + spot per option, from the same project(effect()) the result uses */
+function v87NextTxt(pr,off){if(!pr)return '';if(pr.kind==='TD')return 'TD';if(pr.kind==='SAF')return 'Safety';
+  var sp=spotTxt(pr.yl,pr.poss);if(pr.poss!==off)return T(pr.poss).ab+' ball \u00b7 '+sp;
+  return ord(Math.min(4,pr.down))+' & '+(pr.togo>=100-pr.yl?'Goal':pr.togo)+' \u00b7 '+sp;}
+function v87Prev(kp,c){var t='';try{t=v87NextTxt(project(kp,effect(kp,c==='letgo'?'letgo':c)),kp.off);}catch(e){}V87.prev=V87.prev||{};V87.prev[c]=t;return t;}
+function v87ActualNext(rec){try{var a=rec.after;if(!a)return '';if(/TOUCHDOWN/.test(rec.ruling||''))return 'TD';if(/SAFETY/.test(rec.ruling||''))return 'Safety';
+  var pr={poss:a.poss,yl:a.yl,down:a.down,togo:a.togo,kind:'X'};return v87NextTxt(pr,rec.off);}catch(e){return '';}}
+/* meme history: formats actually shown, newest last; v82MEnq drops anything already in the last 8 */
+V87.shownHist=[];V87.memeFmtCount={};
+(function(){try{var en=v82MEnq;v82MEnq=function(p){try{var id=p&&(p.fmt||p.key);if(id&&V87.shownHist.slice(-8).indexOf(id)>=0){V87.memeDrops=(V87.memeDrops||0)+1;return;}}catch(e){}return en.apply(this,arguments);};
+  var sh=v82MShow;v82MShow=function(it){var id=it&&it.p&&(it.p.fmt||it.p.key);if(id&&V87.shownHist.slice(-8).indexOf(id)>=0){V87.memeDrops=(V87.memeDrops||0)+1;try{if(it.p)it.p.pop=null;}catch(e){}return false;}
+    var r=sh.apply(this,arguments);if(r&&id){V87.shownHist.push(id);if(V87.shownHist.length>200)V87.shownHist.shift();V87.memeFmtCount[id]=(V87.memeFmtCount[id]||0)+1;}return r;};
+  Object.defineProperty(window.CW,'memeHistory',{get:function(){return Object.freeze(V87.shownHist.slice(-8));},enumerable:true,configurable:false});
+  window.__v87.items.push('meme-norepeat8');}catch(e){console.error('[CW] v87 meme hist',e);}})();
+
+/* ---------- v86 polish: '1 yds' singular, #lower clamp at 375, gold ring self-check ---------- */
+(function(){try{
+ var RX=/(^|[^\d.])([+\u2212-]?1) yds\b/g;
+ function fixNode(n){if(n.nodeType===3){if(RX.test(n.nodeValue)){RX.lastIndex=0;n.nodeValue=n.nodeValue.replace(RX,'$1$2 yd');}RX.lastIndex=0;return;}if(n.nodeType===1&&n.childNodes)for(var i=0;i<n.childNodes.length;i++)fixNode(n.childNodes[i]);}
+ V87.ydFix=function(s){return String(s).replace(RX,'$1$2 yd');};
+ new MutationObserver(function(ms){for(var i=0;i<ms.length;i++){var m=ms[i];if(m.type==='characterData')fixNode(m.target);else for(var j=0;j<m.addedNodes.length;j++)fixNode(m.addedNodes[j]);}}).observe(document.body,{childList:true,subtree:true,characterData:true});
+ var st=document.createElement('style');st.textContent='@media (max-width:380px){html body #lower{max-height:2.6em!important;overflow:hidden!important;display:-webkit-box;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;white-space:normal!important}html body #lower:not(.on):not([style*="block"]){}}';document.head.appendChild(st);
+ function ring(){var hr=document.getElementById('heatrow'),r=document.getElementById('v80ring');var ok=!!(hr&&r&&hr.contains(r));if(!ok&&hr){if(!r){r=document.createElement('i');r.id='v80ring';r.setAttribute('aria-hidden','true');}hr.insertBefore(r,hr.firstChild);ok=hr.contains(r);V87.ringRepairs=(V87.ringRepairs||0)+1;}window.__v87.ringOK=ok;return ok;}
+ V87.ringCheck=ring;setTimeout(ring,500);setInterval(ring,3000);
+ window.__v87.items.push('polish86');}catch(e){console.error('[CW] v87 polish',e);}})();
+
+
+/* ---------- v87 fix: result banner yields to key-play card (375 budget) ---------- */
+(function(){try{var st=document.createElement('style');st.id='v87kgban';st.textContent='html body.v87kg #v87ban{visibility:hidden!important}';document.head.appendChild(st);window.__v87.items.push('kg-ban');}catch(e){console.error('[CW] v87 kgban',e);}})();
+
+/* ===== v88 DISCREET2 ===== */
+window.__v88=Object.assign(window.__v88||{},{items:[]});V87.v88=true;
+/* (1) budget CSS: odds chip hidden while sheet open; (3) owe + odds chips flow side by side */
+(function(){try{var st=document.createElement('style');st.id='v88css';st.textContent=[
+ 'body:has(#decide:not([hidden]):not(.out):not(.done)) #v87odds{display:none!important}',
+ 'html body #v87odds{position:static!important;display:inline-block;margin-left:6px;white-space:nowrap;vertical-align:middle}',
+ 'html body #v87owe{white-space:nowrap}',
+ '#heatrow>#v88sus:first-child{font-size:0!important}'].join('\n');document.head.appendChild(st);
+ function place(){var o=document.getElementById('v87odds'),w=document.getElementById('v87owe');if(o&&w&&w.parentNode&&o.previousSibling!==w){w.parentNode.insertBefore(o,w.nextSibling);}}
+ V87.placeOdds=place;setInterval(place,1000);place();window.__v88.items.push('budget-css','chips');}catch(e){console.error('[CW] v88 css',e);}})();
+/* (4) pbp from the play's own record */
+function v88Yd(n){n=Math.abs(Math.round(n||0));return n+(n===1?' yd':' yds');}
+function v88Pbp(r){try{var c=r.carrier||'',q=r.passer||'',y=r.yds||0,t;
+ if(r.type==='sack')t=(q||c)+' sacked, loss of '+v88Yd(y);
+ else if(r.type==='pass'){if(r.turnover)t=q+' pass intercepted';else if(r.complete)t=q+' to '+c+(y<0?', loss of ':' for ')+v88Yd(y);else t=q+' incomplete to '+c;}
+ else{t=c+' run'+(y<0?', loss of ':' for ')+v88Yd(y);if(r.turnover)t+=', fumble lost';}
+ if(r.scoreDelta){var d=Math.max(r.scoreDelta.home||0,r.scoreDelta.away||0);if(d>=6)t+=' · TOUCHDOWN';else if(d===2)t+=' · SAFETY';}
+ if(r.pen)t+=' · flag '+String(r.pen.call||'').toUpperCase();return t;}catch(e){return '';}}
+V87.pbpOf=v88Pbp;
+/* (7) drawn counts + renderedEndSpot on every play */
+function v88Drawn(rec){try{var pl=window.__v53&&window.__v53.players;if(!pl)return null;var c={};Object.values(pl).forEach(function(P){if(P&&P.root&&P.root.visible){c[P.tm]=(c[P.tm]||0)+1;}});var o=rec.off,d=o==='home'?'away':'home';return {off:c[o]||0,def:c[d]||0,byTeam:c};}catch(e){return null;}}
+(function(){try{var pub0=v87Publish;v87Publish=function(rec){try{if(rec){rec.pbp=v88Pbp(rec);if(V87.curDrawn&&V87.curDrawn.uid===rec.uid)rec.drawn=V87.curDrawn.d;if(rec.scoreDelta&&Math.max(rec.scoreDelta.home||0,rec.scoreDelta.away||0)>=6)V87.lastTdT=Date.now();if(!rec.drawn){var dn=v88Drawn(rec);if(dn)rec.drawn=dn;}
+   if(rec.renderedEndSpot==null)V87.pendSpot=rec;}}catch(e){}return pub0.apply(this,arguments);};
+ window.__v88.items.push('pbp','drawn');}catch(e){console.error('[CW] v88 pub',e);}})();
+/* (5) no '… GB 0' after a TD: strip shows TOUCHDOWN / KICKOFF */
+(function(){try{var fix=function(){var b=document.getElementById('bdd'),s=document.getElementById('bspot');if(!b||!s)return;var t=s.textContent||'';
+  if(/(^|\s)[A-Z]{2,3} 0$/.test(t)||/ 100$/.test(t)||(S&&S.drive&&(S.yl>=100||S.yl<=0))){var bn=document.querySelector('#v87ban.on');var td=(bn&&/TOUCHDOWN/.test(bn.textContent))||(V87.lastTdT&&Date.now()-V87.lastTdT<8000)||(S&&S.drive&&S.yl>=100);
+   var want=td?'TOUCHDOWN':'KICKOFF';if(b.textContent!==want)b.textContent=want;if(s.textContent!=='')s.textContent='';V87.tdFix=(V87.tdFix||0)+1;}};
+ var mo=new MutationObserver(fix);var go=function(){var b=document.getElementById('bdd'),s=document.getElementById('bspot');if(b&&s){mo.observe(b,{childList:true,characterData:true,subtree:true});mo.observe(s,{childList:true,characterData:true,subtree:true});}};go();
+ var h=hud;hud=function(){var r=h.apply(this,arguments);try{fix();}catch(e){}return r;};V87.tdStrip=fix;window.__v88.items.push('td-strip');}catch(e){console.error('[CW] v88 td',e);}})();
+/* (2) contract judged at the final whistle */
+function v88Final(){try{if(V87.c.finalDone||!S||S.over!=='final')return;V87.c.finalDone=1;var taken=V87.c.taken;if(!taken||!S.job)return;
+ var fail=!inside(margin());V87.c.failEval={over:S.over,fail:fail,score:{home:S.score.home,away:S.score.away},job:{team:S.job.team,lo:S.job.lo,hi:S.job.hi},t:Date.now(),at:'final-whistle'};
+ if(fail)setTimeout(function(){v87Strike().catch(function(e){console.warn(e);});},300);}catch(e){V87.c.failErr=String(e&&e.message||e);}}
+window.__v88.items.push('final-contract');
+setInterval(function(){try{if(S&&!S.over&&V87.c.finalDone){V87.c.finalDone=0;}}catch(e){}},500);
+
+/* (7b) skipped plays: renderedEndSpot = ball as drawn at the next snap; drawn = players drawn at this play's snap */
+function v88BallYd(off){var bm=window.__v87ball;var bx=S.ballDisp&&S.ballDisp[0]!=null?S.ballDisp[0]:(bm&&bm.visible!==false?bm.position.x:null);if(bx==null)return null;return {y:Math.round((dir(off)>0?bx:100-bx)*2)/2,src:S.ballDisp?'disp':'mesh'};}
+(function(){try{var rp=runPlay;runPlay=function(kp){try{var pr=V87.pendSpot;V87.pendSpot=null;if(pr&&pr.renderedEndSpot==null){var b=v88BallYd(pr.after&&pr.after.poss||pr.off);if(b){pr.renderedEndSpot=b.y;pr.renderedSrc=b.src+'-nextsnap';var prevLast=V87.last;v87Publish(pr);V87.pendSpot=null;
+   if(prevLast&&prevLast.uid!==pr.uid){var nw=V87.pubs.pop();for(var i=V87.pubs.length-1;i>=0;i--){if(V87.pubs[i].uid===pr.uid){V87.pubs[i]=nw;break;}}V87.last=prevLast;}}}}catch(e){}
+  var r=rp.apply(this,arguments);try{var u=kp&&kp._uid;setTimeout(function(){var d=v88Drawn({off:kp&&kp.off});if(d)V87.curDrawn={uid:u,d:d};},60);}catch(e){}return r;};window.__v88.items.push('skip-spot');}catch(e){console.error('[CW] v88 rp',e);}})();
+/* (1b) interstitial cards trimmed to the live budget (Ui counts every frame) */
+(function(){try{var st=document.createElement('style');st.id='v88trim';st.textContent='html body #memo .mh span,html body #memo .mr,html body #memo p,html body #memo .mfoot,html body #memo small,html body #memo li small{display:none!important}'+
+ 'html body .rck2,html body .skip,html body .chafter,html body .chbar,html body .chres .row~.row,html body .oheat,html body .osub,html body .ograde,html body .rcd small{display:none!important}';document.head.appendChild(st);window.__v88.items.push('trim-cards');}catch(e){}})();
+/* (g) field reads the record: after the whistle the drawn ball is held at rec.endSpot (incompletions re-spot to LOS) until the next snap */
+V87.hold=null;
+function v88Apply(){var h=V87.hold;if(!h)return;var bm=window.__v87ball;if(bm){bm.position.x=h.x;}if(S.ballDisp)S.ballDisp[0]=h.x;else S.ballDisp=[h.x,26.65,0];}
+function v88Hold(rec){try{if(!rec||rec.endSpot==null)return;var x=absX(Math.max(0,Math.min(100,rec.endSpot)),rec.off);V87.hold={x:x,uid:rec.uid,off:rec.off,end:rec.endSpot};v88Apply();
+  var bm=window.__v87ball;var bx=bm?bm.position.x:x;rec.renderedEndSpot=Math.round((dir(rec.off)>0?bx:100-bx)*2)/2;rec.renderedSrc='respot';}catch(e){}}
+(function(){try{var bm=window.__v87ball;if(bm){var P=bm.position,_x=P.x;Object.defineProperty(P,'x',{configurable:true,get:function(){var h=V87.hold;if(h){try{var c=S.cur&&S.cur._v87;if(c&&c.uid!==h.uid&&!c.done){V87.hold=null;V87.holdRel=(V87.holdRel||0)+1;return _x;}}catch(e){}return h.x;}return _x;},set:function(v){_x=v;}});V87.rawBallX=function(){return _x;};}
+ var lg=function(){try{var h=V87.hold,bm=window.__v87ball;if(h&&bm&&!h.logged){bm.updateMatrixWorld(true);var wx=bm.matrixWorld.elements[12];var px=bm.parent?bm.parent.worldToLocal(new THREE.Vector3(wx,0,0)).x:wx;h.logged=1;var y=dir(h.off)>0?bm.position.x:100-bm.position.x;var yw=dir(h.off)>0?px:100-px;(V87.drawLog=V87.drawLog||[]).push({uid:h.uid,end:h.end,drawn:Math.round(y*2)/2,world:Math.round(yw*2)/2,vis:bm.visible!==false});if(V87.drawLog.length>400)V87.drawLog.shift();}}catch(e){}requestAnimationFrame(lg);};requestAnimationFrame(lg);
+ var sb=v87SpotBall;v87SpotBall=function(rec){v88Hold(rec);return sb.apply(this,arguments);};
+ var pb=v87Publish;v87Publish=function(rec){try{if(rec&&rec.done&&(!V87.hold||V87.hold.uid!==rec.uid))v88Hold(rec);else if(rec&&V87.hold&&V87.hold.uid===rec.uid){var bm=window.__v87ball;var bx=bm?bm.position.x:V87.hold.x;rec.renderedEndSpot=Math.round((dir(rec.off)>0?bx:100-bx)*2)/2;rec.renderedSrc='respot';}}catch(e){}return pb.apply(this,arguments);};
+ var rp=runPlay;runPlay=function(){V87.hold=null;return rp.apply(this,arguments);};
+ window.__v88.items.push('respot');}catch(e){console.warn('v88 respot',e);}})();
+V87.dirOf=function(o){return dir(o);};
+
+/* ===== v91 MOMENTUM ===== */
+window.__v91=window.__v91||{ok:true,build:'MOMENTUM'};window.__v91.items=window.__v91.items||[];
+var V89T=0;try{V89T=+(new URLSearchParams(location.search).get('v90to')||0)||0;}catch(e){}
+var V90F=0;try{V90F=+(new URLSearchParams(location.search).get('v90fum')||0)||0;}catch(e){}
+var V89={sw:[],turn:[],banForced:0,banLog:[]};V87.v90=V89;
+/* (1) meme swipe: pointer (mouse/pen/touch) + touch events; >=40px horizontal drag dismisses; marked at swipe start */
+(function(){try{var st=null;
+ function card(){var it=V82M&&V82M.cur;if(!it||it.gone||!it.el||!it.el.isConnected)return null;return it;}
+ function hit(it,x,y){var r=it.el.getBoundingClientRect();return x>=r.left&&x<=r.right&&y>=r.top&&y<=r.bottom;}
+ function down(x,y,kind){var it=card();if(!it||!hit(it,x,y)){st=null;return;}st={it:it,x0:x,y0:y,t0:Date.now(),kind:kind};it.swipeStart={t:st.t0,x:x,y:y,kind:kind};it.touched=true;}
+ function move(x,y){if(!st)return;var it=st.it;if(it.gone){st=null;return;}var dx=x-st.x0,dy=y-st.y0;
+   if(Math.abs(dx)>=40&&Math.abs(dx)>=Math.abs(dy)){var k=st.kind;st=null;it.seenBy='swipe';it.swipeKind=k;V89.sw.push({kind:k,dx:Math.round(dx),ms:Date.now()-it.swipeStart.t});if(V89.sw.length>100)V89.sw.shift();
+     try{it.el.classList.remove('held');it.el.style.transform='';}catch(e){}it.held=false;v82MLeave(it,dx<0?'outL':'outR');}}
+ function up(){st=null;}
+ var o={capture:true,passive:true};
+ addEventListener('pointerdown',function(e){if(e.pointerType==='touch'&&('ontouchstart' in window))return;down(e.clientX,e.clientY,e.pointerType||'mouse');},o);
+ addEventListener('pointermove',function(e){if(e.pointerType==='touch'&&('ontouchstart' in window))return;move(e.clientX,e.clientY);},o);
+ addEventListener('pointerup',up,o);addEventListener('pointercancel',function(e){if(e.pointerType!=='touch')up();},o);
+ addEventListener('touchstart',function(e){var t=e.touches&&e.touches[0];if(t&&e.touches.length===1)down(t.clientX,t.clientY,'touch');},o);
+ addEventListener('touchmove',function(e){var t=e.touches&&e.touches[0];if(t)move(t.clientX,t.clientY);},o);
+ addEventListener('touchend',function(e){var t=e.changedTouches&&e.changedTouches[0];if(t)move(t.clientX,t.clientY);up();},o);
+ var css=document.createElement('style');css.textContent='.v82mc{touch-action:pan-y;user-select:none;-webkit-user-select:none}';document.head.appendChild(css);
+ window.__v91.items.push('swipe');}catch(e){console.warn('v91 swipe',e);}})();
+/* (2) change of possession: strip + lastPlay.bug from the record, new possession 1st & 10 at the return spot */
+V89.lock=null;
+function v91Turn(rec){try{if(!rec||!rec.done)return;var a=rec.after||{};var flipped=a.poss&&a.poss!==rec.off;if(!rec.turnover&&!flipped)return;
+  if(rec.scoreDelta&&Math.max(rec.scoreDelta.home||0,rec.scoreDelta.away||0)>=6)return;
+  var np=flipped?a.poss:other(rec.off);var yl=flipped&&a.yl!=null?a.yl:Math.round(100-Math.max(0,Math.min(100,rec.endSpot)));
+  rec.after=Object.assign({},a,{poss:np,yl:yl,down:1,togo:10,drive:true});
+  var dd='1ST & 10',sp=spotTxt(yl,np);rec.bug=Object.assign({},rec.bug||{},{dd:dd,spot:sp});
+  V89.lock={uid:rec.uid,dd:dd,sp:sp};var ent={uid:rec.uid,poss:np,yl:yl,dd:dd,sp:sp};V89.turn.push(ent);V89.chk=V89.chk||[];V89.chk.push(ent);setTimeout(function(){try{ent.dom0=[(document.getElementById('bdd')||{}).textContent,(document.getElementById('bspot')||{}).textContent];ent.domOk=ent.dom[0]===dd&&ent.dom[1]===sp;}catch(e){}},400);if(V89.turn.length>50)V89.turn.shift();v91Paint();}catch(e){V89.turnErr=String(e);}}
+function v91Paint(){var L=V89.lock;if(!L)return;try{var ck=S.cur&&S.cur._v87;if(S.anim&&S.anim.kp&&(!S.anim.kp._v87||S.anim.kp._v87.uid!==L.uid)){var k=S.anim.kp._v87;if(!k||!k.done){v91Rel();return;}}}catch(e){}var a=document.getElementById('bdd'),b=document.getElementById('bspot');if(a&&a.textContent!==L.dd)a.textContent=L.dd;if(b&&b.textContent!==L.sp)b.textContent=L.sp;}
+(function(){try{var rd=v87RecDone;v87RecDone=function(kp){try{var rc=kp&&kp._v87;if(rc&&!rc.done&&V87.rawBallX&&window.__v87ball&&window.__v87ball.visible!==false){var rx=V87.rawBallX();if(rx!=null&&isFinite(rx))rc.tackleSpot=Math.round((dir(rc.off)>0?rx:100-rx)*2)/2;}}catch(e){}var r=rd.apply(this,arguments);try{v91Turn(kp&&kp._v87);}catch(e){}return r;};
+ var pb=v87Publish;v87Publish=function(rec){try{if(rec&&rec.turnover&&rec.done&&!(V89.lock&&V89.lock.uid===rec.uid))v91Turn(rec);}catch(e){}return pb.apply(this,arguments);};
+ 
+ var hd=hud;hud=function(){var r=hd.apply(this,arguments);try{v91Paint();}catch(e){}return r;};
+ setInterval(function(){try{v91Paint();}catch(e){}},150);
+ window.__v91.items.push('turnover-strip');}catch(e){console.warn('v91 turn',e);}})();
+/* (3) banner: first-paint → forced gone ≤2.45s (Ui Bot: opacity>0 .. opacity0/display:none) */
+(function(){try{
+  var HOLD=2000, HARD=2400;
+  var st=document.createElement('style');st.id='v92ban';st.textContent=
+    '#v87ban.on{opacity:1!important;transform:none!important;transition:none!important;display:flex!important}'+
+    '#v87ban.v92gone{display:none!important;opacity:0!important;visibility:hidden!important;pointer-events:none!important;transition:none!important}';
+  document.head.appendChild(st);
+  function killAll(){clearTimeout(V89.capT);clearTimeout(V89.fadeT);clearTimeout(V89.hardT);clearTimeout(V87.banT);}
+  function gone(b,why,t0){
+    if(!b)return;killAll();
+    b.className='v92gone';b.style.setProperty('display','none','important');b.style.setProperty('opacity','0','important');b.style.visibility='hidden';
+    var L=V87.banLog[V87.banLog.length-1];if(L&&!L.t1){L.t1=V87.now();L.forced=why;}
+    V87.ban=null;V87.banUntil=0;V89.banWall=0;V89.banForced=(V89.banForced||0)+1;
+    V89.banLog.push({why:why,ms:Date.now()-(t0||V89.banWall||Date.now())});
+    if(V89.banLog.length>50)V89.banLog.shift();
+    try{if(V89.banRec)v87Commish(V89.banRec);}catch(e){}
+  }
+  window.v91BanHide=function(why){gone(document.getElementById('v87ban'),why||'cap',V89.banWall);};
+  var bn=v87Banner;
+  v87Banner=function(rec){
+    var r=bn.apply(this,arguments);
+    try{
+      killAll();
+      var b=document.getElementById('v87ban');if(!b)return r;
+      b.style.removeProperty('display');b.style.removeProperty('opacity');b.style.visibility='';
+      b.className='on '+(rec.cls||'');
+      V89.banRec=rec;V89.banWall=0;
+      var arm=function(t0){
+        if(V89.banWall)return;V89.banWall=t0;
+        V87.banUntil=V87.now()+HOLD;
+        V89.capT=setTimeout(function(){gone(b,'cap',t0);},HOLD);
+        V89.hardT=setTimeout(function(){gone(document.getElementById('v87ban'),'hard',t0);},HARD);
+      };
+      var tries=0;
+      var poll=function(){
+        var el=document.getElementById('v87ban');if(!el)return;
+        var cs=getComputedStyle(el);var vis=cs.display!=='none'&&cs.visibility!=='hidden'&&parseFloat(cs.opacity)>0;
+        if(vis){arm(performance.now?Date.now():Date.now());return;}
+        if(++tries<40)requestAnimationFrame(poll);else arm(Date.now());
+      };
+      requestAnimationFrame(function(){requestAnimationFrame(poll);});
+    }catch(e){console.warn('v92 ban',e);}
+    return r;
+  };
+  setInterval(function(){try{
+    var b=document.getElementById('v87ban');if(!b||!V89.banWall)return;
+    if(Date.now()-V89.banWall>=HARD&&!/\bv92gone\b/.test(b.className)&&getComputedStyle(b).display!=='none')gone(b,'watchdog',V89.banWall);
+  }catch(e){}},40);
+  try{window.__v91.items.push('banner-cap');}catch(e){}
+  try{window.__v92.items.push('banner-cap');}catch(e){}
+}catch(e){console.warn('v92 ban',e);}})();
+/* (4) strip down/distance stays on one line */
+(function(){var c=document.createElement('style');c.textContent='#bdd{white-space:nowrap!important;flex:0 0 auto!important}#bspot{white-space:nowrap!important;overflow:hidden;text-overflow:ellipsis;min-width:0}';document.head.appendChild(c);window.__v91.items.push('strip-nowrap');})();
+/* diag: strip after the whistle of a change-of-possession play (first idle frame after its animation) */
+setInterval(function(){try{var L=V89.lock;if(!L||S.anim)return;var e=V89.turn.filter(function(x){return x.uid===L.uid&&!x.dom;})[0];if(!e)return;e.dom=[(document.getElementById('bdd')||{}).textContent,(document.getElementById('bspot')||{}).textContent];e.domOk=e.dom[0]===e.dd&&e.dom[1]===e.sp;}catch(e){}},120);
+(function(){try{var mo=new MutationObserver(function(){try{if(V89.lock)v91Paint();}catch(e){}});['bdd','bspot'].forEach(function(id){var e=document.getElementById(id);if(e)mo.observe(e,{childList:true,characterData:true,subtree:true});});}catch(e){}})();
+/* wc budget: recap cards show only the latest drive row (Ui counts every frame) */
+(function(){var c=document.createElement('style');c.textContent='html body .rcap .rcd:has(~ .rcd){display:none!important}html body .rcap .rcm,html body .rcap .rcl,html body .rcap .rcs span{display:none!important}';document.head.appendChild(c);})();
+/* wc budget: replay-review card trimmed (header subtitle, clock, angle bug, messages, challenger quote, button sublines, booth line) */
+(function(){var c=document.createElement('style');c.textContent='html body #chrev .chtop span,html body #chrev #chtime,html body #chrev .chtvbug,html body #chrev .chmsgs,html body #chrev .chq small,html body #chrev .chq>div+div,html body #chrev .chbtns small,html body #chrev #chboo,html body #chrev .chtop,html body #chrev .chbtns em{display:none!important}';document.head.appendChild(c);})();
+/* v91: strip from the record on EVERY play (skipped/fast-forwarded included); lock released on the next play */
+function v91DD(a){var dn=Math.max(1,Math.min(4,a.down||1));return ord(dn).toUpperCase()+' & '+(a.togo>=100-a.yl?'GOAL':a.togo);}
+function v91Rel(){if(!V89.lock)return;V89.lock=null;try{if(S.sbPin&&!S.sbPin.pending)S.sbPin=null;}catch(e){}V89.rel=(V89.rel||0)+1;try{hud();}catch(e){}}
+function v91Rec(rec){try{if(!rec||!rec.done)return;if(V89.lock&&V89.lock.uid!==rec.uid)V89.lock=null;
+  if(rec.turnover||(rec.after&&rec.after.poss&&rec.after.poss!==rec.off)){v91Turn(rec);if(V89.lock&&V89.lock.uid===rec.uid)return;}
+  var a=rec.after;if(!a||!a.drive||S.over)return;var sd=rec.scoreDelta||{};if((sd.home||0)||(sd.away||0))return;if(a.yl==null||a.yl<=0||a.yl>=100)return;
+  var dd=v91DD(a),sp=spotTxt(a.yl,a.poss);rec.bug=Object.assign({},rec.bug||{},{dd:dd,spot:sp});V89.lock={uid:rec.uid,dd:dd,sp:sp,gen:1};try{if(S.sbPin&&!S.sbPin.pending)S.sbPin=null;}catch(e){}v91Paint();}catch(e){V89.recErr=String(e);}}
+(function(){try{var rd=v87RecDone;v87RecDone=function(kp){var r=rd.apply(this,arguments);try{v91Rec(kp&&kp._v87);}catch(e){}return r;};
+ var pb=v87Publish;v87Publish=function(rec){try{if(rec&&V89.lock&&rec.uid!==V89.lock.uid){if(rec.done)v91Rec(rec);else v91Rel();}}catch(e){}return pb.apply(this,arguments);};
+ if(typeof special==='function'){var sp0=special;special=function(){v91Rel();return sp0.apply(this,arguments);};}
+ setInterval(function(){try{var L=V89.lock;if(!L)return;var c=V87.cur;if(c&&c.uid!==L.uid&&!c.done){v91Rel();return;}if(S.drive===false||S.over||(S.phase&&/kick|punt|fg|half|shop|end/i.test(S.phase)))v91Rel();}catch(e){}},50);
+ window.__v91.items.push('strip-every-play');}catch(e){console.warn('v91 strip',e);}})();
+/* v91: once the next play's call card closes, drop its projected text and repaint the strip from the live state until that play publishes */
+setInterval(function(){try{if(V89.lock||!S.anim||!S.anim.kp||S.anim.kp._v87)return;var de=document.getElementById('decide'),bs=document.getElementById('bspot'),bd=document.getElementById('bdd');if(!bs||!bd)return;if(de&&!de.hidden&&!de.classList.contains('out'))return;if(bs.classList.contains('cw-pending'))bs.classList.remove('cw-pending');
+ if(!S.drive)return;var dd=v91DD({down:S.down,togo:S.togo,yl:S.yl}),sp=spotTxt(S.yl,S.poss);if(bd.textContent!==dd||bs.textContent.indexOf(sp)<0){V89.pre=(V89.pre||0)+1;try{S.sbPin=null;hud();}catch(e){}if(bd.textContent!==dd)bd.textContent=dd;if(bs.textContent.indexOf(sp)<0)bs.textContent=sp;}}catch(e){}},20);
+/* ===================== v91 MOMENTUM ===================== */
+/* mom: -100..100, + = the opponent of your job's team ("threat side"). watch: 0..100 league pattern tell (cools only on let-go key plays). */
+var V91={on:true,shift:null,mom:0,watch:0,told:0,thr:{},arm:null,flags:[],swings:[],log:[],rb:{n:0,opp:0,fav:0,took:0},lastKeyCall:null,keyN:0,
+  D:{bandBase:0.07,bandSlope:0.012,bandOver:0.05,bandMax:0.2,blowout:4,momW:0.14,momDecay:0.93,swingLo:10,swingHi:70,thrMin:2,thrMax:4,build:[34,50],watchCall:8,watchSame:25,watchB2B:25,watchCool:12,tell:50,saveHeat:3,tellHeat:6,watchHeat:4}};
+V87.v91=V91;try{window.CW.v91=V91;}catch(e){}
+V91.heatLog=[];try{var _v91vh=v77Heat;v77Heat=function(a,w){try{if(w&&/^(\u26A1|\uD83D\uDC41)/.test(w)){V91.heatLog.push([a,w]);if(V91.heatLog.length>30)V91.heatLog.shift();}}catch(e){}return _v91vh(a,w);};}catch(e){}
+V91._jobLine=function(){return v87JobLine();};V91._call=function(kp,c,l){return v91Call(kp,c,l,false);};V91._letgo=function(kp){return v91LetGo(kp);};V91._meter=function(){return v91Meter();};
+function v91Job(){return S&&S.job&&S.job.team?S.job:null;}
+function v91X(){var j=v91Job();return j?jm(margin()):0;}
+function v91Opp(){var j=v91Job();return j?other(j.team):null;}
+/* (1) rubber band: probability that the offense gets a "best of two" draw of the same play generator (stats stay in-distribution) */
+function v91Band(off){var j=v91Job();if(!j||!V91.on)return 0;var D=V91.D,x=v91X(),p=0;
+  if(off!==j.team){if(x>=j.lo)p=D.bandBase+Math.min(0.08,(x-j.lo)*D.bandSlope)+(j.hi<99&&x>j.hi?D.bandOver:0);}
+  else if(x<j.lo-D.blowout)p=Math.min(0.22,0.10+(j.lo-D.blowout-x)*0.012);
+  var sh=V91.shift;if(sh&&sh.left>0){if(off===sh.team)return Math.min(D.bandMax+0.1,0.12+0.22*sh.lev);return 0;}
+  var mm=V91.mom/100;p+=off!==j.team?D.momW*Math.max(0,mm):D.momW*1.3*Math.max(0,-mm);
+  /* hard rule: never late-game unstoppable; inside the last 2:00 the band is halved */
+  if(S.q>=4&&S.clock<=120)p*=0.5;
+  return Math.min(D.bandMax,Math.max(0,p));}
+function v91Score(k){return (k.turnover?-25:0)+(k.sack?-4:0)+(k.made?6:0)+(k.score?12:0)+k.yards;}
+function v91Fix(kp){kp.made=kp.yards>=kp.togo;kp.score=!kp.turnover&&!kp.sack&&(kp.los+kp.yards)>=100;kp.close=!kp.turnover&&kp.yards>0&&!kp.goal&&Math.abs(kp.yards-kp.togo)<=1&&kp.los+kp.yards<100;kp.near=!kp.turnover&&!kp.sack&&kp.yards>0&&!kp.goal&&Math.abs(kp.yards-kp.togo)<=2&&kp.los+kp.yards<100;return kp;}
+/* (2) threat moments */
+function v91H(){return S.q<=2?1:2;}
+function v91El(){return ((S.q-1)%2)*900+(900-S.clock);}
+function v91Plan(h){var t=V91.thr[h];if(t)return t;var n=rint(V91.D.thrMin,V91.D.thrMax),sl=[];for(var i=0;i<n;i++)sl.push(Math.round(120+(i+0.15)*1380/n+rint(-60,60)));t=V91.thr[h]={plan:n,slots:sl,n:0,log:[]};return t;}
+function v91Kind(){if(S.yl>=75)return ['rz','RED ZONE TRIP'];if(S.down===4&&S.togo<=3)return ['4s','4TH & SHORT'];if((S.q===2||S.q===4)&&S.clock<=150)return ['2m','TWO-MINUTE DRILL'];return ['bs','BIG SHOT'];}
+function v91Tick(){/* called once per scrimmage snap before the play is drawn */
+  var opp=v91Opp();if(!opp||!V91.on||S.over)return null;var h=v91H(),t=v91Plan(h),el=v91El();
+  if(!V91.arm&&t.n<t.plan&&(el>=t.slots[t.n]||(el>=1500&&t.n<V91.D.thrMin)))V91.arm={h:h,build:0,shown:0,t0:el,plays:0};
+  var A=V91.arm;if(!A)return null;if(A.h!==h){V91.arm=null;return null;}
+  if(S.poss!==opp)return null;
+  if(A.build<100){A.build=Math.min(100,A.build+rint(V91.D.build[0],V91.D.build[1])+(el>=1560?40:0));A.shown++;V91.mom=Math.max(V91.mom,Math.round(A.build*0.8));v91Meter();return null;}
+  return A;}
+function v91Big(kp,A,mp){var kd=v91Kind(),best=kp,mild=v91X()<v91Job().lo-3;for(var i=0;i<2;i++){var k2=mp();if(v91Score(k2)>v91Score(best)){k2._uid=kp._uid;best=k2;}}kp=best;
+  var room=100-kp.los,force=!mild&&rnd()<0.5;if(!force){v91Fix(kp);kp._v91th={kind:kd[0],lab:kd[1],h:A.h,shown:A.shown,build:A.build,q:S.q,ck:S.clock,forced:false};var t0=V91.thr[A.h];t0.n++;t0.log.push(kp._v91th);V91.arm=null;V91.mom=Math.max(V91.mom,70);return kp;}
+  kp.turnover=false;kp.sack=false;
+  if(kd[0]==='rz'&&rnd()<(mild?0.15:0.35)){kp.yards=room;if(kp.pass)kp.complete=true;}
+  else{var g=Math.max(kp.yards,kp.togo+rint(1,kd[0]==='4s'||mild?4:11));kp.yards=Math.min(g,room-1>0?room-1:room);if(kp.pass)kp.complete=true;if(kp.yards>=room)kp.yards=room;}
+  v91Fix(kp);kp._v91th={kind:kd[0],lab:kd[1],h:A.h,shown:A.shown,build:A.build,q:S.q,ck:S.clock,forced:true};
+  var t=V91.thr[A.h];t.n++;t.log.push(kp._v91th);V91.arm=null;V91.mom=Math.max(V91.mom,85);return kp;}
+/* momentum from results (every play, skipped included) */
+function v91Result(off,y,made,score,to){var j=v91Job();if(!j)return;if(V91.shift&&V91.shift.left>0)V91.shift.left--;var s=off===j.team?-1:1,d=0;
+  if(score)d=14;else if(to)d=-12;else if(y>=20)d=9;else if(made)d=5;else if(y<=0)d=-2;
+  V91.mom=Math.max(-100,Math.min(100,Math.round(V91.mom*V91.D.momDecay+s*d)));if(V91.arm&&V91.arm.build>0)V91.mom=Math.max(V91.mom,Math.round(V91.arm.build*0.8));}
+/* (3) leverage 0..1 for a decision */
+function v91Lev(kp){try{var L=leverage(kp).L+(kp._v91th?1.1:0);return Math.max(0,Math.min(1,(L-0.3)/2.2));}catch(e){return 0;}}
+/* (3)+(5) an effective call: swing scaled by leverage, pattern tell; normal call heat is untouched */
+function v91Call(kp,call,lev,sim){var j=v91Job();if(!j)return null;var ben=null;try{ben=benefits(call,kp);}catch(e){}
+  if(!ben){if(call==='spot')ben=kp.made?other(kp.off):kp.off;else if(call==='clock')ben=(jm(margin())>=j.lo&&jm(margin())<=j.hi)?j.team:null;}
+  var D=V91.D,dm=Math.round(D.swingLo+D.swingHi*lev*lev+ (kp._v91th?15:0)),sgn=ben===j.team?-1:ben?1:0;
+  V91.mom=Math.max(-100,Math.min(100,V91.mom+sgn*dm));if(ben)V91.shift={team:ben,lev:lev,left:Math.round(2+18*lev*lev),n0:Math.round(2+18*lev*lev)};
+  var pen=ben?other(ben):null,w0=V91.watch,why=[];V91.watch+=D.watchCall;
+  var last=V91.flags.slice(-1);if(pen&&last.length===1&&last[0].pen===pen){V91.watch+=D.watchSame;why.push('same team flagged twice running');}var hN=V91.flags.filter(function(f){return f.pen===pen&&f.h===(S.q<=2?1:2);}).length;if(pen&&hN>=2&&V91.watch<D.tell){V91.watch=D.tell;why.push('3 flags on '+T(pen).ab+' this half');}
+  if(lev>=0.45&&V91.lastKeyCall&&V91.lastKeyCall.lev>=0.45&&V91.keyN-V91.lastKeyCall.k<=2){V91.watch+=D.watchB2B;why.push('back-to-back big calls');}
+  V91.watch=Math.min(100,V91.watch);
+  var ent={h:(S.q<=2?1:2),call:call,lev:Math.round(lev*100)/100,dm:sgn*dm,pen:pen,ben:ben,threat:!!kp._v91th,watch:V91.watch,why:why,q:S.q,ck:S.clock};V91.flags.push(ent);V91.swings.push(ent);V91.lastKeyCall={lev:lev,k:V91.keyN};
+  if(!sim){try{if(kp._v91th&&ben===j.team)v77Heat(D.saveHeat,'⚡ Threat save');
+    if(why.length)v77Heat(Math.round((V91.watch-w0)/8),'👁 Pattern: '+why.join(' + '));
+    if(V91.watch>=D.tell&&w0<D.tell){V91.told++;v77Heat(D.tellHeat,'👁 LEAGUE IS WATCHING');}else if(w0>=D.tell)v77Heat(D.watchHeat,'👁 League is watching');}catch(e){}v91Meter();}
+  return ent;}
+function v91LetGo(kp){V91.watch=Math.max(0,V91.watch-V91.D.watchCool);if(!kp||!kp._v91th)return;}
+/* ---- hooks into the game ---- */
+(function(){try{
+ var mp0=makePlay;makePlay=function(){var self=this,args=arguments,kp=mp0.apply(self,args);try{if(!V91.on||!v91Job())return kp;var mp=function(){return mp0.apply(self,args);};
+   var A=v91Tick();if(A)return v91Big(kp,A,mp);
+   var p=v91Band(kp.off);kp._v91p=Math.round(p*1000)/1000;if(p>0&&rnd()<p){V91.rb.n++;if(kp.off===v91Opp())V91.rb.opp++;else V91.rb.fav++;var k2=mp();if(v91Score(k2)>v91Score(kp)){k2._uid=kp._uid;k2._v91p=kp._v91p;k2._v91rb=1;V91.rb.took++;kp=k2;}}}catch(e){V91.err=String(e);}return kp;};
+ var dc0=decide;decide=function(){var k=dc0.apply(this,arguments);try{var A=V91.arm,o=v91Opp();if(k==='punt'&&A&&A.build>=100&&S.poss===o&&S.down===4&&S.togo<=3&&S.yl>=35)return 'play';}catch(e){}return k;};
+ var sk0=selectKey;selectKey=function(kp){var r=sk0.apply(this,arguments);try{V91.curThr=kp._v91th?kp._v91th.lab:null;if(kp._v91th){r={key:true,R:['⚡ '+kp._v91th.lab].concat((r.R||[]).slice(0,1))};}
+   else if(V91.on&&v91Job()&&kp.off===v91Opp()&&kp.score&&S.q>=4&&!r.key){r={key:true,R:['TD on the board?']};}}catch(e){}return r;};
+ var rh0=v87RecHook;v87RecHook=function(kp,o){var r=rh0.apply(this,arguments);try{var rec=kp&&kp._v87,lev=v91Lev(kp),ef=o&&o.call;
+   if(kp.key){V91.keyN++;if(ef&&ef!=='letgo')v91Call(kp,ef,lev,false);else v91LetGo(kp);}
+   var y=o?o.yards:kp.yards;v91Result(kp.off,y,y>=kp.togo,!o.turnover&&kp.los+y>=100,!!o.turnover);
+   if(rec){rec.lev=Math.round(lev*100)/100;rec.mom=V91.mom;rec.threat=kp._v91th?{kind:kp._v91th.kind,lab:kp._v91th.lab,shown:kp._v91th.shown}:null;rec.watch=V91.watch;rec.band=kp._v91p||0;rec.rb=!!kp._v91rb;}
+   v91Meter();}catch(e){V91.err=String(e);}return r;};
+ window.__v91.items.push('momentum');}catch(e){console.warn('v91 hooks',e);}})();
+/* ---- UI: one opponent momentum chip over the scorebug + the tell inside the existing suspicion row ---- */
+(function(){try{var c=document.createElement('style');c.textContent='#v91mom{position:absolute;left:8px;bottom:calc(100% + 4px);display:none;z-index:5;align-items:center;gap:5px;padding:2px 7px;border-radius:9px;background:rgba(10,12,20,.82);color:#ffd27a;font:700 10px/14px system-ui,sans-serif;letter-spacing:.04em;pointer-events:none;z-index:6}#v91mom.on{display:flex}body:has(#v82meme > *) #v91mom{visibility:hidden!important;opacity:0!important}#v91mom i{display:inline-block;width:44px;height:5px;border-radius:3px;background:#333;overflow:hidden}#v91mom i b{display:block;height:100%;background:linear-gradient(90deg,#ffb347,#ff4d3a);transition:width .3s}#v91mom.hot{color:#ff7a5c}#v91watch{display:none;position:fixed;left:14px;top:44px;z-index:70;padding:2px 8px;border-radius:6px;background:#9a1428;color:#fff;font:800 10px/14px system-ui,sans-serif;letter-spacing:.04em;white-space:nowrap;pointer-events:none;box-shadow:0 1px 4px rgba(0,0,0,.5)}#heatrow.v91w ~ #v91watch,#v75top.v91w #v91watch,body.v91w #v91watch{display:inline-block}#heatrow.v91w #v91watch{display:inline-block;animation:v91p 1.4s ease-in-out infinite}@keyframes v91p{50%{opacity:.55}}@media (max-width:400px){#v91watch{font-size:8px;left:6px}}';document.head.appendChild(c);
+ var bug=document.getElementById('bugbot')||document.getElementById('bdd');var host=bug&&bug.parentElement;if(host){if(getComputedStyle(host).position==='static')host.style.position='relative';var m=document.createElement('div');m.id='v91mom';m.innerHTML='<span id="v91momT">⚡</span><i><b id="v91momB" style="width:0"></b></i>';host.appendChild(m);}
+ var hr=document.getElementById('heatrow');if(hr){var w=document.createElement('span');w.id='v91watch';w.textContent='LEAGUE IS WATCHING';(document.getElementById('v75top')||document.body).appendChild(w);}
+ window.__v91.items.push('momentum-ui');}catch(e){console.warn('v91 ui',e);}})();
+function v91Meter(){try{var m=document.getElementById('v91mom');if(!m)return;var o=v91Opp(),A=V91.arm,v=A&&A.build>0?A.build:Math.max(0,V91.mom);var ml=document.getElementById('v82meme'),memeOn=!!(ml&&ml.children.length);var armed=A&&A.build>0&&S.poss===o;var on=!!o&&!S.over&&!memeOn&&armed;var nw=performance.now();if(on){V91._mOn=nw;V91._mOff=0;}else if(m.classList.contains('on')&&!memeOn&&!S.over&&A&&(nw-(V91._mOn||0))<1200){on=true;}
+  m.classList.toggle('on',on);m.classList.toggle('hot',v>=85);if(on){document.getElementById('v91momT').textContent='⚡ '+T(o).ab;document.getElementById('v91momB').style.width=Math.round(v)+'%';if(A)A.seen=(A.seen||0)+1;}
+  var on=V91.watch>=V91.D.tell;var hr=document.getElementById('heatrow');if(hr)hr.classList.toggle('v91w',on);var tp=document.getElementById('v75top');if(tp)tp.classList.toggle('v91w',on);document.body.classList.toggle('v91w',on);var w=document.getElementById('v91watch');if(w)w.style.display=on?'inline-block':'none';}catch(e){}}
+setInterval(v91Meter,400);
+/* ---- headless sim (title screen only): real makePlay/decide/selectKey/effect + the v91 band; policy none | timed | random | hi | lo ---- */
+function v91Sim(n,opt){opt=opt||{};var S0=S,sfp=stampFieldPlan,out=[],KEYS=['shift','mom','watch','thr','arm','flags','swings','rb','lastKeyCall','keyN','on'],save={};KEYS.forEach(function(k){save[k]=V91[k];});
+ var cp=function(o){return JSON.parse(JSON.stringify(o));};
+ var snap=function(){return {S:cp({job:S.job,score:S.score,q:S.q,clock:S.clock,poss:S.poss,yl:S.yl,down:S.down,togo:S.togo,plays:S.plays,keys:S.keys,v74Big:S.v74Big}),V:cp({shift:V91.shift,mom:V91.mom,watch:V91.watch,thr:V91.thr,arm:V91.arm,flags:V91.flags,lastKeyCall:V91.lastKeyCall,keyN:V91.keyN,rb:V91.rb})};};
+ var restore=function(z){var a=cp(z.S),b=cp(z.V);Object.keys(a).forEach(function(k){S[k]=a[k];});Object.keys(b).forEach(function(k){V91[k]=b[k];});};
+ var x0=function(x,j){return x<j.lo?x-j.lo:x>j.hi?x-j.hi:Math.min(x-j.lo,j.hi-x);};
+ var newG=function(){return {third:{home:[0,0],away:[0,0]},plays:{home:0,away:0},drives:{home:0,away:0},yds:{home:0,away:0},flags:[],threats:0,shown:[],keys:0};};
+ var flip=function(G,t,yl){S.poss=t;S.yl=yl;S.down=1;S.togo=10;G.drives[t]++;};
+ /* one snap; pol(kp,lev,off) -> call */
+ var snapOnce=function(G,pol,forced){
+   if(S.clock<=0){S.q++;S.clock=900;if(S.q===3)flip(G,'home',25);if(S.q>4)return false;}
+   var k=decide();
+   if(k==='kneel'){S.clock-=40;S.down++;if(S.down>4)flip(G,other(S.poss),100-S.yl);return true;}
+   if(k==='fg'){if(rnd()<fgP(100-S.yl+17))S.score[S.poss]+=3;S.clock-=5;flip(G,other(S.poss),25);return true;}
+   if(k==='punt'){S.clock-=8;flip(G,other(S.poss),Math.max(5,Math.min(80,100-(S.yl+rint(36,48)))));return true;}
+   var kp=forced||makePlay();if(!forced){var sel=selectKey(kp);kp.key=sel.key;}if(kp.key)S.keys++;var off=S.poss,lev=v91Lev(kp),call='letgo';
+   if(kp.key||(pol&&pol.any)){if(kp.key){V91.keyN++;G.keys++;}call=pol?pol(kp,lev,off):'letgo';if(!kp.key&&call==='letgo')call='letgo';if(call&&call.mc)return call;call=call||'letgo';
+     if(call!=='letgo'){var ce=v91Call(kp,call,lev,true);G.flags.push({lev:ce.lev,dm:ce.dm,threat:ce.threat,heat:estHeat(call,kp)});}else v91LetGo(kp);}
+   if(kp._v91th&&!forced){G.threats++;G.shown.push(kp._v91th.shown);}
+   var e=effect(kp,call),pr=project(kp,e);G.plays[off]++;
+   if(S.down===3&&call==='letgo'&&!kp.turnover){G.third[off][1]++;if(kp.yards>=kp.togo)G.third[off][0]++;}
+   v91Result(off,e.yards,e.yards>=kp.togo,pr.kind==='TD',!!e.turnover);
+   S.clock-=(kp.pass&&!e.complete&&!e.pen)?6:(kp.key?30:28);S.plays++;
+   if(pr.kind==='TD'){S.score[off]+=7;flip(G,other(off),25);}else if(pr.kind==='SAF'){S.score[other(off)]+=2;flip(G,off,25);}
+   else if(pr.kind==='TO'||pr.kind==='DOWNS')flip(G,pr.poss,pr.yl);else{S.yl=pr.yl;S.down=pr.down;S.togo=Math.max(1,pr.togo);}
+   return !(S.q>=4&&S.clock<=0);};
+ var toEnd=function(G,pol){var g=0;while(S.q<=4&&g++<400){var r=snapOnce(G,pol);if(r===false)break;if(r&&r.mc)return r;}return null;};
+ var ins=function(){var x=jm(margin());return x>=S.job.lo&&x<=S.job.hi;};
+ stampFieldPlan=function(){};
+ try{for(var g=0;g<n;g++){var job=opt.jobs?opt.jobs[g%opt.jobs.length]:{team:'away',lo:1,hi:6};
+  if(opt.seed!=null&&window.__seed)window.__seed(opt.seed+g*7919);
+  S=Object.assign({},S0,{job:Object.assign({},S0.job,job),score:{home:0,away:0},q:1,clock:900,poss:'away',yl:25,down:1,togo:10,plays:0,dN:0,keys:0,plan:S0.plan||18,reserve:S0.reserve||4,heat:0,v74Big:{1:0,2:0},ms:[],over:null,drive:null,st:{home:{},away:{}}});
+  V91.on=opt.band!==false;V91.shift=null;V91.mom=0;V91.watch=0;V91.thr={};V91.arm=null;V91.flags=[];V91.swings=[];V91.rb={n:0,opp:0,fav:0,took:0};V91.lastKeyCall=null;V91.keyN=0;
+  var G=newG(),flagsLeft=opt.flags==null?3:opt.flags,single=null;flip(G,'away',25);
+  var pol=function(kp,lev,off){var fav=S.job.team,opp=other(fav),x=jm(margin());if(flagsLeft<=0)return 'letgo';var want=false;
+    if(opt.policy==='timed'){var after=x+(kp.score?-7:0);want=off===opp&&!kp.turnover&&lev>=0.5&&(kp.score||kp._v91th||kp.made)&&(kp.score?(after<S.job.lo):(x<=S.job.lo+2))&&(S.q>=3||kp._v91th||kp.score);}
+    else if(opt.policy==='random')want=off===opp&&!kp.turnover&&rnd()<0.22;
+    else if(opt.policy==='hi'||opt.policy==='lo'){var ed=x0(x,S.job);if(off===opp&&!kp.turnover&&!kp.score&&kp.yards>=4&&S.q>=2&&S.q<4&&Math.abs(ed)<=7&&kp.los<80&&kp.los+kp.yards<80){var hi=lev>=0.5&&kp.made&&S.down>=3,lo=lev<0.5&&S.down===1&&!kp.made&&!kp._v91th;want=opt.policy==='hi'?hi:lo;if(want){kp.vis=1;kp.key=true;return {mc:true,kp:kp,lev:lev};}}}
+    if(want){flagsLeft--;return 'holding';}return 'letgo';};
+  pol.any=opt.policy==='hi'||opt.policy==='lo';var r=toEnd(G,pol);
+  if(r&&r.mc){/* paired Monte Carlo from the same snap: let it go vs flag it, K continuations with the same seeds */
+    var kp=r.kp,z=snap(),K=opt.K||40,pin={letgo:0,holding:0},xs={letgo:0,holding:0},heat=estHeat('holding',kp),dmv=0;
+    ['letgo','holding'].forEach(function(c){for(var k2=0;k2<K;k2++){restore(z);if(window.__seed)window.__seed(99991+k2*131+g*7);var H=newG();var kq=Object.assign({},kp,{key:true});
+      var first=true;snapOnce(H,function(){return c;},kq);if(c==='holding'&&k2===0)dmv=Math.abs((H.flags[0]||{}).dm||0);toEnd(H,null);if(ins())pin[c]++;xs[c]+=jm(margin());}});
+    single={lev:Math.round(r.lev*100)/100,heat:heat,pInLetGo:pin.letgo/K,pInFlag:pin.holding/K,swing:Math.round((pin.holding-pin.letgo)/K*100),dx:Math.round((xs.holding-xs.letgo)/K*10)/10,mom:dmv};
+    restore(z);if(window.__seed)window.__seed(424242+g);var H2=newG();snapOnce(H2,function(){return 'letgo';},Object.assign({},kp));toEnd(G,null);}
+  var xm=jm(margin()),j=S.job;G.x=xm;G.inside=xm>=j.lo&&xm<=j.hi;G.edge=x0(xm,j);G.pts={home:S.score.home,away:S.score.away};G.thrHalf=[V91.thr[1]?V91.thr[1].n:0,V91.thr[2]?V91.thr[2].n:0];G.single=single;G.rb=Object.assign({},V91.rb);out.push(G);}}
+ finally{S=S0;stampFieldPlan=sfp;KEYS.forEach(function(k){V91[k]=save[k];});}
+ return out;}
+V91.sim=v91Sim;
+
+
+/* ========== v92 MOMENTUM2 ========== */
+(function(){try{
+  window.CW=window.CW||{};
+  /* (5) Force a winning contract so Ui Bot can verify the win path end-to-end.
+     Usage: CW.__forceContractWin() after a Take, or load with ?forceWin=1 (auto-takes and pads the score at FINAL).
+     Also: CW.v92.forceWin() */
+  CW.__forceContractWin=function(){
+    try{
+      if(!S||!S.job)return {ok:false,err:'no-job'};
+      V87.c.taken=true;V87.c.when=V87.c.when||'force';
+      var j=S.job;
+      var mid=j.hi>=60?Math.max(j.lo,1)+3:Math.round((j.lo+Math.min(j.hi,j.lo+8))/2);
+      if(mid<j.lo)mid=j.lo;if(mid>j.hi&&j.hi<60)mid=j.hi;
+      if(j.team==='home'){S.score.home=S.score.away+mid;if(S.score.home<0)S.score.home=mid;}
+      else{S.score.away=S.score.home+mid;if(S.score.away<0)S.score.away=mid;}
+      try{v87Owe();}catch(e){}
+      var m=margin(),xm=j.team==='home'?m:-m;
+      var fail=!(xm>=j.lo&&xm<=j.hi);
+      V87.c.failEval={over:S.over||null,fail:fail,taken:true,xm:xm,lo:j.lo,hi:j.hi,team:j.team,forced:true,t:Date.now()};
+      V87.result={taken:true,fail:fail,job:JSON.parse(JSON.stringify(j)),over:S.over||'live',heat:Math.round(S.heat||0),xm:xm,forced:true};
+      return {ok:true,score:{home:S.score.home,away:S.score.away},xm:xm,lo:j.lo,hi:j.hi,line:v87JobLine(),fail:fail};
+    }catch(e){return {ok:false,err:String(e)};}
+  };
+  try{
+    var sp=new URLSearchParams(location.search);
+    if(sp.get('forceWin')==='1'||sp.get('v92win')==='1'){
+      try{V87.P.set('contract','take');}catch(e){}
+      var padded=false;
+      /* pad the moment the game ends, before endScreen reads the margin */
+      setInterval(function(){try{
+        if(padded||!S||!S.over||S.over==='fired')return;
+        if(!V87.c.taken){try{V87.c.taken=true;}catch(e){}}
+        if(!S.job)return;
+        padded=true;CW.__forceContractWin();
+      }catch(e){}},50);
+    }
+  }catch(e){}
+  CW.v92={ok:true,build:'MOMENTUM2',forceWin:CW.__forceContractWin,
+    simMiss:function(){
+      if(!S||!S.job)return {ok:false};
+      V87.c.taken=true;V87.c._strikeForEnd=0;V87.c.finalDone=false;
+      if(S.job.team==='home'){S.score.home=0;S.score.away=49;}else{S.score.away=0;S.score.home=49;}
+      S.over='final';endScreen();
+      return {ok:true,result:V87.result,failEval:V87.c.failEval,score:{home:S.score.home,away:S.score.away}};
+    },
+    simWin:function(){
+      V87.c._strikeForEnd=0;V87.c.finalDone=false;S.over=S.over||'final';
+      var f=CW.__forceContractWin();endScreen();
+      return {ok:true,force:f,result:V87.result,failEval:V87.c.failEval};
+    },
+
+    bigShots:function(){return v92Big();},heatProbe:function(kp){var o={};try{options(kp).forEach(function(x){o[x.id]=callHeat(x.id,kp);});}catch(e){o.err=String(e);}return o;},help:'CW.v92.bigShots() · CW.__forceContractWin() or ?forceWin=1 — pads the job-team score into the window and sets CW.v87.result.fail=false'};
+  try{window.__v92.items.push('forceWin','tell-under','meter-threat','banner-paint');}catch(e){}
+
+  /* v92 Gamer items */
+  function v92Big(){var n=0;try{for(var k in V91.thr)if(V91.thr[k])n+=V91.thr[k].n||0;}catch(e){}return n;}
+  /* C2: a flag can never cool suspicion; only let-go plays may */
+  try{var _ch=callHeat;callHeat=function(c,kp,u){var r=_ch.apply(this,arguments);return c==='letgo'?r:Math.max(0,r);};}catch(e){}
+  /* A: Big shots row beside Key plays */
+  try{var _es2=endScreen;endScreen=function(){var r=_es2.apply(this,arguments);try{var rows=document.querySelectorAll('#endbody .row, .row');for(var i=0;i<rows.length;i++){var sp=rows[i].querySelector('span');if(sp&&sp.textContent==='Key plays'&&!document.getElementById('v92big')){var d=document.createElement('div');d.className='row';d.id='v92big';d.innerHTML='<span>⚡ Big shots</span><b>'+v92Big()+'</b>';rows[i].parentNode.insertBefore(d,rows[i]);break;}}}catch(e){}return r;};}catch(e){}
+  /* C1: sheet waits for the play to settle; live options never greyed */
+  try{var st=document.createElement('style');st.textContent='#decide:not(.done) .dopt{opacity:1!important;animation:none!important;filter:none}#decide.v92wait{visibility:hidden!important;pointer-events:none!important}';document.head.appendChild(st);
+    var _od=openDecide;openDecide=function(kp){var el=document.getElementById('decide');if(el&&!AUTO){el.classList.add('v92wait');setTimeout(function(){el.classList.remove('v92wait');},380);}return _od.apply(this,arguments);};}catch(e){}
+}catch(e){console.error('[v92]',e);}})();
+
 setMatch(QUICK);bindRefNameInputs();syncRefUI();showTitle();
 })();
 </script>
@@ -14061,6 +14751,9 @@ setMatch(QUICK);bindRefNameInputs();syncRefUI();showTitle();
 <script>window.__v84=Object.assign(window.__v84||{},{ok:true,build:'MEMEFIX'});</script>
 <script>window.__v85=Object.assign(window.__v85||{},{ok:true,build:'MEMETIME'});</script>
 <script>window.__v86=Object.assign(window.__v86||{},{ok:true,build:'MEMEDWELL'});</script>
+<script>window.__v87=Object.assign(window.__v87||{},{ok:true,build:'DISCREET'});</script>
+<script>window.__v88={ok:true,build:'DISCREET2'};</script>
+<script>window.__v92={ok:true,build:'MOMENTUM2',items:[]};</script>
 <script>window.__v81={ok:true,build:'LEGAL',items:['celebrity-invented','gag-helplines','teams-gales-wedges','new-colors','new-emblems','slot-renames','credits-legal-screen','head-copyright']};</script>
 </body>
 </html>
