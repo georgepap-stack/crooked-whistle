@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#0b0d12">
-<title>After Further Review: The IFL v92 MOMENTUM2</title>
+<title>After Further Review: The IFL v93 MOMENTUM3</title>
 <style>
 :root{--bg:#0b0d12;--card:#1a1e27;--card2:#252a35;--ink:#f4f1e8;--dim:#9aa3b2;--whistle:#ffd23f;--hot:#ff5a3c;--ok:#4cd387;--line:#2c3240;--gbn:#2f6bff}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -1678,7 +1678,7 @@ window.__showThreeMissing=function(msg){
 (()=>{
 var __cwN=function(a,b){return a!=null?a:b;};/* v62: Safari ≤13-safe nullish + optional-chain shims */
 /* v73: build/version info. Future builds bump ONLY this line. */
-const CW_VERSION='v92',CW_BUILD='MOMENTUM2',CW_DATE='2026-11-04';
+const CW_VERSION='v93',CW_BUILD='MOMENTUM3',CW_DATE='2026-11-04';
 const CW_VER_SHORT=(()=>{const p=CW_DATE.split('-');const M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];return CW_VERSION+' · '+CW_BUILD+' · '+M[(+p[1]||1)-1]+' '+(+p[2]||'');})();
 window.CW_VERSION=CW_VERSION;window.CW_BUILD=CW_BUILD;window.CW_DATE=CW_DATE;
 (function cwVerUI(){
@@ -3498,7 +3498,7 @@ async function resolve(kp,call,pace){
     const gradeTxt=overruled?'✗ Invented · overruled':effective?(legit?'✓ Legit · you saw it':hgT?`${GRADES[hgT]} hold`:call==='offset'?'½ Half-invented':call==='spot'?'✗ Invented spot':call==='clock'?'⏱ Clock trick':'✗ Invented'):(kp.foul?'⚠ Real foul ignored':'✓ Clean · no call');
     /* v74: commit the call's heat NOW (same numbers as the card), so the HUD is right during the card, the challenge and Under the Hood */
     {const ovH=overruled?estHeat(call,kp):0;let pre=0;
-     if(overruled)pre=Math.round(ovH*0.5);else if(effective)pre=(legit||hc<0)?hc:Math.round(hc*dmK);else if(kp.foul&&ih)pre=Math.round(ih*defMult(null,kp,false));
+     if(overruled)pre=Math.round(ovH*0.5);else if(effective)pre=legit?Math.max(0,hc):hc<0?hc:Math.max(3,Math.round(hc*dmK));else if(kp.foul&&ih)pre=Math.round(ih*defMult(null,kp,false));
      if(v72tax)pre+=v72tax.h;
      S.v74pre={amt:0,acc:0,call,hc,ih,ovH};if(pre){v77Heat(pre,v78CardParts({overruled,effective,legit,hc,call,kp,tax:v72tax?v72tax.h:0,pre,dmD,V76C}));S.v74pre.amt=pre;}hud();}
     const v76Line=v76CardTags(V76C,hc,dmD,dmK);hud();
@@ -13855,7 +13855,7 @@ var V82H={on:0,heldMs:0,left:0,get:function(){return false;},set:function(){}};
 (function(){var st=document.createElement('style');st.textContent='#gfx.v82held .v76bar i{background:#ffd23f!important;transition:none!important}#gfx.v82held h4::after{content:" · ⏸ HELD";color:#ffd23f}#gfx .v76bar{position:relative}';document.head.appendChild(st);})();
 V82.hold=V82H;(window.__v82items=window.__v82items||[]).push('p7-hold');
 /* ---- v82: test/QA hook ---- */
-try{V82.S=function(){return S;};window.CW.v82=V82;window.CW.v82.items=window.__v82items;console.info('[CW] v92 MOMENTUM2 — '+window.__v82items.join(', '));}catch(e){console.error('[CW] v82 hook',e);}
+try{V82.S=function(){return S;};window.CW.v82=V82;window.CW.v82.items=window.__v82items;console.info('[CW] v93 MOMENTUM3 — '+window.__v82items.join(', '));}catch(e){console.error('[CW] v82 hook',e);}
 /* ===== v84 MEMEFIX ===== */
 window.__v84={items:[]};
 /* --- 2: meme throttle + dedupe at the source: ~1 meme per key play (big moments get a 2nd slot), queue cap stays 3 --- */
@@ -14599,7 +14599,7 @@ function v91Sim(n,opt){opt=opt||{};var S0=S,sfp=stampFieldPlan,out=[],KEYS=['shi
  var flip=function(G,t,yl){S.poss=t;S.yl=yl;S.down=1;S.togo=10;G.drives[t]++;};
  /* one snap; pol(kp,lev,off) -> call */
  var snapOnce=function(G,pol,forced){
-   if(S.clock<=0){S.q++;S.clock=900;if(S.q===3)flip(G,'home',25);if(S.q>4)return false;}
+   if(S.clock<=0){S.q++;S.clock=900;if(S.q===4)G.q4in={home:S.score.home,away:S.score.away};if(S.q===3)flip(G,'home',25);if(S.q>4)return false;}
    var k=decide();
    if(k==='kneel'){S.clock-=40;S.down++;if(S.down>4)flip(G,other(S.poss),100-S.yl);return true;}
    if(k==='fg'){if(rnd()<fgP(100-S.yl+17))S.score[S.poss]+=3;S.clock-=5;flip(G,other(S.poss),25);return true;}
@@ -14635,7 +14635,7 @@ function v91Sim(n,opt){opt=opt||{};var S0=S,sfp=stampFieldPlan,out=[],KEYS=['shi
       var first=true;snapOnce(H,function(){return c;},kq);if(c==='holding'&&k2===0)dmv=Math.abs((H.flags[0]||{}).dm||0);toEnd(H,null);if(ins())pin[c]++;xs[c]+=jm(margin());}});
     single={lev:Math.round(r.lev*100)/100,heat:heat,pInLetGo:pin.letgo/K,pInFlag:pin.holding/K,swing:Math.round((pin.holding-pin.letgo)/K*100),dx:Math.round((xs.holding-xs.letgo)/K*10)/10,mom:dmv};
     restore(z);if(window.__seed)window.__seed(424242+g);var H2=newG();snapOnce(H2,function(){return 'letgo';},Object.assign({},kp));toEnd(G,null);}
-  var xm=jm(margin()),j=S.job;G.x=xm;G.inside=xm>=j.lo&&xm<=j.hi;G.edge=x0(xm,j);G.pts={home:S.score.home,away:S.score.away};G.thrHalf=[V91.thr[1]?V91.thr[1].n:0,V91.thr[2]?V91.thr[2].n:0];G.single=single;G.rb=Object.assign({},V91.rb);out.push(G);}}
+  var xm=jm(margin()),j=S.job;G.x=xm;G.inside=xm>=j.lo&&xm<=j.hi;G.edge=x0(xm,j);G.pts={home:S.score.home,away:S.score.away};G.q4in=G.q4in||null;G.thrHalf=[V91.thr[1]?V91.thr[1].n:0,V91.thr[2]?V91.thr[2].n:0];G.single=single;G.rb=Object.assign({},V91.rb);out.push(G);}}
  finally{S=S0;stampFieldPlan=sfp;KEYS.forEach(function(k){V91[k]=save[k];});}
  return out;}
 V91.sim=v91Sim;
@@ -14700,11 +14700,48 @@ V91.sim=v91Sim;
   /* C2: a flag can never cool suspicion; only let-go plays may */
   try{var _ch=callHeat;callHeat=function(c,kp,u){var r=_ch.apply(this,arguments);return c==='letgo'?r:Math.max(0,r);};}catch(e){}
   /* A: Big shots row beside Key plays */
-  try{var _es2=endScreen;endScreen=function(){var r=_es2.apply(this,arguments);try{var rows=document.querySelectorAll('#endbody .row, .row');for(var i=0;i<rows.length;i++){var sp=rows[i].querySelector('span');if(sp&&sp.textContent==='Key plays'&&!document.getElementById('v92big')){var d=document.createElement('div');d.className='row';d.id='v92big';d.innerHTML='<span>⚡ Big shots</span><b>'+v92Big()+'</b>';rows[i].parentNode.insertBefore(d,rows[i]);break;}}}catch(e){}return r;};}catch(e){}
+  try{var _es2=endScreen;endScreen=function(){var r=_es2.apply(this,arguments);try{var rows=document.querySelectorAll('#endbody .row, .row');for(var i=0;i<rows.length;i++){var sp=rows[i].querySelector('span');if(sp&&sp.textContent==='Key plays'&&!document.getElementById('v92big')){var d=document.createElement('div');d.className='row';d.id='v92big';d.innerHTML='<span>⚡ Big shots</span><b>'+(window.__v93big?window.__v93big():v92Big())+'</b>';rows[i].parentNode.insertBefore(d,rows[i]);break;}}}catch(e){}return r;};}catch(e){}
   /* C1: sheet waits for the play to settle; live options never greyed */
   try{var st=document.createElement('style');st.textContent='#decide:not(.done) .dopt{opacity:1!important;animation:none!important;filter:none}#decide.v92wait{visibility:hidden!important;pointer-events:none!important}';document.head.appendChild(st);
     var _od=openDecide;openDecide=function(kp){var el=document.getElementById('decide');if(el&&!AUTO){el.classList.add('v92wait');setTimeout(function(){el.classList.remove('v92wait');},380);}return _od.apply(this,arguments);};}catch(e){}
 }catch(e){console.error('[v92]',e);}})();
+
+/* ===== v93 MOMENTUM3 ===== */
+(function(){try{
+var V93=window.__v93V={big:0,bigLog:[],cap:15,capHits:0,capLog:[],minHits:0,snapDog:0,snapLog:[],cb:{n:0,band:0,took:0,log:[]},lowerExt:0,resets:0};
+/* (1) one source of truth: kp._v91th drives both the KEY PLAY card label and the Big shots counter */
+try{var kg0=keyGfx;keyGfx=function(kp){try{var th=kp&&kp._v91th;V91.curThr=th?th.lab:null;if(th&&!kp._v93c){kp._v93c=1;V93.big++;V93.bigLog.push({lab:th.lab,q:S.q,ck:S.clock});}}catch(e){}return kg0.apply(this,arguments);};}catch(e){}
+try{var fl0=flash;flash=function(t){try{if(/KEY PLAY$/.test(String(t))&&S&&S.cur&&S.cur._v91th)arguments[0]=t+' \u00b7 \u26A1 '+S.cur._v91th.lab;}catch(e){}return fl0.apply(this,arguments);};}catch(e){}
+window.__v93big=function(){return V93.big;};
+/* (2) new game: clear watch/tell/momentum/threat state */
+function v93Reset(){try{V91.shift=null;V91.mom=0;V91.watch=0;V91.told=0;V91.thr={};V91.arm=null;V91.flags=[];V91.swings=[];V91.rb={n:0,opp:0,fav:0,took:0};V91.lastKeyCall=null;V91.keyN=0;V91.curThr=null;V91._mOn=0;V91.heatLog&&(V91.heatLog.length=0);
+  V93.big=0;V93.bigLog=[];V93.cb={n:0,band:0,took:0,log:[]};V93.resets++;
+  ['heatrow','v75top'].forEach(function(id){var e=document.getElementById(id);if(e)e.classList.remove('v91w');});document.body.classList.remove('v91w');var w=document.getElementById('v91watch');if(w)w.style.display='none';var m=document.getElementById('v91mom');if(m)m.classList.remove('on','hot');}catch(e){}}
+try{var fr0=fresh;fresh=function(){var r=fr0.apply(this,arguments);v93Reset();return r;};}catch(e){}
+document.addEventListener('click',function(ev){try{var t=ev.target&&ev.target.closest&&ev.target.closest('#again,#toMenu,#tQuick,#tNew,#tContinue');if(t)v93Reset();}catch(e){}},true);
+
+/* (3) invented (no-foul) flags always cost heat; legit flags never cool below 0 */
+try{var ch0=callHeat;callHeat=function(c,kp,u){var r=ch0.apply(this,arguments);if(c==='letgo'||!kp)return r;if(kp.foul===c)return Math.max(0,r);if(r<3)V93.minHits++;return Math.max(3,r);};}catch(e){}
+/* (6) one decision can't spike heat past +cap (call + review + pattern bonus all count) */
+try{var od0=openDecide;openDecide=function(kp){try{S._v93h0=S.heat;}catch(e){}return od0.apply(this,arguments);};
+  var ah0=addHeat;addHeat=function(h){try{if(h>0&&S&&S._v93h0!=null&&!S.over){var m=1;try{m=V87.noScale?1:v87Diff().m;}catch(e){}var room=V93.cap-(S.heat-S._v93h0);var eff=h*m;if(eff>room){var nh=Math.max(1,room)/m;V93.capHits++;V93.capLog.push({h:Math.round(eff),to:Math.round(nh*m),heat:Math.round(S.heat)});h=nh;arguments[0]=h;}}}catch(e){}return ah0.apply(this,arguments);};}catch(e){}
+/* (4) Q3/Q4 blowout: trailing offense gets real pressure + a COMEBACK DRIVE threat in Q4 */
+try{var mp1=makePlay;makePlay=function(){var self=this,args=arguments,kp=mp1.apply(self,args);try{if(S._v93h0!=null)S._v93h0=null;
+  var d=S.score.home-S.score.away,ad=Math.abs(d),tr=d>0?'away':'home';
+  if(!window.__v93off&&S.q>=3&&ad>=14&&kp.off===tr&&!S.over){var p=Math.min(0.4,0.15+0.012*(ad-14)+(S.q>=4?0.1:0));V93.cb.band++;
+    var t2=V91.thr[2],can=S.q>=4&&S.clock>45&&!kp._v91th&&(!t2||t2.n<4)&&V93.cb.n<2&&rnd()<0.4;
+    if(can||rnd()<p){var best=kp;for(var i=0;i<(can?3:1);i++){var k2=mp1.apply(self,args);if(v91Score(k2)>v91Score(best)){k2._uid=kp._uid;best=k2;}}if(best!==kp){V93.cb.took++;kp=best;}
+      if(can){v91Fix(kp);kp._v91th={kind:'cb',lab:'COMEBACK DRIVE',h:2,shown:0,build:100,q:S.q,ck:S.clock,forced:true};if(!V91.thr[2])V91.thr[2]={plan:4,slots:[],n:0,log:[]};V91.thr[2].n++;V91.thr[2].log.push(kp._v91th);V93.cb.n++;V93.cb.log.push({q:S.q,ck:S.clock,d:ad});}}}}catch(e){V93.err=String(e);}return kp;};}catch(e){}
+/* (5) a presnap that stalls (no tap) auto-snaps */
+setInterval(function(){try{if(!S||S.over||S.phase!=='presnap'){V93._ps=0;return;}var now=performance.now();if(!V93._ps)V93._ps=now;if(now-V93._ps>2600&&typeof snapResolve==='function'){V93.snapDog++;V93.snapLog.push({q:S.q,ck:S.clock,ms:Math.round(now-V93._ps)});snapResolve();V93._ps=now;}}catch(e){}},200);
+/* (b) #lower: when the text only extends, don't restart the fade */
+try{var lw0=lower;lower=function(txt,c){try{var e=document.getElementById('lower');if(!(S&&S.quiet)&&e&&e.classList.contains('show')&&txt&&e.textContent&&String(txt).length>e.textContent.length&&String(txt).indexOf(e.textContent.replace(/["”]$/,''))===0){e.textContent=txt;if(c)e.style.borderLeftColor=c;V93.lowerExt++;return;}}catch(e){}return lw0.apply(this,arguments);};}catch(e){}
+/* (a)(c) css */
+var st=document.createElement('style');st.textContent='#brz,#bdd,#bspot{white-space:nowrap}@media (max-width:380px){#bugbot #bdd{letter-spacing:0!important}#bugbot #brz{font-size:.86em;padding-left:3px!important;padding-right:3px!important}}'+
+ 'body:has(#gfx.show) #v91watch,body:has(#pregame:not([hidden])) #v91watch,body:has(#title:not([hidden])) #v91watch,body:has(#end:not([hidden])) #v91watch,body:has(#hb:not([hidden])) #v91watch,body:has(#call:not([hidden])) #v91watch,body:has(#decide:not([hidden]):not(.done)) #v91watch{visibility:hidden!important}';document.head.appendChild(st);
+CW.v93={V:V93,big:function(){return V93.big;},help:'CW.v93.V: big/bigLog, capHits/capLog, minHits, snapDog, cb (Q3/Q4 blowout), lowerExt, resets'};
+try{window.__v93.items.push('thr-label','reset','invented-heat','cap','blowout','snapdog','lower-ext','css');}catch(e){}
+}catch(e){console.error('[v93]',e);}})();
 
 setMatch(QUICK);bindRefNameInputs();syncRefUI();showTitle();
 })();
@@ -14754,6 +14791,7 @@ setMatch(QUICK);bindRefNameInputs();syncRefUI();showTitle();
 <script>window.__v87=Object.assign(window.__v87||{},{ok:true,build:'DISCREET'});</script>
 <script>window.__v88={ok:true,build:'DISCREET2'};</script>
 <script>window.__v92={ok:true,build:'MOMENTUM2',items:[]};</script>
+<script>window.__v93={ok:true,build:'MOMENTUM3',items:[]};</script>
 <script>window.__v81={ok:true,build:'LEGAL',items:['celebrity-invented','gag-helplines','teams-gales-wedges','new-colors','new-emblems','slot-renames','credits-legal-screen','head-copyright']};</script>
 </body>
 </html>
