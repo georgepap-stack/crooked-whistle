@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#0b0d12">
-<title>After Further Review: The IFL v93 MOMENTUM3</title>
+<title>After Further Review: The IFL v95 BOOTH</title>
 <style>
 :root{--bg:#0b0d12;--card:#1a1e27;--card2:#252a35;--ink:#f4f1e8;--dim:#9aa3b2;--whistle:#ffd23f;--hot:#ff5a3c;--ok:#4cd387;--line:#2c3240;--gbn:#2f6bff}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -1678,7 +1678,7 @@ window.__showThreeMissing=function(msg){
 (()=>{
 var __cwN=function(a,b){return a!=null?a:b;};/* v62: Safari ≤13-safe nullish + optional-chain shims */
 /* v73: build/version info. Future builds bump ONLY this line. */
-const CW_VERSION='v93',CW_BUILD='MOMENTUM3',CW_DATE='2026-11-04';
+const CW_VERSION='v95',CW_BUILD='BOOTH',CW_DATE='2026-11-09';
 const CW_VER_SHORT=(()=>{const p=CW_DATE.split('-');const M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];return CW_VERSION+' · '+CW_BUILD+' · '+M[(+p[1]||1)-1]+' '+(+p[2]||'');})();
 window.CW_VERSION=CW_VERSION;window.CW_BUILD=CW_BUILD;window.CW_DATE=CW_DATE;
 (function cwVerUI(){
@@ -5538,7 +5538,7 @@ $('#timerOpt').checked=TIMER;$('#timerOpt').addEventListener('change',e=>{TIMER=
 
 /* ---------- broadcast field ---------- */
 const cv=$('#field'),g=cv.getContext('2d');
-function resize(){const r=cv.getBoundingClientRect();const d=window.devicePixelRatio||1;cv.width=Math.max(1,r.width*d);cv.height=Math.max(1,r.height*d);g.setTransform(d,0,0,d,0,0);}
+function resize(){const r=cv.getBoundingClientRect();const d=Math.min(2,window.devicePixelRatio||1);var c3=document.getElementById('field3d');if(c3&&(cv.style.visibility==='hidden'||(cv.isConnected&&getComputedStyle(cv).visibility==='hidden'))){cv.width=1;cv.height=1;g.setTransform(1,0,0,1,0,0);return;}cv.width=Math.max(1,r.width*d);cv.height=Math.max(1,r.height*d);g.setTransform(d,0,0,d,0,0);}
 window.addEventListener('resize',resize);
 // [lateral fraction, depth yards behind(-)/past(+) LOS]
 const OFF0=[[0,-0.8],[-0.06,-0.8],[0,-0.8],[0.06,-0.8],[0.12,-0.8],[0.18,-1.0],[0,-5.0],[-0.08,-6.2],[-0.26,-1.2],[0.26,-1.2],[-0.14,-2.5]];
@@ -5958,7 +5958,7 @@ function fouler(kp){if(kp.foul==='holding')return ['off',0];if(kp.foul==='roughi
 const crowd=[...Array(260)].map(()=>[rnd()*2400,rnd(),pick(['#7a1f4f','#c7ccd6','#0e7c86','#e8fbff','#2a2f3a','#4a5060','#ddd'])]);
 let lastT=performance.now();
 function frame(now){
-  const dt=Math.min(34,now-lastT);lastT=now; /* ~60fps stable */
+  const dt=Math.min(50,Math.max(0,now-lastT));lastT=now; /* v94: rAF delta, no sub-60 tick */
   const a=S.anim;
   if(a&&(S.phase==='live'||S.phase==='ff'||S.phase==='replay')&&!S.menu){a.t+=dt*SP()/(S.animDur||2800);if(a.t>=1){a.t=1;if(animResolve){const r=animResolve;animResolve=null;r();}}}
   if(S.flagToss){S.flagToss.p=Math.min(1,S.flagToss.p+dt*FAST/FLAG_MS);if(S.flagToss.p>=1&&flagResolve){const r=flagResolve;flagResolve=null;r();}}
@@ -5977,6 +5977,8 @@ function draw(dt){
     const fl=S.flagToss||S.flagLand;if(fl&&fl.kp===kp)target=absX(kp.los,team)+d*(fl.loc[1]+3);}
   if(S.cam==null)S.cam=target;
   S.cam+= (target-S.cam)*Math.min(1,dt*SP()/420);
+  var _c3=document.getElementById('field3d');var _f=document.getElementById('field');
+  if(_c3&&_f&&getComputedStyle(_f).visibility==='hidden'){if(kp&&pos){var _oT=kp.off;var _toF=function(p){var lat=Math.max(-LAT_MAX,Math.min(LAT_MAX,p[0]));return [absX(kp.los,_oT)+d*p[1],26.65+lat*50];};if(!S.disp)S.disp={};var _kS=1-Math.exp(-dt*SP()/70);var _sm=function(key,fp){var o=S.disp[key];if(!o||S.phase==='presnap'||S.phase==='keygfx'){S.disp[key]=fp.slice();return fp;}o[0]+=(fp[0]-o[0])*_kS;o[1]+=(fp[1]-o[1])*_kS;return o;};(pos.off||[]).forEach(function(p,i){if(typeof OFF7!=='undefined'&&OFF7&&!OFF7.has(i))return;_sm('o'+i,_toF(p));});(pos.def||[]).forEach(function(p,i){if(typeof DEF7!=='undefined'&&DEF7&&!DEF7.has(i))return;_sm('d'+i,_toF(p));});try{var _bp=ballPos(kp,t,pos);var _bf=_toF(_bp);S.ballDisp=[_bf[0],_bf[1],_bp[2]||0];}catch(e){}}return;}
   const PPY=W/28, Y0=H*0.2, Y1=H*1.04;
   const proj=(fx,z)=>{const dd=z/53.3;const s=0.56+0.44*dd;return [W/2+(fx-S.cam)*PPY*s,Y0+(Y1-Y0)*dd,s];};S.projF=proj;
   // stands
@@ -6810,6 +6812,8 @@ function draw(dt){
   resize=function(){
     const r=cv.getBoundingClientRect();
     if(!r.width||!r.height)return;
+    var _c3=document.getElementById('field3d');
+    if(_c3&&(cv.style.visibility==='hidden'||getComputedStyle(cv).visibility==='hidden')){cv.width=1;cv.height=1;return;}
     const dpr=Math.min(2,window.devicePixelRatio||1);
     const sw=Math.max(2,Math.round(r.width*dpr));
     const sh=Math.max(2,Math.round(r.height*dpr));
@@ -9316,7 +9320,7 @@ html.gfx-pix #game.fs-tiny #heatrow #heatbar{border-radius:0;height:12px!importa
     c3.style.cssText='position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1;touch-action:none';
     tv.insertBefore(c3, field2d?field2d.nextSibling:tv.firstChild);
   }
-  if(field2d)field2d.style.visibility='hidden';
+  if(field2d){field2d.style.visibility='hidden';field2d.width=1;field2d.height=1;}
 
   const __isiOS=/iPad|iPhone|iPod/.test(navigator.userAgent||'')||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
   let renderer;
@@ -13855,7 +13859,7 @@ var V82H={on:0,heldMs:0,left:0,get:function(){return false;},set:function(){}};
 (function(){var st=document.createElement('style');st.textContent='#gfx.v82held .v76bar i{background:#ffd23f!important;transition:none!important}#gfx.v82held h4::after{content:" · ⏸ HELD";color:#ffd23f}#gfx .v76bar{position:relative}';document.head.appendChild(st);})();
 V82.hold=V82H;(window.__v82items=window.__v82items||[]).push('p7-hold');
 /* ---- v82: test/QA hook ---- */
-try{V82.S=function(){return S;};window.CW.v82=V82;window.CW.v82.items=window.__v82items;console.info('[CW] v93 MOMENTUM3 — '+window.__v82items.join(', '));}catch(e){console.error('[CW] v82 hook',e);}
+try{V82.S=function(){return S;};window.CW.v82=V82;window.CW.v82.items=window.__v82items;console.info('[CW] v95 BOOTH — '+window.__v82items.join(', '));}catch(e){console.error('[CW] v82 hook',e);}
 /* ===== v84 MEMEFIX ===== */
 window.__v84={items:[]};
 /* --- 2: meme throttle + dedupe at the source: ~1 meme per key play (big moments get a 2nd slot), queue cap stays 3 --- */
@@ -14743,6 +14747,1118 @@ CW.v93={V:V93,big:function(){return V93.big;},help:'CW.v93.V: big/bigLog, capHit
 try{window.__v93.items.push('thr-label','reset','invented-heat','cap','blowout','snapdog','lower-ext','css');}catch(e){}
 }catch(e){console.error('[v93]',e);}})();
 
+/* =====================================================================
+   CROOKED WHISTLE — GAME / REF MEME RETUNE  (paste-in, all-original text)
+   ---------------------------------------------------------------------
+   WHERE: paste INSIDE the main game IIFE, on its own lines, directly
+   ABOVE the main IIFE's last statement:
+       setMatch(QUICK);bindRefNameInputs();syncRefUI();showTitle();
+   ORDER: AFTER cw-meme-pack-overhaul.js and cw-meme-norepeat.js
+   (and after the v75 chrome pass if that is already in the file).
+   Do not paste into a later hook that itself wraps memePost unless
+   this block stays the last meme wrapper before setMatch(QUICK).
+
+   WHAT IT DOES
+     1. CUT / rewrite off-topic captions (celebrity suite / suite / celebrity lines, generic betting-app and ad jokes,
+        loose internet-catchphrase lines not tied to a play).
+     2. ADD a large game-action pool (code 40) and three ref-
+        escalation pools (41 suspicious, 42 mockery, 43 exposed).
+     3. Scale picks with interference via grTier() over existing
+        game state: S.heat / S.peak / S.shady / S.ignored /
+        S.holdFake / S.bad / S.streak / S.job.flipped / S.over.
+        A clean game prefers code 40 (big plays, score, coaches,
+        crowd). As the ref interferes, 41 → 42 → 43 take over.
+     4. Wraps memeOkX, memePost (weight swap; remaps kind 'suite'
+        to 'game'), memeCtxX ({qb}{rb}{wr}{yds}{play}{qtr}{margin}),
+        and postMeme (fires a 'game' meme after key plays when a
+        flag-meme didn't already land). Does NOT replace the v74
+        no-repeat picker; S.__nr rules stay in force (skeleton
+        once, 4+ word lines once, no back-to-back format, max 2
+        per format, skip rather than repeat).
+     5. Exposes window.__cwMemeGR.ok (and CW.v94gr; CW.v75gr is an alias).
+
+   Parody only: fictional league/teams/people; no real marks.
+   Satire punches at the ref, the league, and the house — never
+   at people with a gambling problem.
+   ===================================================================== */
+var MEME_POST_TXT_X = (typeof MEME_POST_TXT_X!=='undefined'&&MEME_POST_TXT_X)||undefined;
+(function(){try{
+  if(typeof MEMES==='undefined')return;
+  var GR=window.__cwMemeGR={v:'94gr',cut:[],added:0,missingFmt:[],rejected:[],hooked:[]};
+
+  /* ---------- 1. CUT (template line or joined text) ---------- */
+  var CUT=[
+    ["twoButtons", "show the suite"],
+    ["expect", "a luxury box, 9 replays"],
+    ["tabloid", "cameraman finds a 9th angle of the luxury box"],
+    ["tierList", "S: suite cam"],
+    ["suiteCam", "the suite cam"],
+    ["suiteCam", "the actual football"],
+    ["suiteCam", "buzz tightman catches a 4-yard pass"],
+    ["suiteCam", "the 6th suite cam cutaway"],
+    ["suiteCam", "learning what a 'first down' is"],
+    ["suiteCam", "nervously checking if suite 87 is mad"],
+    ["suiteCam", "'cut to the suite' (3rd and goal)"],
+    ["suiteCam", "the suite cam reacting to the suite cam"],
+    ["suiteCam", "finding a 4th angle of the same suite"],
+    ["fanArmy", "90 million valentiners in his mentions"],
+    ["fanArmy", "doing a forensic audit of ref #77's high school yearbook"],
+    ["fanArmy", "skye's new single"],
+    ["fanArmy", "refreshing to see if the diss track dropped"],
+    ["fanArmy", "buzz tightman: 3 catches"],
+    ["fanArmy", "the stadium jumbotron"],
+    ["thisFine", "the house ad running during a review"],
+    ["expect", "the ad: 'bet with friends'"],
+    ["samePic", "the gambling helpline"],
+    ["holdDog", "the app sent 40 alerts this quarter?"],
+    ["finePrint", "bet responsibly!*"],
+    ["finePrint", "your first bet is free*"],
+    ["finePrint", "the disclaimer read at 4x speed"],
+    ["finePrint", "\"must be 21+\""],
+    ["finePrint", "parlay insurance!"],
+    ["finePrint", "sportsbook app: 'we believe in you'"],
+    ["finePrint", "the helpline number"],
+    ["parlay", "12-leg parlay: lost on a holding call in garbage time"],
+    ["parlay", "the parlay was perfect until ref #77 got a text"],
+    ["parlay", "my 12-leg parlay vs one man's flag"],
+    ["parlay", "parlay insurance did not cover 'officiating'"],
+    ["pressConf", "sponsored by the house (accidentally on screen)"],
+    ["fantasyCry", "sending ref #77 a fruit basket"],
+    ["fantasyCry", "benched by a flag on the PAT"],
+    ["wanted", "grand theft parlay"],
+    ["tierList", "F: your parlay"],
+    ["groupchat", "ref has a parlay fr"],
+    ["tabloid", "SCRIB DOON SPECIAL"],
+    ["scientistsReveal", "Scientists reveal the {call}."],
+    ["scientistsReveal", "Scientists reveal: {favt} was open."],
+    ["scientistsReveal", "Scientists reveal the phantom."],
+    ["scientistsReveal", "Scientists reveal: heat was never real."],
+    ["scientistsReveal", "Scientists reveal {ref} was right (paywall)."],
+    ["scientistsReveal", "Scientists reveal the {unfav} never existed."],
+    ["outPartying", "While they're out partying… I locked in for {favt}."],
+    ["outPartying", "While they're out partying… {unfav} got buried."],
+    ["outPartying", "While they're out partying… I'm studying the spread."],
+    ["outPartying", "While they're out partying… phantom flags."],
+    ["outPartying", "While they're out partying… heat climbed to {heat}."],
+    ["outPartying", "While they're out partying… {ref} practiced {call}."],
+    ["hauntedHouse", "Haunted house but every room is a booth review"],
+    ["hauntedHouse", "Haunted house… instead of ghosts it's {call} on {unfav}"],
+    ["hauntedHouse", "Haunted house… jump scare is \"play stands\""],
+    ["hauntedHouse", "Haunted house but the hallway is all heat meters"],
+    ["scribDoon", "{call}. Scrib doon."],
+    ["scribDoon", "{unfav} fans: cope. Scrib doon."],
+    ["scribDoon", "Here's a name for you, amateur — {ref}. Scrib doon."],
+    ["whatsUpBrah", "What's up brah — {unfav} sideline"],
+    ["whatsUpBrah", "{favt} fans after that {call}. What's up brah."],
+    ["whatsUpBrah", "Heat meter vs my blood pressure. What's up brah."],
+    ["laPeace", "That's la peace. (after burying {unfav})"],
+    ["laPeace", "Soft spot for {favt}. La peace."],
+    ["laPeace", "Heat? Handled. La peace."],
+    ["prosStandards", "Pros standards: look the camera in the eye"],
+    ["prosStandards", "Pros standards: bury the {unfav}"],
+    ["prosStandards", "Pros standards: heat is a feature"],
+    ["finePrint", "the most honest odds on the app"]
+  ];
+  function capHas(cp,needle){
+    if(!cp||!needle)return false;
+    if(cp.indexOf(needle)>=0)return true;
+    var j=cp.filter(function(x){return typeof x==='string';}).join(' / ');
+    return j.indexOf(needle)>=0;
+  }
+  CUT.forEach(function(c){var m=MEMES[c[0]];if(!m||!m.caps)return;
+    for(var i=m.caps.length-1;i>=0;i--){
+      if(capHas(m.caps[i],c[1])){m.caps.splice(i,1);GR.cut.push(c[0]+': '+c[1]);}
+    }});
+
+  /* ---------- 2. ADD ---------- */
+  var ADD={
+    refImpact:[
+      ["the {qb} on 3rd and long", "put it right on the money", 40],
+      ["{rb} hits the hole", "and the pursuit is already late", 40],
+      ["one cut, one burst", "{rb} is gone", 40],
+      ["the catch at the paint", "toes down, argument over", 40],
+      ["that flag", "showed up a little early", 41],
+      ["interesting down", "to go looking for holding", 41],
+      ["the 12th man", "brought a whistle and a plan", 42],
+      ["the {unfav} offense", "running into a flag-shaped wall, again", 42],
+      ["this isn't officiating", "it's a plot with a whistle", 43],
+      ["heat at {heat}", "and the laundry is still coming", 43]
+    ],
+    twoButtons:[
+      ["kick the field goal", "go for it on fourth", 40],
+      ["stay aggressive", "take the points", 40],
+      ["run it behind the tackle", "let {qb} throw", 40],
+      ["poke the ball loose", "wrap up and drive", 40],
+      ["let them play", "start getting involved", 41],
+      ["wait for the tape", "trust the first whistle", 41],
+      ["call the game", "cast yourself in the game", 42],
+      ["throw a flag", "throw a plot twist", 42]
+    ],
+    freeze:[
+      ["the catch at the sideline", "both feet, frozen in time", 40],
+      ["fumble or down by contact", "the still frame will decide", 40],
+      ["the tip at the line", "the ball just hanging there", 40],
+      ["{qb} under duress", "still delivering a strike", 40],
+      ["the contact", "and the flag already in the air", 41],
+      ["frame 40: a football play", "frame 41: a conversation", 41]
+    ],
+    vegas:[
+      ["{home} {hs} · {away} {as}", "it feels tighter than the numbers", 40],
+      ["opening kick, opening statement", "field position is already the game", 40],
+      ["a one-score fourth", "every snap is a referendum", 40],
+      ["overtime math incoming", "one trip, one chance", 40]
+    ],
+    scoreboard:[
+      ["{hcity} {hs}", "{acity} {as} — and the lid is off", 40],
+      ["first quarter", "already a track meet", 40],
+      ["fourth quarter", "still a one-score game", 40],
+      ["two-minute drill", "the clock is the other defense", 40],
+      ["score", "and a flag total that's getting chatty", 41],
+      ["their yards", "and the yards #77 donated", 42],
+      ["the score", "plus a laundry column", 42],
+      ["final-ish", "the officiating department had a career night", 43],
+      ["their points", "and the ones the whistle escorted in", 43]
+    ],
+    flagCount:[
+      ["", "tackles for loss tonight: a pile", 40],
+      ["", "dropped passes: enough to sting", 40],
+      ["", "third-down stops: quietly the whole game", 40],
+      ["", "chunk plays: both sidelines are dizzy", 40],
+      ["", "questionable flags: starting to pile up", 41],
+      ["", "flags that need a second look: a few", 41],
+      ["", "flags on the {unfav}: a hobby now", 42],
+      ["", "whistles per drive: climbing like a stock", 42],
+      ["", "{flags} flags. deniability: out of stock", 43],
+      ["", "missed the game, caught the scheme", 43]
+    ],
+    thisFine:[
+      ["they just coughed it up at the door", "this is fine", 40],
+      ["2nd-and-very-long after the sack", "this is fine", 40],
+      ["two-score game, under a minute", "this is fine", 40],
+      ["third red-zone trip, still no points", "this is fine", 40],
+      ["one weird flag in a clean game", "this is fine", 41],
+      ["#77 is getting a little grabby", "this is fine", 41],
+      ["the {unfav} can't finish a drive without laundry", "this is fine", 42],
+      ["flag #{flags} and no shame left", "this is fine", 43]
+    ],
+    expect:[
+      ["a simple handoff", "a 40-yard spring through the gap", 40],
+      ["a harmless checkdown", "a footrace to the numbers", 40],
+      ["a punt to flip it", "a chance to exhale", 40],
+      ["a fade in the corner", "a jump ball that was never a jump", 40],
+      ["a clean tackle", "a conversation about a flag", 41],
+      ["let them play", "let #77 stroll into the shot", 41],
+      ["a football play", "a production meeting, in stripes", 42],
+      ["a sporting event", "a closed hearing with a kickoff time", 43]
+    ],
+    tabloid:[
+      ["GAME NOTES", "the tight end is eating this secondary", 40],
+      ["JUST IN", "{qb} is cooking and the window is open", 40],
+      ["BREAKING", "{team} punch it in from a yard out", 40],
+      ["EXCLUSIVE", "the running game just found a hallway", 40],
+      ["HMM", "ref #77 already has a chapter in tonight's notes", 41],
+      ["EYES ON 77", "the whistle is starting to visit", 41],
+      ["REFBALL TONIGHT", "#77 directing, producing, and overacting", 42],
+      ["EXCLUSIVE", "the yellow laundry has its own storyline", 42],
+      ["EXPOSED", "#77 didn't miss that. he declined it", 43],
+      ["THE FOLDER", "the league office already has this clip", 43]
+    ],
+    glasses:[
+      ["how the safety sees it", "a pick sitting on a tee", 40],
+      ["how the {hcity} crowd sees it", "a first down, obviously", 40],
+      ["how {qb} sees the middle", "a hole the size of a door", 40],
+      ["how ref #77 sees it", "a foul, apparently", 41],
+      ["how the rest of us see it", "a lot of nothing, so far", 41],
+      ["how #77 sizes up the {unfav}", "a to-do list", 42],
+      ["how the replay sees it", "a very different sport", 42],
+      ["how history will see it", "a whistle with a motive", 43],
+      ["how #77 sees the cameras", "a problem, finally", 43]
+    ],
+    holdDog:[
+      ["hold up", "did {rb} just break three tackles?", 40],
+      ["hold up", "that ball was out before the knee", 40],
+      ["hold up", "was that a catch or a wish?", 40],
+      ["hold up", "the clock just became the whole story", 40],
+      ["hold up", "was anyone else waiting for a flag there?", 41],
+      ["hold up", "that whistle beat the play by a hair", 41]
+    ],
+    deskPanel:[
+      ["the only key tonight", "don't give the ball away. that's the show", 40],
+      ["pregame desk", "'this one will be sloppy and perfect'", 40],
+      ["the panel after that drive", "nobody is sitting down", 40]
+    ],
+    glowUp:[
+      ["{team} after three punts", "{team} after one explosive play", 40],
+      ["a sleepy opening script", "a two-minute monster", 40],
+      ["down two scores at the two-minute", "suddenly in the lobby of a comeback", 40]
+    ],
+    coachMelt:[
+      ["{coach}", "watching a 4th-and-1 come back stuffed", 40],
+      ["{coach}", "after a drop on 3rd and short", 40],
+      ["{coach}", "the headset is in genuine danger", 40]
+    ],
+    cheese:[
+      ["packets sideline", "buying every inch of a fourth-quarter drive", 40],
+      ["packets crowd", "standing through a 10-play grind", 40]
+    ],
+    baresDad:[
+      ["bares dad", "standing for a 3rd-and-long like it's church", 40],
+      ["bares dad after the chunk play", "has already hugged two strangers", 40]
+    ],
+    marquee:[
+      ["coming this drive", "fourth and inches", 40],
+      ["now playing", "a two-minute drill with no timeouts", 40],
+      ["tonight's feature", "goal-to-go, and everybody knows it", 40],
+      ["coming soon", "a whistle with main-character energy", 41],
+      ["now showing", "FLAG ON THE PLAY: the extended cut", 42],
+      ["now playing", "THE WHISTLE DID IT (based on tonight)", 43]
+    ],
+    courtroom:[
+      ["exhibit A: the fumble", "exhibit B: the groan", 40],
+      ["the jury", "70,000 fans and one slow-motion angle", 40],
+      ["opening statement", "that was a football play, your honor", 40],
+      ["exhibit A: a maybe-hold", "ref #77: 'I know it when I feel it'", 41],
+      ["the charge: over-officiating", "the defense: 'define over'", 42],
+      ["exhibit C: flag #{flags}", "the jury is already loud", 42],
+      ["the investigation", "can start with flag #{flags}", 43],
+      ["exhibit A: the call", "exhibit B: who it helped, immediately", 43]
+    ],
+    pressConf:[
+      ["'what was the play call?'", "'{qb} made it a great one'", 40],
+      ["'how did you stop the run?'", "'finally, a hat on a hat'", 40],
+      ["'talk about that drive'", "'blocked. caught. over.'", 40],
+      ["'why throw that one?'", "'I thought I saw it. I still think I saw it.'", 41],
+      ["'are you part of the game now?'", "'I'm part of every game. that's the job. sure.'", 42],
+      ["'any chance that was football?'", "'define football.'", 43],
+      ["'did you see the game?'", "'I was busy writing it.'", 43]
+    ],
+    nahYeah:[
+      ["settling for three", "pinning them inside the 5", 40],
+      ["a safe checkdown", "a shot down the sideline", 40],
+      ["taking a sack", "throwing it into the third row", 40],
+      ["one flag a half", "one flag a quarter, already", 41],
+      ["letting them play", "letting the whistle do laps", 42]
+    ],
+    sepDec:[
+      ["a sleepy first half", "a frantic second", 40],
+      ["down two scores", "still very much in this thing", 40],
+      ["the opening script", "the two-minute version of the same team", 40],
+      ["the game we were promised", "the hearing we're going to get", 43]
+    ],
+    thenNow:[
+      ["the drive at midfield", "the same drive at the 1", 40],
+      ["{qb} in warmups", "{qb} with the game on the ball", 40],
+      ["a crowd sitting on its hands", "a crowd that just found its voice", 40],
+      ["ref #77 at kickoff, playing coy", "ref #77 by the fourth, unashamed", 43]
+    ],
+    breaking:[
+      ["BREAKING", "TOUCHDOWN {team}", 40],
+      ["DEVELOPING", "the {acity} offense just woke up", 40],
+      ["JUST IN", "interception at midfield, field flipped", 40],
+      ["BREAKING", "{rb} takes it the distance", 40],
+      ["DEVELOPING", "the whistle is writing itself into the recap", 41],
+      ["BREAKING", "ref #77 has entered the box score, unofficially", 42],
+      ["DEVELOPING", "another flag, another plot point", 42],
+      ["BREAKING", "nobody is pretending this is subtle anymore", 43],
+      ["BREAKING", "the whistle just stopped wearing a disguise", 43]
+    ],
+    fantasyCry:[
+      ["the kicker from 47", "still dancing it through", 40],
+      ["a wide-open drop", "the groan of the night", 40],
+      ["{name} after that play", "the box score just lurched", 40]
+    ],
+    yips:[
+      ["38-yarder, slightly right", "the wait is worse than the kick", 40],
+      ["snap, hold, kick", "the {hcity} crowd already knew", 40],
+      ["the extra point", "treated like a 50-yarder anyway", 40]
+    ],
+    hoodie:[
+      ["{coach}", "going for it with both eyes closed", 40],
+      ["{coach}", "dialing up the shot play", 40],
+      ["{coach}", "trusting {qb} on 4th and 4", 40]
+    ],
+    ratings:[
+      ["the commissioner", "watching an actual game break out", 40],
+      ["the booth", "arguing about a toe on the chalk", 40],
+      ["prime time", "getting a sloppy, beautiful mess", 40]
+    ],
+    tnf:[
+      ["thursday night", "a real game broke out anyway", 40],
+      ["prime-time opening drive", "already out of breath", 40]
+    ],
+    theySaid:[
+      ["\"just run the clock,\" they said", "\"one more shot,\" they said", 40],
+      ["\"it's a catch,\" they said", "\"wait for the still frame,\" they said", 40],
+      ["\" punt it,\" they said", "\"we're going for this,\" they said", 40],
+      ["\"just a warning,\" they said", "\"just the one flag,\" they said", 41],
+      ["\"it evens out,\" they said", "\"it evens out,\" they still say", 42]
+    ],
+    sameOld:[
+      ["same old red-zone stall", "same old sideline stare", 40],
+      ["same old {hcity} third down", "same old noise", 40],
+      ["same old two-minute drill", "new ending, maybe", 40]
+    ],
+    pointing:[
+      ["the fumble", "the guy who punched it out", 40],
+      ["the throw", "the defender who sat down in coverage", 40],
+      ["the block", "the lane {rb} just walked through", 40],
+      ["a football play", "the guy who couldn't wait to throw a flag", 41]
+    ],
+    stonks:[
+      ["the {team} drive chart", "after that 60-yard burst", 40],
+      ["the comeback", "still climbing in the fourth", 40],
+      ["yards after contact", "going straight up", 40],
+      ["the flag count", "and the {favt}, rising together", 42]
+    ],
+    crowdSign:[
+      ["DE-FENSE", 40],
+      ["WE WANT 4TH DOWN", 40],
+      ["JUST CATCH THE BALL", 40],
+      ["MAKE A STOP", 40],
+      ["WE PAID TO WATCH FOOTBALL", 42],
+      ["STOP OFFICIATING THE SCRIPT", 42],
+      ["REF #77 IS THE GAME", 43]
+    ],
+    suiteCam:[
+      ["the end-zone cam", "the ball breaking the plane", 40],
+      ["the all-22", "{wr} was open the whole way", 40],
+      ["the pylon cam", "one leather inch, a whole game", 40],
+      ["the sky cam", "{rb} weaving through traffic", 40],
+      ["the sideline cam", "{coach} living and dying on one snap", 40],
+      ["the replay wall", "four angles, one catch", 40],
+      ["the hard-count cam", "the crowd helping the pass rush", 40]
+    ],
+    fanArmy:[
+      ["the {hcity} stands", "becoming a single voice", 40],
+      ["section 128", "already hoarse and it's the 2nd quarter", 40],
+      ["the {acity} traveling fans", "making themselves known", 40],
+      ["the student section", "mid-wave, mid-scream", 40],
+      ["70,000 people", "just stood up for a 3rd down", 40],
+      ["the front row", "living every yard in real time", 40],
+      ["the {victim} section", "starting to notice the laundry", 41],
+      ["the whole stadium", "now reviewing one official in real time", 42],
+      ["the entire {victim} fan base", "collecting exhibits in real time", 43]
+    ],
+    chantMeme:[
+      ["the {hcity} crowd", "turning 3rd-and-long into a concert", 40],
+      ["DE-FENSE", "the whole bowl, right on time", 40],
+      ["the {acity} pocket of fans", "answering anyway", 40]
+    ],
+    refWatch:[
+      ["the play clock", "{qb} still surveying the picture", 40],
+      ["two-minute warning", "the real game just started", 40],
+      ["the spike", "and now the throw that matters", 40],
+      ["the play clock", "ref #77's hand, already restless", 41]
+    ],
+    distracted:[
+      ["the blitz", "the hot route", "a completion anyway", 40],
+      ["the safety", "the pump fake", "the sideline grab", 40],
+      ["the play-action", "the linebacker", "a hole you could drive through", 40]
+    ],
+    samePic:[
+      ["a 40-yard run", "a 40-yard catch", "not the same play. same damage", 40],
+      ["a goal-line stand", "a goal-line punch", "same inch, different ending", 40],
+      ["a sack", "a coverage sack", "not the same picture", 40],
+      ["holding on {unfav} drives", "holding on {favt} drives", "not the same standard, and we noticed", 42]
+    ],
+    nobody:[
+      ["nobody:", "the {hcity} crowd on 3rd down:", "DE-FENSE", 40],
+      ["nobody:", "{qb} in the two-minute drill:", "*no-huddle stare*", 40],
+      ["nobody:", "the punt unit after a stop:", "*jogs on like heroes*", 40],
+      ["nobody:", "ref #77 after a routine tackle:", "*reaches, hesitates, reaches*", 41],
+      ["nobody:", "ref #77, mask off, 4th quarter:", "*reaches before the snap*", 43]
+    ],
+    isThis:[
+      ["a tipped ball", "a diving grab", "is this a catch?", 40],
+      ["a 4th-and-1 sneak", "a pile of bodies", "is this a first down?", 40],
+      ["a ball punched loose", "a scrum at the 2", "is this a fumble?", 40],
+      ["a tackle", "a flag", "is this a football game?", 42],
+      ["ref #77", "a football game", "is this a conflict of interest?", 43]
+    ],
+    alignment:[
+      ["lawful: take the points", "neutral: see the look", "chaotic: go for it", 40],
+      ["lawful: run it", "true neutral: play action", "chaotic: shot play", 40],
+      ["lawful: the rulebook", "neutral: the replay", "chaotic: whatever #77 just invented", 42]
+    ],
+    galaxy:[
+      ["a first down", "a chunk play", "a red-zone trip", "a touchdown if they finish", 40],
+      ["a sack", "2nd and very long", "a checkdown", "a punt, probably", 40],
+      ["a late flag", "a later flag", "a flag that stopped pretending", "a game that became a case file", 43]
+    ],
+    tierList:[
+      ["S: the catch", "A: the block", "B: the scheme", "F: that drop", 40],
+      ["S: the goal-line stand", "A: the punt pin", "B: the clock", "F: the red-zone fade", 40],
+      ["S: the all-22", "A: the pylon", "B: the crowd noise", "F: the commercial break", 40],
+      ["S: phantom flags", "A: late flags", "B: real flags", "F: the idea of a fair game", 42]
+    ],
+    iceberg:[
+      ["the score", "the hidden yardage", "the 3rd-down plan", "the trenches", 40],
+      ["the fumble", "the punch", "the recovery", "the flip of the field", 40],
+      ["the call", "the review", "the pattern", "the folder at the league office", 43]
+    ],
+    groupchat:[
+      ["the group chat", "DID YOU SEE THAT THROW", "replay it right now", "I'm standing in my kitchen", 40],
+      ["the group chat", "fumble????", "it's out it's out", "I just knocked a chair over", 40],
+      ["the group chat", "ANOTHER FLAG??", "on THAT?", "rename the chat 'yellow watch'", 42],
+      ["the group chat", "this is a scandal", "not a close call, a pattern", "send it to the league", 43]
+    ],
+    starter:[
+      ["big-play starter pack: {qb} and one free safety getting nosy", 40],
+      ["comeback starter pack: timeouts, a sideline, and belief", 40],
+      ["goal-line starter pack: short yard, shorter patience", 40],
+      ["suspicious-whistle starter pack: one early flag and a shrug", 41],
+      ["refball starter pack: a whistle, a plot, and no shame", 42]
+    ],
+    changeMind:[
+      ["this defense is actually scary tonight", 40],
+      ["{qb} is the best player on this field", 40],
+      ["that running game just found a pulse", 40],
+      ["maybe that was a hold. maybe it was a vibe", 41],
+      ["ref #77 is a main character now. unfortunately", 42],
+      ["this was never a football game. it was a job", 43]
+    ],
+    mocking:[
+      ["\"just a simple handoff\" (it was not)", 40],
+      ["\"they can't keep running it\" (they can)", 40],
+      ["\"it's only one play\" (it was not only one play)", 40],
+      ["\"I just want to get the call right\" (he's getting involved)", 41],
+      ["\"I'm just here to keep it fair\" (he is very present)", 42],
+      ["\"the game needs officiating\" (the game needs less of this)", 42],
+      ["\"the league takes integrity very seriously\" (sure, after this)", 43],
+      ["\"I call what I see\" (he sees a script)", 43]
+    ],
+    cornerParty:[
+      ["they don't know this drive is already over", 40],
+      ["they don't know {rb} still has another gear", 40],
+      ["they don't know the safety is late to the party", 40],
+      ["they don't know the flag was already on its way", 41]
+    ],
+    scientistsReveal:[
+      ["Replay official reveals: both feet were in.", 40],
+      ["Booth review reveals the ball broke the plane.", 40],
+      ["The all-22 reveals {wr} ran past everybody.", 40],
+      ["Sideline tech reveals: that's a catch.", 40],
+      ["Scientists reveal the tight end was wide open all night.", 40],
+      ["Replay official reveals the flag arrived early.", 41],
+      ["Replay official reveals the whistle has a storyline.", 42],
+      ["The tape reveals the whistle and the score were in cahoots.", 43]
+    ],
+    outPartying:[
+      ["While they're celebrating… we just recovered a fumble.", 40],
+      ["While they're still in the huddle… the crowd is already loud.", 40],
+      ["While the punt team jogs off… the field just got 80 yards shorter.", 40],
+      ["While they're out taking a breath… {qb} is already at the line.", 40]
+    ],
+    catClap:[
+      ["Me clapping for a 12-yard run like it's sculpture", 40],
+      ["The whole sideline applauding a hold-up block", 40],
+      ["Crowd clapping the offense back onto the field", 40],
+      ["Me applauding a flag that arrived from another zip code", 42]
+    ],
+    hauntedHouse:[
+      ["The red zone is haunted. Third trip, no points.", 40],
+      ["Haunted house… every room is 3rd and 1.", 40],
+      ["Haunted house… the ghost is a wide-open drop.", 40],
+      ["Haunted house… you can hear last drive's fumble in the walls.", 40]
+    ],
+    scribDoon:[
+      ["Intercepted at midfield. Write that one down.", 40],
+      ["Fourth-and-1, stuffed. That's the game in one snap.", 40],
+      ["Toe-tap catch. No notes, just the footage.", 40],
+      ["Punt pinned at the 2. Field position did the talking.", 40],
+      ["A flag on 3rd-and-2. We will be talking about this.", 41]
+    ],
+    whatsUpBrah:[
+      ["The secondary just watched a 60-yarder fly over their heads.", 40],
+      ["{qb} to {wr}, in stride. That's the welcome.", 40],
+      ["Goal-line stand. The visitors can sit down a minute.", 40]
+    ],
+    odysseusYell:[
+      ["Tied to the mast watching a 4th-and-goal", 40],
+      ["I'm yelling at a punt like it can hear me", 40],
+      ["Lashing myself to the couch for a two-minute drill", 40],
+      ["Tied to the mast, still yelling at one striped shirt", 42],
+      ["Plugging my ears so I can't hear one more invented whistle", 43]
+    ],
+    laPeace:[
+      ["Ball punched out. Drive over.", 40],
+      ["Touchdown {team}. Exhale.", 40],
+      ["Three-and-out. Sit down.", 40],
+      ["Field goal, good. We'll take the quiet points.", 40],
+      ["Another flag on the {unfav}. Of course. Drive over.", 42],
+      ["The mask is off. The flags did the talking.", 43]
+    ],
+    codec:[
+      ["[CATCH] Toes down. Ball secure. Over.", 40],
+      ["[FUMBLE] It's out. It's theirs. Over.", 40],
+      ["[SHOT] {qb} took a shot. It's there. Over.", 40],
+      ["[STOP] Fourth down. No gain. Over.", 40],
+      ["[?] Contact. Flag. We're going to look at this. Over.", 41],
+      ["[FLAG] On the {unfav}, again. We are not surprised. Over.", 42],
+      ["[EXPOSED] The whistle is the story. The football was a prop. Over.", 43]
+    ],
+    prosStandards:[
+      ["Pros standards: finish the tackle", 40],
+      ["Pros standards: fall forward", 40],
+      ["Pros standards: look the ball in", 40],
+      ["Pros standards: win the down, then the next one", 40],
+      ["Pros standards: never let a drive end without a meeting", 42]
+    ],
+    monkeyScroll:[
+      ["Me scrolling for the replay of that catch. There it is.", 40],
+      ["Scrolling the drive chart like it's a thriller", 40],
+      ["Me looking for the fumble on the all-22", 40],
+      ["Me scrolling for the thing that flag was thrown for. Still looking.", 41],
+      ["Me scrolling the tape for a single clean quarter. I have not found one.", 43]
+    ],
+    surprised:[
+      ["{qb}'s face when the window actually opened", 40],
+      ["The tight end when nobody covered him", 40],
+      ["The crowd when the ball came out", 40],
+      ["{coach} when the sneak actually got there", 40],
+      ["The {victim} sideline when the first weird flag lands", 41],
+      ["Absolutely nobody's face when #77 finds another flag", 42],
+      ["My face when #77 stops pretending this is subtle", 43]
+    ],
+    eyeChart:[
+      ["", "that was a catch in any language", 40],
+      ["", "3rd-down conversions: finally, a pulse", 40],
+      ["", "line 1: whatever the script needs, in 4K", 43]
+    ],
+    wanted:[
+      ["", "for breaking three tackles on one carry", 40],
+      ["", "for a throw that looked illegal. it wasn't", 40],
+      ["", "for a couple of flags that need a footnote", 41],
+      ["", "for turning first downs into committee meetings", 42],
+      ["", "for a holding clinic nobody asked for", 42],
+      ["", "for turning a football game into a shipping invoice", 43],
+      ["", "for {flags} flags and zero plausible deniability", 43]
+    ],
+    barChart:[
+      ["", "yards after contact: the loud bar", 40],
+      ["", "third-down success: one sideline is singing", 40]
+    ],
+    card:[
+      ["", "limited edition: a clean open-field tackle", 40],
+      ["", "rookie card: first chunk play of the night", 40],
+      ["", "ultra-rare: a clean #77 game (discontinued)", 43]
+    ],
+    slot:[
+      ["the drive", "first · first · touchdown", 40],
+      ["fourth and 1", "push · push · first", 40]
+    ],
+    parlay:[
+      ["", "4-play scoring drive. that's the combo", 40],
+      ["", "first, chunk, punch. paid in points", 40],
+      ["", "flag, flag, first down. the only combo still hitting", 42],
+      ["", "the whistle is on a heater and the game is the collateral", 43]
+    ],
+    finePrint:[
+      ["a catch*", "*until the still frame says otherwise", 40],
+      ["the catch rule*", "*currently a feeling, plus two feet", 40],
+      ["the ruling on the field*", "*subject to whoever called first", 41],
+      ["10-yard penalty*", "*plus the official's current mood", 41],
+      ["pass interference*", "*as interpreted by one man in stripes", 42],
+      ["play stands*", "*we simply won't be explaining that", 42],
+      ["after further review*", "*we looked until we liked it", 42],
+      ["uncatchable*", "*a word invented in real time, for convenience", 43],
+      ["no foul*", "*unless the other guy needed one", 43]
+    ],
+    qbPeace:[
+      ["{player} STILL STANDING", "THE POCKET HELD, FOR ONCE", 40]
+    ],
+    qbPaper:[
+      ["PROTECTION PLAN", "ACTUALLY SHOWED UP TODAY", 40]
+    ],
+    receipts:[
+      ["early receipts", "one flag, one raised eyebrow", 41],
+      ["the receipts", "the flags and the score moved together", 43],
+      ["exhibit F", "flag #{flags}, timed like a punchline", 43]
+    ],
+    refball:[
+      ["REFBALL", "now airing in its regular time slot", 42],
+      ["REFBALL", "the {favt} have a 12th man and he brought a whistle", 42],
+      ["REFBALL", "season finale: the mask is off", 43],
+      ["REFBALL", "credits: written by #77, against the {unfav}", 43]
+    ],
+    payroll:[
+      ["tonight's co-star", "ref #77 · 'consulting with the script'", 42],
+      ["direct deposit", "memo: 'for services rendered, very obviously'", 43]
+    ],
+    holdAll:[
+      ["holding", "again", "and again, somehow", 42]
+    ],
+    lennyTab:[
+      ["THE TAB", "{flags} flags .............. 'priceless'", "1 clean half .............. void", "TIP: don't get caught on camera", 43]
+    ],
+    hood:[
+      ["what the replay shows", "what #77 has already decided", 43]
+    ],
+    burner:[
+      ["unknown number", "you already did enough. maybe too much.", 43]
+    ],
+    winkZoom:[
+      ["the wink", "wasn't even trying to hide", 43]
+    ]
+  };
+  if(typeof MEME_W==='object'&&MEME_W){MEME_W[40]=6;MEME_W[41]=5;MEME_W[42]=6;MEME_W[43]=7;}
+  function arity(fmt){var c={},best=0,b=2;(MEMES[fmt].caps||[]).forEach(function(cp){var n=cp.filter(function(x){return typeof x==='string';}).length;c[n]=(c[n]||0)+1;});for(var k in c)if(c[k]>best){best=c[k];b=+k;}return {mode:b,all:c};}
+  Object.keys(ADD).forEach(function(fmt){
+    if(!ADD[fmt].length)return;
+    if(!MEMES[fmt]||!MEMES[fmt].caps){GR.missingFmt.push(fmt);return;}
+    var a=arity(fmt);
+    ADD[fmt].forEach(function(cp){var n=cp.filter(function(x){return typeof x==='string';}).length;
+      if(a.all&&Object.keys(a.all).length&&!a.all[n]){GR.rejected.push(fmt+': '+cp.filter(function(x){return typeof x==='string';}).join(' / '));return;}
+      MEMES[fmt].caps.push(cp);GR.added++;});
+  });
+
+  /* ---------- 3. interference tier ----------
+     0 clean      — mostly game memes
+     1 suspicious — a few shady flags / heat starting
+     2 refball    — open mockery
+     3 exposed    — the whistle is the story
+     Drivers: heat, peak heat, shady flags, ignored fouls,
+     fake holdings, bad-call streak, a flipped job, a firing. */
+  /* v94: read live suspicion (S.heat/S.peak) and momentum watch/tell
+     (V91.watch / V91.told, or st.watch/st.told for the node sim), plus the
+     original shady/ignored/holdFake/bad/streak/job.flipped/over drivers. */
+  function grWatch(st){
+    if(st&&st.watch!=null)return +st.watch||0;
+    try{if(typeof V91!=='undefined'&&V91&&V91.watch!=null)return +V91.watch||0;}catch(e){}
+    try{if(typeof CW!=='undefined'&&CW.v91&&CW.v91.watch!=null)return +CW.v91.watch||0;}catch(e){}
+    return 0;
+  }
+  function grTold(st){
+    if(st&&st.told!=null)return +st.told||0;
+    try{if(typeof V91!=='undefined'&&V91&&V91.told!=null)return +V91.told||0;}catch(e){}
+    try{if(typeof CW!=='undefined'&&CW.v91&&CW.v91.told!=null)return +CW.v91.told||0;}catch(e){}
+    return 0;
+  }
+  function grTier(st){
+    st=st||(typeof S!=='undefined'?S:null)||{};
+    var sh=st.shady||0, pk=st.peak||0, h=st.heat||0, I=st.ignored||0;
+    var hf=st.holdFake||0, bad=st.bad||0, str=st.streak||0;
+    var flip=(st.job&&st.job.flipped)?1:0;
+    var fired=st.over==='fired'?1:0;
+    var watch=grWatch(st), told=grTold(st);
+    /* tell threshold is 50; high watch / a second tell escalates like heat */
+    if(fired||sh>=8||pk>=85||h>=85||bad>=8||watch>=95||told>=2) return 3;
+    if(sh>=5||pk>=65||h>=65||hf>=3||(sh+I)>=7||watch>=75) return 2;
+    if(sh>=2||pk>=40||h>=40||I>=3||hf>=2||str>=3||flip||watch>=50||told>=1) return 1;
+    return 0;
+  }
+  GR.tier=grTier;
+
+  var WBASE={};
+  function snapW(){if(typeof MEME_W==='undefined')return; for(var k in MEME_W)WBASE[k]=MEME_W[k];}
+  function restoreW(){if(typeof MEME_W==='undefined')return; for(var k in WBASE)MEME_W[k]=WBASE[k];}
+  function applyW(t,kind){
+    if(typeof MEME_W==='undefined')return;
+    var set=function(cd,v){MEME_W[cd]=v;};
+    set(40,[7.5,3.2,1.1,0.45][t]);
+    set(41,t>=1?[0,5.5,3.0,1.6][t]:0.01);
+    set(42,t>=2?[0,0,6.5,4.0][t]:0.01);
+    set(43,t>=3?8:0.01);
+    set(0,[0.45,1.1,2.2,2.8][t]);
+    set(10,0.01);set(26,0.01);
+    set(25,t>=2?3:(t>=1?0.8:0.01));
+    set(27,t>=2?3.5:(t>=1?1.2:0.01));
+    [1,2,3,5,6,7,8,20,29,30,31].forEach(function(cd){set(cd,[0.7,2.0,4.0,6.0][t]);});
+    [4,9,11,15,16,22,23,28].forEach(function(cd){set(cd,[3.2,2.2,1.3,0.9][t]);});
+    if(kind==='game') set(40,[9,5,2.5,1.2][t]);
+  }
+  GR.weight=applyW;
+
+  function okAdjust(ok,kind,spK,t){
+    ok[26]=false;ok[10]=false;
+    var gameKind=kind==='game'||kind==='suite';
+    if(gameKind){
+      for(var k in ok) ok[k]=false;
+      ok[40]=true;ok[23]=true;ok[28]=true;ok[11]=true;ok[22]=true;
+      ok[15]=true;ok[16]=true;
+      if(t>=1)ok[41]=true;if(t>=2)ok[42]=true;if(t>=3)ok[43]=true;
+      return ok;
+    }
+    if(!spK){
+      ok[40]=true;
+      if(t>=1)ok[41]=true;if(t>=2)ok[42]=true;if(t>=3)ok[43]=true;
+    }
+    return ok;
+  }
+  GR.okAdjust=okAdjust;
+
+  /* ---------- 4. in-game hooks (no-op in the node sim) ---------- */
+  if(typeof memePost==='function'&&typeof MEMES!=='undefined'){
+    if(typeof memeOkX==='function'){
+      memeOkX=(function(f){return function(ok,kind,spK){
+        f(ok,kind,spK);
+        try{okAdjust(ok,kind,spK,grTier());}catch(e){}
+      };})(memeOkX);
+      GR.hooked.push('memeOkX');
+    }
+    if(typeof memeCtxX==='function'){
+      memeCtxX=(function(f){return function(){
+        var o=f();
+        try{
+          var off=(S&&S.cur&&S.cur.off)||(S&&S.poss)||'away';
+          var tm=(typeof T==='function'?T(off):{})||{};
+          var q=['1st quarter','2nd quarter','3rd quarter','4th quarter'][Math.max(0,((S&&S.q)||1)-1)];
+          var yds=(S&&S.cur&&S.cur.yards);
+          if(o.qb==null)o.qb=tm.qb||'the QB';
+          if(o.rb==null)o.rb=tm.rb||'the runner';
+          if(o.wr==null)o.wr=(S&&S.cur&&S.cur.wr)||tm.wr||'the receiver';
+          if(o.yds==null)o.yds=(yds==null?0:yds);
+          if(o.play==null)o.play='that play';
+          if(o.qtr==null)o.qtr=q;
+          if(o.margin==null)o.margin=Math.abs(((S&&S.score&&S.score.home)||0)-((S&&S.score&&S.score.away)||0));
+          if(o.player==null)o.player=tm.qb||'the QB';
+        }catch(e){}
+        return o;
+      };})(memeCtxX);
+      GR.hooked.push('memeCtxX');
+    }
+    snapW();
+    var _mp=memePost;
+    memePost=function(ctx,kind,o){
+      o=o||{};ctx=ctx||{};
+      if(kind==='suite')kind='game';
+      var t=0;try{t=grTier();}catch(e){}
+      applyW(t,kind);
+      try{return _mp(ctx,kind,o);}
+      finally{restoreW();}
+    };
+    GR.hooked.push('memePost');
+    GR._old={memePost:_mp};
+
+    function playCtx(kp,I){
+      var ctx={};
+      try{
+        var off=kp.off||(S&&S.poss)||'away';
+        var tm=T(off), ot=T(typeof other==='function'?other(off):(off==='home'?'away':'home'));
+        var pr=I&&I.pr, ev='the play';
+        if(pr&&pr.kind==='TD')ev='touchdown';
+        else if(pr&&pr.kind==='SAF')ev='safety';
+        else if(kp.turnover&&kp.pass)ev='interception';
+        else if(kp.turnover)ev='fumble';
+        else if(kp.sack)ev='sack';
+        else if(kp.yards>=20)ev='big gain';
+        else if(kp.complete&&kp.deep)ev='deep ball';
+        ctx={
+          team:tm.name,victim:ot.name,player:(kp.type==='run'?tm.rb:tm.qb),
+          qb:tm.qb,rb:tm.rb,wr:kp.wr||tm.wr||'the receiver',
+          yds:kp.yards||0,play:ev,
+          call:(I&&I.call&&typeof CNAME!=='undefined'&&CNAME[I.call])||(I&&I.call)||'the play'
+        };
+      }catch(e){}
+      return ctx;
+    }
+    function maybeGame(kp,I){
+      if(typeof FLOW!=='undefined'&&!FLOW)return null;
+      if(!kp||typeof S==='undefined'||!S||S.over)return null;
+      if((S.lastMemeAt||0)===S.keys)return null;
+      if(S.lastMemePlay===S.plays)return null;
+      var t=grTier();
+      var pr=I&&I.pr, kind=(pr&&pr.kind)||'';
+      var huge=kind==='TD'||kind==='SAF'||!!kp.turnover||!!kp.sack||(kp.yards>=20)||(kp.complete&&kp.deep);
+      var close=S.q>=4&&Math.abs((S.score.home||0)-(S.score.away||0))<=8;
+      var big=huge||(kp.yards>=10&&(kp.down===3||kp.down===4))||close;
+      if(!big&&!kp.key)return null;
+      if(!huge&&S.__grLastGameKey&&(S.keys-S.__grLastGameKey)<2)return null;
+      var p=huge?[0.78,0.52,0.24,0.12][t]:big?[0.55,0.32,0.14,0.07][t]:[0.30,0.14,0.06,0.03][t];
+      var r=typeof rnd==='function'?rnd():Math.random();
+      if(r>p)return null;
+      var out=memePost(playCtx(kp,I),'game');
+      if(out){S.__grLastGameKey=S.keys;S.lastMemePlay=S.plays;}
+      return out;
+    }
+    GR.maybeGame=maybeGame;
+
+    if(typeof postMeme==='function'){
+      var _pm=postMeme;
+      postMeme=function(kp,I){
+        var before=(typeof S!=='undefined'&&S&&S.memes)||0;
+        try{_pm.apply(this,arguments);}catch(e){}
+        try{if((((typeof S!=='undefined'&&S&&S.memes)||0)<=before))maybeGame(kp,I);}catch(e){}
+      };
+      GR.hooked.push('postMeme');
+    }
+
+    try{if(window.CW&&window.CW._dbg)window.CW._dbg.memePost=memePost;}catch(e){}
+    try{if(window.CW&&window.CW._v75)window.CW._v75.memePost=memePost;}catch(e){}
+    try{if(window.CW){window.CW.v94gr=GR;window.CW.v75gr=GR;}}catch(e){}
+  }
+
+  /* ---------- 5. post text ---------- */
+  if(typeof MEME_POST_TXT_X==='undefined') MEME_POST_TXT_X={};
+  MEME_POST_TXT_X.game=["pause it right there", "that play is going in the montage", "the whole stadium just exhaled", "box score can't catch this", "you love to see it", "the crowd is louder than the hit", "that's football, actually", "drive chart looking spicy", "the sideline just became a movie", "someone check if the tight end is okay (he's great)", "chunk play season", "the {hcity} crowd felt that one", "put it on a loop", "that's a helmet-off celebration coming", "the defense just got posted"];
+  MEME_POST_TXT_X.suite=MEME_POST_TXT_X.game;
+  MEME_POST_TXT_X.inv=(MEME_POST_TXT_X.inv||[]).concat(["the whistle just entered the chat", "flag on a play that was fine, maybe", "laundry watch is officially open", "eyes on #77 after that one"]);
+  MEME_POST_TXT_X.ign=(MEME_POST_TXT_X.ign||[]).concat(["no flag. interesting.", "the whistle stayed home for that one", "I would have thrown it. he didn't."]);
+  if(MEME_POST_TXT_X.chant){MEME_POST_TXT_X.chant=MEME_POST_TXT_X.chant.concat(["the whole bowl on one word", "loudest it's been since the last first down", "they came to be heard"]);}
+  else MEME_POST_TXT_X.chant=["the whole bowl on one word", "loudest it's been since the last first down", "they came to be heard"];
+  MEME_POST_TXT_X._any=(MEME_POST_TXT_X._any||[]).concat(["the game just did a thing", "no context needed, actually there is context: football", "posted this before the replay even finished", "the group chat is going to eat this", "I have watched this 12 times already", "tonight's mvp might not wear a stripe"]);
+  try{if(window.__cwMemePack)window.__cwMemePack.txt=MEME_POST_TXT_X;}catch(e){}
+
+  GR.ok=true;
+  console.info('[CW] v94gr — game/ref memes: cut '+GR.cut.length+', +'+GR.added+' captions, hooked '+(GR.hooked.join(', ')||'pools only'));
+
+}catch(err){console.error('[CW] v94gr game/ref memes failed',err);}})();
+
+/* ===== v94 GAMEREF helpers: 60fps field + flags ===== */
+(function(){try{
+  function v94Shrink2d(){
+    try{
+      var f=document.getElementById('field'), c3=document.getElementById('field3d');
+      if(!f||!c3)return;
+      f.style.visibility='hidden';
+      if(f.width!==1||f.height!==1){f.width=1;f.height=1;}
+    }catch(e){}
+  }
+  v94Shrink2d();
+  setTimeout(v94Shrink2d,0);
+  setTimeout(v94Shrink2d,400);
+  try{if(typeof showTitle==='function'){var _st=showTitle;showTitle=function(){var r=_st.apply(this,arguments);setTimeout(v94Shrink2d,0);return r;};}}catch(e){}
+  try{
+    window.CW=window.CW||{};
+    window.CW.v94gr=window.CW.v94gr||window.__cwMemeGR;
+    window.CW.v94={ok:true,build:'GAMEREF',dprCap:2,
+      help:'CW.v94gr / __cwMemeGR — game/ref meme pack; field anim is rAF + dt, 2D paint skipped when 3D is up, DPR capped at 2'};
+  }catch(e){}
+  try{window.__v94.items.push('60fps','dpr-cap','meme-gameref');}catch(e){}
+}catch(e){console.error('[v94]',e);}})();
+
+/* ===== v95 BOOTH: persistent commentator strip under the suspicion bar ===== */
+(function(){try{
+  var HOLD=3200;
+  var V95={hist:[],cur:null,pending:null,tm:0,shownAt:0,kick:false,open:false,swaps:0,fills:0,gaps:0};
+  function el(id){return document.getElementById(id);}
+  function now(){return performance.now();}
+  function whoKey(w){
+    var u=String(w||'').toUpperCase();
+    if(u.indexOf('MARV')>=0)return 'MARV';
+    if(u.indexOf('CHIP')>=0)return 'CHIP';
+    return '';
+  }
+  function inGame(){
+    try{
+      var g=el('game');
+      if(!g||g.hidden)return false;
+      if(!S||S.over)return false;
+      var ph=S.phase||'';
+      if(ph==='idle'&&!V95.kick)return false;
+      return true;
+    }catch(e){return false;}
+  }
+  function ensure(){
+    var n=el('v95booth');
+    if(n&&n.isConnected)return n;
+    n=document.createElement('div');
+    n.id='v95booth';
+    n.setAttribute('role','status');
+    n.setAttribute('aria-live','polite');
+    n.innerHTML='<div class="v95line"><span class="v95who"></span><span class="v95t"></span></div><div class="v95hist" hidden></div>';
+    (el('game')||document.body).appendChild(n);
+    n.addEventListener('click',function(ev){
+      ev.preventDefault();ev.stopPropagation();
+      V95.open=!V95.open;
+      n.classList.toggle('open',V95.open);
+      document.body.classList.toggle('v95open',V95.open);
+      renderHist();layout();
+    },true);
+    return n;
+  }
+  function placeWatch(){
+    try{
+      var w=el('v91watch'),g=el('game');
+      if(!w||!g)return;
+      if(w.parentElement!==g)g.appendChild(w);
+      var top='calc(var(--cw-mtop, 4px) + 38px + var(--v95h, 24px) + 4px)';
+      w.style.setProperty('top',top,'important');
+      w.style.setProperty('left','6px','important');
+      w.style.setProperty('z-index','10040','important');
+    }catch(e){}
+  }
+  function layout(){
+    try{
+      var n=el('v95booth');
+      var h=n&&n.classList.contains('on')?Math.max(18,Math.round(n.getBoundingClientRect().height)):22;
+      document.documentElement.style.setProperty('--v95h',h+'px');
+      placeWatch();
+    }catch(e){}
+  }
+  function renderHist(){
+    var n=ensure(),h=n.querySelector('.v95hist');if(!h)return;
+    if(!V95.open){h.hidden=true;h.innerHTML='';return;}
+    var rows=V95.hist.slice(-5);
+    h.hidden=false;
+    h.innerHTML=rows.map(function(r){
+      var p=r.who?('<b>'+r.who+':</b> '):'';
+      var t=document.createElement('div');t.textContent=(r.who? (r.who+': ') : '')+r.txt;
+      return '<div class="v95h">'+t.innerHTML+'</div>';
+    }).join('');
+  }
+  function paint(rec,fade){
+    var n=ensure();
+    var who=n.querySelector('.v95who'), tx=n.querySelector('.v95t');
+    function apply(){
+      if(rec.who){who.textContent=rec.who+': ';who.hidden=false;}
+      else{who.textContent='';who.hidden=true;}
+      tx.textContent=rec.txt||'';
+      n.classList.add('on');n.classList.remove('swap');
+    }
+    if(fade&&V95.cur&&tx){
+      n.classList.add('swap');
+      setTimeout(function(){apply();V95.swaps++;},80);
+    }else apply();
+    V95.cur=rec;V95.shownAt=now();
+    n.classList.toggle('open',V95.open);
+    if(V95.open)renderHist();
+    layout();
+  }
+  function pushHist(rec){
+    var last=V95.hist[V95.hist.length-1];
+    if(last&&last.who===rec.who&&last.txt===rec.txt)return;
+    V95.hist.push({who:rec.who||'',txt:rec.txt||'',src:rec.src||'',t:Date.now()});
+    if(V95.hist.length>12)V95.hist=V95.hist.slice(-12);
+  }
+  function flush(rec){
+    if(!rec||!rec.txt)return;
+    pushHist(rec);
+    paint(rec,!!V95.cur);
+    V95.pending=null;
+  }
+  function show(rec){
+    if(!rec||!rec.txt)return;
+    rec.txt=String(rec.txt).replace(/\s+/g,' ').trim();
+    if(!rec.txt)return;
+    var t=now(), wait=V95.shownAt?HOLD-(t-V95.shownAt):0;
+    /* a new booth line must hold at least 3.2s (wall clock, any speed) before it can be replaced */
+    if(V95.cur&&V95.shownAt&&wait>16){
+      V95.pending=rec;
+      clearTimeout(V95.tm);
+      V95.tm=setTimeout(function(){var p=V95.pending;V95.pending=null;if(p)flush(p);},wait);
+      return;
+    }
+    clearTimeout(V95.tm);V95.pending=null;
+    flush(rec);
+  }
+  function kickOn(){
+    if(V95.kick)return;
+    V95.kick=true;
+    ensure().classList.add('on');layout();
+  }
+  function filler(){
+    if(!inGame()||!V95.kick)return;
+    if(V95.pending)return;
+    if(V95.cur&&V95.shownAt&&(now()-V95.shownAt)<HOLD)return;
+    try{
+      var low=el('lower');
+      var t=low&&(low.textContent||'').replace(/\s+/g,' ').trim();
+      if(t&&(!V95.cur||V95.cur.txt!==t)){V95.fills++;show({who:'',txt:t,src:'pbp'});}
+    }catch(e){}
+    if(V95.kick&&V95.cur)ensure().classList.add('on');
+  }
+
+  /* CSS: one strip under the suspicion bar, above memes/banners/sheets, 2 lines, no ellipsis */
+  var st=document.createElement('style');st.id='v95css';
+  st.textContent=[
+    '#v95booth{position:fixed;left:6px;right:6px;top:calc(var(--cw-mtop,4px) + 38px);z-index:10050;',
+    'display:none;box-sizing:border-box;padding:4px 8px;border-radius:8px;',
+    'background:rgba(10,12,20,.9);color:#e8ecf5;font:600 11px/1.25 system-ui,sans-serif;',
+    'pointer-events:auto;cursor:pointer;-webkit-tap-highlight-color:transparent;',
+    'max-height:none;overflow:visible}',
+    '#v95booth.on{display:block}',
+    '#v95booth .v95line{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;',
+    'overflow:hidden;text-overflow:clip;max-height:2.55em;word-break:break-word}',
+    '#v95booth.open .v95line{display:block;-webkit-line-clamp:unset;max-height:none}',
+    '#v95booth .v95who{font-weight:800;color:#8ec8ff;margin-right:4px}',
+    '#v95booth .v95t{color:#e8ecf5}',
+    '#v95booth .v95line.swap,#v95booth.swap .v95t{opacity:0;transition:opacity .12s linear}',
+    '#v95booth .v95t{transition:opacity .12s linear}',
+    '#v95booth .v95hist{margin-top:4px;padding-top:4px;border-top:1px solid rgba(255,255,255,.12);max-height:8.5em;overflow:auto}',
+    '#v95booth .v95h{font:600 10px/1.3 system-ui,sans-serif;color:#d5dbe8;padding:1px 0}',
+    '#v95booth .v95h b{color:#8ec8ff;font-weight:800}',
+    '@media (max-width:380px){#v95booth{font-size:10px;padding:3px 7px}#v95booth .v95line{max-height:2.55em}#v95booth .v95h{font-size:9.5px}}',
+    /* push the call sheet, cards, and tell out of the strip lane */
+    '#game.fs-tiny #decide,#decide{top:calc(var(--cw-mtop,4px) + 38px + var(--v95h,24px) + 8px)!important}',
+    'html body #v91watch,html body #v75top #v91watch,body.v91w #v91watch{top:calc(var(--cw-mtop,4px) + 38px + var(--v95h,24px) + 4px)!important;left:6px!important;z-index:10040!important}',
+    'body.v95open #decide,body.v95open #game #decide{top:calc(var(--cw-mtop,4px) + 38px + var(--v95h,24px) + 8px)!important}',
+    /* hide the old lower/caption booth so the budget stays one strip */
+    '#game:not([hidden]) #lower{visibility:hidden!important;pointer-events:none!important}',
+    '#v75cap #booth,#booth{display:none!important}',
+    /* keep gfx/halftime/memes below the strip; they can still use the field */
+    '#game #tv #gfx{top:calc(var(--cw-mtop,4px) + 78px)!important}',
+    '#v87ban{top:auto!important;bottom:22%!important}'
+  ].join('');
+  document.head.appendChild(st);
+
+  /* hooks */
+  if(typeof booth==='function'){
+    var _bo=booth;
+    booth=function(line,ctx){
+      var r=_bo.apply(this,arguments);
+      try{
+        if(!line)return r;
+        var who=line[0], txt=line[1];
+        try{if(typeof fill==='function')txt=fill(txt,ctx);}catch(e){}
+        if(S&&S.over)return r;
+        kickOn();
+        show({who:whoKey(who),txt:txt,src:'booth'});
+      }catch(e){}
+      return r;
+    };
+  }
+  if(typeof lower==='function'){
+    var _lw=lower;
+    lower=function(txt,c){
+      var r=_lw.apply(this,arguments);
+      try{
+        if(S&&S.quiet)return r;
+        if(S&&S.over)return r;
+        var t=txt&&String(txt).replace(/\s+/g,' ').trim();
+        if(!t)return r;
+        kickOn();
+        /* PBP fills the strip when a booth line is not mid-hold */
+        if(!V95.cur||V95.cur.src==='pbp'||(V95.shownAt&&(now()-V95.shownAt)>=HOLD)){
+          show({who:'',txt:t,src:'pbp'});
+        }
+      }catch(e){}
+      return r;
+    };
+  }
+
+  /* new game: reset */
+  if(typeof fresh==='function'){
+    var _fr=fresh;
+    fresh=function(){
+      var r=_fr.apply(this,arguments);
+      try{
+        V95.hist=[];V95.cur=null;V95.pending=null;V95.kick=false;V95.open=false;V95.shownAt=0;
+        clearTimeout(V95.tm);
+        var n=el('v95booth');if(n){n.classList.remove('on','open','swap');n.querySelector('.v95t').textContent='';n.querySelector('.v95who').textContent='';var h=n.querySelector('.v95hist');if(h){h.hidden=true;h.innerHTML='';}}
+      }catch(e){}
+      return r;
+    };
+  }
+
+  setInterval(function(){
+    try{
+      if(S&&S.over){var n=el('v95booth');/* keep last line through the whistle; hide on end screen */
+        var end=el('end');if(end&&!end.hidden){if(n)n.classList.remove('on');return;}}
+      if(inGame()&&(S.plays>0||S.phase==='presnap'||S.phase==='live'||S.phase==='kickoff'||S.phase==='ko'))kickOn();
+      filler();layout();
+    }catch(e){}
+  },200);
+
+  window.CW=window.CW||{};
+  Object.defineProperty(window.CW,'boothHistory',{
+    get:function(){return V95.hist.slice(-5).map(function(r){return {who:r.who,txt:r.txt,src:r.src,t:r.t};});},
+    configurable:true,enumerable:true
+  });
+  CW.v95={V:V95,hold:HOLD,feed:function(who,txt){kickOn();show({who:whoKey(who),txt:String(txt||''),src:'booth'});},help:'CW.boothHistory — last 5 commentator/PBP lines; CW.v95.feed(who,txt)'};
+  try{window.__v95.items.push('booth-strip','boothHistory','pbp-fill');}catch(e){}
+}catch(e){console.error('[v95]',e);}})();
+
 setMatch(QUICK);bindRefNameInputs();syncRefUI();showTitle();
 })();
 </script>
@@ -14792,6 +15908,8 @@ setMatch(QUICK);bindRefNameInputs();syncRefUI();showTitle();
 <script>window.__v88={ok:true,build:'DISCREET2'};</script>
 <script>window.__v92={ok:true,build:'MOMENTUM2',items:[]};</script>
 <script>window.__v93={ok:true,build:'MOMENTUM3',items:[]};</script>
+<script>window.__v94={ok:true,build:'GAMEREF',items:[]};</script>
+<script>window.__v95={ok:true,build:'BOOTH',items:[]};</script>
 <script>window.__v81={ok:true,build:'LEGAL',items:['celebrity-invented','gag-helplines','teams-gales-wedges','new-colors','new-emblems','slot-renames','credits-legal-screen','head-copyright']};</script>
 </body>
 </html>
