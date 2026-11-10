@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#0b0d12">
-<title>After Further Review: The IFL v95 BOOTH</title>
+<title>After Further Review: The IFL v97 POLISH</title>
 <style>
 :root{--bg:#0b0d12;--card:#1a1e27;--card2:#252a35;--ink:#f4f1e8;--dim:#9aa3b2;--whistle:#ffd23f;--hot:#ff5a3c;--ok:#4cd387;--line:#2c3240;--gbn:#2f6bff}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -1678,7 +1678,7 @@ window.__showThreeMissing=function(msg){
 (()=>{
 var __cwN=function(a,b){return a!=null?a:b;};/* v62: Safari ≤13-safe nullish + optional-chain shims */
 /* v73: build/version info. Future builds bump ONLY this line. */
-const CW_VERSION='v95',CW_BUILD='BOOTH',CW_DATE='2026-11-09';
+const CW_VERSION='v97',CW_BUILD='POLISH',CW_DATE='2026-11-09';
 const CW_VER_SHORT=(()=>{const p=CW_DATE.split('-');const M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];return CW_VERSION+' · '+CW_BUILD+' · '+M[(+p[1]||1)-1]+' '+(+p[2]||'');})();
 window.CW_VERSION=CW_VERSION;window.CW_BUILD=CW_BUILD;window.CW_DATE=CW_DATE;
 (function cwVerUI(){
@@ -2065,7 +2065,7 @@ async function halftimeCall(){
   let cl=(P.get('caller')&&CALLERS.find(c=>c.id===P.get('caller')))||(isStar()&&rnd()<0.4?CALLERS.find(c=>c.id==='lumi'):pick(CALLERS.filter(c=>c.id!=='lumi')));if(cl.id==='lumi'&&!P.get('offer')){const kp=OFFERS.filter(o=>o.team==='home');if(kp.length)of=kp[0];}
   const xNew=of.team==='home'?m:-m,need=Math.max(0,of.lo-xNew);if(cl.id==='lumi')setTimeout(()=>crowd24.lumiCall&&crowd24.lumiCall(),50);
   const pay=Math.round(PAY*clamp(1.5+need*0.07,1.5,3)/1000)*1000;
-  S.callInfo={caller:cl.id,offer:of.id,pay,need,answered:false,accepted:false};
+  var info=S.callInfo={caller:cl.id,offer:of.id,pay,need,answered:false,accepted:false};
   const el=$('#call');S.phase='call';hud();hideMemesNow();AU.sfx('ring');
   $('#cav').style.background=cl.col;$('#cav').textContent=cl.ini;$('#cnm').textContent=cl.name;$('#csb').textContent=cl.sub;$('#cst').textContent='incoming call…';
   $('#cmid').innerHTML='';$('#cbt').hidden=false;$('#cch').hidden=true;$('#cslide').hidden=false;el.className='ring';el.hidden=false;
@@ -2075,14 +2075,14 @@ async function halftimeCall(){
   clearInterval(buzz);el.className='';
   const old=S.job;const bub=(t,cls='')=>{const d=document.createElement('div');d.className='bub '+cls;d.textContent=t;$('#cmid').appendChild(d);};
   let took=false;
-  if(ans==='acc'){S.callInfo.answered=true;$('#cbt').hidden=true;$('#cslide').hidden=true;let sec=0;$('#cst').textContent='00:00';const tick=setInterval(()=>{sec++;$('#cst').textContent='00:'+String(sec).padStart(2,'0');},1000/SP());
+  if(ans==='acc'){if(!S.callInfo)S.callInfo=info;info.answered=true;S.callInfo.answered=true;$('#cbt').hidden=true;$('#cslide').hidden=true;let sec=0;$('#cst').textContent='00:00';const tick=setInterval(()=>{sec++;$('#cst').textContent='00:'+String(sec).padStart(2,'0');},1000/SP());
     for(const ln of CALL_LINES[cl.id]){bub(fill(ln,{say:of.say,pay:'$'+pay.toLocaleString()}));await wait(AUTO?500:1300);}
     $('#cTake').innerHTML=`✅ Take the new job · $${pay.toLocaleString()}<small>New orders: ${of.short}</small>`;$('#cRef').innerHTML=`✋ Refuse · keep ${old.short}<small>${REFUSE[cl.id].heat?'+'+REFUSE[cl.id].heat+'🔥 heat':''}${REFUSE[cl.id].cut?'−$'+REFUSE[cl.id].cut.toLocaleString()+' payout':''}${REFUSE[cl.id].leak?' · burner leaks':''}</small>`;$('#cch').hidden=false;
     const ch=await waitChoice([['#cTake','take'],['#cRef','ref']],htMode==='refuse'?'ref':htMode==='wait'?null:'take',0,null);clearInterval(tick);
     took=ch==='take';if(took)bub('Done. Flip it.','sys');else bub(REFUSE[cl.id].txt,'sys');$('#cch').hidden=true;await wait(AUTO?300:1100);}
   else{$('#cst').textContent=ans==='dec'?'call declined':'missed call';$('#cbt').hidden=true;bub(ans==='dec'?'You declined. Your phone buzzes again. Then stops.':'You let it ring out.','sys');bub(REFUSE[cl.id].txt,'sys');await wait(AUTO?300:1400);}
   el.hidden=true;S.phase='idle';
-  if(took){S.callInfo.accepted=true;S.htNet=favNet();
+  if(took){if(!S.callInfo)S.callInfo=info;info.accepted=true;S.callInfo=info;S.callInfo.accepted=true;S.htNet=favNet();
     S.job={id:of.id,team:of.team,lo:of.lo,hi:of.hi,short:of.short,tag:of.tag,pay,line:`📞 ${of.tag} · $${Math.round(pay/1000)}K`,flipped:true,orig:old,caller:cl.id};
     $('#ticker').classList.add('neworders');hud();
     gfx(`<h4>📞 NEW ORDERS · ${cl.name.toUpperCase()}</h4><div class="nord"><img src="${logoURL(T(of.team).name,124)}" alt=""><div><div class="nstamp">NEW ORDERS</div><b>${of.short}</b></div></div>
@@ -7941,7 +7941,7 @@ function setMatch(c){
   const brandU=(c.season?sl.brand:'IFL on GBN').toUpperCase();
   MATCH={...c,sl,net:c.season?sl.net:'GBN',brand:c.season?sl.brand:'IFL on GBN',brandU,viral:c.season?sl.viral:1,startHeat:c.startHeat||0,stadium:H.stadium||'Lambert Field',
     spr:s,callP:c.callP||0.7,job0:{id:'base',team:'away',lo:1,hi,short:`${A.name} win by 1–${hi}`,tag:`${A.name.toUpperCase()} BY 1–${hi}`,pay:PAY,line:`${A.ab} −${s} · ${c.pub}% PUBLIC`,flipped:false},
-    intro:[`${A.name} @ ${H.name}${c.season&&c.slot>0?' on '+sl.brand:' tonight'}. Ref #77 has the whistle. Nothing could possibly go wrong.`,`Welcome to ${c.season?sl.brand:'IFL on GBN'}! ${A.name} at ${H.name}, and the ${A.name} come in as ${String(s).replace('.5',' and a half')} point road favorites.`]};
+    intro:[`${A.name} @ ${H.name}${c.season&&c.slot>0?' on '+sl.brand:' tonight'}. Ref #77 has the whistle. Nothing could possibly go wrong.`,`Welcome to ${c.season?sl.brand:'IFL on GBN'}: ${A.name} at ${H.name}.`]};
   /* text localization: default Gales/Wedges copy → this matchup */
   const m=[];const add=(a,b)=>{m.push([a,b]);m.push([a.toUpperCase(),b.toUpperCase()]);m.push([a.toLowerCase(),b.toLowerCase()]);};
   for(const [role,R] of [['away',A],['home',H]]){const d=DEF_T[role];add(d.name,R.name);add(d.city,R.city);add(d.ab,R.ab);
@@ -9930,7 +9930,7 @@ html.gfx-pix #game.fs-tiny #heatrow #heatbar{border-radius:0;height:12px!importa
     const armL=null, armR=null;
     // REAL football HELMET — oversized shell, dark face opening, cage mask (reads at sideline zoom)
     const helm=new THREE.Group();
-    const shellMat=new THREE.MeshStandardMaterial({color:col2,roughness:0.28,metalness:0.42});
+    const shellMat=new THREE.MeshStandardMaterial({color:col2,roughness:0.5,metalness:0.18});
     const head=new THREE.Mesh(new THREE.SphereGeometry(0.78,20,16), shellMat);
     head.scale.set(1.18,1.0,1.28);head.castShadow=true;helm.add(head);
     // dark face opening (makes it read as a helmet, not a ball)
@@ -9940,7 +9940,7 @@ html.gfx-pix #game.fs-tiny #heatrow #heatbar{border-radius:0;height:12px!importa
     // brow ridge over the opening
     const brow=new THREE.Mesh(
       new THREE.TorusGeometry(0.58,0.07,6,18,Math.PI*1.05),
-      new THREE.MeshStandardMaterial({color:col2,roughness:0.25,metalness:0.5})
+      new THREE.MeshStandardMaterial({color:col2,roughness:0.5,metalness:0.18})
     );
     brow.position.set(0,0.22,0.38);brow.rotation.x=0.85;brow.rotation.z=Math.PI;helm.add(brow);
     /* v57: no ear flaps / ear-hole protrusions — clean shell sides */
@@ -10492,7 +10492,7 @@ html.gfx-pix #game.fs-tiny #heatrow #heatbar{border-radius:0;height:12px!importa
       const phase=S&&S.phase;
       let disp=S&&S.disp;
       /* v47: replay-safe — if disp wiped, synthesize from positions() so sausages keep the live 3D path */
-      if(kp&&(!disp||!Object.keys(disp).length)&&typeof positions==='function'&&['live','post','presnap','result','ff','keygfx','replay','outcome','flag'].includes(phase)){
+      if(kp&&(!disp||!Object.keys(disp).length)&&typeof positions==='function'&&['live','post','presnap','result','ff','keygfx','replay','outcome','flag','idle','ko','kickoff','kick','done','hb','half','halftime','brief','memo','shop','intro'].includes(phase)){
         try{
           const offT=kp.off;
           const look=typeof dir==='function'?dir(offT):1;
@@ -10509,7 +10509,7 @@ html.gfx-pix #game.fs-tiny #heatrow #heatbar{border-radius:0;height:12px!importa
           S.disp=built; disp=built;
         }catch(e){}
       }
-      if(disp&&kp&&['live','post','presnap','result','ff','keygfx','replay','outcome','flag'].includes(phase)){
+      if(disp&&kp&&['live','post','presnap','result','ff','keygfx','replay','outcome','flag','idle','ko','kickoff','kick','done','hb','half','halftime','brief','memo','shop','intro'].includes(phase)){
         const offT=kp.off, defT=typeof other==='function'?other(offT):'away';
         const look=typeof dir==='function'?dir(offT):1;
         const cKey=carrierKey(kp,t);
@@ -11092,6 +11092,430 @@ try{window.standAllPlayers=standAllPlayers;}catch(e){}
 
   try{ if(window.__v38) Object.assign(__v38,{carrierRing,sevenV7:true,knockDown,formationFix:true,replayUses3d:true,exaggeratedTackles:true,pulseTackleHit,ballFollowsOutcome:true,flagKnocksNearby:true}); }catch(e){}
   try{ if(window.__v42) Object.assign(__v42,{ballHiddenUntilThrow:true,ballFollowsOutcome:true,flagKnocksNearby:true}); }catch(e){}
+
+/* ===== v96 CLEANFIELD 3D: stadium, idle formation, helmets, dbg, stray-mesh sweep ===== */
+(function(){
+  try{
+    var HOLD_PHASES=['live','post','presnap','result','ff','keygfx','replay','outcome','flag','idle','ko','kickoff','kick','done','hb','half','halftime'];
+    function inFieldPhase(ph){
+      if(!ph)return false;
+      if(ph==='title'||ph==='end'||ph==='recap')return false;
+      return true;
+    }
+    function seedIdleFormation(){
+      if(typeof S==='undefined'||!S)return;
+      var ph=S.phase||'';
+      var livePlay=ph==='live'||ph==='post'||ph==='result'||ph==='ff'||ph==='flag'||ph==='replay'||ph==='outcome'||ph==='keygfx'||ph==='presnap';
+      if(livePlay&&S.anim&&S.anim.kp&&S.disp&&Object.keys(S.disp).length)return;
+      if(!inFieldPhase(ph)&&!(S.plays>0||ph==='idle'||ph==='ko'||ph==='kickoff'))return;
+      var offT=S.poss||'away';
+      var los=(S.yl!=null)?S.yl:25;
+      var togo=(S.togo!=null)?S.togo:10;
+      var kp={off:offT,los:los,togo:togo,down:S.down||1,type:'run',pass:false,sack:false,dur:1};
+      if(!S.anim)S.anim={kp:kp,t:0};
+      else if(!livePlay||!S.anim.kp){S.anim.kp=kp;S.anim.t=0;}
+      if(typeof positions!=='function')return;
+      var pos=positions(S.anim.kp,0);
+      var d=(typeof dir==='function')?dir(S.anim.kp.off):1;
+      var built={};
+      var toAbs=function(p){
+        var lat=Math.max(-(typeof LAT_MAX==='number'?LAT_MAX:0.30),Math.min((typeof LAT_MAX==='number'?LAT_MAX:0.30),p[0]));
+        var ax=(typeof absX==='function')?absX(S.anim.kp.los,S.anim.kp.off)+d*p[1]:(S.anim.kp.los||50)+d*p[1];
+        return [ax,26.65+lat*50];
+      };
+      (pos.off||[]).forEach(function(p,i){if(p&&(!(typeof OFF7!=='undefined')||OFF7.has(i)))built['o'+i]=toAbs(p);});
+      (pos.def||[]).forEach(function(p,i){if(p&&(!(typeof DEF7!=='undefined')||DEF7.has(i)))built['d'+i]=toAbs(p);});
+      if(Object.keys(built).length)S.disp=built;
+    }
+
+    /* ----- night sky + dimmer lights (no extra real lights) ----- */
+    try{
+      renderer.setClearColor(0x070b14,1);
+      scene.fog=new THREE.Fog(0x0a1220,240,520);
+      scene.background=null;
+      if(typeof sun!=='undefined'&&sun){sun.intensity=0.72;sun.color.setHex(0xe8f0ff);sun.position.set(20,120,10);}
+      if(typeof fill!=='undefined'&&fill){fill.intensity=0.22;fill.color.setHex(0x6a86b8);}
+      scene.traverse(function(o){
+        if(o.isAmbientLight)o.intensity=Math.min(Math.max(o.intensity,0.42),0.48);
+      });
+    }catch(e){}
+
+    /* ----- helmets: walk existing shells ----- */
+    function softenHelmet(mat){
+      if(!mat)return;
+      if(mat.metalness!=null&&mat.metalness>=0.3){mat.metalness=0.18;mat.roughness=Math.max(mat.roughness||0,0.5);}
+    }
+    try{
+      if(typeof players!=='undefined'){
+        Object.keys(players).forEach(function(k){
+          var P=players[k];
+          if(!P||!P.root)return;
+          P.root.traverse(function(m){
+            if(!m.isMesh||!m.material)return;
+            if(m.parent&&(m.parent===P.helm||(P.helm&&P.helm.children.indexOf(m)>=0)||m===P.head))softenHelmet(m.material);
+            if(m.material.metalness!=null&&m.material.metalness>=0.35&&m.geometry&&/Sphere|Torus/.test(m.geometry.type||''))softenHelmet(m.material);
+          });
+        });
+      }
+    }catch(e){}
+    if(typeof makePlayer==='function'){
+      var _mp=makePlayer;
+      makePlayer=function(tm){
+        var P=_mp.apply(this,arguments);
+        try{
+          if(P&&P.root){
+            P.root.traverse(function(m){
+              if(!m.isMesh||!m.material)return;
+              if(m.material.metalness!=null&&m.material.metalness>=0.3)softenHelmet(m.material);
+            });
+          }
+        }catch(e){}
+        return P;
+      };
+    }
+
+    /* ----- stadium ----- */
+    function makeCrowdTex(){
+      var c=document.createElement('canvas');
+      c.width=1024;c.height=256;
+      var g=c.getContext('2d');
+      g.fillStyle='#2a2430';
+      g.fillRect(0,0,1024,256);
+      var i,u,v,side,teal,r,gg,b,j;
+      for(i=0;i<32000;i++){
+        u=Math.random();v=Math.random();
+        /* u around the bowl: 0.15-0.35 and 0.65-0.85 are the long sidelines */
+        side=(u>0.12&&u<0.38)?0:((u>0.62&&u<0.88)?1:2);
+        teal=side===0?0.78:(side===1?0.18:0.48);
+        if(Math.random()<teal){r=12+Math.random()*28;gg=70+Math.random()*50;b=80+Math.random()*50;}
+        else{r=70+Math.random()*50;gg=16+Math.random()*24;b=40+Math.random()*36;}
+        /* darken + desaturate so the field pops */
+        r=r*0.85+18;gg=gg*0.8+16;b=b*0.85+18;
+        g.fillStyle='rgb('+((r)|0)+','+((gg)|0)+','+((b)|0)+')';
+        j=0.8+Math.random()*1.6;
+        g.fillRect(u*1024,v*256,j,j);
+      }
+      /* darker concourse stripe across mid-V */
+      g.fillStyle='rgba(10,10,14,0.82)';
+      g.fillRect(0,118,1024,28);
+      var tex=new THREE.CanvasTexture(c);
+      tex.wrapS=THREE.RepeatWrapping;tex.wrapT=THREE.ClampToEdgeWrapping;
+      tex.needsUpdate=true;
+      tex.anisotropy=1;
+      tex.magFilter=THREE.LinearFilter;
+      tex.minFilter=THREE.LinearMipMapLinearFilter;
+      return tex;
+    }
+    function makeJumboTex(){
+      var c=document.createElement('canvas');
+      c.width=256;c.height=128;
+      var g=c.getContext('2d');
+      g.fillStyle='#0c1018';g.fillRect(0,0,256,128);
+      g.fillStyle='#121820';g.fillRect(8,8,240,112);
+      g.fillStyle='#3a5a4a';
+      g.font='bold 48px system-ui,sans-serif';
+      g.textAlign='center';g.textBaseline='middle';
+      g.fillText('IFL',128,64);
+      var tex=new THREE.CanvasTexture(c);
+      tex.needsUpdate=true;
+      return tex;
+    }
+    function addBox(arr, a,b,c, d,e,f, u0,v0,u1,v1){
+      /* push a box from (a,b,c) size (d,e,f) into pos/nrm/uv/idx arrays */
+    }
+    function stadPoint(t, insetX, insetZ){
+      /* t in [0,1): rounded-rect around field x=-10..110, z=0..53.3 */
+      var xmin=-10-insetX, xmax=110+insetX, zmin=0-insetZ, zmax=53.3+insetZ;
+      var w=xmax-xmin, d=zmax-zmin, rad=Math.min(12+insetX*0.2, w*0.2, d*0.35);
+      var per=2*(w-2*rad)+2*(d-2*rad)+2*Math.PI*rad;
+      var s=t*per, x,z, nx,nz;
+      var e0=w-2*rad, e1=Math.PI*0.5*rad, e2=d-2*rad, e3=e1, e4=e0, e5=e1, e6=e2;
+      if(s<e0){ x=xmin+rad+s; z=zmin; nx=0; nz=-1; }
+      else if((s-=e0)<e1){ var a=-Math.PI/2+s/rad; x=xmax-rad+Math.cos(a)*rad; z=zmin+rad+Math.sin(a)*rad; nx=Math.cos(a); nz=Math.sin(a); }
+      else if((s-=e1)<e2){ x=xmax; z=zmin+rad+s; nx=1; nz=0; }
+      else if((s-=e2)<e3){ var a=0+s/rad; x=xmax-rad+Math.cos(a)*rad; z=zmax-rad+Math.sin(a)*rad; nx=Math.cos(a); nz=Math.sin(a); }
+      else if((s-=e3)<e4){ x=xmax-rad-s; z=zmax; nx=0; nz=1; }
+      else if((s-=e4)<e5){ var a=Math.PI/2+s/rad; x=xmin+rad+Math.cos(a)*rad; z=zmax-rad+Math.sin(a)*rad; nx=Math.cos(a); nz=Math.sin(a); }
+      else if((s-=e5)<e6){ x=xmin; z=zmax-rad-s; nx=-1; nz=0; }
+      else{ s-=e6; var a=Math.PI+s/rad; x=xmin+rad+Math.cos(a)*rad; z=zmin+rad+Math.sin(a)*rad; nx=Math.cos(a); nz=Math.sin(a); }
+      return {x:x,z:z,nx:nx,nz:nz};
+    }
+    function buildBand(pos,nrm,uv,idx, y0,y1, inX,inZ, outX,outZ, segs, uV0,uV1, flipN){
+      var i,t0,t1,p0,p1,q0,q1,b,i0;
+      for(i=0;i<segs;i++){
+        t0=i/segs;t1=(i+1)/segs;
+        p0=stadPoint(t0,inX,inZ);p1=stadPoint(t1,inX,inZ);
+        q0=stadPoint(t0,outX,outZ);q1=stadPoint(t1,outX,outZ);
+        b=pos.length/3;
+        /* two tris for the riser surface: p0,p1,q1,q0 at y0..y1 (inner low / outer high for seating) */
+        pos.push(p0.x,y0,p0.z, p1.x,y0,p1.z, q1.x,y1,q1.z, q0.x,y1,q0.z);
+        var nx=p0.nx+q0.nx, nz=p0.nz+q0.nz, nl=Math.hypot(nx,nz)||1;
+        nx/=nl;nz/=nl; if(flipN){nx=-nx;nz=-nz;}
+        /* tilt normal upward a bit for seats */
+        var ny=(y1-y0)>0.5?0.45:0.05;
+        var nl2=Math.hypot(nx,ny,nz)||1;
+        nx/=nl2;ny/=nl2;nz/=nl2;
+        nrm.push(nx,ny,nz,nx,ny,nz,nx,ny,nz,nx,ny,nz);
+        uv.push(t0,uV0, t1,uV0, t1,uV1, t0,uV1);
+        i0=idx; idx.push(b,b+1,b+2, b,b+2,b+3);
+      }
+      return idx;
+    }
+    function buildWall(pos,nrm,uv,idx, y0,y1, insetX,insetZ, segs, uV0,uV1, outward){
+      var i,t0,t1,p0,p1,b,nx,nz;
+      for(i=0;i<segs;i++){
+        t0=i/segs;t1=(i+1)/segs;
+        p0=stadPoint(t0,insetX,insetZ);p1=stadPoint(t1,insetX,insetZ);
+        b=pos.length/3;
+        pos.push(p0.x,y0,p0.z, p1.x,y0,p1.z, p1.x,y1,p1.z, p0.x,y1,p0.z);
+        nx=(p0.nx+p1.nx)*0.5; nz=(p0.nz+p1.nz)*0.5;
+        if(!outward){nx=-nx;nz=-nz;}
+        var nl=Math.hypot(nx,nz)||1;nx/=nl;nz/=nl;
+        nrm.push(nx,0,nz,nx,0,nz,nx,0,nz,nx,0,nz);
+        uv.push(t0,uV0,t1,uV0,t1,uV1,t0,uV1);
+        idx.push(b,b+1,b+2,b,b+2,b+3);
+      }
+      return idx;
+    }
+
+    var stadium=new THREE.Group();
+    stadium.name='v96stadium';
+    var pos=[],nrm=[],uv=[],idx=[];
+    var SEGS=64;
+    /* fascia just outside the field */
+    buildWall(pos,nrm,uv,idx, 0,3.4, 2.4,2.4, SEGS, 0.00,0.06, true);
+    /* lower bowl — 3 stepped risers */
+    buildBand(pos,nrm,uv,idx, 1.4, 7.5,  2.6,2.6,  9,9,   SEGS, 0.00,0.14, false);
+    buildBand(pos,nrm,uv,idx, 7.5, 13.0, 9,9,     15.5,15.5, SEGS, 0.14,0.28, false);
+    buildBand(pos,nrm,uv,idx, 13.0,18.2, 15.5,15.5, 22,22, SEGS, 0.28,0.42, false);
+    /* dark concourse */
+    buildBand(pos,nrm,uv,idx, 18.2,20.4, 22,22, 26,26, SEGS, 0.43,0.52, false);
+    buildWall(pos,nrm,uv,idx, 18.0,20.6, 24,24, SEGS, 0.43,0.52, true);
+    /* upper bowl — 3 stepped risers */
+    buildBand(pos,nrm,uv,idx, 20.4,28.0, 26,26, 32,32, SEGS, 0.54,0.68, false);
+    buildBand(pos,nrm,uv,idx, 28.0,36.0, 32,32, 38,38, SEGS, 0.68,0.82, false);
+    buildBand(pos,nrm,uv,idx, 36.0,44.0, 38,38, 44,44, SEGS, 0.82,0.94, false);
+    /* outer back wall */
+    buildWall(pos,nrm,uv,idx, 0,48, 44.6,44.6, SEGS, 0.94,1, true);
+    /* roof / rim edge, inward lip */
+    buildBand(pos,nrm,uv,idx, 47.0,49.2, 44.6,44.6, 38,38, SEGS, 0.94,1, false);
+    buildWall(pos,nrm,uv,idx, 47.0,50.5, 38,38, SEGS, 0.94,1, false);
+
+    var geo=new THREE.BufferGeometry();
+    geo.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));
+    geo.setAttribute('normal',new THREE.Float32BufferAttribute(nrm,3));
+    geo.setAttribute('uv',new THREE.Float32BufferAttribute(uv,2));
+    geo.setIndex(idx);
+    geo.computeVertexNormals();
+    var crowdTex=makeCrowdTex();
+    var bowlMat=new THREE.MeshStandardMaterial({
+      map:crowdTex, color:0xffffff, roughness:0.9, metalness:0.04,
+      emissive:0x1a1520, emissiveIntensity:0.28, side:THREE.DoubleSide
+    });
+    var bowl=new THREE.Mesh(geo,bowlMat);
+    bowl.name='v96bowl';
+    bowl.castShadow=false;bowl.receiveShadow=false;
+    stadium.add(bowl);
+
+    /* 4 corner light towers — merged into one geom, emissive panels, no real lights */
+    var tpos=[],tnrm=[],tuv=[],tidx=[], ppos=[],pnrm=[],puv=[],pidx=[];
+    function box(arrP,arrN,arrU,arrI, x,y,z, w,h,d){
+      var hw=w/2,hh=h/2,hd=d/2;
+      var faces=[
+        [x-hw,y-hh,z+hd, x+hw,y-hh,z+hd, x+hw,y+hh,z+hd, x-hw,y+hh,z+hd, 0,0,1],
+        [x+hw,y-hh,z-hd, x-hw,y-hh,z-hd, x-hw,y+hh,z-hd, x+hw,y+hh,z-hd, 0,0,-1],
+        [x-hw,y-hh,z-hd, x-hw,y-hh,z+hd, x-hw,y+hh,z+hd, x-hw,y+hh,z-hd, -1,0,0],
+        [x+hw,y-hh,z+hd, x+hw,y-hh,z-hd, x+hw,y+hh,z-hd, x+hw,y+hh,z+hd, 1,0,0],
+        [x-hw,y+hh,z+hd, x+hw,y+hh,z+hd, x+hw,y+hh,z-hd, x-hw,y+hh,z-hd, 0,1,0],
+        [x-hw,y-hh,z-hd, x+hw,y-hh,z-hd, x+hw,y-hh,z+hd, x-hw,y-hh,z+hd, 0,-1,0]
+      ];
+      faces.forEach(function(f){
+        var b=arrP.length/3, k;
+        for(k=0;k<4;k++){arrP.push(f[k*3],f[k*3+1],f[k*3+2]);arrN.push(f[12],f[13],f[14]);arrU.push((k===1||k===2)?1:0,(k===2||k===3)?1:0);}
+        arrI.push(b,b+1,b+2,b,b+2,b+3);
+      });
+    }
+    var corners=[[-48,-38],[158,-38],[-48,91],[158,91]];
+    corners.forEach(function(c){
+      box(tpos,tnrm,tuv,tidx, c[0],36,c[1], 2.4,72,2.4);
+      box(tpos,tnrm,tuv,tidx, c[0],72,c[1], 9,2.2,2.6);
+      /* emissive panels facing the field */
+      var fx=50-c[0], fz=26.65-c[1];
+      var fl=Math.hypot(fx,fz)||1; fx/=fl; fz/=fl;
+      box(ppos,pnrm,puv,pidx, c[0]+fx*1.6, 70, c[1]+fz*1.6, 7.5,3.6,0.45);
+    });
+    var tgeo=new THREE.BufferGeometry();
+    tgeo.setAttribute('position',new THREE.Float32BufferAttribute(tpos,3));
+    tgeo.setAttribute('normal',new THREE.Float32BufferAttribute(tnrm,3));
+    tgeo.setAttribute('uv',new THREE.Float32BufferAttribute(tuv,2));
+    tgeo.setIndex(tidx);
+    tgeo.computeVertexNormals();
+    var towerMat=new THREE.MeshStandardMaterial({color:0x1a1c22,roughness:0.7,metalness:0.15});
+    var towers=new THREE.Mesh(tgeo,towerMat);
+    towers.name='v96towers';towers.castShadow=false;towers.receiveShadow=false;
+    stadium.add(towers);
+    var pgeo=new THREE.BufferGeometry();
+    pgeo.setAttribute('position',new THREE.Float32BufferAttribute(ppos,3));
+    pgeo.setAttribute('normal',new THREE.Float32BufferAttribute(pnrm,3));
+    pgeo.setAttribute('uv',new THREE.Float32BufferAttribute(puv,2));
+    pgeo.setIndex(pidx);
+    pgeo.computeVertexNormals();
+    var panelMat=new THREE.MeshStandardMaterial({
+      color:0xfff4c8, roughness:0.35, metalness:0.1,
+      emissive:0xfff1b0, emissiveIntensity:1.35
+    });
+    var panels=new THREE.Mesh(pgeo,panelMat);
+    panels.name='v96panels';panels.castShadow=false;panels.receiveShadow=false;
+    stadium.add(panels);
+
+    /* jumbotron behind the far end zone (x>110) — dim IFL, not readable as HUD */
+    var jtex=makeJumboTex();
+    var jmat=new THREE.MeshStandardMaterial({map:jtex,color:0x888888,roughness:0.8,metalness:0.05,emissive:0x111811,emissiveIntensity:0.35});
+    var jumbo=new THREE.Mesh(new THREE.BoxGeometry(2.0,12,26), jmat);
+    jumbo.position.set(122, 54, 26.65);
+    jumbo.rotation.y=Math.PI/2;
+    jumbo.name='v96jumbo';jumbo.castShadow=false;jumbo.receiveShadow=false;
+    var jframe=new THREE.Mesh(new THREE.BoxGeometry(1.6,14,28), new THREE.MeshStandardMaterial({color:0x14161c,roughness:0.8}));
+    jframe.position.copy(jumbo.position);jframe.position.x+=1.5;jframe.rotation.y=Math.PI/2;
+    jframe.castShadow=false;jframe.receiveShadow=false;
+    stadium.add(jframe);stadium.add(jumbo);
+
+    /* night skydome — vertex-color gradient, 1 draw, no texture */
+    var skyGeo=new THREE.SphereGeometry(380, 20, 12);
+    var skyCols=[];
+    var spos=skyGeo.attributes.position;
+    var si,sy,t;
+    for(si=0;si<spos.count;si++){
+      sy=spos.getY(si)/380;
+      t=Math.max(0,Math.min(1,(sy+0.15)/1.15));
+      /* deep navy at the horizon to near-black at the zenith */
+      skyCols.push(0.04*(1-t)+0.01*t, 0.07*(1-t)+0.015*t, 0.125*(1-t)+0.03*t);
+    }
+    skyGeo.setAttribute('color',new THREE.Float32BufferAttribute(skyCols,3));
+    var skyMat=new THREE.MeshBasicMaterial({vertexColors:true, side:THREE.BackSide, fog:false, depthWrite:false});
+    var sky=new THREE.Mesh(skyGeo,skyMat);
+    sky.name='v96sky';sky.position.set(50,0,26.65);
+    sky.castShadow=false;sky.receiveShadow=false;
+    /* add sky first so it sits behind */
+    scene.add(sky);
+    scene.add(stadium);
+    camera.far=700;camera.updateProjectionMatrix();
+
+    /* optional cheap TD twinkle */
+    var twinkleUntil=0, twinkleLastScore=-1;
+    function maybeTwinkle(){
+      try{
+        if(!S)return;
+        var sc=(S.score&&((S.score.home||0)+(S.score.away||0)))||0;
+        if(S.phase==='result'||S.phase==='post'||S.phase==='ff'){
+          var lp=window.CW&&CW.lastPlay;
+          var isTd=lp&&(lp.td||lp.score||/TOUCHDOWN/i.test(lp.pbp||lp.type||''));
+          if(isTd||(twinkleLastScore>=0&&sc>twinkleLastScore+5)) twinkleUntil=performance.now()+1800;
+        }
+        twinkleLastScore=sc;
+        if(performance.now()<twinkleUntil && crowdTex&&crowdTex.image){
+          var cg=crowdTex.image.getContext('2d');
+          var k,n=40;
+          for(k=0;k<n;k++){
+            var px=Math.random()*1024, py=Math.random()*256;
+            cg.fillStyle=Math.random()<0.5?'rgba(220,200,140,0.35)':'rgba(20,16,12,0.4)';
+            cg.fillRect(px,py,1.4,1.4);
+          }
+          crowdTex.needsUpdate=true;
+        }
+      }catch(e){}
+    }
+
+    /* ----- stray meat-colored spheres: dump then hide/remove if they are bare heads/tips ----- */
+    var sphereReport=null;
+    function colorOf(m){
+      try{
+        var c=m.material&&(m.material.color||m.material.emissive);
+        if(!c)return null;
+        return {r:+c.r.toFixed(3),g:+c.g.toFixed(3),b:+c.b.toFixed(3),hex:c.getHex?c.getHex():0};
+      }catch(e){return null;}
+    }
+    function isMeatHex(hex){
+      if(hex==null)return false;
+      /* 0xe8a07a and close skin tones */
+      var r=(hex>>16)&255,g=(hex>>8)&255,b=hex&255;
+      return r>160&&r<250&&g>90&&g<190&&b>70&&b<160&&r>g&&g>b-10;
+    }
+    function dumpAndSweepSpheres(){
+      var camP=new THREE.Vector3();
+      camera.getWorldPosition(camP);
+      var found=[], removed=[];
+      scene.traverse(function(o){
+        if(!o.isMesh||!o.geometry)return;
+        var typ=o.geometry.type||'';
+        if(typ.indexOf('Sphere')<0)return;
+        var col=colorOf(o);
+        var wp=new THREE.Vector3();o.getWorldPosition(wp);
+        var dist=wp.distanceTo(camP);
+        var rec={name:o.name||'', typ:typ, hex:col&&col.hex, rgb:col, x:+wp.x.toFixed(2),y:+wp.y.toFixed(2),z:+wp.z.toFixed(2), dist:+dist.toFixed(2), vis:o.visible, scale:o.scale?+o.scale.x.toFixed(2):1, parent:o.parent&&o.parent.name||(o.parent&&o.parent.type)||'', path:[]};
+        var p=o, n=0;
+        while(p&&n<6){rec.path.push(p.name||p.type||'?');p=p.parent;n++;}
+        var meat=col&&isMeatHex(col.hex);
+        var near=dist<18||wp.y>40||(Math.abs(wp.x)<1.2&&Math.abs(wp.z)<1.2&&wp.y<3);
+        rec.meat=!!meat;rec.near=!!near;
+        if(meat||near||dist<25)found.push(rec);
+        /* bare stray: meat sphere not under a player helm/root with a body, or parked at the origin / near plane */
+        var underPlayer=rec.path.indexOf('Group')>=0 && rec.path.length>=3;
+        var atOrigin=Math.abs(wp.x)<0.6&&Math.abs(wp.z)<0.6&&wp.y<4;
+        var nearCam=dist<8;
+        if(meat && (atOrigin||nearCam) && !o.userData._v96keep){
+          o.visible=false;
+          if(o.parent)o.parent.remove(o);
+          removed.push(rec);
+        }
+      });
+      sphereReport={n:found.length,found:found.slice(0,24),removed:removed};
+      return sphereReport;
+    }
+
+    /* wrap updatePlayersFromState — same lexical scope as the 3D IIFE */
+    if(typeof updatePlayersFromState==='function'){
+      var _up=updatePlayersFromState;
+      updatePlayersFromState=function(dt){
+        try{seedIdleFormation();}catch(e){}
+        var r=_up.apply(this,arguments);
+        try{maybeTwinkle();}catch(e){}
+        try{
+          if(typeof players!=='undefined'){
+            Object.keys(players).forEach(function(k){
+              var P=players[k]; if(!P||!P.root)return;
+              var x=P.root.position.x||0,z=P.root.position.z||0;
+              if(Math.abs(x)<0.35&&Math.abs(z)<0.35){P.root.visible=false;}
+            });
+          }
+          if(typeof ballMesh!=='undefined'&&ballMesh&&ballMesh.visible){
+            var bx=ballMesh.position.x||0,bz=ballMesh.position.z||0;
+            if(Math.abs(bx)<0.4&&Math.abs(bz)<0.4&&!(S&&S.anim&&S.anim.t>0.05)) ballMesh.visible=false;
+          }
+        }catch(e){}
+        return r;
+      };
+    }
+
+    /* expose three.js scene for Ui Bot dumps */
+    try{
+      window.CW=window.CW||{};
+      CW._dbg=CW._dbg||{};
+      CW._dbg.scene=scene;
+      CW._dbg.camera=camera;
+      CW._dbg.renderer=renderer;
+      CW._dbg.stadium=stadium;
+      CW._dbg.dumpSpheres=dumpAndSweepSpheres;
+      window.__cw3=window.__cw3||{};
+      __cw3.scene=scene;__cw3.cam=camera;__cw3.renderer=renderer;__cw3.stadium=stadium;
+    }catch(e){}
+    try{
+      /* first dump after a tick so any idle meshes exist */
+      setTimeout(function(){try{CW._dbg.v96spheres=dumpAndSweepSpheres();}catch(e){}},800);
+    }catch(e){}
+    try{window.__v96.items.push('stadium','idle-form','helmets','dbg-scene');}catch(e){}
+  }catch(e){console.error('[v96 3d]',e);}
+})();
   console.info('[CW] v68 — no orphan fallen, soft tackle shock, heat+lean always on, harder outcome sync; keep blood/RTP/name-ref/scare/memes');
 })();
 
@@ -13859,7 +14283,7 @@ var V82H={on:0,heldMs:0,left:0,get:function(){return false;},set:function(){}};
 (function(){var st=document.createElement('style');st.textContent='#gfx.v82held .v76bar i{background:#ffd23f!important;transition:none!important}#gfx.v82held h4::after{content:" · ⏸ HELD";color:#ffd23f}#gfx .v76bar{position:relative}';document.head.appendChild(st);})();
 V82.hold=V82H;(window.__v82items=window.__v82items||[]).push('p7-hold');
 /* ---- v82: test/QA hook ---- */
-try{V82.S=function(){return S;};window.CW.v82=V82;window.CW.v82.items=window.__v82items;console.info('[CW] v95 BOOTH — '+window.__v82items.join(', '));}catch(e){console.error('[CW] v82 hook',e);}
+try{V82.S=function(){return S;};window.CW.v82=V82;window.CW.v82.items=window.__v82items;console.info('[CW] v97 POLISH — '+window.__v82items.join(', '));}catch(e){console.error('[CW] v82 hook',e);}
 /* ===== v84 MEMEFIX ===== */
 window.__v84={items:[]};
 /* --- 2: meme throttle + dedupe at the source: ~1 meme per key play (big moments get a 2nd slot), queue cap stays 3 --- */
@@ -15859,6 +16283,418 @@ var MEME_POST_TXT_X = (typeof MEME_POST_TXT_X!=='undefined'&&MEME_POST_TXT_X)||u
   try{window.__v95.items.push('booth-strip','boothHistory','pbp-fill');}catch(e){}
 }catch(e){console.error('[v95]',e);}})();
 
+/* ===== v96 CLEANFIELD: #call under the booth, cap booth lines, version ----- */
+(function(){try{
+  var st=document.createElement('style');
+  st.id='v96css';
+  st.textContent=[
+    /* mob #call card starts below the persistent booth strip */
+    '#game #call,#call{top:calc(var(--cw-mtop,4px) + 38px + var(--v95h,24px) + 8px)!important;',
+    'left:0!important;right:0!important;bottom:0!important;',
+    'padding-top:8px!important;z-index:80!important}',
+    '#call .ctag{top:8px!important}'
+  ].join('');
+  document.head.appendChild(st);
+
+  function capWords(txt,max){
+    max=max||14;
+    var t=String(txt||'').replace(/\s+/g,' ').trim();
+    if(!t)return t;
+    var known=[
+      [/Welcome to IFL on GBN! Gales at Wedges, and the Gales come in as .* point road favorites\.?/i,
+        'Welcome to IFL on GBN: Gales at Wedges.'],
+      [/Welcome to IFL on GBN! .* at .*, and the .* come in as .* point road favorites\.?/i,
+        'Welcome to IFL on GBN: kickoff is here.'],
+      [/Welcome to [^!]+! ([A-Za-z]+) at ([A-Za-z]+), and the \1 come in as .* favorites\.?/i,
+        null]
+    ];
+    var i,m;
+    for(i=0;i<known.length;i++){
+      if(known[i][1]&&known[i][0].test(t))return known[i][1];
+    }
+    m=t.match(/Welcome to ([^!]+)! ([A-Za-z0-9.'-]+) at ([A-Za-z0-9.'-]+)/i);
+    if(m)return 'Welcome to '+m[1].replace(/!$/,'')+': '+m[2]+' at '+m[3]+'.';
+    var w=t.split(' ').filter(Boolean);
+    if(w.length<=max)return t;
+    var drop=/^(just|really|actually|like|so|well|very|then|that|kind of|kinda|you know)$/i;
+    w=w.filter(function(x){return !drop.test(x);});
+    if(w.length<=max)return w.join(' ');
+    var clause=t.split(/\s+(?:and|but|because|so that|which)\s+/i)[0].replace(/[,;:]+$/,'').trim();
+    var cw=clause.split(/\s+/).filter(Boolean);
+    if(cw.length>=5&&cw.length<=max)return clause.replace(/[.!?]?$/,'')+'.';
+    return w.slice(0,max).join(' ').replace(/[,;:]+$/,'')+'.';
+  }
+
+  if(typeof booth==='function'){
+    var _bo=booth;
+    booth=function(line,ctx){
+      try{
+        if(line&&line[1]){
+          line=[line[0],capWords(line[1],14)];
+          arguments[0]=line;
+        }
+      }catch(e){}
+      return _bo.apply(this,arguments);
+    };
+  }
+  if(typeof lower==='function'){
+    var _lw=lower;
+    lower=function(txt,c){
+      try{if(txt)txt=capWords(String(txt),16);}catch(e){}
+      return _lw.call(this,txt,c);
+    };
+  }
+  if(window.CW&&CW.v95&&typeof CW.v95.feed==='function'){
+    var _fd=CW.v95.feed;
+    CW.v95.feed=function(who,txt){return _fd.call(this,who,capWords(txt,14));};
+  }
+
+  window.CW=window.CW||{};
+  CW.v96={ok:true,build:'CLEANFIELD',capWords:capWords,help:'CLEANFIELD: stadium, idle formation, matte helmets, CW._dbg.scene'};
+  try{window.__v96.items.push('call-below','booth-cap');}catch(e){}
+}catch(e){console.error('[v96]',e);}})();
+
+/* ===== v97 POLISH: HT call null-guard, watch reset, booth cap, HT/result word budget ----- */
+(function(){try{
+  function el(id){return document.getElementById(id);}
+  function words(t){return String(t||'').replace(/\s+/g,' ').trim().split(' ').filter(Boolean);}
+
+  /* ---------- 3. rewrite booth / PBP / FLAG lines (no ellipsis) ---------- */
+  var QUIPS=[
+    [/I love the signs, Chip\.\s*I don'?t love what they say about this game\.?/i,
+      "I love the signs, Chip. Not what they say."],
+    [/Seventy-Seven got it right, and the crowd doesn'?t know what to do with that\.?/i,
+      "Seventy-Seven got it right. Crowd is stunned."],
+    [/Look at the flag favor graphic\.\s*It'?s all going one direction\.?/i,
+      "Flag favor is all going one way."],
+    [/If I'?m the (\S+), I'?m asking questions after this game\.?/i,
+      "If I'm the $1, I have questions."],
+    [/That'?s (\d+) penalty yards against the (\S+)\.\s*(\d+) against the (\S+)\./i,
+      "$1 PEN yds on the $2, $3 on the $4."],
+    [/Penalty yards tonight are wildly one-sided, Chip\.?/i,
+      "Penalty yards are wildly one-sided, Chip."],
+    [/Is it me, or are the flags suddenly going the other way\??/i,
+      "Are the flags going the other way now?"],
+    [/Seventy-Seven came out of that locker room a different man, Chip\.?/i,
+      "Seventy-Seven left the locker room a new man."],
+    [/First half it was all (\S+)\.\s*Now it'?s all (\S+)\.\s*Strange\.?/i,
+      "First half all $1. Now all $2."],
+    [/Clean play, no flag\.\s*That is how it is supposed to look\.?/i,
+      "Clean play, no flag. That's how it should look."]
+  ];
+
+  function noEllipsis(t){
+    return String(t||'').replace(/[\u2026…]+/g,'.').replace(/\.\s*\./g,'.').replace(/\s+/g,' ').trim();
+  }
+
+  function capWords(txt,max){
+    max=max||14;
+    var t=noEllipsis(txt);
+    if(!t)return t;
+    var i,m,out;
+    for(i=0;i<QUIPS.length;i++){
+      m=t.match(QUIPS[i][0]);
+      if(m){
+        out=t.replace(QUIPS[i][0], QUIPS[i][1]);
+        t=out;
+        break;
+      }
+    }
+    /* FLAG lines: drop the PBP lead-in and rewrite the call (offense/defense optional). */
+    var fi=t.search(/\bFLAG:\s*/i);
+    if(fi>=0){
+      var flag=t.slice(fi).replace(/^FLAG:\s*/i,'').trim();
+      var foul,side,num,rest,fm;
+      fm=flag.match(/^([^.,]+?)[,.]?\s*(offense|defense)\s*,\s*(#\d+)(?:\s+[A-Za-z.'-]+)?\.\s*(.*)$/i);
+      if(fm){foul=fm[1].trim();side=fm[2].toLowerCase();num=fm[3];rest=fm[4]||'';}
+      else{
+        fm=flag.match(/^([^.,]+),\s*(#\d+)(?:\s+[A-Za-z.'-]+)?\.?\s*(.*)$/i);
+        if(fm){foul=fm[1].trim();side='';num=fm[2];rest=fm[3]||'';}
+      }
+      if(fm){
+        var ym=(rest||'').match(/(\d+)[-\s]?(?:yard|yd)s?/i);
+        var tail=/\breplay\s+(\S+)/i.test(rest)?('replay '+((rest.match(/replay\s+(\S+)/i)[1]||'').replace(/\.$/,''))):
+                 /automatic/i.test(rest)?'auto':'';
+        var yds=ym?ym[1]:'';
+        t=(foul+(num?(', '+num):'')+(side?(', '+side):'')+'.'+(yds?(' '+yds+' yds'):'')+(tail?(', '+tail):'')+'.')
+          .replace(/\s+,/g,',').replace(/\.\.+/g,'.').replace(/\s+/g,' ').trim();
+        if(words(t).length<=max)return t;
+      }
+    }
+    t=t.replace(/Kickoff[.\u2026]*\s*touchback\.\s*(\S+) take over at the (\S+\s+\d+)\.?/i,'Kickoff, touchback. $1 at the $2.');
+    t=t.replace(/\s*FIRST DOWN\.?$/i,'');
+    /* complete / incomplete PBP (no flag, or leftover) */
+    m=t.match(/^(\S+) pass complete to (\S+) for (-?\d+) yards?\.?$/i);
+    if(m)t=m[1]+' to '+m[2]+', '+m[3]+' yds.';
+    m=t.match(/^(\S+) pass incomplete(?:, intended for (\S+))?\.?$/i);
+    if(m)t=m[1]+' incomplete'+(m[2]?(' for '+m[2]):'')+'.';
+    m=t.match(/^(\S+) run for (-?\d+) yards?\.?$/i);
+    if(m)t=m[1]+' run, '+m[2]+' yds.';
+
+    var w=words(t);
+    if(w.length<=max)return t;
+    var drop=/^(just|really|actually|like|so|well|very|then|that|kinda)$/i;
+    w=w.filter(function(x){return !drop.test(x);});
+    if(w.length<=max)return w.join(' ').replace(/[.!?,;:]+$/,'')+'.';
+    var clause=t.split(/\s+(?:and|but|because|so that|which)\s+/i)[0].replace(/[,;:]+$/,'').trim();
+    var cw=words(clause);
+    if(cw.length>=4&&cw.length<=max)return clause.replace(/[.!?]?$/,'')+'.';
+    /* last resort: first max words, then a period — never an ellipsis */
+    return w.slice(0,max).join(' ').replace(/[.!?,;:]+$/,'')+'.';
+  }
+
+  if(typeof booth==='function'){
+    var _bo=booth;
+    booth=function(line,ctx){
+      try{
+        if(line&&line[1]){
+          line=[line[0],capWords(line[1],14)];
+          arguments[0]=line;
+        }
+      }catch(e){}
+      return _bo.apply(this,arguments);
+    };
+  }
+  if(typeof lower==='function'){
+    var _lw=lower;
+    lower=function(txt,c){
+      try{if(txt)txt=capWords(String(txt),14);}catch(e){}
+      return _lw.call(this,txt,c);
+    };
+  }
+  function hookFeed(){
+    try{
+      if(window.CW&&CW.v95&&typeof CW.v95.feed==='function'&&!CW.v95._v97){
+        var _fd=CW.v95.feed;
+        CW.v95.feed=function(who,txt){return _fd.call(this,who,capWords(txt,14));};
+        CW.v95._v97=1;
+      }
+    }catch(e){}
+  }
+  hookFeed();
+  setTimeout(hookFeed,0);
+
+  /* ---------- 2. fresh() clears LEAGUE watch; every new-game path ---------- */
+  function v97ResetWatch(){
+    try{
+      if(typeof v93Reset==='function')v93Reset();
+    }catch(e){}
+    try{
+      var targets=[];
+      try{if(typeof V91!=='undefined'&&V91)targets.push(V91);}catch(e2){}
+      try{if(window.CW&&CW.v91)targets.push(CW.v91);}catch(e3){}
+      targets.forEach(function(V){
+        V.watch=0;V.told=0;V.mom=0;V.shift=null;V.arm=null;V.curThr=null;
+        if(V.flags)V.flags=[];if(V.swings)V.swings=[];if(V.thr)V.thr={};
+        if(V.heatLog)V.heatLog.length=0;
+      });
+      ['heatrow','v75top'].forEach(function(id){var e=el(id);if(e)e.classList.remove('v91w');});
+      document.body.classList.remove('v91w');
+      var w=el('v91watch');if(w){w.style.display='none';w.hidden=true;}
+      var m=el('v91mom');if(m)m.classList.remove('on','hot');
+    }catch(e){}
+  }
+  if(typeof fresh==='function'){
+    var _fr=fresh;
+    fresh=function(){
+      var r=_fr.apply(this,arguments);
+      v97ResetWatch();
+      return r;
+    };
+  }
+  try{
+    window.CW=window.CW||{};
+    CW.fresh=fresh;
+    window.fresh=fresh;
+  }catch(e){}
+  document.addEventListener('click',function(ev){
+    try{
+      var t=ev.target&&ev.target.closest&&ev.target.closest('#again,#toMenu,#tQuick,#tNew,#tContinue,#startBtn,#hubPlay');
+      if(t)v97ResetWatch();
+    }catch(e){}
+  },true);
+  if(typeof setMatch==='function'){
+    var _sm=setMatch;
+    setMatch=function(){try{v97ResetWatch();}catch(e){}return _sm.apply(this,arguments);};
+  }
+  if(typeof game==='function'){
+    var _gm=game;
+    game=function(){try{v97ResetWatch();}catch(e){}return _gm.apply(this,arguments);};
+  }
+
+  /* ---------- 1. halftimeCall: never write .accepted through a null callInfo ---------- */
+  /* Root cause (Ui Bot 375): S.callInfo is set at the start of halftimeCall, but by the
+     time the take-path hits `S.callInfo.accepted=true` it can be null (S was replaced by
+     fresh() on a concurrent new-game path, or an outer reset). At 375 the call sheet is
+     pushed under the booth; a stray click can fire #tQuick/#again. We keep a local `info`
+     reference, re-attach it if S.callInfo went missing, and skip the job flip if S was
+     replaced mid-call. */
+  if(typeof halftimeCall==='function'){
+    var _hc=halftimeCall;
+    halftimeCall=async function(){
+      var tok=S;
+      var r;
+      try{r=await _hc.apply(this,arguments);}
+      catch(err){
+        var msg=String(err&&err.message||err);
+        if(/accepted/.test(msg)||/callInfo/.test(msg)){
+          try{
+            if(S&&S===tok){
+              S.callInfo=S.callInfo||{caller:'?',offer:'?',pay:0,need:0,answered:true,accepted:true};
+              S.callInfo.accepted=true;
+            }
+          }catch(e2){}
+          try{console.warn('[v97] halftimeCall guarded',msg);}catch(e3){}
+          return;
+        }
+        throw err;
+      }
+      return r;
+    };
+  }
+
+  /* ---------- 4. result / HT word budget: short labels, no around ticker, FLAGS lean, hide dup dd/spot ---------- */
+  var st=document.createElement('style');
+  st.id='v97css';
+  st.textContent=[
+    /* YOUR CALL: hide duplicate scorebug dd/spot and stacked field chrome */
+    'body.v97call #bdd,body.v97call #bspot,',
+    'body.v97call #bug,body.v97call #ticker,body.v97call #gfx,',
+    'body.v97call #fvbug,body.v97call #tvtag,body.v97call #netbug,body.v97call #callchip,',
+    'body.v97call #msban,body.v97call #flagban,body.v97call #flash,',
+    'body.v97call #v87owe,body.v97call #v87odds,body.v97call #v87fish,',
+    'body.v97call #v88sus,body.v97call #v91mom{display:none!important}',
+    'body.v97call #decide span:not([class]):not([id]),body.v97call #dGrab{display:none!important}',
+    /* HT / FLAG FAVOR / FINAL board: hide ticker, scorebug, job chip (scores are on the table) */
+    'body.v97ht #ticker,body.v97ht #bug,body.v97ht #fvbug,body.v97ht #tvtag,',
+    'body.v97ht #netbug,body.v97ht #callchip,body.v97ht #msban,body.v97ht .around,',
+    'body.v97ht #flash,body.v97ht #v88sus,body.v97ht #v87owe,body.v97ht #v87odds,',
+    'body.v97ht #v87fish,body.v97ht #v91mom,body.v97ht #lower,body.v97ht #flagban{display:none!important}',
+    /* play-result gfx: hide duplicate scorebug dd/spot + ticker so the board stays under 40 */
+    'body.v97res #bdd,body.v97res #bspot,body.v97res #ticker,body.v97res #v87owe,',
+    'body.v97res #v87odds,body.v97res #v87fish{display:none!important}',
+    '#gfx .v97ff{font-size:11px;margin-top:6px;color:#cfd6e6}'
+  ].join('');
+  document.head.appendChild(st);
+
+  function setDecideChrome(){
+    try{
+      var d=el('decide');
+      var on=!!(d&&!d.hidden&&!(d.classList&&d.classList.contains('out'))&&d.offsetParent);
+      document.body.classList.toggle('v97call',on);
+    }catch(e){}
+  }
+  function setBoardChrome(on){
+    try{document.body.classList.toggle('v97ht',!!on);}catch(e){}
+  }
+  setInterval(setDecideChrome,200);
+  var dec=el('decide');
+  if(dec&&window.MutationObserver){
+    new MutationObserver(setDecideChrome).observe(dec,{attributes:true,attributeFilter:['hidden','class']});
+  }
+
+  if(typeof statRows==='function'){
+    statRows=function(){
+      var a=S.st.away,h=S.st.home;
+      var r=function(l,x,y){return '<tr><td>'+l+'</td><td>'+x+'</td><td>'+y+'</td></tr>';};
+      return '<tr><th></th><th>'+T('away').ab+'</th><th>'+T('home').ab+'</th></tr>'+
+        r('SCORE',S.score.away,S.score.home)+
+        r('FD',a.fd,h.fd)+
+        r('PASS',a.pass,h.pass)+
+        r('RUSH',a.rush,h.rush)+
+        r('SACK',a.sack+'\u2013'+a.sackY,h.sack+'\u2013'+h.sackY)+
+        r('NET',a.pass+a.rush-a.sackY,h.pass+h.rush-h.sackY)+
+        r('PEN',a.pen+'\u2013'+a.penY,h.pen+'\u2013'+h.penY);
+    };
+  }
+
+  function flagsLeanTxt(){
+    try{
+      var fi=typeof favInfo==='function'?favInfo():null;
+      var n=fi?Math.abs(fi.mag!=null?fi.mag:fi.n):0;
+      if(!fi||!fi.fav||n<1)return 'FLAGS even';
+      return 'FLAGS lean '+T(fi.fav).name.toUpperCase()+' \u00b7 '+n+' yds';
+    }catch(e){return 'FLAGS even';}
+  }
+
+  if(typeof favorBlock==='function'){
+    favorBlock=function(){
+      var a=S.fv.away,h=S.fv.home,n=favNet(),p=50+clamp(n/90,-1,1)*44;
+      return '<div class="fvg"><div class="fs"><img src="'+logoURL(T('away').name,92)+'">'+T('away').ab+'</div>'+
+        '<div class="rope"><i style="left:'+p+'%"></i></div>'+
+        '<div class="fs"><img src="'+logoURL(T('home').name,92)+'">'+T('home').ab+'</div></div>'+
+        '<table class="st"><tr><th></th><th>'+T('away').ab+'</th><th>'+T('home').ab+'</th></tr>'+
+        '<tr><td>PEN</td><td>'+a.yds+'</td><td>'+h.yds+'</td></tr>'+
+        '<tr><td>FLAGS</td><td>'+a.flags+'</td><td>'+h.flags+'</td></tr>'+
+        '<tr><td>NET</td><td>~'+a.pts+'</td><td>~'+h.pts+'</td></tr></table>';
+    };
+  }
+
+  if(typeof gfx==='function'){
+    var _gfx=gfx;
+    gfx=function(html){
+      try{
+        var h=String(html||'');
+        h=h.replace(/<h4>[^<]*DRIVE RECAP[^<]*<\/h4>/i,function(m){
+          var n=m.match(/(\d+)\s+plays?/i);
+          var fin=/FINAL/i.test(m);
+          var q=m.match(/END OF\s+([A-Z]+)/i);
+          var t='RECAP'+(n?(' \u00b7 '+(n[1])+' plays'):'')+(fin?' \u00b7 FINAL':(q?(' \u00b7 '+q[1]):''));
+          return '<h4>'+t+'</h4>';
+        });
+        /* compact long OUTCOME headers: OUTCOME · FIRST & 10 · GB BALL -> OUTCOME · 1st & 10 */
+        h=h.replace(/<h4>OUTCOME \u00b7 ([^<]*)<\/h4>/,function(m,rest){
+          var r=String(rest||'').replace(/\s*\u00b7\s*[A-Z]{2,3}\s+BALL/i,'').replace(/FIRST/i,'1st').replace(/SECOND/i,'2nd').replace(/THIRD/i,'3rd').replace(/FOURTH/i,'4th');
+          return '<h4>OUTCOME \u00b7 '+r.trim()+'</h4>';
+        });
+        arguments[0]=h;
+        var board=/HALFTIME|FLAG FAVOR|FLAGS lean|FINAL|NEW ORDERS/i.test(h);
+        var offer=/BUY THE BOOTH|DAMAGE CONTROL|CROWD CAM|SKYCAM|REF CAM|REP MANAGEMENT|HIRED \u00b7|BOOTH BOUGHT|RECEIPT LEAKED/i.test(h);
+        setBoardChrome(board);
+        try{document.body.classList.toggle('v97res',!offer&&!!h);}catch(e2){}
+      }catch(e){}
+      return _gfx.apply(this,arguments);
+    };
+  }
+  if(typeof hideGfx==='function'){
+    var _hg=hideGfx;
+    hideGfx=function(){
+      setBoardChrome(false);
+      try{document.body.classList.remove('v97res');}catch(e){}
+      return _hg.apply(this,arguments);
+    };
+  }
+
+  if(typeof statsGfx==='function'){
+    statsGfx=function(title,ms){
+      gfx('<h4>'+title+'</h4><table>'+statRows()+'</table><div class="skip">tap</div>');
+      var left=ms,done=false;
+      S.skip=false;
+      return (async function(){
+        while(left>0&&!S.skip){await wait(50);left-=50;}
+        hideGfx();
+      })();
+    };
+  }
+  if(typeof favorGfx==='function'){
+    favorGfx=function(title,ms){
+      /* no AROUND THE IFL ticker; short FLAGS lean headline */
+      gfx('<h4>'+flagsLeanTxt()+'</h4>'+favorBlock()+'<div class="skip">tap</div>');
+      var left=AUTO?Math.min(ms,1200):ms;
+      S.skip=false;
+      return (async function(){
+        while(left>0&&!S.skip){await wait(50);left-=50;}
+        hideGfx();
+      })();
+    };
+  }
+
+  window.CW=window.CW||{};
+  CW.v97={ok:true,build:'POLISH',capWords:capWords,flagsLeanTxt:flagsLeanTxt,resetWatch:v97ResetWatch,
+    help:'POLISH: HT call guard, watch reset, 14-word PBP/FLAG rewrite, HT/result \u226440'};
+  try{window.__v97.items.push('ht-call-guard','watch-reset','booth-cap','ht-words');}catch(e){}
+}catch(e){console.error('[v97]',e);}})();
+
 setMatch(QUICK);bindRefNameInputs();syncRefUI();showTitle();
 })();
 </script>
@@ -15910,6 +16746,8 @@ setMatch(QUICK);bindRefNameInputs();syncRefUI();showTitle();
 <script>window.__v93={ok:true,build:'MOMENTUM3',items:[]};</script>
 <script>window.__v94={ok:true,build:'GAMEREF',items:[]};</script>
 <script>window.__v95={ok:true,build:'BOOTH',items:[]};</script>
+<script>window.__v96={ok:true,build:'CLEANFIELD',items:[]};</script>
+<script>window.__v97={ok:true,build:'POLISH',items:[]};</script>
 <script>window.__v81={ok:true,build:'LEGAL',items:['celebrity-invented','gag-helplines','teams-gales-wedges','new-colors','new-emblems','slot-renames','credits-legal-screen','head-copyright']};</script>
 </body>
 </html>
