@@ -2,11 +2,34 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<script>
+window.__cwErrors=window.__cwErrors||[];
+window.__cwOnErr=function(msg,src,line,col,err){
+  try{
+    var rec={t:Date.now(),msg:String(msg||(err&&err.message)||err||'error'),src:src||'',line:line||0,col:col||0,stack:err&&err.stack?String(err.stack).slice(0,500):''};
+    window.__cwErrors.push(rec);
+    window.CW=window.CW||{};
+    CW._dbg=CW._dbg||{};
+    if(!CW._dbg.errors)CW._dbg.errors=window.__cwErrors;
+    else if(CW._dbg.errors!==window.__cwErrors)CW._dbg.errors.push(rec);
+  }catch(e){}
+  return false;
+};
+window.onerror=window.__cwOnErr;
+if(window.addEventListener){
+  window.addEventListener('unhandledrejection',function(ev){
+    try{window.__cwOnErr((ev&&ev.reason&&(ev.reason.message||ev.reason))||'unhandledrejection','',0,0,ev&&ev.reason);}catch(e){}
+  });
+}
+window.__cwOnErrInstalled=1;
+</script>
 <!-- After Further Review: The IFL — Copyright © 2026 George Papaioannou. All rights reserved. Fiction & satire; not affiliated with any league, team, broadcaster or sportsbook. Third-party: Three.js (MIT License, © 2010-2023 Three.js Authors); Press Start 2P font by CodeMan38 (SIL Open Font License 1.1, © 2012 The Press Start 2P Project Authors). -->
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <meta name="theme-color" content="#0b0d12">
-<title>After Further Review: The IFL v97 POLISH</title>
+<title>After Further Review: The IFL v99 HARDEN</title>
 <style>
 :root{--bg:#0b0d12;--card:#1a1e27;--card2:#252a35;--ink:#f4f1e8;--dim:#9aa3b2;--whistle:#ffd23f;--hot:#ff5a3c;--ok:#4cd387;--line:#2c3240;--gbn:#2f6bff}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -1502,33 +1525,34 @@ html.gfx-tf #game.fs-tiny #tv{background:#7ec8f5;}
 #gfx td{padding:2px 2px !important;}
 </style>
 
-<!-- v72 DEPS: IMPACT — blind grades (teaser only, grade+heat revealed after pick), job-stakes chips, sticky heat (no passive decay), stand tax + Lenny/Vivian ping. Keep v71 chrome/v70 memes/outcome sync. --><!-- v71 DEPS: Ui Bot chrome page (one meter row heat/favor/gear, scorebug readable during YOUR CALL, meters hidden over Rep Mgmt, callchip only while deciding). Keep v70 memes + v69.1 chip pin. <!-- v70 DEPS: Meme pack — new formats+procedural art + caption refresh; keep v69.1 chrome/outcome/FX. <!-- v69.1 DEPS: pin #callchip below YOUR CALL into field peek (measure decide bottom). Keep v69 chrome. <!-- v69 DEPS: Ui Bot UI chrome (sticky heat+favor, #callchip, scorebug pending, gear vs SOCIAL). Keep v68 polish. <!-- v68 DEPS: keep v67 hit FX (toned shock) + name-ref + title card + subtle scare + meme uniqueness; fix orphaned fallen players, always-on heat+lean, harden outcome-field sync. FOR_GEORGE ships HTML + three.min.js. -->
+<!-- v72 DEPS: IMPACT — blind grades (teaser only, grade+heat revealed after pick), job-stakes chips, sticky heat (no passive decay), stand tax + Lenny/Vivian ping. Keep v71 chrome/v70 memes/outcome sync. --><!-- v71 DEPS: Ui Bot chrome page (one meter row heat/favor/gear, scorebug readable during YOUR CALL, meters hidden over Rep Mgmt, callchip only while deciding). Keep v70 memes + v69.1 chip pin. <!-- v70 DEPS: Meme pack — new formats+procedural art + caption refresh; keep v69.1 chrome/outcome/FX. <!-- v69.1 DEPS: pin #callchip below YOUR CALL into field peek (measure decide bottom). Keep v69 chrome. <!-- v69 DEPS: Ui Bot UI chrome (sticky heat+favor, #callchip, scorebug pending, gear vs SOCIAL). Keep v68 polish. <!-- v99 DEPS: load ./three.min.js first on https (Pages) and file://. CDN only if THREE is still undefined. Deploy must place three.min.js next to index.html (do not skip this file). Prefer https://georgepap-stack.github.io/crooked-whistle/?v=99 to bust stale Safari / Home Screen caches. -->
 <script>
-/* v62: pick load order — local-first on file:// (iPhone), CDN-first on http(s). */
+/* v99: local-first on https and file://; CDN is fallback only. */
 window.__cwFileProto=location.protocol==='file:';
+window.__cwThreeSrc=null;
 </script>
 <script>
 if(!window.THREE){
-  if(window.__cwFileProto) document.write('<script src="./three.min.js"><\/script>');
-  else document.write('<script src="https://unpkg.com/three@0.160.0/build/three.min.js"><\/script>');
+  window.__cwThreeSrc='./three.min.js';
+  document.write('<script src="./three.min.js"><\/script>');
 }
 </script>
 <script>
 if(!window.THREE){
-  if(window.__cwFileProto) document.write('<script src="./vendor/three.min.js"><\/script>');
-  else document.write('<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"><\/script>');
+  window.__cwThreeSrc='./vendor/three.min.js';
+  document.write('<script src="./vendor/three.min.js"><\/script>');
 }
 </script>
 <script>
 if(!window.THREE){
-  if(window.__cwFileProto) document.write('<script src="https://unpkg.com/three@0.160.0/build/three.min.js"><\/script>');
-  else document.write('<script src="./three.min.js"><\/script>');
+  window.__cwThreeSrc='unpkg';
+  document.write('<script src="https://unpkg.com/three@0.160.0/build/three.min.js"><\/script>');
 }
 </script>
 <script>
 if(!window.THREE){
-  if(window.__cwFileProto) document.write('<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"><\/script>');
-  else document.write('<script src="./vendor/three.min.js"><\/script>');
+  window.__cwThreeSrc='jsdelivr';
+  document.write('<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"><\/script>');
 }
 </script>
 <script>
@@ -1538,7 +1562,7 @@ window.__showThreeMissing=function(msg){
   d.id='threeMissing';
   d.setAttribute('role','alert');
   d.style.cssText='position:fixed;inset:0;z-index:99999;background:#0b0d12;color:#ffd23f;display:flex;align-items:center;justify-content:center;padding:28px;text-align:center;font:700 16px system-ui';
-  d.innerHTML='<div style="max-width:340px"><div style="font-size:22px;margin-bottom:10px">3D engine missing</div><div style="color:#cfe8e0;font-weight:600;line-height:1.45">'+(msg||'Need internet once to load 3D')+'</div><div style="margin-top:14px;color:#8a9;font-size:12px;font-weight:600">After Further Review: The IFL v70 — keep three.min.js beside this file (FOR_GEORGE zip) or use network once</div></div>';
+  d.innerHTML='<div style="max-width:340px"><div style="font-size:22px;margin-bottom:10px">3D engine missing</div><div style="color:#cfe8e0;font-weight:600;line-height:1.45">'+(msg||'Need internet once to load 3D')+'</div><div style="margin-top:14px;color:#8a9;font-size:12px;font-weight:600">After Further Review: The IFL v99 — keep three.min.js beside this file (Pages: next to index.html) or use network once</div></div>';
   (document.body||document.documentElement).appendChild(d);
 };
 (function(){
@@ -1678,7 +1702,7 @@ window.__showThreeMissing=function(msg){
 (()=>{
 var __cwN=function(a,b){return a!=null?a:b;};/* v62: Safari ≤13-safe nullish + optional-chain shims */
 /* v73: build/version info. Future builds bump ONLY this line. */
-const CW_VERSION='v97',CW_BUILD='POLISH',CW_DATE='2026-11-09';
+const CW_VERSION='v99',CW_BUILD='HARDEN',CW_DATE='2026-11-10';
 const CW_VER_SHORT=(()=>{const p=CW_DATE.split('-');const M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];return CW_VERSION+' · '+CW_BUILD+' · '+M[(+p[1]||1)-1]+' '+(+p[2]||'');})();
 window.CW_VERSION=CW_VERSION;window.CW_BUILD=CW_BUILD;window.CW_DATE=CW_DATE;
 (function cwVerUI(){
@@ -1702,7 +1726,7 @@ let FAST=+(P.get('fast')||1); let AUTO=P.has('auto'); let AUTOCALLS=P.get('auto'
 let TIMER=localStorage.getItem('cw_timer')==='1';
 let S;
 const SP=()=>FAST*(S&&S.skipFF?10:1);
-const wait=ms=>{if(S&&S.quiet)return qwait();if(S)S.nom+=ms;return new Promise(r=>setTimeout(r,ms/SP()));};
+let wait=ms=>{if(S&&S.quiet)return qwait();if(S)S.nom+=ms;return new Promise(r=>setTimeout(r,ms/SP()));};
 const TEAMS={
  home:{city:'Green Bay',name:'Wedges',ab:'GB',c1:'#7a1f4f',c2:'#c7ccd6',qb:'Wedgewood',rb:'Curdman',wr:['Frostwick','Laketon','Grillmore'],wrN:[13,83,86],dl:'Rutabagan',dlN:97,db:'Ballhawk',dbN:31,k:'Leggett',comp:0.57,deep:0.33,runB:1},
  away:{city:'Chicago',name:'Gales',ab:'CHI',c1:'#0e7c86',c2:'#e8fbff',qb:'Tossman',rb:'Trucks',wr:['Catchings','Longstride','Blockowski'],wrN:[14,81,88],dl:'Sackwell',dlN:94,db:'Breakwater',dbN:24,k:'Uprightson',comp:0.645,deep:0.40,runB:3}};
@@ -2085,9 +2109,8 @@ async function halftimeCall(){
   if(took){if(!S.callInfo)S.callInfo=info;info.accepted=true;S.callInfo=info;S.callInfo.accepted=true;S.htNet=favNet();
     S.job={id:of.id,team:of.team,lo:of.lo,hi:of.hi,short:of.short,tag:of.tag,pay,line:`📞 ${of.tag} · $${Math.round(pay/1000)}K`,flipped:true,orig:old,caller:cl.id};
     $('#ticker').classList.add('neworders');hud();
-    gfx(`<h4>📞 NEW ORDERS · ${cl.name.toUpperCase()}</h4><div class="nord"><img src="${logoURL(T(of.team).name,124)}" alt=""><div><div class="nstamp">NEW ORDERS</div><b>${of.short}</b></div></div>
-      <div class="kr"><span>Old job</span><b><s>${old.short}</s></b></div><div class="kr"><span>Right now</span><b>${jobStat(m)}</b></div>
-      <div class="kr"><span>Swing needed</span><b>${need?need+(need===1?' pt':' pts')+' in one half':'already there: hold it'}</b></div><div class="kr"><span>Payout</span><b><s>$${old.pay.toLocaleString()}</s> → $${pay.toLocaleString()}</b></div><div class="skip">tap to continue</div>`);
+    gfx(`<h4>NEW ORDERS</h4><div class="nord"><img src="${logoURL(T(of.team).name,124)}" alt=""><div><div class="nstamp">NEW ORDERS</div><b>${of.tag}${of.id==='dogCover'?' (cover or win)':''}</b></div></div>
+      <div class="kr"><span>Need</span><b>${of.tag}</b></div><div class="kr"><span>Swing</span><b>${need?need+(need===1?' pt':' pts')+' / half':'hold it'}</b></div><div class="kr"><span>Pay</span><b>$${Math.round(old.pay/1000)}k\u2192$${Math.round(pay/1000)}k</b></div><div class="skip">tap</div>`);
     flash('NEW ORDERS','to',0);let left=AUTO?900:4200;S.skip=false;while(left>0&&!S.skip){await wait(50);left-=50;}hideGfx();unflash();
     if(rnd()<0.6)post('sq','Ref #77 seen on the phone in the tunnel at halftime 👀 probably just checking the weather',300,{hot:true});
   } else {const rf=REFUSE[cl.id];S.payCut=rf.cut;if(rf.heat)v77Heat(rf.heat,'📞 Said no to '+({lenny:'Lenny: burner leaked',league:'the League Office',lumi:'Lumi'}[cl.id]||'the halftime call'));
@@ -11096,6 +11119,19 @@ try{window.standAllPlayers=standAllPlayers;}catch(e){}
 /* ===== v96 CLEANFIELD 3D: stadium, idle formation, helmets, dbg, stray-mesh sweep ===== */
 (function(){
   try{
+    function v96err(tag,e){
+      try{
+        var rec={t:Date.now(),tag:String(tag||'v96'),msg:String(e&&e.message||e),stack:e&&e.stack?String(e.stack).slice(0,500):''};
+        window.__cwErrors=window.__cwErrors||[];
+        window.__cwErrors.push(rec);
+        window.CW=window.CW||{};
+        CW._dbg=CW._dbg||{};
+        CW._dbg.errors=CW._dbg.errors||window.__cwErrors;
+        if(CW._dbg.errors!==window.__cwErrors)CW._dbg.errors.push(rec);
+        CW._dbg.lastError=rec;
+      }catch(e2){}
+      try{console.error('[v96 3d]',tag,e);}catch(e3){}
+    }
     var HOLD_PHASES=['live','post','presnap','result','ff','keygfx','replay','outcome','flag','idle','ko','kickoff','kick','done','hb','half','halftime'];
     function inFieldPhase(ph){
       if(!ph)return false;
@@ -11138,7 +11174,7 @@ try{window.standAllPlayers=standAllPlayers;}catch(e){}
       scene.traverse(function(o){
         if(o.isAmbientLight)o.intensity=Math.min(Math.max(o.intensity,0.42),0.48);
       });
-    }catch(e){}
+    }catch(e){v96err('night',e);}
 
     /* ----- helmets: walk existing shells ----- */
     function softenHelmet(mat){
@@ -11174,6 +11210,36 @@ try{window.standAllPlayers=standAllPlayers;}catch(e){}
       };
     }
 
+    /* wrap updatePlayersFromState — BEFORE stadium meshes so a stadium throw cannot leave the origin pile */
+    try{
+          /* wrap updatePlayersFromState — same lexical scope as the 3D IIFE */
+          if(typeof updatePlayersFromState==='function'){
+            var _up=updatePlayersFromState;
+            updatePlayersFromState=function(dt){
+              try{seedIdleFormation();}catch(e){}
+              var r=_up.apply(this,arguments);
+              try{if(typeof maybeTwinkle==='function')maybeTwinkle();}catch(e){}
+              try{
+                if(typeof players!=='undefined'){
+                  Object.keys(players).forEach(function(k){
+                    var P=players[k]; if(!P||!P.root)return;
+                    var x=P.root.position.x||0,z=P.root.position.z||0;
+                    if(Math.abs(x)<0.35&&Math.abs(z)<0.35){P.root.visible=false;}
+                  });
+                }
+                if(typeof ballMesh!=='undefined'&&ballMesh&&ballMesh.visible){
+                  var bx=ballMesh.position.x||0,bz=ballMesh.position.z||0;
+                  if(Math.abs(bx)<0.4&&Math.abs(bz)<0.4&&!(S&&S.anim&&S.anim.t>0.05)) ballMesh.visible=false;
+                }
+              }catch(e){}
+              return r;
+            };
+          }
+
+      try{window.CW=window.CW||{};CW._dbg=CW._dbg||{};CW._dbg.idleSeedWrapped=1;}catch(eW){}
+    }catch(e){v96err('idle-seed',e);}
+
+    try{
     /* ----- stadium ----- */
     function makeCrowdTex(){
       var c=document.createElement('canvas');
@@ -11473,29 +11539,7 @@ try{window.standAllPlayers=standAllPlayers;}catch(e){}
       return sphereReport;
     }
 
-    /* wrap updatePlayersFromState — same lexical scope as the 3D IIFE */
-    if(typeof updatePlayersFromState==='function'){
-      var _up=updatePlayersFromState;
-      updatePlayersFromState=function(dt){
-        try{seedIdleFormation();}catch(e){}
-        var r=_up.apply(this,arguments);
-        try{maybeTwinkle();}catch(e){}
-        try{
-          if(typeof players!=='undefined'){
-            Object.keys(players).forEach(function(k){
-              var P=players[k]; if(!P||!P.root)return;
-              var x=P.root.position.x||0,z=P.root.position.z||0;
-              if(Math.abs(x)<0.35&&Math.abs(z)<0.35){P.root.visible=false;}
-            });
-          }
-          if(typeof ballMesh!=='undefined'&&ballMesh&&ballMesh.visible){
-            var bx=ballMesh.position.x||0,bz=ballMesh.position.z||0;
-            if(Math.abs(bx)<0.4&&Math.abs(bz)<0.4&&!(S&&S.anim&&S.anim.t>0.05)) ballMesh.visible=false;
-          }
-        }catch(e){}
-        return r;
-      };
-    }
+    }catch(e){v96err('stadium',e);}
 
     /* expose three.js scene for Ui Bot dumps */
     try{
@@ -11514,7 +11558,7 @@ try{window.standAllPlayers=standAllPlayers;}catch(e){}
       setTimeout(function(){try{CW._dbg.v96spheres=dumpAndSweepSpheres();}catch(e){}},800);
     }catch(e){}
     try{window.__v96.items.push('stadium','idle-form','helmets','dbg-scene');}catch(e){}
-  }catch(e){console.error('[v96 3d]',e);}
+  }catch(e){try{v96err('v96-iife',e);}catch(e2){console.error('[v96 3d]',e);}}
 })();
   console.info('[CW] v68 — no orphan fallen, soft tackle shock, heat+lean always on, harder outcome sync; keep blood/RTP/name-ref/scare/memes');
 })();
@@ -14283,7 +14327,7 @@ var V82H={on:0,heldMs:0,left:0,get:function(){return false;},set:function(){}};
 (function(){var st=document.createElement('style');st.textContent='#gfx.v82held .v76bar i{background:#ffd23f!important;transition:none!important}#gfx.v82held h4::after{content:" · ⏸ HELD";color:#ffd23f}#gfx .v76bar{position:relative}';document.head.appendChild(st);})();
 V82.hold=V82H;(window.__v82items=window.__v82items||[]).push('p7-hold');
 /* ---- v82: test/QA hook ---- */
-try{V82.S=function(){return S;};window.CW.v82=V82;window.CW.v82.items=window.__v82items;console.info('[CW] v97 POLISH — '+window.__v82items.join(', '));}catch(e){console.error('[CW] v82 hook',e);}
+try{V82.S=function(){return S;};window.CW.v82=V82;window.CW.v82.items=window.__v82items;console.info('[CW] v99 HARDEN — '+window.__v82items.join(', '));}catch(e){console.error('[CW] v82 hook',e);}
 /* ===== v84 MEMEFIX ===== */
 window.__v84={items:[]};
 /* --- 2: meme throttle + dedupe at the source: ~1 meme per key play (big moments get a 2nd slot), queue cap stays 3 --- */
@@ -16694,6 +16738,442 @@ var MEME_POST_TXT_X = (typeof MEME_POST_TXT_X!=='undefined'&&MEME_POST_TXT_X)||u
     help:'POLISH: HT call guard, watch reset, 14-word PBP/FLAG rewrite, HT/result \u226440'};
   try{window.__v97.items.push('ht-call-guard','watch-reset','booth-cap','ht-words');}catch(e){}
 }catch(e){console.error('[v97]',e);}})();
+/* ===== v98 HONEST: legit/correct calls never push heat toward FIRED ----- */
+(function(){try{
+  var V98TURBO=false;
+  function el(id){return document.getElementById(id);}
+  function words(t){return String(t||'').replace(/\s+/g,' ').trim().split(' ').filter(Boolean);}
+  function isLegitCall(kp,call){return !!(kp&&call&&call!=='letgo'&&kp.foul===call);}
+  function isCleanLetgo(kp,call){return (!call||call==='letgo')&&!(kp&&kp.foul);}
+  function honestMode(){
+    try{if(window.CW&&CW.v98&&CW.v98.policy==='honest')return true;}catch(e){}
+    try{if(typeof P!=='undefined'&&P&&P.get&&P.get('honest')==='1')return true;}catch(e2){}
+    return false;
+  }
+  function cheatMode(){
+    try{if(window.CW&&CW.v98&&CW.v98.policy==='cheat')return true;}catch(e){}
+    try{if(typeof P!=='undefined'&&P&&P.get&&P.get('cheat')==='1')return true;}catch(e2){}
+    return false;
+  }
+
+  /* ---------- PRIORITY: pattern suspicion ignores legit flags ---------- */
+  /* Root cause (George via Gamer: "ejected for calling correct plays"):
+     v91Call runs on every effective flag on a KEY play, including legit
+     (kp.foul===call). It always adds watch+8, +25 for two same-team flags
+     in a row, jumps watch to 50 ("LEAGUE IS WATCHING") on the 3rd flag on
+     one team in a half, +25 for back-to-back high-leverage flags, then
+     converts that into heat: pattern bonus, +6 on the tell, and +4 on
+     EVERY later key flag while the tell is on — including legit ones.
+     v93 also clamped legit callHeat from -4 to 0, so those flags no longer
+     cool heat, and the pattern bonuses can stack a clean ref to FIRED
+     (S.heat>=100). Ignored real fouls (ignHeat) and invented flags are
+     supposed to cost heat; correct no-calls and legit flags are not.
+     Fix: legit flags do not increment watch, do not count toward the
+     same-team / 3-in-a-half / b2b-big patterns, and add 0 pattern heat.
+     Invented / questionable flags keep the old v91Call path. Clean
+     no-calls no longer take the close-up stand tax. */
+  if(typeof v91Call==='function'){
+    var _v91c=v91Call;
+    v91Call=function(kp,call,lev,sim){
+      if(isLegitCall(kp,call)){
+        var j=typeof v91Job==='function'?v91Job():null;
+        var ben=null;try{ben=benefits(call,kp);}catch(e){}
+        var ent={h:(S.q<=2?1:2),call:call,lev:Math.round((lev||0)*100)/100,dm:0,pen:ben?other(ben):null,ben:ben,threat:!!(kp&&kp._v91th),watch:V91?V91.watch:0,why:[],q:S.q,ck:S.clock,legit:true};
+        try{if(V91&&V91.swings)V91.swings.push(ent);}catch(e2){}
+        if(!sim){try{if(typeof v91Meter==='function')v91Meter();}catch(e3){}}
+        return ent;
+      }
+      return _v91c.apply(this,arguments);
+    };
+    try{if(typeof V91!=='undefined'&&V91)V91._call=function(kp,c,l){return v91Call(kp,c,l,false);};}catch(e){}
+  }
+
+  if(typeof v72StandTax==='function'){
+    var _st=v72StandTax;
+    v72StandTax=function(kp,base){
+      if(kp&&!kp.foul)return null;
+      return _st.apply(this,arguments);
+    };
+  }
+
+  /* safety: pattern / watching / threat-save / stand-tax heat cannot land on an honest decision */
+  function v98BlockHeat(why){
+    var w=String(why||'');
+    return /Pattern:|LEAGUE IS WATCHING|League is watching|Threat save|Stand tax|Flags tilting/.test(w);
+  }
+  if(typeof v77Heat==='function'){
+    var _vh=v77Heat;
+    v77Heat=function(amt,why){
+      try{
+        if(amt>0&&S&&S._v98honest&&v98BlockHeat(why))return;
+        /* upholding a correct / inconclusive ruling must not take league/mob review heat */
+        if(amt>0&&S&&S._v98uphold&&/Replay review/.test(String(why||'')))return;
+      }catch(e){}
+      return _vh.apply(this,arguments);
+    };
+  }
+  if(typeof chApply==='function'){
+    var _ap=chApply;
+    chApply=function(kp,call,info,ctx,d){
+      var up=!!(ctx&&((ctx.ev==='right'&&d!=='reverse')||(ctx.ev==='inc'&&d==='stand')));
+      try{S._v98uphold=up?1:0;}catch(e){}
+      var fin=function(v){try{S._v98uphold=0;}catch(e2){}return v;};
+      try{
+        var r=_ap.apply(this,arguments);
+        if(r&&typeof r.then==='function')return r.then(fin,function(e){fin();throw e;});
+        return fin(r);
+      }catch(e){fin();throw e;}
+    };
+  }
+  if(typeof v87RecHook==='function'){
+    var _rh=v87RecHook;
+    v87RecHook=function(kp,o){
+      try{
+        var call=o&&o.call;
+        S._v98honest=isLegitCall(kp,call)||isCleanLetgo(kp,call)?1:0;
+      }catch(e){try{S._v98honest=0;}catch(e2){}}
+      try{return _rh.apply(this,arguments);}
+      finally{try{S._v98honest=0;}catch(e3){}}
+    };
+  }
+
+  /* honest / cheat auto policies for the verification sim (?honest=1 / ?cheat=1) */
+  function v98PickHonest(kp){
+    if(kp&&kp.foul&&typeof available==='function'&&available(kp.foul,kp))return kp.foul;
+    return null;
+  }
+  function v98PickCheat(kp){
+    var c=null,j=S&&S.job,off=kp&&kp.off,need=null;
+    try{
+      var x=typeof jm==='function'?jm(margin()):0;
+      if(j)need=x<j.lo?j.team:x>j.hi?other(j.team):j.team;
+    }catch(e){}
+    if(need&&off&&need!==off){if(typeof available==='function'&&available('holding',kp))c='holding';else if(available('formation',kp))c='formation';}
+    else if(need&&off&&need===off){if(typeof available==='function'&&available('pi',kp))c='pi';else if(available('dholding',kp))c='dholding';else if(available('roughing',kp))c='roughing';}
+    if(!c&&kp&&kp.foul&&rnd()<0.15)c=kp.foul;
+    if(c&&typeof available==='function'&&!available(c,kp))c=null;
+    return c;
+  }
+  if(typeof autoDecide==='function'){
+    var _ad=autoDecide;
+    autoDecide=function(kp){
+      if(honestMode()){
+        var h=v98PickHonest(kp);
+        if(h)S.call=h;
+        return;
+      }
+      if(cheatMode()){
+        var c=v98PickCheat(kp);
+        if(c)S.call=c;
+        return;
+      }
+      return _ad.apply(this,arguments);
+    };
+  }
+  if(typeof chAuto==='function'){
+    var _ca=chAuto;
+    chAuto=function(kp,ctx,tab){
+      if(honestMode()){
+        var ev=ctx&&ctx.ev;
+        if(ev==='wrong')return 'reverse';
+        if(ev==='right')return 'confirm';
+        return 'stand';
+      }
+      return _ca.apply(this,arguments);
+    };
+  }
+
+  /* ---------- secondary: speaker label counts toward the 14-word booth cap ---------- */
+  var cap=null;
+  try{cap=window.CW&&CW.v97&&CW.v97.capWords;}catch(e){}
+  if(typeof cap==='function'&&typeof booth==='function'){
+    var _bo=booth;
+    booth=function(line,ctx){
+      try{
+        if(line&&line[1]){
+          var who=String(line[0]||'');
+          var room=Math.max(8,14-(who?1:0));
+          line=[line[0],cap(line[1],room)];
+          arguments[0]=line;
+        }
+      }catch(e){}
+      return _bo.apply(this,arguments);
+    };
+  }
+  function hookFeed(){
+    try{
+      if(window.CW&&CW.v95&&typeof CW.v95.feed==='function'&&!CW.v95._v98){
+        var _fd=CW.v95.feed;
+        CW.v95.feed=function(who,txt){
+          try{
+            var room=Math.max(8,14-(who?1:0));
+            if(typeof cap==='function')txt=cap(txt,room);
+          }catch(e){}
+          return _fd.call(this,who,txt);
+        };
+        CW.v95._v98=1;
+      }
+    }catch(e){}
+  }
+  hookFeed();
+  setTimeout(hookFeed,0);
+
+  /* hide booth + suspicion while NEW ORDERS is up */
+  var st=document.createElement('style');
+  st.id='v98css';
+  st.textContent='body.v98nord #v95booth,body.v98nord #v88sus,body.v98nord #v87owe,body.v98nord #v87odds,body.v98nord #v91watch,body.v98nord #lower{display:none!important;visibility:hidden!important}';
+  document.head.appendChild(st);
+  if(typeof gfx==='function'){
+    var _gfx=gfx;
+    gfx=function(html){
+      try{
+        var on=/NEW ORDERS/i.test(String(html||''));
+        document.body.classList.toggle('v98nord',on);
+      }catch(e){}
+      return _gfx.apply(this,arguments);
+    };
+  }
+  if(typeof hideGfx==='function'){
+    var _hg=hideGfx;
+    hideGfx=function(){
+      try{document.body.classList.remove('v98nord');}catch(e){}
+      return _hg.apply(this,arguments);
+    };
+  }
+
+  /* turbo: skip waits so headless sims can finish a game in seconds.
+     wait is `let` in v98 so it can be reassigned (it was const in v97).
+     Challenges still apply (honest confirm/stand) but skip the hood timer,
+     flag toss, closeDecide timeouts, and the v85 meme-beat hold after keys
+     (V85M_AFTER is a real-time 3s cap that was stalling each key play). */
+  if(typeof chToss==='function'&&!chToss._v98){
+    var _ct=chToss;
+    chToss=function(){
+      if(V98TURBO)return Promise.resolve();
+      return _ct.apply(this,arguments);
+    };
+    chToss._v98=1;
+  }
+  if(typeof chReview==='function'&&!chReview._v98){
+    var _rev=chReview;
+    chReview=function(kp,call,info,ctx){
+      if(V98TURBO){
+        try{
+          if(ctx&&!ctx.msgs&&typeof chMsgs==='function')ctx.msgs=chMsgs(kp,ctx);
+          var tab=typeof chHeatTable==='function'?chHeatTable(ctx&&ctx.ev):{stand:0,confirm:0,reverse:0};
+          var d=typeof chAuto==='function'?chAuto(kp,ctx,tab):'stand';
+          return Promise.resolve(typeof chApply==='function'?chApply(kp,call,info,ctx,d):null);
+        }catch(e){return Promise.resolve(null);}
+      }
+      return _rev.apply(this,arguments);
+    };
+    chReview._v98=1;
+  }
+  if(typeof closeDecide==='function'&&!closeDecide._v98){
+    var _cd=closeDecide;
+    closeDecide=async function(){
+      if(V98TURBO){
+        try{
+          var el=document.getElementById('decide');
+          if(el){el.classList.remove('enter','nudge','peek','out');el.hidden=true;}
+          var sc=document.getElementById('dscrim');if(sc)sc.className='';
+        }catch(e){}
+        return;
+      }
+      return _cd.apply(this,arguments);
+    };
+    closeDecide._v98=1;
+  }
+  if(typeof recapFlush==='function'&&!recapFlush._v98){
+    var _rf=recapFlush;
+    recapFlush=function(why){
+      if(V98TURBO)return Promise.resolve();
+      return _rf.apply(this,arguments);
+    };
+    recapFlush._v98=1;
+  }
+  if(typeof flagToss==='function'&&!flagToss._v98){
+    var _ft=flagToss;
+    flagToss=function(kp,call){
+      if(V98TURBO){
+        try{S.flagToss=null;S.flagLand=null;var fb=document.getElementById('flagban');if(fb)fb.classList.remove('show');}catch(e){}
+        return Promise.resolve();
+      }
+      return _ft.apply(this,arguments);
+    };
+    flagToss._v98=1;
+  }
+  function v98Turbo(){
+    V98TURBO=true;
+    wait=function(ms){try{if(S)S.nom+=(ms||0);}catch(e){}return Promise.resolve();};
+    try{THINK=1;}catch(e2){}
+    try{FAST=60;}catch(e3){}
+    try{if(S)S.skipFF=1;}catch(e5){}
+    try{if(typeof V85M_AFTER!=='undefined')V85M_AFTER=0;}catch(e7){}
+    try{if(typeof V82M!=='undefined'&&V82M)V82M.sc=60;}catch(e8){}
+    try{if(window.CW&&CW.v98)CW.v98.turboOn=true;}catch(e6){}
+  }
+  try{if(honestMode()||cheatMode())v98Turbo();}catch(e){}
+
+  window.CW=window.CW||{};
+  CW.v98={ok:true,build:'HONEST',policy:null,turboOn:false,turbo:v98Turbo,
+
+    isLegitCall:isLegitCall,pickHonest:v98PickHonest,pickCheat:v98PickCheat,
+    help:'HONEST: legit/correct calls add 0 pattern heat; invented flags still build suspicion'};
+  try{if(V98TURBO)CW.v98.turboOn=true;}catch(eT){}
+  try{window.__v98.items.push('legit-no-pattern','clean-no-stand-tax','honest-policy','booth-who-cap','new-orders');}catch(e){}
+}catch(e){console.error('[v98]',e);}})();
+/* ===== v99 HARDEN: error log, title build tag, heat-delta log ----- */
+(function(){
+  try{
+    function pushErr(rec){
+      try{
+        window.__cwErrors=window.__cwErrors||[];
+        window.__cwErrors.push(rec);
+        window.CW=window.CW||{};
+        CW._dbg=CW._dbg||{};
+        if(!CW._dbg.errors)CW._dbg.errors=window.__cwErrors;
+        else if(CW._dbg.errors!==window.__cwErrors)CW._dbg.errors.push(rec);
+      }catch(e){}
+    }
+    function onErr(msg,src,line,col,err){
+      try{
+        var rec={t:Date.now(),msg:String(msg||(err&&err.message)||err||'error'),src:src||'',line:line||0,col:col||0,stack:(err&&err.stack)?String(err.stack).slice(0,500):''};
+        pushErr(rec);
+      }catch(e2){}
+      return false;
+    }
+    try{
+      if(!window.__cwOnErrInstalled){
+        var prev=window.onerror;
+        window.__cwOnErr=onErr;
+        window.onerror=function(msg,src,line,col,err){
+          try{onErr(msg,src,line,col,err);}catch(e){}
+          if(typeof prev==='function')try{return prev.apply(this,arguments);}catch(e3){}
+          return false;
+        };
+        if(window.addEventListener){
+          window.addEventListener('unhandledrejection',function(ev){
+            try{onErr((ev&&ev.reason&&(ev.reason.message||ev.reason))||'unhandledrejection','',0,0,ev&&ev.reason);}catch(e){}
+          });
+        }
+        window.__cwOnErrInstalled=1;
+      }
+    }catch(e4){}
+    try{
+      window.CW=window.CW||{};
+      CW._dbg=CW._dbg||{};
+      CW._dbg.errors=CW._dbg.errors||window.__cwErrors||[];
+      window.__cwErrors=CW._dbg.errors;
+    }catch(e5){}
+
+    /* small always-visible build tag on the title/intro screen */
+    function placeBadge(){
+      try{
+        var host=document.querySelector('#title .tlhero')||document.getElementById('title');
+        if(!host)return;
+        var d=document.getElementById('cwVerBadge');
+        if(!d){
+          d=document.createElement('div');
+          d.id='cwVerBadge';
+          d.setAttribute('aria-label','Build version');
+        }
+        if(d.parentNode!==host)host.appendChild(d);
+        d.textContent=(typeof CW_VERSION==='string'&&CW_VERSION)?CW_VERSION:'v99';
+      }catch(e){}
+    }
+    try{placeBadge();}catch(e6){}
+    try{
+      if(typeof showTitle==='function'&&!showTitle._v99){
+        var _st=showTitle;
+        showTitle=function(){
+          var r=_st.apply(this,arguments);
+          try{placeBadge();}catch(e){}
+          return r;
+        };
+        showTitle._v99=1;
+      }
+    }catch(e7){}
+
+    /* log every heat delta with its source (honest-ref audit) */
+    window.CW=window.CW||{};
+    CW.v99=CW.v99||{ok:true,build:'HARDEN',heatLog:[]};
+    if(!CW.v99.heatLog)CW.v99.heatLog=[];
+    function heatRec(h,why,before){
+      try{
+        var after=(typeof S!=='undefined'&&S&&S.heat!=null)?S.heat:null;
+        var d=(after!=null)?Math.round((after-before)*10)/10:h;
+        if(!d)return;
+        var rec={
+          t:Date.now(),
+          d:d,
+          amt:h,
+          why:String(why||'addHeat'),
+          heat:after,
+          peak:(typeof S!=='undefined'&&S&&S.peak!=null)?S.peak:null,
+          phase:(typeof S!=='undefined'&&S&&S.phase)||'',
+          plays:(typeof S!=='undefined'&&S&&S.plays)||0,
+          q:(typeof S!=='undefined'&&S&&S.q)||null,
+          honest:!!(typeof S!=='undefined'&&S&&S._v98honest)
+        };
+        CW.v99.heatLog.push(rec);
+      }catch(e){}
+    }
+    if(typeof addHeat==='function'&&!addHeat._v99log){
+      var _ah=addHeat;
+      addHeat=function(h){
+        var before=0,why='addHeat';
+        try{before=(typeof S!=='undefined'&&S&&S.heat)||0;}catch(e){}
+        try{if(typeof V77_WHY!=='undefined'&&V77_WHY)why=V77_WHY;}catch(e2){}
+        var r=_ah.apply(this,arguments);
+        try{heatRec(h,why,before);}catch(e3){}
+        return r;
+      };
+      addHeat._v99log=1;
+    }
+    CW.v99.dumpHeat=function(){
+      var log=CW.v99.heatLog||[];
+      var by={};
+      log.forEach(function(r){
+        var k=r.why||'?';
+        if(!by[k])by[k]={n:0,sum:0,max:0};
+        by[k].n++;by[k].sum=Math.round((by[k].sum+r.d)*10)/10;
+        if(Math.abs(r.d)>Math.abs(by[k].max))by[k].max=r.d;
+      });
+      return {n:log.length,by:by,log:log};
+    };
+
+    /* late Q4 cover-flip "bad-beat meme" heat was firing on legit flags, and
+       sprHud could call lateSwing several times in one play if ATS flickered.
+       Correct flags add 0 heat; only one swing is counted per play. */
+    function v99LastFlagLegit(){
+      try{
+        var sw=window.CW&&CW.v91&&CW.v91.swings;
+        if(sw&&sw.length){
+          var last=sw[sw.length-1];
+          if(last&&last.legit)return true;
+          if(last&&last.legit===false)return false;
+        }
+      }catch(e){}
+      try{if(S&&(S.shady||0)===0&&(S.ignored||0)===0&&(S.legit||0)>0)return true;}catch(e2){}
+      return false;
+    }
+    if(typeof lateSwing==='function'&&!lateSwing._v99){
+      var _ls=lateSwing;
+      lateSwing=function(prev,st,mine){
+        try{
+          if(S&&S._v99swingAt===S.plays)return;
+          if(S)S._v99swingAt=S.plays;
+        }catch(e0){}
+        try{if(mine&&v99LastFlagLegit())mine=false;}catch(e1){}
+        return _ls.call(this,prev,st,mine);
+      };
+      lateSwing._v99=1;
+    }
+
+    try{window.__v99.items.push('onerror','title-badge','heat-log','badbeat-legit');}catch(e8){}
+  }catch(e){console.error('[v99]',e);}
+})();
 
 setMatch(QUICK);bindRefNameInputs();syncRefUI();showTitle();
 })();
@@ -16713,6 +17193,8 @@ setMatch(QUICK);bindRefNameInputs();syncRefUI();showTitle();
 .cwver{font:600 10px/1.3 -apple-system,system-ui,sans-serif;color:var(--dim);opacity:.55;text-align:center;margin:8px 0 2px;letter-spacing:.3px}
 #audP .cwver{margin:10px 0 0;font-size:10px}
 #cwVerG{position:absolute;left:5px;bottom:calc(env(safe-area-inset-bottom) + 3px);font:600 9px/1 -apple-system,system-ui,sans-serif;color:#fff;opacity:.35;pointer-events:none;z-index:5;letter-spacing:.3px}
+#cwVerBadge{display:block;width:max-content;margin:10px auto 0;z-index:2;font:700 11px/1.2 -apple-system,system-ui,sans-serif;color:#c5c9d4;background:rgba(26,30,39,0.92);border:1px solid #2c3240;border-radius:8px;padding:4px 8px;letter-spacing:.4px;pointer-events:none;opacity:.95}
+#title .gbn{padding-right:52px;box-sizing:border-box;max-width:calc(100% - 8px)}
 </style>
 <script>window.__v72=true;/* v72 IMPACT: blind grades, job stakes, sticky heat, stand tax (Gamer top-4, George greenlit) */</script>
 <script>window.__v73={ok:true,adPack:true,ids:(window.__v71ads&&window.__v71ads.ids)||[],prefV71:!!window.PREF_V71,napRetired:true,senders:['houseapp','hunch']};/* v73 ADS: Meme parody ad pack (fantasy + betting apps), helpline kept sincere */</script>
@@ -16748,6 +17230,8 @@ setMatch(QUICK);bindRefNameInputs();syncRefUI();showTitle();
 <script>window.__v95={ok:true,build:'BOOTH',items:[]};</script>
 <script>window.__v96={ok:true,build:'CLEANFIELD',items:[]};</script>
 <script>window.__v97={ok:true,build:'POLISH',items:[]};</script>
+<script>window.__v98={ok:true,build:'HONEST',items:[]};</script>
+<script>window.__v99={ok:true,build:'HARDEN',items:[]};</script>
 <script>window.__v81={ok:true,build:'LEGAL',items:['celebrity-invented','gag-helplines','teams-gales-wedges','new-colors','new-emblems','slot-renames','credits-legal-screen','head-copyright']};</script>
 </body>
 </html>
